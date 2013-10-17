@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+						http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.2.xsd">
+
+    <jee:jndi-lookup id="qwServicesEndpoint" jndi-name="java:comp/env/WQP/services/endPoint" expected-type="java.lang.String"/>
+
+    <jee:jndi-lookup id="nwisEndpoint" jndi-name="java:comp/env/WQP/providers/NWIS" expected-type="java.lang.String"/>
+    <jee:jndi-lookup id="stewardEndpoint" jndi-name="java:comp/env/WQP/providers/STEWARDS" expected-type="java.lang.String"/>
+    <jee:jndi-lookup id="storetEndpoint" jndi-name="java:comp/env/WQP/providers/STORET" expected-type="java.lang.String"/>
+
+</beans>

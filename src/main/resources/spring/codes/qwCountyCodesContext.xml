@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jee="http://www.springframework.org/schema/jee"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+                           http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.2.xsd
+       		               http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+                           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+
+	<!-- County -->
+	<bean id="countyDataSource" class="java.net.URI" autowire="byName">
+ 		<constructor-arg index="0" value="http://localhost:8080/qw_portal_services/codes/counties"/>
+ 	</bean>
+
+	<bean id="nwisCountyResource" class="gov.usgs.cida.resourcefolder.basicimpl.HTTPClientResourcePoint" autowire="byName">
+ 		<constructor-arg index="0" type="java.net.URI" value="#{nwisEndpoint}codes/counties"/>
+ 		<constructor-arg index="1" ref="countyDataSource"/>
+ 		<constructor-arg index="2" type="java.net.URI" value="#{nwisEndpoint}codes/counties"/>
+ 		<constructor-arg index="3" type="java.lang.String" value="Get County Codes from the NWIS System"/>
+ 		<constructor-arg index="4" type="org.w3c.dom.Document"><null/></constructor-arg>
+	</bean>
+ 
+	<bean id="stewardCountyResource" class="gov.usgs.cida.resourcefolder.basicimpl.HTTPClientResourcePoint" autowire="byName">
+ 		<constructor-arg index="0" type="java.net.URI" value="#{stewardEndpoint}codes/counties"/>
+ 		<constructor-arg index="1" ref="countyDataSource"/>
+ 		<constructor-arg index="2" type="java.net.URI" value="#{stewardEndpoint}codes/counties"/>
+ 		<constructor-arg index="3" type="java.lang.String" value="Get County Codes from the Steward System"/>
+ 		<constructor-arg index="4" type="org.w3c.dom.Document"><null/></constructor-arg>
+	</bean>
+ 
+	<bean id="storetCountyResource" class="gov.usgs.cida.resourcefolder.basicimpl.HTTPClientResourcePoint" autowire="byName">
+ 		<constructor-arg index="0" type="java.net.URI" value="#{storetEndpoint}codes/counties"/>
+ 		<constructor-arg index="1" ref="countyDataSource"/>
+ 		<constructor-arg index="2" type="java.net.URI" value="#{storetEndpoint}codes/counties"/>
+ 		<constructor-arg index="3" type="java.lang.String" value="Get County Codes from the Storet System"/>
+ 		<constructor-arg index="4" type="org.w3c.dom.Document"><null/></constructor-arg>
+	</bean>
+ 
+	<bean id="countyFolder" class="gov.usgs.cida.resourcefolder.basicimpl.SimpleFolder" autowire="byName">
+ 		<constructor-arg index="0" type="java.net.URI" value="http://localhost:8080/qw_portal_services/codes/counties"/>
+ 		<constructor-arg index="1">
+ 			<set>
+	 			<ref bean="nwisCountyResource"/>
+  	 			<ref bean="stewardCountyResource"/>
+	 			<ref bean="storetCountyResource"/>
+			</set>
+ 		</constructor-arg>
+ 		<constructor-arg index="2">
+ 			<set/>
+ 		</constructor-arg>
+	</bean>
+	
+	<bean id="countyOuterFace" class="gov.usgs.cida.qw.resourcefolder.QwCodeOuterFace" autowire="byName">
+ 		<constructor-arg index="0" ref="countyFolder"/>
+ 		<property name="codeUri" ref="countyDataSource"/>
+	</bean>
+
+	<bean id="countyCodesMvcService" class="gov.usgs.cida.qw.webservice.codes.CountyCodesMvcService" autowire="byName">
+        <property name="agent" ref="agent"/>
+		<property name="outerFace" ref="countyOuterFace"/>
+		<property name="dataSource" ref="countyDataSource"/>
+	</bean>
+	
+</beans>
