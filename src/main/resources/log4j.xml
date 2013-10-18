@@ -11,7 +11,7 @@
 	</appender>
 
 	<appender name="appLog" class="org.apache.log4j.DailyRollingFileAppender">
-		<param name="File" value="${catalina.base}/logs/app.log" />
+		<param name="File" value="${catalina.base}/logs/qw_portal_services.log" />
 		<param name="Append" value="true" />
 		<param name="DatePattern" value="'.'yyyy-MM-dd'.log'"/>
 		<layout class="org.apache.log4j.PatternLayout">
