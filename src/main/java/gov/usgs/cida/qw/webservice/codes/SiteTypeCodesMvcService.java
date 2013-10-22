@@ -18,7 +18,7 @@ public class SiteTypeCodesMvcService extends AggregatedCodesMvcService {
 
 	private final Logger log = LoggerFactory.getLogger(getClass());
 	
-	@RequestMapping(value={"siteType", "siteTypes", "sitetype"}, method=RequestMethod.GET, produces="application/xml")
+	@RequestMapping(value={"sitetypes", "sitetype"}, method=RequestMethod.GET, produces="application/xml")
 	public void getSitetypes(HttpServletRequest request, HttpServletResponse response) {
 		log.debug("sitetypes");
 		Map<String, List<String>> queryParams = new HashMap<>();
