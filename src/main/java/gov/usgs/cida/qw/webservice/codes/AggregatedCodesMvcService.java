@@ -50,6 +50,7 @@ public abstract class AggregatedCodesMvcService extends MvcService {
 		if (inRequest.getParameterMap().isEmpty()) {
 			log.debug("No parameters");
 			inResponse.setStatus(HttpStatus.BAD_REQUEST.value());
+			inResponse.addHeader("Content-Type","application/text");
 		} else {
 			log.debug("got parameters");
 			inResponse.addHeader("Content-Type","application/xml");

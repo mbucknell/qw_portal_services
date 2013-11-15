@@ -23,7 +23,7 @@ public class CharacteristicTypeCodesMvcService extends AggregatedCodesMvcService
 
 	private final Logger log = LoggerFactory.getLogger(getClass());
 	
-	@RequestMapping(value="characteristictype", method=RequestMethod.GET, produces="application/xml")
+	@RequestMapping(value={"characteristictype", "characteristictypes"}, method=RequestMethod.GET, produces="application/xml")
 	public void getCharacteristicTypes(HttpServletRequest request, HttpServletResponse response) throws IllegalArgumentException, IOException, XMLStreamException, TransformerFactoryConfigurationError, TransformerException, JAXBException {
 		log.debug("characteristicType");
 		Map<String, List<String>> queryParams = new HashMap<>();

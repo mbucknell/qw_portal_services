@@ -24,6 +24,7 @@ public class ProviderCodesMvcService {
 	@ResponseBody
 	public String getProviders(HttpServletRequest request, HttpServletResponse response) throws NamingException {
 		log.debug("providers");
+		response.setCharacterEncoding("UTF-8");
 		if (request.getParameterMap().isEmpty()) {
 			log.debug("No parameters");
 			response.setStatus(HttpStatus.BAD_REQUEST.value());
