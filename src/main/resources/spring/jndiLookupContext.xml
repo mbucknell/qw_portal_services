@@ -7,8 +7,8 @@
 
     <jee:jndi-lookup id="qwServicesEndpoint" jndi-name="java:comp/env/WQP/services/endPoint" expected-type="java.lang.String"/>
 
-    <jee:jndi-lookup id="nwisEndpoint" jndi-name="java:comp/env/WQP/providers/NWIS" expected-type="java.lang.String"/>
+    <jee:jndi-lookup id="nwisEndpoint" jndi-name="java:comp/env/WQP/code/provider/NWIS" expected-type="java.lang.String"/>
     <jee:jndi-lookup id="stewardEndpoint" jndi-name="java:comp/env/WQP/providers/STEWARDS" expected-type="java.lang.String"/>
-    <jee:jndi-lookup id="storetEndpoint" jndi-name="java:comp/env/WQP/providers/STORET" expected-type="java.lang.String"/>
+    <jee:jndi-lookup id="storetEndpoint" jndi-name="java:comp/env/WQP/code/provider/STORET" expected-type="java.lang.String"/>
 
 </beans>

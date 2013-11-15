@@ -43,7 +43,7 @@ public class QWUtility {
 		String providerName = "unknown";
 		if (null != response && null != response.getResponsibleEndpoint() && 0 < response.getResponsibleEndpoint().toString().length()) {
 			for (Entry<String, String> entry : QWUtility.PROVIDERS_MAP.entrySet()) {
-				if (response.getResponsibleEndpoint().toString().startsWith(entry.getValue())) {
+				if (response.getResponsibleEndpoint().toString().startsWith(entry.getValue().substring(0, entry.getValue().lastIndexOf("/")))) {
 					providerName = entry.getKey();
 					break; //stop looping when we get a hit.
 				}
