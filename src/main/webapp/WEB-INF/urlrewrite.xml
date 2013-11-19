@@ -8,6 +8,6 @@
     <rule match-type="regex">  
         <note>Force URL to lower case</note>
         <from casesensitive="true">^(.*[A-Z].*)\?(.*)$</from>
-        <to type="forward" last="true">${lower:$1}?$2</to>  
+        <to type="forward" last="true">${lower:$1}</to>  
     </rule>
 </urlrewrite>
