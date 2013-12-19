@@ -5,6 +5,11 @@
     <session-config>
         <session-timeout>35</session-timeout>
     </session-config>
+    <error-page>  
+        <error-code>404</error-code>  
+        <location>/notfound.html</location>  
+    </error-page>  
+   
     <filter>
         <filter-name>UrlRewriteFilter</filter-name>
         <filter-class>org.tuckey.web.filters.urlrewrite.UrlRewriteFilter</filter-class>
@@ -34,6 +39,6 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>springmvc</servlet-name>
-        <url-pattern>/*</url-pattern>
+        <url-pattern>/</url-pattern>
     </servlet-mapping>
 </web-app>

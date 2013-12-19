@@ -11,4 +11,6 @@
     <jee:jndi-lookup id="stewardEndpoint" jndi-name="java:comp/env/WQP/providers/STEWARDS" expected-type="java.lang.String"/>
     <jee:jndi-lookup id="storetEndpoint" jndi-name="java:comp/env/WQP/code/provider/STORET" expected-type="java.lang.String"/>
 
+    <jee:jndi-lookup id="qwDataSource" jndi-name="java:comp/env/jdbc/NWISQW" />
+
 </beans>

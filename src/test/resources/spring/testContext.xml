@@ -5,5 +5,5 @@
 
     <import resource="classpath:/spring/testJndiLookupContext.xml"/>
     <import resource="classpath:/spring/qwPortalServicesContext.xml" />
-
+    
 </beans>

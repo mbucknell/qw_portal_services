@@ -3,6 +3,14 @@
 	     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
 
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:database_init.properties</value>
+            </list>
+        </property>
+    </bean>
+
 	<bean id="qwServicesEndpoint" class="java.lang.String">
         <constructor-arg value="http://localhost:8080/qw_portal_services/"/>
     </bean>
@@ -19,11 +27,15 @@
         <constructor-arg value="http://localhost:8080/storetqw/"/>
     </bean>
 
-<!--     <jee:jndi-lookup id="qwServicesEndpoint" jndi-name="java:comp/env/WQP/services/endPoint" expected-type="java.lang.String"/> -->
+    <bean id="qwDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="${jdbc.nwisQw.driver}"/>
+        <property name="url" value="${jdbc.nwisQw.url}"/>
+        <property name="username" value="${jdbc.nwisQw.username}"/>
+        <property name="password" value="${jdbc.nwisQw.password}"/>
+    </bean>
+    
 
-<!--     <jee:jndi-lookup id="nwisEndpoint" jndi-name="java:comp/env/WQP/providers/NWIS" expected-type="java.lang.String"/> -->
-<!--     <jee:jndi-lookup id="stewardEndpoint" jndi-name="java:comp/env/WQP/providers/STEWARDS" expected-type="java.lang.String"/> -->
-<!--     <jee:jndi-lookup id="storetEndpoint" jndi-name="java:comp/env/WQP/providers/STORET" expected-type="java.lang.String"/> -->
+
 <!--     <Environment name="WQP/services/endPoint" override="true" type="java.lang.String" value="http://localhost:8080/qw_portal_services/"/> -->
     <!-- <Environment name="WQP/providers/ARS" override="true" type="java.lang.String" 
         value="http://www.nrrig.mwa.ars.usda.gov/st10_wqp_test/service1.svc/"/> -->
