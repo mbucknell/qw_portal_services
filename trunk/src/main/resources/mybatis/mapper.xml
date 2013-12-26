@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+
+<mapper namespace="pCode">
+
+    <select id="getPCodesLastModifiedDate" resultType="java.util.Date">
+		select max_last_rev_dt
+		  from nwis_ws_star.public_srsnames
+		 where rownum &lt; 2
+    </select>
+               
+    <select id="getOrderedPCodes" resultType="Export">
+        select parm_cd,
+               description,
+               characteristicname,
+               measureunitcode,
+               resultsamplefraction,
+               resulttemperaturebasis,
+               resultstatisticalbasis,
+               resulttimebasis,
+               resultweightbasis,
+               resultparticlesizebasis,
+               to_char(last_rev_dt, 'yyyy-mm-dd') last_rev_dt 
+          from nwis_ws_star.public_srsnames
+             order by 1
+    </select>
+
+</mapper>
