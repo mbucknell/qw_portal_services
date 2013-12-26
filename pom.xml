@@ -52,12 +52,12 @@
         <dependency>
             <groupId>gov.usgs.cida</groupId>
             <artifactId>resourcefolder</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>0.0.1</version>
         </dependency>
         <dependency>
             <groupId>gov.usgs.cida.qw</groupId>
             <artifactId>qwcore</artifactId>
-            <version>0.1-SNAPSHOT</version>
+            <version>0.1</version>
         </dependency>
         <dependency>
             <groupId>org.tuckey</groupId>
