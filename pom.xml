@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>gov.usgs.cida</groupId>
   <artifactId>qw_portal_services</artifactId>
-  <version>0.2-SNAPSHOT</version>
+  <version>0.1-SNAPSHOT</version>
   <packaging>war</packaging>
   <name>QW Portal</name>
   
@@ -147,6 +147,19 @@
 			</snapshots>
 		</repository>
 	</repositories>
+
+    <distributionManagement>
+        <repository>
+            <id>cida-qw-releases</id>
+            <name>CIDA QW Releases</name>
+            <url>${cida.maven.url}/content/repositories/cida-qw-releases</url>
+        </repository>
+        <snapshotRepository>
+            <id>cida-qw-snapshots</id>
+            <name>CIDA QW Snapshots</name>
+            <url>${cida.maven.url}/content/repositories/cida-qw-snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
 
 	<build>
 		<finalName>qw_portal_services</finalName>
