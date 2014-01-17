@@ -11,6 +11,9 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.zip.GZIPOutputStream;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -62,6 +65,7 @@ public class PublicSrsnamesMvcService extends MvcService {
 			response.setStatus(HttpStatus.BAD_REQUEST.value());
 		} else {
 			response.setCharacterEncoding("UTF-8");
+//			response.setHeader("Content-Encoding", "gzip");
 			List<LinkedHashMap<String, Object>> data = pCodeDao.getRows();
 			String dateString = "";
 			Date maxLastRevDate = pCodeDao.getLastModified();
@@ -69,13 +73,19 @@ public class PublicSrsnamesMvcService extends MvcService {
 				dateString = new SimpleDateFormat("MMMMM_yyyy").format(maxLastRevDate);
 			}
 
-			response.setContentType("text/csv");
-			response.setHeader("Content-disposition", "attachment;filename=\"public_srsnames_" + dateString + ".csv\"");
+//			response.setContentType("text/csv");
+//			response.setHeader("Content-disposition", "attachment;filename=\"public_srsnames_" + dateString + ".csv\"");
+			response.setHeader("Content-disposition", "attachment;filename=\"public_srsnames_" + dateString + ".zip\"");
 
 			try {
-				PrintWriter out = new PrintWriter(response.getOutputStream());
+//				GZIPOutputStream gzipOut = new GZIPOutputStream(response.getOutputStream(), true);
+				ZipOutputStream gzipOut = new ZipOutputStream(response.getOutputStream());
+				gzipOut.putNextEntry(new ZipEntry("public_srsnames_" + dateString + ".csv"));
+				PrintWriter out = new PrintWriter(gzipOut);
 				doCsv(out, data);
 				out.flush();
+				gzipOut.closeEntry();
+				gzipOut.close();
 			} catch (IOException e) {
 				throw new RuntimeException("publicsrsnames: Could not open output stream for csv download.", e);
 			}
