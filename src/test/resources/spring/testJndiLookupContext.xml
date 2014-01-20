@@ -15,9 +15,9 @@
         <constructor-arg value="http://localhost:8080/qw_portal_services/"/>
     </bean>
 
-<!--     <bean id="stewardEndpoint" class="java.lang.String"> -->
-<!--         <constructor-arg value="http://localhost:8080/stewardsqw/"/> -->
-<!--     </bean> -->
+    <bean id="stewardEndpoint" class="java.lang.String">
+        <constructor-arg value="http://localhost:8080/stewardsqw/"/>
+    </bean>
 
     <bean id="nwisEndpoint" class="java.lang.String">
         <constructor-arg value="http://localhost:8080/nwisqw/"/>
