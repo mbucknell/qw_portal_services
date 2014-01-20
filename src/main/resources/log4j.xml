@@ -20,7 +20,7 @@
 	</appender>
 	
 	<category name="org.springframework">
-		<level value="DEBUG"/>
+		<level value="info"/>
 	</category>
 
 	<category name="gov.usgs">
