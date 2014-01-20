@@ -43,7 +43,7 @@
  		<constructor-arg index="1">
  			<set>
 	 			<ref bean="nwisSitetypeResource"/>
-<!--  	 			<ref bean="stewardSitetypeResource"/> -->
+ 	 			<ref bean="stewardSitetypeResource"/>
 	 			<ref bean="storetSitetypeResource"/>
 	 		</set>
  		</constructor-arg>

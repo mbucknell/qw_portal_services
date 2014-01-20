@@ -43,7 +43,7 @@
  		<constructor-arg index="1">
  			<set>
 	 			<ref bean="nwisCharacteristicNameResource"/>
-<!--  	 			<ref bean="stewardCharacteristicNameResource"/> -->
+ 	 			<ref bean="stewardCharacteristicNameResource"/>
 	 			<ref bean="storetCharacteristicNameResource"/>
 	 		</set>
  		</constructor-arg>

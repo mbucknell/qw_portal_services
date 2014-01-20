@@ -43,7 +43,7 @@
  		<constructor-arg index="1">
  			<set>
 	 			<ref bean="nwisSampleMediaResource"/>
-<!--   	 			<ref bean="stewardSampleMediaResource"/> -->
+  	 			<ref bean="stewardSampleMediaResource"/>
 	 			<ref bean="storetSampleMediaResource"/>
 	 		</set>
  		</constructor-arg>

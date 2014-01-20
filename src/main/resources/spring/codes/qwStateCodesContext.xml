@@ -43,7 +43,7 @@
  		<constructor-arg index="1">
  			<set>
 	 			<ref bean="nwisStateResource"/>
-<!--  	 			<ref bean="stewardStateResource"/> -->
+ 	 			<ref bean="stewardStateResource"/>
 	 			<ref bean="storetStateResource"/>
 	 		</set>
  		</constructor-arg>

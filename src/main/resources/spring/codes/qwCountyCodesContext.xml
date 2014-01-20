@@ -43,7 +43,7 @@
  		<constructor-arg index="1">
  			<set>
 	 			<ref bean="nwisCountyResource"/>
-<!--   	 			<ref bean="stewardCountyResource"/> -->
+  	 			<ref bean="stewardCountyResource"/>
 	 			<ref bean="storetCountyResource"/>
 			</set>
  		</constructor-arg>
