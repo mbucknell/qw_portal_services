@@ -31,6 +31,11 @@
             <version>3.1.0</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>gov.usgs.cida.qw</groupId>
+            <artifactId>qwcore</artifactId>
+            <version>0.2</version>
+        </dependency>
 		<dependency>
 			<groupId>org.codehaus.woodstox</groupId>
 			<artifactId>woodstox-core-asl</artifactId>
@@ -53,11 +58,6 @@
             <groupId>gov.usgs.cida</groupId>
             <artifactId>resourcefolder</artifactId>
             <version>0.0.1</version>
-        </dependency>
-        <dependency>
-            <groupId>gov.usgs.cida.qw</groupId>
-            <artifactId>qwcore</artifactId>
-            <version>0.2-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.tuckey</groupId>
