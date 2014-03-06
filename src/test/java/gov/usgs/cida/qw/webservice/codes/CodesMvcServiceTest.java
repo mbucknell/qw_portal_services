@@ -87,7 +87,7 @@ public class CodesMvcServiceTest extends BaseSpringTest {
         mockMvc.perform(get("/codes/countycode?mimetype=xml").accept(MediaType.parseMediaType("application/xml")))
         .andExpect(status().isBadRequest())
         .andExpect(content().contentType("application/xml"))
-        .andExpect(content().string("<Codes></Codes>Required String[] parameter 'statecode' is not present"))
+        .andExpect(content().string("Required String[] parameter 'statecode' is not present"))
         .andExpect(content().encoding("UTF-8"));
 
         mockMvc.perform(get("/codes/counties?statecode=US:55").accept(MediaType.parseMediaType("application/xml")))
@@ -98,7 +98,7 @@ public class CodesMvcServiceTest extends BaseSpringTest {
         mockMvc.perform(get("/codes/counties?mimetype=xml").accept(MediaType.parseMediaType("application/xml")))
         .andExpect(status().isBadRequest())
         .andExpect(content().contentType("application/xml"))
-        .andExpect(content().string("<Codes></Codes>Required String[] parameter 'statecode' is not present"))
+        .andExpect(content().string("Required String[] parameter 'statecode' is not present"))
         .andExpect(content().encoding("UTF-8"));
     }
 	
@@ -215,7 +215,7 @@ public class CodesMvcServiceTest extends BaseSpringTest {
         mockMvc.perform(get("/codes/statecode?mimetype=xml").accept(MediaType.parseMediaType("application/xml")))
         .andExpect(status().isBadRequest())
         .andExpect(content().contentType("application/xml"))
-        .andExpect(content().string("<Codes></Codes>Required String[] parameter 'countrycode' is not present"))
+        .andExpect(content().string("Required String[] parameter 'countrycode' is not present"))
         .andExpect(content().encoding("UTF-8"));
 
         mockMvc.perform(get("/codes/states?countrycode=US").accept(MediaType.parseMediaType("application/xml")))
@@ -226,7 +226,7 @@ public class CodesMvcServiceTest extends BaseSpringTest {
         mockMvc.perform(get("/codes/states?mimetype=xml").accept(MediaType.parseMediaType("application/xml")))
         .andExpect(status().isBadRequest())
         .andExpect(content().contentType("application/xml"))
-        .andExpect(content().string("<Codes></Codes>Required String[] parameter 'countrycode' is not present"))
+        .andExpect(content().string("Required String[] parameter 'countrycode' is not present"))
         .andExpect(content().encoding("UTF-8"));
     }
 
