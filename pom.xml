@@ -13,6 +13,7 @@
 		<cida.svn.url>https://cida-svn.er.usgs.gov/repos/dev</cida.svn.url>
 		<spring-version>4.0.0.RELEASE</spring-version>
 		<slf4j-version>1.6.1</slf4j-version>
+        <qwcore-version>0.4-SNAPSHOT</qwcore-version>
 	</properties>
 	
     <ciManagement>
@@ -34,7 +35,7 @@
         <dependency>
             <groupId>gov.usgs.cida.qw</groupId>
             <artifactId>qwcore</artifactId>
-            <version>0.2</version>
+            <version>${qwcore-version}</version>
         </dependency>
 		<dependency>
 			<groupId>org.codehaus.woodstox</groupId>
