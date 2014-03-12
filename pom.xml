@@ -4,7 +4,7 @@
   <artifactId>qw_portal_services</artifactId>
   <version>0.5-SNAPSHOT</version>
   <packaging>war</packaging>
-  <name>QW Portal</name>
+  <name>QW Portal Services Web Service</name>
   
   	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
