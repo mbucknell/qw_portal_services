@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>gov.usgs.cida</groupId>
   <artifactId>qw_portal_services</artifactId>
-  <version>0.5</version>
+  <version>0.6-SNAPSHOT</version>
   <packaging>war</packaging>
   <name>QW Portal Services Web Service</name>
   
@@ -22,7 +22,7 @@
     </ciManagement>
     
     <scm>
-        <developerConnection>scm:svn:https://cida-svn.er.usgs.gov/repos/dev/usgs/qw/qw_portal_services/tags/qw_portal_services-0.5</developerConnection> 
+        <developerConnection>scm:svn:https://cida-svn.er.usgs.gov/repos/dev/usgs/qw/qw_portal_services/trunk</developerConnection> 
     </scm> 
 
   	<dependencies>
