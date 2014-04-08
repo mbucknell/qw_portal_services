@@ -1,5 +1,6 @@
 package gov.usgs.cida.qw.webservice.codes;
 
+import gov.usgs.cida.qw.QWConstants;
 import gov.usgs.cida.qw.QWUtility;
 
 import javax.naming.NamingException;
@@ -24,7 +25,7 @@ public class ProviderCodesMvcService {
 	@ResponseBody
 	public String getProviders(HttpServletRequest request, HttpServletResponse response) throws NamingException {
 		log.debug("providers");
-		response.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding(QWConstants.DEFAULT_ENCODING);
 		if (request.getParameterMap().isEmpty()) {
 			log.debug("No parameters");
 			response.setStatus(HttpStatus.BAD_REQUEST.value());

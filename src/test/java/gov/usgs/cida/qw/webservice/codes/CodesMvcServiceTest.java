@@ -4,6 +4,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import gov.usgs.cida.qw.BaseSpringTest;
+import gov.usgs.cida.qw.QWConstants;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -32,24 +33,24 @@ public class CodesMvcServiceTest extends BaseSpringTest {
         mockMvc.perform(get("/codes/characteristicname?mimetype=xml").accept(MediaType.parseMediaType("application/xml")))
         .andExpect(status().isOk())
         .andExpect(content().contentType("application/xml"))
-        .andExpect(content().encoding("UTF-8"));
+        .andExpect(content().encoding(QWConstants.DEFAULT_ENCODING));
 
         mockMvc.perform(get("/codes/characteristicname").accept(MediaType.parseMediaType("application/xml")))
         .andExpect(status().isBadRequest())
         .andExpect(content().contentType("application/text"))
         .andExpect(content().string(""))
-        .andExpect(content().encoding("UTF-8"));
+        .andExpect(content().encoding(QWConstants.DEFAULT_ENCODING));
 
         mockMvc.perform(get("/codes/characteristicnames?mimetype=xml").accept(MediaType.parseMediaType("application/xml")))
         .andExpect(status().isOk())
         .andExpect(content().contentType("application/xml"))
-        .andExpect(content().encoding("UTF-8"));
+        .andExpect(content().encoding(QWConstants.DEFAULT_ENCODING));
 
         mockMvc.perform(get("/codes/characteristicnames").accept(MediaType.parseMediaType("application/xml")))
         .andExpect(status().isBadRequest())
         .andExpect(content().contentType("application/text"))
         .andExpect(content().string(""))
-        .andExpect(content().encoding("UTF-8"));
+        .andExpect(content().encoding(QWConstants.DEFAULT_ENCODING));
     }
 	
     @Test
@@ -57,24 +58,24 @@ public class CodesMvcServiceTest extends BaseSpringTest {
         mockMvc.perform(get("/codes/characteristictype?mimetype=xml").accept(MediaType.parseMediaType("application/xml")))
         .andExpect(status().isOk())
         .andExpect(content().contentType("application/xml"))
-        .andExpect(content().encoding("UTF-8"));
+        .andExpect(content().encoding(QWConstants.DEFAULT_ENCODING));
 
         mockMvc.perform(get("/codes/characteristictype").accept(MediaType.parseMediaType("application/xml")))
         .andExpect(status().isBadRequest())
         .andExpect(content().contentType("application/text"))
         .andExpect(content().string(""))
-        .andExpect(content().encoding("UTF-8"));
+        .andExpect(content().encoding(QWConstants.DEFAULT_ENCODING));
 
         mockMvc.perform(get("/codes/characteristictypes?mimetype=xml").accept(MediaType.parseMediaType("application/xml")))
         .andExpect(status().isOk())
         .andExpect(content().contentType("application/xml"))
-        .andExpect(content().encoding("UTF-8"));
+        .andExpect(content().encoding(QWConstants.DEFAULT_ENCODING));
 
         mockMvc.perform(get("/codes/characteristictypes").accept(MediaType.parseMediaType("application/xml")))
         .andExpect(status().isBadRequest())
         .andExpect(content().contentType("application/text"))
         .andExpect(content().string(""))
-        .andExpect(content().encoding("UTF-8"));
+        .andExpect(content().encoding(QWConstants.DEFAULT_ENCODING));
     }
 	
     @Test
@@ -82,24 +83,24 @@ public class CodesMvcServiceTest extends BaseSpringTest {
         mockMvc.perform(get("/codes/countycode?statecode=US:55").accept(MediaType.parseMediaType("application/xml")))
         .andExpect(status().isOk())
         .andExpect(content().contentType("application/xml"))
-        .andExpect(content().encoding("UTF-8"));
+        .andExpect(content().encoding(QWConstants.DEFAULT_ENCODING));
 
         mockMvc.perform(get("/codes/countycode?mimetype=xml").accept(MediaType.parseMediaType("application/xml")))
         .andExpect(status().isBadRequest())
         .andExpect(content().contentType("application/xml"))
         .andExpect(content().string("Required String[] parameter 'statecode' is not present"))
-        .andExpect(content().encoding("UTF-8"));
+        .andExpect(content().encoding(QWConstants.DEFAULT_ENCODING));
 
         mockMvc.perform(get("/codes/counties?statecode=US:55").accept(MediaType.parseMediaType("application/xml")))
         .andExpect(status().isOk())
         .andExpect(content().contentType("application/xml"))
-        .andExpect(content().encoding("UTF-8"));
+        .andExpect(content().encoding(QWConstants.DEFAULT_ENCODING));
 
         mockMvc.perform(get("/codes/counties?mimetype=xml").accept(MediaType.parseMediaType("application/xml")))
         .andExpect(status().isBadRequest())
         .andExpect(content().contentType("application/xml"))
         .andExpect(content().string("Required String[] parameter 'statecode' is not present"))
-        .andExpect(content().encoding("UTF-8"));
+        .andExpect(content().encoding(QWConstants.DEFAULT_ENCODING));
     }
 	
     @Test
@@ -107,24 +108,24 @@ public class CodesMvcServiceTest extends BaseSpringTest {
         mockMvc.perform(get("/codes/countrycode?mimetype=xml").accept(MediaType.parseMediaType("application/xml")))
         .andExpect(status().isOk())
         .andExpect(content().contentType("application/xml"))
-        .andExpect(content().encoding("UTF-8"));
+        .andExpect(content().encoding(QWConstants.DEFAULT_ENCODING));
 
         mockMvc.perform(get("/codes/countrycode").accept(MediaType.parseMediaType("application/xml")))
         .andExpect(status().isBadRequest())
         .andExpect(content().contentType("application/text"))
         .andExpect(content().string(""))
-        .andExpect(content().encoding("UTF-8"));
+        .andExpect(content().encoding(QWConstants.DEFAULT_ENCODING));
 
         mockMvc.perform(get("/codes/countries?mimetype=xml").accept(MediaType.parseMediaType("application/xml")))
         .andExpect(status().isOk())
         .andExpect(content().contentType("application/xml"))
-        .andExpect(content().encoding("UTF-8"));
+        .andExpect(content().encoding(QWConstants.DEFAULT_ENCODING));
 
         mockMvc.perform(get("/codes/countries").accept(MediaType.parseMediaType("application/xml")))
         .andExpect(status().isBadRequest())
         .andExpect(content().contentType("application/text"))
         .andExpect(content().string(""))
-        .andExpect(content().encoding("UTF-8"));
+        .andExpect(content().encoding(QWConstants.DEFAULT_ENCODING));
     }
 	
     @Test
@@ -132,24 +133,24 @@ public class CodesMvcServiceTest extends BaseSpringTest {
         mockMvc.perform(get("/codes/organization?mimetype=xml").accept(MediaType.parseMediaType("application/xml")))
         .andExpect(status().isOk())
         .andExpect(content().contentType("application/xml"))
-        .andExpect(content().encoding("UTF-8"));
+        .andExpect(content().encoding(QWConstants.DEFAULT_ENCODING));
 
         mockMvc.perform(get("/codes/organization").accept(MediaType.parseMediaType("application/xml")))
         .andExpect(status().isBadRequest())
         .andExpect(content().contentType("application/text"))
         .andExpect(content().string(""))
-        .andExpect(content().encoding("UTF-8"));
+        .andExpect(content().encoding(QWConstants.DEFAULT_ENCODING));
 
         mockMvc.perform(get("/codes/organizations?mimetype=xml").accept(MediaType.parseMediaType("application/xml")))
         .andExpect(status().isOk())
         .andExpect(content().contentType("application/xml"))
-        .andExpect(content().encoding("UTF-8"));
+        .andExpect(content().encoding(QWConstants.DEFAULT_ENCODING));
 
         mockMvc.perform(get("/codes/organizations").accept(MediaType.parseMediaType("application/xml")))
         .andExpect(status().isBadRequest())
         .andExpect(content().contentType("application/text"))
         .andExpect(content().string(""))
-        .andExpect(content().encoding("UTF-8"));
+        .andExpect(content().encoding(QWConstants.DEFAULT_ENCODING));
     }
 	
     @Test
@@ -157,13 +158,13 @@ public class CodesMvcServiceTest extends BaseSpringTest {
         this.mockMvc.perform(get("/codes/providers?mimetype=xml").accept(MediaType.parseMediaType("application/xml")))
           .andExpect(status().isOk())
           .andExpect(content().contentType("application/xml"))
-          .andExpect(content().encoding("UTF-8"));
+          .andExpect(content().encoding(QWConstants.DEFAULT_ENCODING));
 
         mockMvc.perform(get("/codes/providers").accept(MediaType.parseMediaType("application/xml")))
         .andExpect(status().isBadRequest())
         .andExpect(content().contentType("application/xml"))
         .andExpect(content().string(""))
-        .andExpect(content().encoding("UTF-8"));
+        .andExpect(content().encoding(QWConstants.DEFAULT_ENCODING));
     }
 	
     @Test
@@ -171,13 +172,13 @@ public class CodesMvcServiceTest extends BaseSpringTest {
         mockMvc.perform(get("/codes/samplemedia?mimetype=xml").accept(MediaType.parseMediaType("application/xml")))
         .andExpect(status().isOk())
         .andExpect(content().contentType("application/xml"))
-        .andExpect(content().encoding("UTF-8"));
+        .andExpect(content().encoding(QWConstants.DEFAULT_ENCODING));
 
         mockMvc.perform(get("/codes/samplemedia").accept(MediaType.parseMediaType("application/xml")))
         .andExpect(status().isBadRequest())
         .andExpect(content().contentType("application/text"))
         .andExpect(content().string(""))
-        .andExpect(content().encoding("UTF-8"));
+        .andExpect(content().encoding(QWConstants.DEFAULT_ENCODING));
     }
 	
     @Test
@@ -185,24 +186,24 @@ public class CodesMvcServiceTest extends BaseSpringTest {
         mockMvc.perform(get("/codes/sitetype?mimetype=xml").accept(MediaType.parseMediaType("application/xml")))
         .andExpect(status().isOk())
         .andExpect(content().contentType("application/xml"))
-        .andExpect(content().encoding("UTF-8"));
+        .andExpect(content().encoding(QWConstants.DEFAULT_ENCODING));
 
         mockMvc.perform(get("/codes/sitetype").accept(MediaType.parseMediaType("application/xml")))
         .andExpect(status().isBadRequest())
         .andExpect(content().contentType("application/text"))
         .andExpect(content().string(""))
-        .andExpect(content().encoding("UTF-8"));
+        .andExpect(content().encoding(QWConstants.DEFAULT_ENCODING));
 
         mockMvc.perform(get("/codes/sitetypes?mimetype=xml").accept(MediaType.parseMediaType("application/xml")))
         .andExpect(status().isOk())
         .andExpect(content().contentType("application/xml"))
-        .andExpect(content().encoding("UTF-8"));
+        .andExpect(content().encoding(QWConstants.DEFAULT_ENCODING));
 
         mockMvc.perform(get("/codes/sitetypes").accept(MediaType.parseMediaType("application/xml")))
         .andExpect(status().isBadRequest())
         .andExpect(content().contentType("application/text"))
         .andExpect(content().string(""))
-        .andExpect(content().encoding("UTF-8"));
+        .andExpect(content().encoding(QWConstants.DEFAULT_ENCODING));
     }
 	
     @Test
@@ -210,24 +211,24 @@ public class CodesMvcServiceTest extends BaseSpringTest {
         mockMvc.perform(get("/codes/statecode?countrycode=US").accept(MediaType.parseMediaType("application/xml")))
         .andExpect(status().isOk())
         .andExpect(content().contentType("application/xml"))
-        .andExpect(content().encoding("UTF-8"));
+        .andExpect(content().encoding(QWConstants.DEFAULT_ENCODING));
 
         mockMvc.perform(get("/codes/statecode?mimetype=xml").accept(MediaType.parseMediaType("application/xml")))
         .andExpect(status().isBadRequest())
         .andExpect(content().contentType("application/xml"))
         .andExpect(content().string("Required String[] parameter 'countrycode' is not present"))
-        .andExpect(content().encoding("UTF-8"));
+        .andExpect(content().encoding(QWConstants.DEFAULT_ENCODING));
 
         mockMvc.perform(get("/codes/states?countrycode=US").accept(MediaType.parseMediaType("application/xml")))
         .andExpect(status().isOk())
         .andExpect(content().contentType("application/xml"))
-        .andExpect(content().encoding("UTF-8"));
+        .andExpect(content().encoding(QWConstants.DEFAULT_ENCODING));
 
         mockMvc.perform(get("/codes/states?mimetype=xml").accept(MediaType.parseMediaType("application/xml")))
         .andExpect(status().isBadRequest())
         .andExpect(content().contentType("application/xml"))
         .andExpect(content().string("Required String[] parameter 'countrycode' is not present"))
-        .andExpect(content().encoding("UTF-8"));
+        .andExpect(content().encoding(QWConstants.DEFAULT_ENCODING));
     }
 
 }

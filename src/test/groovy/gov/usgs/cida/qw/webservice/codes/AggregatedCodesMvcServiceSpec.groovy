@@ -1,4 +1,5 @@
 package gov.usgs.cida.qw
+import gov.usgs.cida.qw.QWConstants;
 import gov.usgs.cida.qw.webservice.codes.TestAggregatedCodesMvcService
 
 class AggregatedCodesMvcServiceSpec extends QwServicesSpec {
@@ -17,12 +18,12 @@ class AggregatedCodesMvcServiceSpec extends QwServicesSpec {
 		mockHttpServletResponse.getStatus() == 400
 		
 		and: "We have correct encoding"
-		mockHttpServletResponse.getCharacterEncoding() == "UTF-8"
+		mockHttpServletResponse.getCharacterEncoding() == QWConstants.DEFAULT_ENCODING
 	}
 
 	def "Error in OuterFace"() {
 		given: "A bad response"
-		mockHttpServletRequest.setParameter("mimeType","fi")
+		mockHttpServletRequest.setParameter("mimeType",QWConstants.MIME_TYPE_FI)
 		mockOuterFace.callResources(_) >> { args ->
 			return mockBadResponse
 		}
@@ -34,7 +35,7 @@ class AggregatedCodesMvcServiceSpec extends QwServicesSpec {
 		mockHttpServletResponse.getStatus() == 400
 		
 		and: "We get correct encoding and headers"
-		mockHttpServletResponse.getCharacterEncoding() == "UTF-8"
+		mockHttpServletResponse.getCharacterEncoding() == QWConstants.DEFAULT_ENCODING
 		mockHttpServletResponse.getHeader("Content-Type") == "application/xml;charset=UTF-8"
 		mockHttpServletResponse.getHeader("test") == "wow, it failed!"
 		mockHttpServletResponse.getHeaders("more").toString() == "[so did, this]"
@@ -42,7 +43,7 @@ class AggregatedCodesMvcServiceSpec extends QwServicesSpec {
 	
 	def "Happy Path"() {
 		given: "a good response"
-		mockHttpServletRequest.setParameter("mimeType","fi")
+		mockHttpServletRequest.setParameter("mimeType",QWConstants.MIME_TYPE_FI)
 		mockOuterFace.callResources(_) >> { args ->
 			return mockOKResponse
 		}
@@ -54,7 +55,7 @@ class AggregatedCodesMvcServiceSpec extends QwServicesSpec {
 		mockHttpServletResponse.getStatus() == 200
 		
 		and: "We get correct encoding, headers, and output"
-		mockHttpServletResponse.getCharacterEncoding() == "UTF-8"
+		mockHttpServletResponse.getCharacterEncoding() == QWConstants.DEFAULT_ENCODING
 		mockHttpServletResponse.getHeader("Content-Type") == "application/xml;charset=UTF-8"
 		mockHttpServletResponse.getHeader("test") == "wow, it works!"
 		mockHttpServletResponse.getHeaders("more").toString() == "[how about, this]"

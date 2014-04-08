@@ -1,5 +1,6 @@
 package gov.usgs.cida.qw.webservice.codes;
 
+import gov.usgs.cida.qw.QWConstants;
 import gov.usgs.cida.qw.webservice.MvcService;
 import gov.usgs.cida.resourcefolder.MessageBody;
 import gov.usgs.cida.resourcefolder.OuterFace;
@@ -46,7 +47,7 @@ public abstract class AggregatedCodesMvcService extends MvcService {
 		
 		log.debug("requested URL: " + inRequest.getRequestURL() + "?" + inRequest.getQueryString());
 		
-		inResponse.setCharacterEncoding("UTF-8");
+		inResponse.setCharacterEncoding(QWConstants.DEFAULT_ENCODING);
 		if (inRequest.getParameterMap().isEmpty()) {
 			log.debug("No parameters");
 			inResponse.setStatus(HttpStatus.BAD_REQUEST.value());
@@ -94,7 +95,7 @@ public abstract class AggregatedCodesMvcService extends MvcService {
 			Map<String, Set<String>> headers = new HashMap<>();
 			Map<String, List<String>> parameters = new HashMap<>();
 			parameters.putAll(inQueryParams);
-			parameters.put("mimeType", Arrays.asList(new String[] {"fi"}));
+			parameters.put("mimeType", Arrays.asList(new String[] {QWConstants.MIME_TYPE_FI}));
 			parameters.put("zip", Arrays.asList(new String[] {"false"}));
 			//This assumes we will not be sending input via the messageBody - should be OK for Code requests.
 			MessageBody messageBody = null;

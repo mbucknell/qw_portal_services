@@ -1,7 +1,7 @@
 package gov.usgs.cida.qw;
 
 import static org.junit.Assert.fail;
-import gov.usgs.cida.qw.dao.XmlStreamingResultHandler;
+import gov.usgs.cida.qw.utility.XmlStreamUtils;
 import gov.usgs.cida.resourcefolder.Folder;
 import gov.usgs.cida.resourcefolder.MessageBody;
 import gov.usgs.cida.resourcefolder.Request;
@@ -63,12 +63,12 @@ public abstract class BaseSpringTest {
 		try {
 			ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 			StAXDocumentSerializer staxDocumentSerializer = new StAXDocumentSerializer();
-			staxDocumentSerializer.setCharacterEncodingScheme("UTF-8");
+			staxDocumentSerializer.setCharacterEncodingScheme(QWConstants.DEFAULT_ENCODING);
 			staxDocumentSerializer.setOutputStream(outputStream);
 			staxDocumentSerializer.writeStartDocument();
 
 			XMLStreamReader streamReader = FACTORY.createXMLStreamReader(new StringReader(xmlString));
-			XmlStreamingResultHandler.copy(streamReader, staxDocumentSerializer);
+			XmlStreamUtils.copy(streamReader, staxDocumentSerializer);
 			streamReader.close();
 	
 			staxDocumentSerializer.writeEndDocument();

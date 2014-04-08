@@ -1,5 +1,6 @@
 package gov.usgs.cida.qw.webservice;
 
+import gov.usgs.cida.qw.QWConstants;
 import gov.usgs.cida.qw.dao.intfc.IPCodeDao;
 
 import java.io.IOException;
@@ -43,7 +44,7 @@ public class PublicSrsnamesMvcService extends MvcService {
 		if (request.getParameterMap().isEmpty()) {
 			response.setStatus(HttpStatus.BAD_REQUEST.value());
 		} else {
-			response.setCharacterEncoding("UTF-8");
+			response.setCharacterEncoding(QWConstants.DEFAULT_ENCODING);
 			List<LinkedHashMap<String, Object>> data = pCodeDao.getRows();
 			String maxLastRevStr = "";
 			Date maxLastRevDate = pCodeDao.getLastModified();
@@ -64,7 +65,7 @@ public class PublicSrsnamesMvcService extends MvcService {
 		if (request.getParameterMap().isEmpty()) {
 			response.setStatus(HttpStatus.BAD_REQUEST.value());
 		} else {
-			response.setCharacterEncoding("UTF-8");
+			response.setCharacterEncoding(QWConstants.DEFAULT_ENCODING);
 //			response.setHeader("Content-Encoding", "gzip");
 			List<LinkedHashMap<String, Object>> data = pCodeDao.getRows();
 			String dateString = "";
