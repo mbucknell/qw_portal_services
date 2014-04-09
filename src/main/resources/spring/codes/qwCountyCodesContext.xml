@@ -58,7 +58,6 @@
 	</bean>
 
 	<bean id="countyCodesMvcService" class="gov.usgs.cida.qw.webservice.codes.CountyCodesMvcService" autowire="byName">
-        <property name="agent" ref="agent"/>
 		<property name="outerFace" ref="countyOuterFace"/>
 		<property name="dataSource" ref="countyDataSource"/>
 	</bean>

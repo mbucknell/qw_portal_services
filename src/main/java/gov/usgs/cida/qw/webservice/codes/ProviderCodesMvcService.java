@@ -19,20 +19,20 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("codes")
 public class ProviderCodesMvcService {
 
-	private final Logger log = LoggerFactory.getLogger(getClass());
-	
-	@RequestMapping(value="providers", method=RequestMethod.GET, produces="application/xml")
-	@ResponseBody
-	public String getProviders(HttpServletRequest request, HttpServletResponse response) throws NamingException {
-		log.debug("providers");
-		response.setCharacterEncoding(QWConstants.DEFAULT_ENCODING);
-		if (request.getParameterMap().isEmpty()) {
-			log.debug("No parameters");
-			response.setStatus(HttpStatus.BAD_REQUEST.value());
-			return "";
-		} else {
-			return QWUtility.PROVIDERS_XML;
-		}
-	}
+    private final Logger log = LoggerFactory.getLogger(getClass());
+    
+    @RequestMapping(value="providers", method=RequestMethod.GET, produces="application/xml")
+    @ResponseBody
+    public String getProviders(HttpServletRequest request, HttpServletResponse response) throws NamingException {
+        log.debug("providers");
+        response.setCharacterEncoding(QWConstants.DEFAULT_ENCODING);
+        if (request.getParameterMap().isEmpty()) {
+            log.debug("No parameters");
+            response.setStatus(HttpStatus.BAD_REQUEST.value());
+            return "";
+        } else {
+            return QWUtility.PROVIDERS_XML;
+        }
+    }
 
 }

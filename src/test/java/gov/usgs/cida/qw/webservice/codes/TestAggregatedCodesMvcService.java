@@ -17,18 +17,18 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class TestAggregatedCodesMvcService extends AggregatedCodesMvcService {
 
-	public void doCodeRequest(
-			final HttpServletRequest inRequest,
-			final OuterFace inOuterFace,
-			final URI inResourceDefinitionURI,
-			final Map<String, List<String>> inQueryParams,
-			final HttpServletResponse inResponse) {
-		super.doCodeRequest(inRequest, inOuterFace, inResourceDefinitionURI, inQueryParams, inResponse);
-	}
-	
-	public Request buildRequest(final HttpServletRequest inRequest, final URI inResourceDefinitionURI, final Map<String, List<String>> inQueryParams) {
-		//TODO - Does this really need testing??
-		return super.buildRequest(inRequest, inResourceDefinitionURI, inQueryParams);
-	}
+    public void doCodeRequest(
+            final HttpServletRequest inRequest,
+            final OuterFace inOuterFace,
+            final URI inResourceDefinitionURI,
+            final Map<String, List<String>> inQueryParams,
+            final HttpServletResponse inResponse) {
+        super.doCodeRequest(inRequest, inOuterFace, inResourceDefinitionURI, inQueryParams, inResponse);
+    }
+    
+    public Request buildRequest(final HttpServletRequest inRequest, final URI inResourceDefinitionURI, final Map<String, List<String>> inQueryParams) {
+        //TODO - Does this really need testing??
+        return super.buildRequest(inRequest, inResourceDefinitionURI, inQueryParams);
+    }
 
 }

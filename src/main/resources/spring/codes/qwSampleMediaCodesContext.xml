@@ -58,7 +58,6 @@
 	</bean>
 
 	<bean id="sampleMediaCodesMvcService" class="gov.usgs.cida.qw.webservice.codes.SampleMediaCodesMvcService" autowire="byName">
-        <property name="agent" ref="agent"/>
 		<property name="outerFace" ref="sampleMediaOuterFace"/>
 		<property name="dataSource" ref="sampleMediaDataSource"/>
 	</bean>

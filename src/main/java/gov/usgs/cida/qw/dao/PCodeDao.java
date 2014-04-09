@@ -14,20 +14,20 @@ import org.mybatis.spring.support.SqlSessionDaoSupport;
  */
 public class PCodeDao extends SqlSessionDaoSupport implements IPCodeDao {
 
-	/** 
-	 * {@inheritDoc}
-	 * @see gov.usgs.cida.qw.dao.intfc.IPCodeDao#getRows()
-	 */
-	public List<LinkedHashMap<String, Object>> getRows() {
-    	return getSqlSession().selectList("getOrderedPCodes");
+    /** 
+     * {@inheritDoc}
+     * @see gov.usgs.cida.qw.dao.intfc.IPCodeDao#getRows()
+     */
+    public List<LinkedHashMap<String, Object>> getRows() {
+        return getSqlSession().selectList("getOrderedPCodes");
     }
 
-	/** 
-	 * {@inheritDoc}
-	 * @see gov.usgs.cida.qw.dao.intfc.IPCodeDao#getLastModified()
-	 */
+    /** 
+     * {@inheritDoc}
+     * @see gov.usgs.cida.qw.dao.intfc.IPCodeDao#getLastModified()
+     */
     public Date getLastModified() {
-    	return getSqlSession().selectOne("getPCodesLastModifiedDate");
+        return getSqlSession().selectOne("getPCodesLastModifiedDate");
     }
 
 }

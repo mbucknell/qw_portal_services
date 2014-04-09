@@ -16,13 +16,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class SiteTypeCodesMvcService extends AggregatedCodesMvcService {
 
-	private final Logger log = LoggerFactory.getLogger(getClass());
-	
-	@RequestMapping(value={"sitetypes", "sitetype"}, method=RequestMethod.GET, produces="application/xml")
-	public void getSitetypes(HttpServletRequest request, HttpServletResponse response) {
-		log.debug("sitetypes");
-		Map<String, List<String>> queryParams = new HashMap<>();
-		doCodeRequest(request, outerFace, dataSource, queryParams, response);
-	}
-	
+    private final Logger log = LoggerFactory.getLogger(getClass());
+    
+    @RequestMapping(value={"sitetypes", "sitetype"}, method=RequestMethod.GET, produces="application/xml")
+    public void getSitetypes(HttpServletRequest request, HttpServletResponse response) {
+        log.debug("sitetypes");
+        Map<String, List<String>> queryParams = new HashMap<>();
+        doCodeRequest(request, outerFace, dataSource, queryParams, response);
+    }
+    
 }

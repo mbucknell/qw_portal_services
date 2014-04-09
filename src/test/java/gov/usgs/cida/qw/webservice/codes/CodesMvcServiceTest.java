@@ -17,7 +17,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 @WebAppConfiguration
 public class CodesMvcServiceTest extends BaseSpringTest {
-	
+    
     @Autowired
     private WebApplicationContext wac;
 
@@ -52,7 +52,7 @@ public class CodesMvcServiceTest extends BaseSpringTest {
         .andExpect(content().string(""))
         .andExpect(content().encoding(QWConstants.DEFAULT_ENCODING));
     }
-	
+    
     @Test
     public void getCharacteristicTypes() throws Exception {
         mockMvc.perform(get("/codes/characteristictype?mimetype=xml").accept(MediaType.parseMediaType("application/xml")))
@@ -77,7 +77,7 @@ public class CodesMvcServiceTest extends BaseSpringTest {
         .andExpect(content().string(""))
         .andExpect(content().encoding(QWConstants.DEFAULT_ENCODING));
     }
-	
+    
     @Test
     public void getCounties() throws Exception {
         mockMvc.perform(get("/codes/countycode?statecode=US:55").accept(MediaType.parseMediaType("application/xml")))
@@ -102,7 +102,7 @@ public class CodesMvcServiceTest extends BaseSpringTest {
         .andExpect(content().string("Required String[] parameter 'statecode' is not present"))
         .andExpect(content().encoding(QWConstants.DEFAULT_ENCODING));
     }
-	
+    
     @Test
     public void getCountries() throws Exception {
         mockMvc.perform(get("/codes/countrycode?mimetype=xml").accept(MediaType.parseMediaType("application/xml")))
@@ -127,7 +127,7 @@ public class CodesMvcServiceTest extends BaseSpringTest {
         .andExpect(content().string(""))
         .andExpect(content().encoding(QWConstants.DEFAULT_ENCODING));
     }
-	
+    
     @Test
     public void getOrganizations() throws Exception {
         mockMvc.perform(get("/codes/organization?mimetype=xml").accept(MediaType.parseMediaType("application/xml")))
@@ -152,7 +152,7 @@ public class CodesMvcServiceTest extends BaseSpringTest {
         .andExpect(content().string(""))
         .andExpect(content().encoding(QWConstants.DEFAULT_ENCODING));
     }
-	
+    
     @Test
     public void getProviders() throws Exception {
         this.mockMvc.perform(get("/codes/providers?mimetype=xml").accept(MediaType.parseMediaType("application/xml")))
@@ -166,7 +166,7 @@ public class CodesMvcServiceTest extends BaseSpringTest {
         .andExpect(content().string(""))
         .andExpect(content().encoding(QWConstants.DEFAULT_ENCODING));
     }
-	
+    
     @Test
     public void getSampleMedia() throws Exception {
         mockMvc.perform(get("/codes/samplemedia?mimetype=xml").accept(MediaType.parseMediaType("application/xml")))
@@ -180,7 +180,7 @@ public class CodesMvcServiceTest extends BaseSpringTest {
         .andExpect(content().string(""))
         .andExpect(content().encoding(QWConstants.DEFAULT_ENCODING));
     }
-	
+    
     @Test
     public void getSiteTypes() throws Exception {
         mockMvc.perform(get("/codes/sitetype?mimetype=xml").accept(MediaType.parseMediaType("application/xml")))
@@ -205,7 +205,7 @@ public class CodesMvcServiceTest extends BaseSpringTest {
         .andExpect(content().string(""))
         .andExpect(content().encoding(QWConstants.DEFAULT_ENCODING));
     }
-	
+    
     @Test
     public void getStates() throws Exception {
         mockMvc.perform(get("/codes/statecode?countrycode=US").accept(MediaType.parseMediaType("application/xml")))

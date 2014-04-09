@@ -36,6 +36,10 @@
         <constructor-arg value="portalqw"/>
     </bean>
     
+    <bean id="providerName" class="gov.usgs.cida.qw.ProviderName" autowire="byName">
+        <constructor-arg ref="agent"/>
+    </bean>
+    
 	<import resource="classpath:/spring/codes/qwCodesContext.xml" />
 
     <bean id="servicesSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">

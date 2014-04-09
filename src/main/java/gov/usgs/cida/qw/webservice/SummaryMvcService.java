@@ -9,6 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("Summary")
 public class SummaryMvcService extends MvcService {
 
-	private final Logger log = LoggerFactory.getLogger(getClass());
+    private final Logger log = LoggerFactory.getLogger(getClass());
 
 }

@@ -21,13 +21,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class OrganizationCodesMvcService extends AggregatedCodesMvcService {
 
-	private final Logger log = LoggerFactory.getLogger(getClass());
-	
-	@RequestMapping(value={"organization", "organizations"}, method=RequestMethod.GET, produces="application/xml")
-	public void getCharacteristicTypes(HttpServletRequest request, HttpServletResponse response) throws IllegalArgumentException, IOException, XMLStreamException, TransformerFactoryConfigurationError, TransformerException, JAXBException {
-		log.debug("organization");
-		Map<String, List<String>> queryParams = new HashMap<>();
-		doCodeRequest(request, outerFace, dataSource, queryParams, response);
-	}
-	
+    private final Logger log = LoggerFactory.getLogger(getClass());
+    
+    @RequestMapping(value={"organization", "organizations"}, method=RequestMethod.GET, produces="application/xml")
+    public void getCharacteristicTypes(HttpServletRequest request, HttpServletResponse response) throws IllegalArgumentException, IOException, XMLStreamException, TransformerFactoryConfigurationError, TransformerException, JAXBException {
+        log.debug("organization");
+        Map<String, List<String>> queryParams = new HashMap<>();
+        doCodeRequest(request, outerFace, dataSource, queryParams, response);
+    }
+    
 }

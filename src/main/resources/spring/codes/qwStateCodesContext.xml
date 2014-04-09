@@ -58,7 +58,6 @@
 	</bean>
 	
 	<bean id="stateCodesMvcService" class="gov.usgs.cida.qw.webservice.codes.StateCodesMvcService" autowire="byName">
-        <property name="agent" ref="agent"/>
 		<property name="outerFace" ref="stateOuterFace"/>
 		<property name="dataSource" ref="stateDataSource"/>
 	</bean>

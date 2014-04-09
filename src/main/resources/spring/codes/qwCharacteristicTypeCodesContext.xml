@@ -58,7 +58,6 @@
 	</bean>
 
 	<bean id="characteristicTypeCodesMvcService" class="gov.usgs.cida.qw.webservice.codes.CharacteristicTypeCodesMvcService" autowire="byName">
-        <property name="agent" ref="agent"/>
 		<property name="outerFace" ref="characteristicTypeOuterFace"/>
 		<property name="dataSource" ref="characteristicTypeDataSource"/>
 	</bean>

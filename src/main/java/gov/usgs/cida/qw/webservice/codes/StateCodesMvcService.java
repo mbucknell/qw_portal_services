@@ -18,15 +18,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class StateCodesMvcService extends AggregatedCodesMvcService {
 
-	private final Logger log = LoggerFactory.getLogger(getClass());
-	
-	@RequestMapping(value={"states", "statecode"}, method=RequestMethod.GET, produces="application/xml")
-	public void getStates(final @RequestParam(value="countrycode", required=true) String[] countrycode,
-			HttpServletRequest request,	HttpServletResponse response) {
-		log.debug("states");
-		Map<String, List<String>> queryParams = new HashMap<>();
-		queryParams.put("countrycode", Arrays.asList(countrycode));
-		doCodeRequest(request, outerFace, dataSource, queryParams, response);
-	}
-	
+    private final Logger log = LoggerFactory.getLogger(getClass());
+    
+    @RequestMapping(value={"states", "statecode"}, method=RequestMethod.GET, produces="application/xml")
+    public void getStates(final @RequestParam(value="countrycode", required=true) String[] countrycode,
+            HttpServletRequest request,    HttpServletResponse response) {
+        log.debug("states");
+        Map<String, List<String>> queryParams = new HashMap<>();
+        queryParams.put("countrycode", Arrays.asList(countrycode));
+        doCodeRequest(request, outerFace, dataSource, queryParams, response);
+    }
+    
 }

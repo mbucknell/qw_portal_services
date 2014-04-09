@@ -58,7 +58,6 @@
 	</bean>
 
 	<bean id="countryCodesMvcService" class="gov.usgs.cida.qw.webservice.codes.CountryCodesMvcService" autowire="byName">
-        <property name="agent" ref="agent"/>
 		<property name="outerFace" ref="countryOuterFace"/>
 		<property name="dataSource" ref="countryDataSource"/>
 	</bean>

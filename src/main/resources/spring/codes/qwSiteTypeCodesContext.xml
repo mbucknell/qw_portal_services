@@ -58,7 +58,6 @@
 	</bean>
 	
 	<bean id="siteTypeCodesMvcService" class="gov.usgs.cida.qw.webservice.codes.SiteTypeCodesMvcService" autowire="byName">
-        <property name="agent" ref="agent"/>
 		<property name="outerFace" ref="siteTypeOuterFace"/>
 		<property name="dataSource" ref="siteTypeDataSource"/>
 	</bean>
