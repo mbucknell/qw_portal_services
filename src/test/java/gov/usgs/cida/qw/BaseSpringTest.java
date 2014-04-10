@@ -42,268 +42,268 @@ import com.sun.xml.fastinfoset.stax.StAXDocumentSerializer;
 @TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = true)
 public abstract class BaseSpringTest {
 
-    private static XMLInputFactory FACTORY = XMLInputFactory.newInstance();
-    public static final String PROVIDER1 = "Test1";
-    public static final String PROVIDER2 = "Test2";
-    
-    @BeforeClass
-    public static void setupJndi() throws Exception {
-        SimpleNamingContextBuilder.emptyActivatedContextBuilder();
-        try {
-            Context context = new InitialContext();
-            context.bind("java:comp/env/WQP/providers/" + PROVIDER1, "http://localhost:8080/testqwa/");
-            context.bind("java:comp/env/WQP/providers/" + PROVIDER2, "http://localhost:8080/testqwb/");
-        } catch (NamingException e) {
-            e.printStackTrace();
-            fail(e.getMessage());
-        }
-    }
-    
-    public static InputStream createFiStream(final String xmlString) {
-        try {
-            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-            StAXDocumentSerializer staxDocumentSerializer = new StAXDocumentSerializer();
-            staxDocumentSerializer.setCharacterEncodingScheme(QWConstants.DEFAULT_ENCODING);
-            staxDocumentSerializer.setOutputStream(outputStream);
-            staxDocumentSerializer.writeStartDocument();
+	private static XMLInputFactory FACTORY = XMLInputFactory.newInstance();
+	public static final String PROVIDER1 = "Test1";
+	public static final String PROVIDER2 = "Test2";
 
-            XMLStreamReader streamReader = FACTORY.createXMLStreamReader(new StringReader(xmlString));
-            XmlStreamUtils.copy(streamReader, staxDocumentSerializer);
-            streamReader.close();
-    
-            staxDocumentSerializer.writeEndDocument();
-            staxDocumentSerializer.flush();
-            staxDocumentSerializer.close();
-            return new ByteArrayInputStream(outputStream.toByteArray());
-        } catch (Exception e) {
-            e.printStackTrace();
-            fail(e.getMessage());
-            return null;
-        }
-    }
-    
-    public class TestRequest implements Request {
+	@BeforeClass
+	public static void setupJndi() throws Exception {
+		SimpleNamingContextBuilder.emptyActivatedContextBuilder();
+		try {
+			Context context = new InitialContext();
+			context.bind("java:comp/env/WQP/providers/" + PROVIDER1, "http://localhost:8080/testqwa/");
+			context.bind("java:comp/env/WQP/providers/" + PROVIDER2, "http://localhost:8080/testqwb/");
+		} catch (NamingException e) {
+			e.printStackTrace();
+			fail();
+		}
+	}
 
-        private URI resourceDefinitionURI;
-        private String jobCorrelationID;
-        
-        public void setJobCorrelationID(final String inJobCorrelationID) {
-            jobCorrelationID = inJobCorrelationID;
-        }
-        
-        @Override
-        public String getJobCorrelationID() {
-            return jobCorrelationID;
-        }
+	public static InputStream createFiStream(final String xmlString) {
+		try {
+			ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+			StAXDocumentSerializer staxDocumentSerializer = new StAXDocumentSerializer();
+			staxDocumentSerializer.setCharacterEncodingScheme(QWConstants.DEFAULT_ENCODING);
+			staxDocumentSerializer.setOutputStream(outputStream);
+			staxDocumentSerializer.writeStartDocument();
 
-        public void setResourceDefinitionURI(final String uriString) {
-            try {
-                resourceDefinitionURI = new URI(uriString);
-            } catch (URISyntaxException e) {
-                e.printStackTrace();
-                fail(e.getMessage());
-            }
-        }
-        
-        @Override
-        public URI getResourceDefinitionURI() {
-            return resourceDefinitionURI;
-        }
+			XMLStreamReader streamReader = FACTORY.createXMLStreamReader(new StringReader(xmlString));
+			XmlStreamUtils.copy(streamReader, staxDocumentSerializer);
+			streamReader.close();
 
-        @Override
-        public StartLine getHTTPStartLine() {
-            // TODO Auto-generated method stub
-            return null;
-        }
+			staxDocumentSerializer.writeEndDocument();
+			staxDocumentSerializer.flush();
+			staxDocumentSerializer.close();
+			return new ByteArrayInputStream(outputStream.toByteArray());
+		} catch (Exception e) {
+			e.printStackTrace();
+			fail();
+			return null;
+		}
+	}
 
-        @Override
-        public boolean isRequest() {
-            // TODO Auto-generated method stub
-            return false;
-        }
+	public class TestRequest implements Request {
 
-        @Override
-        public boolean isResponse() {
-            // TODO Auto-generated method stub
-            return false;
-        }
+		private URI resourceDefinitionURI;
+		private String jobCorrelationID;
 
-        @Override
-        public Map<String, List<String>> getRequestParameters() {
-            // TODO Auto-generated method stub
-            return null;
-        }
+		public void setJobCorrelationID(final String inJobCorrelationID) {
+			jobCorrelationID = inJobCorrelationID;
+		}
 
-        @Override
-        public Map<String, Set<String>> getHTTPHeaders() {
-            // TODO Auto-generated method stub
-            return null;
-        }
+		@Override
+		public String getJobCorrelationID() {
+			return jobCorrelationID;
+		}
 
-        @Override
-        public MessageBody getMessageBody() {
-            // TODO Auto-generated method stub
-            return null;
-        }
+		public void setResourceDefinitionURI(final String uriString) {
+			try {
+				resourceDefinitionURI = new URI(uriString);
+			} catch (URISyntaxException e) {
+				e.printStackTrace();
+				fail();
+			}
+		}
 
-        @Override
-        public URI getDestinationEndpointURI() {
-            // TODO Auto-generated method stub
-            return null;
-        }
+		@Override
+		public URI getResourceDefinitionURI() {
+			return resourceDefinitionURI;
+		}
 
-        @Override
-        public Verb getVerb() {
-            // TODO Auto-generated method stub
-            return null;
-        }
+		@Override
+		public StartLine getHTTPStartLine() {
+			// TODO Auto-generated method stub
+			return null;
+		}
 
-        @Override
-        public Request createDelegate(URI newDestinationEndpointURI) {
-            // TODO Auto-generated method stub
-            return null;
-        }
+		@Override
+		public boolean isRequest() {
+			// TODO Auto-generated method stub
+			return false;
+		}
 
-    }
+		@Override
+		public boolean isResponse() {
+			// TODO Auto-generated method stub
+			return false;
+		}
 
-    public class TestResponse implements Response {
-        private URI responsibleEndpoint;
-        private MessageBody messageBody;
-        private StatusCode status;
-        private List<Response> containedResponses;
-        private Map<String, Set<String>> httpHeaders;
-            
-        @Override
-        public String getJobCorrelationID() {
-            // TODO Auto-generated method stub
-            return null;
-        }
+		@Override
+		public Map<String, List<String>> getRequestParameters() {
+			// TODO Auto-generated method stub
+			return null;
+		}
 
-        @Override
-        public URI getResourceDefinitionURI() {
-            // TODO Auto-generated method stub
-            return null;
-        }
+		@Override
+		public Map<String, Set<String>> getHTTPHeaders() {
+			// TODO Auto-generated method stub
+			return null;
+		}
 
-        @Override
-        public StartLine getHTTPStartLine() {
-            // TODO Auto-generated method stub
-            return null;
-        }
+		@Override
+		public MessageBody getMessageBody() {
+			// TODO Auto-generated method stub
+			return null;
+		}
 
-        @Override
-        public boolean isRequest() {
-            // TODO Auto-generated method stub
-            return false;
-        }
+		@Override
+		public URI getDestinationEndpointURI() {
+			// TODO Auto-generated method stub
+			return null;
+		}
 
-        @Override
-        public boolean isResponse() {
-            // TODO Auto-generated method stub
-            return false;
-        }
+		@Override
+		public Verb getVerb() {
+			// TODO Auto-generated method stub
+			return null;
+		}
 
-        @Override
-        public Map<String, List<String>> getRequestParameters() {
-            // TODO Auto-generated method stub
-            return null;
-        }
+		@Override
+		public Request createDelegate(URI newDestinationEndpointURI) {
+			// TODO Auto-generated method stub
+			return null;
+		}
 
-        public void setHTTPHeaders(final Map<String, Set<String>> inHttpHeaders) {
-            httpHeaders = inHttpHeaders;
-        }
+	}
 
-        @Override
-        public Map<String, Set<String>> getHTTPHeaders() {
-            return httpHeaders;
-        }
+	public class TestResponse implements Response {
+		private URI responsibleEndpoint;
+		private MessageBody messageBody;
+		private StatusCode status;
+		private List<Response> containedResponses;
+		private Map<String, Set<String>> httpHeaders;
 
-        public void setMessageBody(final MessageBody inMessageBody) {
-            messageBody = inMessageBody;
-        }
-        
-        @Override
-        public MessageBody getMessageBody() {
-            return messageBody;
-        }
+		@Override
+		public String getJobCorrelationID() {
+			// TODO Auto-generated method stub
+			return null;
+		}
 
-        public void setResponsibleEndpoint(final String inResponsibleEndpoint) {
-            try {
-                responsibleEndpoint = new URI(inResponsibleEndpoint);
-            } catch (URISyntaxException e) {
-                e.printStackTrace();
-                fail(e.getMessage());
-            }
-        }
+		@Override
+		public URI getResourceDefinitionURI() {
+			// TODO Auto-generated method stub
+			return null;
+		}
 
-        @Override
-        public URI getResponsibleEndpoint() {
-            return responsibleEndpoint;
-        }
+		@Override
+		public StartLine getHTTPStartLine() {
+			// TODO Auto-generated method stub
+			return null;
+		}
 
-        public void setStatusCode(final StatusCode inStatus) {
-            status = inStatus;
-        }
+		@Override
+		public boolean isRequest() {
+			// TODO Auto-generated method stub
+			return false;
+		}
 
-        @Override
-        public StatusCode getStatus() {
-            return status;
-        }
+		@Override
+		public boolean isResponse() {
+			// TODO Auto-generated method stub
+			return false;
+		}
 
-        public void setContainedResponses(final List<Response> inContainedResponses) {
-            containedResponses = inContainedResponses;
-        }
+		@Override
+		public Map<String, List<String>> getRequestParameters() {
+			// TODO Auto-generated method stub
+			return null;
+		}
 
-        @Override
-        public List<Response> getContainedResponses() {
-            return containedResponses;
-        }
+		public void setHTTPHeaders(final Map<String, Set<String>> inHttpHeaders) {
+			httpHeaders = inHttpHeaders;
+		}
 
-        
-    }
+		@Override
+		public Map<String, Set<String>> getHTTPHeaders() {
+			return httpHeaders;
+		}
 
-    public class TestFolder implements Folder {
+		public void setMessageBody(final MessageBody inMessageBody) {
+			messageBody = inMessageBody;
+		}
 
-        @Override
-        public URI getFolderURI() {
-            // TODO Auto-generated method stub
-            return null;
-        }
+		@Override
+		public MessageBody getMessageBody() {
+			return messageBody;
+		}
 
-        @Override
-        public Set<ResourcePoint> getResourcePoints() {
-            // TODO Auto-generated method stub
-            return null;
-        }
+		public void setResponsibleEndpoint(final String inResponsibleEndpoint) {
+			try {
+				responsibleEndpoint = new URI(inResponsibleEndpoint);
+			} catch (URISyntaxException e) {
+				e.printStackTrace();
+				fail();
+			}
+		}
 
-        @Override
-        public Set<Folder> getContainedFolders() {
-            // TODO Auto-generated method stub
-            return null;
-        }
+		@Override
+		public URI getResponsibleEndpoint() {
+			return responsibleEndpoint;
+		}
 
-        @Override
-        public Set<URI> getOfferedResources() {
-            // TODO Auto-generated method stub
-            return null;
-        }
+		public void setStatusCode(final StatusCode inStatus) {
+			status = inStatus;
+		}
 
-        @Override
-        public Document reportContents() {
-            // TODO Auto-generated method stub
-            return null;
-        }
+		@Override
+		public StatusCode getStatus() {
+			return status;
+		}
 
-        @Override
-        public Document getJobHistories(String jobCorrelationID) {
-            // TODO Auto-generated method stub
-            return null;
-        }
+		public void setContainedResponses(final List<Response> inContainedResponses) {
+			containedResponses = inContainedResponses;
+		}
 
-        @Override
-        public Response distribute(Request request) {
-            // TODO Auto-generated method stub
-            return null;
-        }
-    }
+		@Override
+		public List<Response> getContainedResponses() {
+			return containedResponses;
+		}
+
+
+	}
+
+	public class TestFolder implements Folder {
+
+		@Override
+		public URI getFolderURI() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public Set<ResourcePoint> getResourcePoints() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public Set<Folder> getContainedFolders() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public Set<URI> getOfferedResources() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public Document reportContents() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public Document getJobHistories(String jobCorrelationID) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public Response distribute(Request request) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+	}
 }

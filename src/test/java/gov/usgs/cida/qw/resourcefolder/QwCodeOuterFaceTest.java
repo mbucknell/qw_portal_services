@@ -65,7 +65,7 @@ public class QwCodeOuterFaceTest extends BaseSpringTest {
 			qcof.setCodeUri(new URI("http://jimbob.bus/a"));
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
-			fail(e.getMessage());
+			fail();
 		}
 
 		try {
@@ -114,7 +114,8 @@ public class QwCodeOuterFaceTest extends BaseSpringTest {
 			assertEquals(1, resp.getContainedResponses().size());
 			assertTrue(resp.getContainedResponses().contains(testResponse));
 		} catch (Exception e) {
-			fail(e.getMessage());
+			e.printStackTrace();
+			fail();
 		}
 
 		try {
@@ -132,7 +133,8 @@ public class QwCodeOuterFaceTest extends BaseSpringTest {
 			assertEquals(1, resp.getContainedResponses().size());
 			assertTrue(resp.getContainedResponses().contains(testResponse));
 		} catch (Exception e) {
-			fail(e.getMessage());
+			e.printStackTrace();
+			fail();
 		}
 
 		try {
@@ -150,7 +152,8 @@ public class QwCodeOuterFaceTest extends BaseSpringTest {
 			assertEquals(1, resp.getContainedResponses().size());
 			assertTrue(resp.getContainedResponses().contains(testResponse));
 		} catch (Exception e) {
-			fail(e.getMessage());
+			e.printStackTrace();
+			fail();
 		}
 
 		try {
@@ -168,7 +171,8 @@ public class QwCodeOuterFaceTest extends BaseSpringTest {
 			assertEquals(1, resp.getContainedResponses().size());
 			assertTrue(resp.getContainedResponses().contains(testResponse));
 		} catch (Exception e) {
-			fail(e.getMessage());
+			e.printStackTrace();
+			fail();
 		}
 
 		TestResponse innerResponse = new TestResponse();
@@ -188,7 +192,8 @@ public class QwCodeOuterFaceTest extends BaseSpringTest {
 			assertEquals(1, resp.getContainedResponses().size());
 			assertTrue(resp.getContainedResponses().contains(testResponse));
 		} catch (Exception e) {
-			fail(e.getMessage());
+			e.printStackTrace();
+			fail();
 		}
 
 		Map<String, Set<String>> innerHttpHeaders = new HashMap<>();
@@ -210,7 +215,8 @@ public class QwCodeOuterFaceTest extends BaseSpringTest {
 			assertEquals(1, resp.getContainedResponses().size());
 			assertTrue(resp.getContainedResponses().contains(testResponse));
 		} catch (Exception e) {
-			fail(e.getMessage());
+			e.printStackTrace();
+			fail();
 		}
 
 		try {
@@ -231,7 +237,8 @@ public class QwCodeOuterFaceTest extends BaseSpringTest {
 			assertEquals(1, resp.getContainedResponses().size());
 			assertTrue(resp.getContainedResponses().contains(testResponse));
 		} catch (Exception e) {
-			fail(e.getMessage());
+			e.printStackTrace();
+			fail();
 		}
 
 		try {
@@ -254,7 +261,8 @@ public class QwCodeOuterFaceTest extends BaseSpringTest {
 			assertEquals(1, resp.getContainedResponses().size());
 			assertTrue(resp.getContainedResponses().contains(testResponse));
 		} catch (Exception e) {
-			fail(e.getMessage());
+			e.printStackTrace();
+			fail();
 		}
 
 		try {
@@ -273,7 +281,8 @@ public class QwCodeOuterFaceTest extends BaseSpringTest {
 			assertEquals(1, resp.getContainedResponses().size());
 			assertTrue(resp.getContainedResponses().contains(testResponse));
 		} catch (Exception e) {
-			fail(e.getMessage());
+			e.printStackTrace();
+			fail();
 		}
 
 		try {
@@ -292,7 +301,8 @@ public class QwCodeOuterFaceTest extends BaseSpringTest {
 			assertEquals(1, resp.getContainedResponses().size());
 			assertTrue(resp.getContainedResponses().contains(testResponse));
 		} catch (Exception e) {
-			fail(e.getMessage());
+			e.printStackTrace();
+			fail();
 		}
 	}
 
@@ -411,14 +421,16 @@ public class QwCodeOuterFaceTest extends BaseSpringTest {
 			assertEquals("<?xml version='1.0' encoding='UTF-8'?><Codes></Codes>",
 					PackageUtils.writeFromStream(qcof.convertCodesToXmlInputStream(null), null, "").replace(PackageConstants.CRLF, ""));
 		} catch (Exception e) {
-			fail(e.getMessage());
+			e.printStackTrace();
+			fail();
 		}
 
 		try {
 			assertEquals("<?xml version='1.0' encoding='UTF-8'?><Codes></Codes>",
 					PackageUtils.writeFromStream(qcof.convertCodesToXmlInputStream(codes), null, "").replace(PackageConstants.CRLF, ""));
 		} catch (Exception e) {
-			fail(e.getMessage());
+			e.printStackTrace();
+			fail();
 		}
 
 		try {
@@ -426,7 +438,8 @@ public class QwCodeOuterFaceTest extends BaseSpringTest {
 			assertEquals("<?xml version='1.0' encoding='UTF-8'?><Codes><Code value=\"wow\" desc=\"wowDesc\" providers=\"" + PROVIDER1.toUpperCase() + "\"/></Codes>",
 					PackageUtils.writeFromStream(qcof.convertCodesToXmlInputStream(codes), null, "").replace(PackageConstants.CRLF, ""));
 		} catch (Exception e) {
-			fail(e.getMessage());
+			e.printStackTrace();
+			fail();
 		}
 
 		try {
@@ -435,7 +448,8 @@ public class QwCodeOuterFaceTest extends BaseSpringTest {
 					+ "<Code value=\"wow\" desc=\"wowDesc\" providers=\"TEST1\"/></Codes>",
 					PackageUtils.writeFromStream(qcof.convertCodesToXmlInputStream(codes), null, "").replace(PackageConstants.CRLF, ""));
 		} catch (Exception e) {
-			fail(e.getMessage());
+			e.printStackTrace();
+			fail();
 		}
 
 		try {
@@ -444,7 +458,8 @@ public class QwCodeOuterFaceTest extends BaseSpringTest {
 					+ "<Code value=\"some\" desc=\"someDesc\" providers=\"TEST1 TEST2\"/><Code value=\"wow\" desc=\"wowDesc\" providers=\"TEST1\"/></Codes>",
 					PackageUtils.writeFromStream(qcof.convertCodesToXmlInputStream(codes), null, "").replace(PackageConstants.CRLF, ""));
 		} catch (Exception e) {
-			fail(e.getMessage());
+			e.printStackTrace();
+			fail();
 		}
 
 		try {
@@ -453,7 +468,8 @@ public class QwCodeOuterFaceTest extends BaseSpringTest {
 			assertEquals("<?xml version='1.0' encoding='UTF-8'?><Codes><Code value=\"\" desc=\"\" providers=\"" + PROVIDER1.toUpperCase() + "\"/></Codes>",
 					PackageUtils.writeFromStream(qcof.convertCodesToXmlInputStream(codes), null, "").replace(PackageConstants.CRLF, ""));
 		} catch (Exception e) {
-			fail(e.getMessage());
+			e.printStackTrace();
+			fail();
 		}
 
 		try {
@@ -462,7 +478,8 @@ public class QwCodeOuterFaceTest extends BaseSpringTest {
 			assertEquals("<?xml version='1.0' encoding='UTF-8'?><Codes><Code value=\"\" desc=\"\" providers=\"" + PROVIDER1.toUpperCase() + "\"/></Codes>",
 					PackageUtils.writeFromStream(qcof.convertCodesToXmlInputStream(codes), null, "").replace(PackageConstants.CRLF, ""));
 		} catch (Exception e) {
-			fail(e.getMessage());
+			e.printStackTrace();
+			fail();
 		}
 	}
 

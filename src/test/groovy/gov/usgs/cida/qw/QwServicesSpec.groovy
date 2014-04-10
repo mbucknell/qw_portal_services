@@ -36,7 +36,7 @@ class QwServicesSpec extends Specification {
 			context.bind("java:comp/env/WQP/providers/" + BaseSpringTest.PROVIDER2, "http://localhost:8080/testqwb/");
 		} catch (NamingException e) {
 			e.printStackTrace();
-			fail(e.getMessage());
+			fail();
 		}
 		
 		mockOKResponse = Mock(ResponseImpl)
