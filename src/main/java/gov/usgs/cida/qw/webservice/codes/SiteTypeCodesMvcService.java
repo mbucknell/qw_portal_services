@@ -1,5 +1,7 @@
 package gov.usgs.cida.qw.webservice.codes;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,13 +18,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class SiteTypeCodesMvcService extends AggregatedCodesMvcService {
 
-    private final Logger log = LoggerFactory.getLogger(getClass());
-    
-    @RequestMapping(value={"sitetypes", "sitetype"}, method=RequestMethod.GET, produces="application/xml")
-    public void getSitetypes(HttpServletRequest request, HttpServletResponse response) {
-        log.debug("sitetypes");
-        Map<String, List<String>> queryParams = new HashMap<>();
-        doCodeRequest(request, outerFace, dataSource, queryParams, response);
-    }
-    
+	private static final Logger LOG = LoggerFactory.getLogger(SiteTypeCodesMvcService.class);
+
+	@RequestMapping(value={"sitetypes", "sitetype"}, method=RequestMethod.GET, produces="application/xml")
+	public void getSitetypes(HttpServletRequest request, HttpServletResponse response) throws URISyntaxException, IOException {
+		LOG.debug("sitetypes");
+		Map<String, List<String>> queryParams = new HashMap<>();
+		doCodeRequest(request, outerFace, dataSource, queryParams, response);
+	}
+
 }

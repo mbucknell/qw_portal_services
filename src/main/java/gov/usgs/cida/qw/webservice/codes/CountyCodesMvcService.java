@@ -1,5 +1,7 @@
 package gov.usgs.cida.qw.webservice.codes;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -18,15 +20,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class CountyCodesMvcService extends AggregatedCodesMvcService {
 
-    private final Logger log = LoggerFactory.getLogger(getClass());
-    
-    @RequestMapping(value={"counties", "countycode"}, method=RequestMethod.GET, produces="application/xml")
-    public void getCounties(final @RequestParam(value="statecode", required=true) String[] statecode,
-            HttpServletRequest request, HttpServletResponse response) {
-        log.debug("counties");
-        Map<String, List<String>> queryParams = new HashMap<>();
-        queryParams.put("statecode", Arrays.asList(statecode));
-        doCodeRequest(request, outerFace, dataSource, queryParams, response);
-    }
-    
+	private static final Logger LOG = LoggerFactory.getLogger(CountyCodesMvcService.class);
+
+	@RequestMapping(value={"counties", "countycode"}, method=RequestMethod.GET, produces="application/xml")
+	public void getCounties(final @RequestParam(value="statecode", required=true) String[] statecode,
+			HttpServletRequest request, HttpServletResponse response) throws URISyntaxException, IOException {
+		LOG.debug("counties");
+		Map<String, List<String>> queryParams = new HashMap<>();
+		queryParams.put("statecode", Arrays.asList(statecode));
+		doCodeRequest(request, outerFace, dataSource, queryParams, response);
+	}
+
 }
