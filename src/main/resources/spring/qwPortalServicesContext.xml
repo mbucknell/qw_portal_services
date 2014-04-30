@@ -6,18 +6,18 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
                            http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.0.xsd
-       		               http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+                              http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
                            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
 
-	<mvc:annotation-driven content-negotiation-manager="contentNegotiationManager"/>
+    <mvc:annotation-driven content-negotiation-manager="contentNegotiationManager"/>
     <mvc:default-servlet-handler/>
 
-	<context:component-scan base-package="gov.usgs.cida.qw.webservice"/>
-	
-	<bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
-	   <!-- Note that at this time (04Dec2013) Spring does not limit the media types to those listed when using parameterName to determine 
-	        the requested media type and will use anything that matches */* (or in this case will give json for everything but csv).
-	        The value in an accept header IS respected and will throw a 406 if not in the list below.  -->
+    <context:component-scan base-package="gov.usgs.cida.qw.webservice"/>
+
+    <bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+       <!-- Note that at this time (04Dec2013) Spring does not limit the media types to those listed when using parameterName to determine 
+            the requested media type and will use anything that matches */* (or in this case will give json for everything but csv).
+            The value in an accept header IS respected and will throw a 406 if not in the list below.  -->
         <property name="favorPathExtension" value="false" />
         <property name="favorParameter" value="true" />
         <property name="parameterName" value="mimeType" />
@@ -31,22 +31,27 @@
             </map>
         </property>
     </bean>
-	
+
     <bean id="agent" class="java.lang.String">
         <constructor-arg value="portalqw"/>
     </bean>
-    
-    <bean id="providerName" class="gov.usgs.cida.qw.ProviderName" autowire="byName">
-        <constructor-arg ref="agent"/>
+
+    <bean id="providerName" class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+        <property name="staticMethod" value="gov.usgs.cida.qw.ProviderName.setName"/>
+        <property name="arguments">
+            <list>
+                <ref bean="agent"/>
+            </list>
+        </property>
     </bean>
-    
-	<import resource="classpath:/spring/codes/qwCodesContext.xml" />
+
+    <import resource="classpath:/spring/codes/qwCodesContext.xml" />
 
     <bean id="servicesSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="configLocation" value="classpath:/mybatis/mybatisConfig.xml"/>
         <property name="dataSource" ref="qwDataSource"/>
     </bean>
-  
+
     <bean id="pCodeDao" class="gov.usgs.cida.qw.dao.PCodeDao" autowire="byName">
         <property name="sqlSessionFactory" ref="servicesSqlSessionFactory"/>
     </bean>

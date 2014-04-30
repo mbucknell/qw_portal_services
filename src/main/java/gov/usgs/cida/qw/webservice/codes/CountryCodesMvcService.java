@@ -18,13 +18,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class CountryCodesMvcService extends AggregatedCodesMvcService {
 
-	private static final Logger LOG = LoggerFactory.getLogger(CountryCodesMvcService.class);
+    private static final Logger LOG = LoggerFactory.getLogger(CountryCodesMvcService.class);
 
-	@RequestMapping(value={"countries", "countrycode"}, method=RequestMethod.GET, produces="application/xml")
-	public void getCountries(HttpServletRequest request, HttpServletResponse response) throws URISyntaxException, IOException {
-		LOG.debug("countries");
-		Map<String, List<String>> queryParams = new HashMap<>();
-		doCodeRequest(request, outerFace, dataSource, queryParams, response);
-	}
+    @RequestMapping(value={"countries", "countrycode"}, method=RequestMethod.GET, produces="application/xml")
+    public void getCountries(HttpServletRequest request, HttpServletResponse response) throws URISyntaxException, IOException {
+        LOG.debug("countries");
+        Map<String, List<String>> queryParams = new HashMap<>();
+        doCodeRequest(request, outerFace, dataSource, queryParams, response);
+    }
 
 }

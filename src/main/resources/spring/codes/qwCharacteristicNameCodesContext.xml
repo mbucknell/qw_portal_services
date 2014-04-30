@@ -6,60 +6,60 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
                            http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.0.xsd
-       		               http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+                              http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
                            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
 
-	<!-- CharacteristicName -->
-	<bean id="characteristicNameDataSource" class="java.net.URI" autowire="byName">
- 		<constructor-arg index="0" value="http://localhost:8080/qw_portal_services/codes/characteristicNames"/>
- 	</bean>
+    <!-- CharacteristicName -->
+    <bean id="characteristicNameDataSource" class="java.net.URI" autowire="byName">
+         <constructor-arg index="0" value="http://localhost:8080/qw_portal_services/codes/characteristicNames"/>
+     </bean>
 
-	<bean id="nwisCharacteristicNameResource" class="gov.usgs.cida.resourcefolder.basicimpl.HTTPClientResourcePoint" autowire="byName">
- 		<constructor-arg index="0" type="java.net.URI" value="#{nwisEndpoint}codes/characteristicNames"/>
- 		<constructor-arg index="1" ref="characteristicNameDataSource"/>
- 		<constructor-arg index="2" type="java.net.URI" value="#{nwisEndpoint}codes/characteristicNames"/>
- 		<constructor-arg index="3" type="java.lang.String" value="Get Characteristic Name Codes from the NWIS System"/>
- 		<constructor-arg index="4" type="org.w3c.dom.Document"><null/></constructor-arg>
-	</bean>
+    <bean id="nwisCharacteristicNameResource" class="gov.usgs.cida.resourcefolder.basicimpl.HTTPClientResourcePoint" autowire="byName">
+         <constructor-arg index="0" type="java.net.URI" value="#{nwisEndpoint}codes/characteristicNames"/>
+         <constructor-arg index="1" ref="characteristicNameDataSource"/>
+         <constructor-arg index="2" type="java.net.URI" value="#{nwisEndpoint}codes/characteristicNames"/>
+         <constructor-arg index="3" type="java.lang.String" value="Get Characteristic Name Codes from the NWIS System"/>
+         <constructor-arg index="4" type="org.w3c.dom.Document"><null/></constructor-arg>
+    </bean>
  
-	<bean id="stewardCharacteristicNameResource" class="gov.usgs.cida.resourcefolder.basicimpl.HTTPClientResourcePoint" autowire="byName">
- 		<constructor-arg index="0" type="java.net.URI" value="#{stewardEndpoint}codes/characteristicNames"/>
- 		<constructor-arg index="1" ref="characteristicNameDataSource"/>
- 		<constructor-arg index="2" type="java.net.URI" value="#{stewardEndpoint}codes/characteristicNames"/>
- 		<constructor-arg index="3" type="java.lang.String" value="Get Characteristic Name Codes from the Steward System"/>
- 		<constructor-arg index="4" type="org.w3c.dom.Document"><null/></constructor-arg>
-	</bean>
+    <bean id="stewardCharacteristicNameResource" class="gov.usgs.cida.resourcefolder.basicimpl.HTTPClientResourcePoint" autowire="byName">
+         <constructor-arg index="0" type="java.net.URI" value="#{stewardEndpoint}codes/characteristicNames"/>
+         <constructor-arg index="1" ref="characteristicNameDataSource"/>
+         <constructor-arg index="2" type="java.net.URI" value="#{stewardEndpoint}codes/characteristicNames"/>
+         <constructor-arg index="3" type="java.lang.String" value="Get Characteristic Name Codes from the Steward System"/>
+         <constructor-arg index="4" type="org.w3c.dom.Document"><null/></constructor-arg>
+    </bean>
  
-	<bean id="storetCharacteristicNameResource" class="gov.usgs.cida.resourcefolder.basicimpl.HTTPClientResourcePoint" autowire="byName">
- 		<constructor-arg index="0" type="java.net.URI" value="#{storetEndpoint}codes/characteristicNames"/>
- 		<constructor-arg index="1" ref="characteristicNameDataSource"/>
- 		<constructor-arg index="2" type="java.net.URI" value="#{storetEndpoint}codes/characteristicNames"/>
- 		<constructor-arg index="3" type="java.lang.String" value="Get Characteristic Name Codes from the Storet System"/>
- 		<constructor-arg index="4" type="org.w3c.dom.Document"><null/></constructor-arg>
-	</bean>
+    <bean id="storetCharacteristicNameResource" class="gov.usgs.cida.resourcefolder.basicimpl.HTTPClientResourcePoint" autowire="byName">
+         <constructor-arg index="0" type="java.net.URI" value="#{storetEndpoint}codes/characteristicNames"/>
+         <constructor-arg index="1" ref="characteristicNameDataSource"/>
+         <constructor-arg index="2" type="java.net.URI" value="#{storetEndpoint}codes/characteristicNames"/>
+         <constructor-arg index="3" type="java.lang.String" value="Get Characteristic Name Codes from the Storet System"/>
+         <constructor-arg index="4" type="org.w3c.dom.Document"><null/></constructor-arg>
+    </bean>
  
-	<bean id="characteristicNameFolder" class="gov.usgs.cida.resourcefolder.basicimpl.SimpleFolder" autowire="byName">
- 		<constructor-arg index="0" type="java.net.URI" value="http://localhost:8080/qw_portal_services/codes/characteristicNames"/>
- 		<constructor-arg index="1">
- 			<set>
-	 			<ref bean="nwisCharacteristicNameResource"/>
- 	 			<ref bean="stewardCharacteristicNameResource"/>
-	 			<ref bean="storetCharacteristicNameResource"/>
-	 		</set>
- 		</constructor-arg>
- 		<constructor-arg index="2">
- 			<set/>
- 		</constructor-arg>
-	</bean>
-	
-	<bean id="characteristicNameOuterFace" class="gov.usgs.cida.qw.resourcefolder.QwCodeOuterFace" autowire="byName">
- 		<constructor-arg index="0" ref="characteristicNameFolder"/>
- 		<property name="codeUri" ref="characteristicNameDataSource"/>
-	</bean>
-	
-	<bean id="characteristicNameCodesMvcService" class="gov.usgs.cida.qw.webservice.codes.CharacteristicNameCodesMvcService" autowire="byName">
-		<property name="outerFace" ref="characteristicNameOuterFace"/>
-		<property name="dataSource" ref="characteristicNameDataSource"/>
-	</bean>
-	
+    <bean id="characteristicNameFolder" class="gov.usgs.cida.resourcefolder.basicimpl.SimpleFolder" autowire="byName">
+         <constructor-arg index="0" type="java.net.URI" value="http://localhost:8080/qw_portal_services/codes/characteristicNames"/>
+         <constructor-arg index="1">
+             <set>
+                 <ref bean="nwisCharacteristicNameResource"/>
+                  <ref bean="stewardCharacteristicNameResource"/>
+                 <ref bean="storetCharacteristicNameResource"/>
+             </set>
+         </constructor-arg>
+         <constructor-arg index="2">
+             <set/>
+         </constructor-arg>
+    </bean>
+    
+    <bean id="characteristicNameOuterFace" class="gov.usgs.cida.qw.resourcefolder.QwCodeOuterFace" autowire="byName">
+         <constructor-arg index="0" ref="characteristicNameFolder"/>
+         <property name="codeUri" ref="characteristicNameDataSource"/>
+    </bean>
+    
+    <bean id="characteristicNameCodesMvcService" class="gov.usgs.cida.qw.webservice.codes.CharacteristicNameCodesMvcService" autowire="byName">
+        <property name="outerFace" ref="characteristicNameOuterFace"/>
+        <property name="dataSource" ref="characteristicNameDataSource"/>
+    </bean>
+    
 </beans>

@@ -18,13 +18,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class SampleMediaCodesMvcService extends AggregatedCodesMvcService {
 
-	private static final Logger LOG = LoggerFactory.getLogger(SampleMediaCodesMvcService.class);
+    private static final Logger LOG = LoggerFactory.getLogger(SampleMediaCodesMvcService.class);
 
-	@RequestMapping(value="samplemedia", method=RequestMethod.GET, produces="application/xml")
-	public void getSampleMedia(HttpServletRequest request, HttpServletResponse response) throws URISyntaxException, IOException {
-		LOG.debug("sampleMedia");
-		Map<String, List<String>> queryParams = new HashMap<>();
-		doCodeRequest(request, outerFace, dataSource, queryParams, response);
-	}
+    @RequestMapping(value="samplemedia", method=RequestMethod.GET, produces="application/xml")
+    public void getSampleMedia(HttpServletRequest request, HttpServletResponse response) throws URISyntaxException, IOException {
+        LOG.debug("sampleMedia");
+        Map<String, List<String>> queryParams = new HashMap<>();
+        doCodeRequest(request, outerFace, dataSource, queryParams, response);
+    }
 
 }

@@ -11,13 +11,13 @@
         <setting name="aggressiveLazyLoading" value="false"/>
     </settings>
     
-	<typeAliases>
-		<typeAlias alias="Export" type="gov.usgs.cida.qw.Export" />
-	</typeAliases>
+    <typeAliases>
+        <typeAlias alias="Export" type="gov.usgs.cida.qw.Export" />
+    </typeAliases>
 
-	<typeHandlers>
-		<typeHandler javaType="Export" handler="gov.usgs.cida.qw.dao.typehandler.ExportTypeHandler"/>
-	</typeHandlers>
+    <typeHandlers>
+        <typeHandler javaType="Export" handler="gov.usgs.cida.qw.dao.typehandler.ExportTypeHandler"/>
+    </typeHandlers>
 
     <mappers>
         <mapper resource="mybatis/mapper.xml"/>

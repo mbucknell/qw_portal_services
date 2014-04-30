@@ -18,13 +18,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class CharacteristicTypeCodesMvcService extends AggregatedCodesMvcService {
 
-	private static final Logger LOG = LoggerFactory.getLogger(CharacteristicTypeCodesMvcService.class);
+    private static final Logger LOG = LoggerFactory.getLogger(CharacteristicTypeCodesMvcService.class);
 
-	@RequestMapping(value={"characteristictype", "characteristictypes"}, method=RequestMethod.GET, produces="application/xml")
-	public void getCharacteristicTypes(HttpServletRequest request, HttpServletResponse response) throws URISyntaxException, IOException {
-		LOG.debug("characteristicType");
-		Map<String, List<String>> queryParams = new HashMap<>();
-		doCodeRequest(request, outerFace, dataSource, queryParams, response);
-	}
+    @RequestMapping(value={"characteristictype", "characteristictypes"}, method=RequestMethod.GET, produces="application/xml")
+    public void getCharacteristicTypes(HttpServletRequest request, HttpServletResponse response) throws URISyntaxException, IOException {
+        LOG.debug("characteristicType");
+        Map<String, List<String>> queryParams = new HashMap<>();
+        doCodeRequest(request, outerFace, dataSource, queryParams, response);
+    }
 
 }

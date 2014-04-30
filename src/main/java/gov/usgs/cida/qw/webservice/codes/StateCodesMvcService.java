@@ -20,15 +20,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class StateCodesMvcService extends AggregatedCodesMvcService {
 
-	private static final Logger LOG = LoggerFactory.getLogger(StateCodesMvcService.class);
+    private static final Logger LOG = LoggerFactory.getLogger(StateCodesMvcService.class);
 
-	@RequestMapping(value={"states", "statecode"}, method=RequestMethod.GET, produces="application/xml")
-	public void getStates(final @RequestParam(value="countrycode", required=true) String[] countrycode,
-			HttpServletRequest request,    HttpServletResponse response) throws URISyntaxException, IOException {
-		LOG.debug("states");
-		Map<String, List<String>> queryParams = new HashMap<>();
-		queryParams.put("countrycode", Arrays.asList(countrycode));
-		doCodeRequest(request, outerFace, dataSource, queryParams, response);
-	}
+    @RequestMapping(value={"states", "statecode"}, method=RequestMethod.GET, produces="application/xml")
+    public void getStates(final @RequestParam(value="countrycode", required=true) String[] countrycode,
+            HttpServletRequest request,    HttpServletResponse response) throws URISyntaxException, IOException {
+        LOG.debug("states");
+        Map<String, List<String>> queryParams = new HashMap<>();
+        queryParams.put("countrycode", Arrays.asList(countrycode));
+        doCodeRequest(request, outerFace, dataSource, queryParams, response);
+    }
 
 }
