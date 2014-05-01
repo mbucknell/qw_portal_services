@@ -346,8 +346,7 @@ public class QwCodeOuterFaceTest extends BaseSpringTest {
             qcof.processCodes(PROVIDER1, testResponse, null);
             fail("Should have gotten an IllegalArgumentException");
         } catch (IllegalArgumentException e) {
-            assertEquals("Problems unmarshalling MessageBody stream: com.thoughtworks.xstream.io.StreamException:  : java.io.EOFException: Unexpeceted EOF",
-                    e.getMessage());
+            assertEquals("Problems unmarshalling MessageBody stream.", e.getMessage());
 
         }
 
@@ -356,8 +355,7 @@ public class QwCodeOuterFaceTest extends BaseSpringTest {
             qcof.processCodes(PROVIDER1, testResponse, null);
             fail("Should have gotten an IllegalArgumentException");
         } catch (IllegalArgumentException e) {
-            assertEquals("Problems unmarshalling MessageBody stream: com.thoughtworks.xstream.mapper.CannotResolveClassException: junk : junk",
-                    e.getMessage());
+            assertEquals("Problems unmarshalling MessageBody stream.", e.getMessage());
         }
 
         testResponse.setMessageBody(new StreamMessageBody(createFiStream("<Codes/>")));
