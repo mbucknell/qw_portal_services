@@ -65,7 +65,6 @@ public class PublicSrsnamesMvcService extends MvcService {
             response.setStatus(HttpStatus.BAD_REQUEST.value());
         } else {
             response.setCharacterEncoding(QWConstants.DEFAULT_ENCODING);
-            //            response.setHeader("Content-Encoding", "gzip");
             List<LinkedHashMap<String, Object>> data = pCodeDao.getRows();
             String dateString = "";
             Date maxLastRevDate = pCodeDao.getLastModified();
@@ -73,12 +72,9 @@ public class PublicSrsnamesMvcService extends MvcService {
                 dateString = new SimpleDateFormat("MMMMM_yyyy").format(maxLastRevDate);
             }
 
-            //            response.setContentType("text/csv");
-            //            response.setHeader("Content-disposition", "attachment;filename=\"public_srsnames_" + dateString + ".csv\"");
             response.setHeader("Content-disposition", "attachment;filename=\"public_srsnames_" + dateString + ".zip\"");
 
             try {
-                //                GZIPOutputStream gzipOut = new GZIPOutputStream(response.getOutputStream(), true);
                 ZipOutputStream gzipOut = new ZipOutputStream(response.getOutputStream());
                 gzipOut.putNextEntry(new ZipEntry("public_srsnames_" + dateString + ".csv"));
                 PrintWriter out = new PrintWriter(gzipOut);

@@ -1,5 +1,7 @@
 package gov.usgs.cida.qw.webservice.codes;
 
+import gov.usgs.cida.qw.QWConstants;
+
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.HashMap;
@@ -20,7 +22,7 @@ public class SiteTypeCodesMvcService extends AggregatedCodesMvcService {
 
     private static final Logger LOG = LoggerFactory.getLogger(SiteTypeCodesMvcService.class);
 
-    @RequestMapping(value={"sitetypes", "sitetype"}, method=RequestMethod.GET, produces="application/xml")
+    @RequestMapping(value={"sitetypes", "sitetype"}, method=RequestMethod.GET, produces=QWConstants.MIME_TYPE_APPLICATION_XML)
     public void getSitetypes(HttpServletRequest request, HttpServletResponse response) throws URISyntaxException, IOException {
         LOG.debug("sitetypes");
         Map<String, List<String>> queryParams = new HashMap<>();

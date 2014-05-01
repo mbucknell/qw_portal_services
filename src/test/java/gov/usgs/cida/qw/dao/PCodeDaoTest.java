@@ -32,17 +32,17 @@ public class PCodeDaoTest extends BaseSpringTest {
         assertEquals("got the correct number of columns", 11, rows.get(0).keySet().size());
 
         Object[] cols = rows.get(0).keySet().toArray();
-        assertEquals("got correct column in position 1", "PARM_CD", cols[0]);
-        assertEquals("got correct column in position 2", "DESCRIPTION", cols[1]);
-        assertEquals("got correct column in position 3", "CHARACTERISTICNAME", cols[2]);
-        assertEquals("got correct column in position 4", "MEASUREUNITCODE", cols[3]);
-        assertEquals("got correct column in position 5", "RESULTSAMPLEFRACTION", cols[4]);
-        assertEquals("got correct column in position 6", "RESULTTEMPERATUREBASIS", cols[5]);
-        assertEquals("got correct column in position 7", "RESULTSTATISTICALBASIS", cols[6]);
-        assertEquals("got correct column in position 8", "RESULTTIMEBASIS", cols[7]);
-        assertEquals("got correct column in position 9", "RESULTWEIGHTBASIS", cols[8]);
-        assertEquals("got correct column in position 10", "RESULTPARTICLESIZEBASIS", cols[9]);
-        assertEquals("got correct column in position 11", "LAST_REV_DT", cols[10]);
+        assertEquals("got correct column in position 1", "parm_cd", cols[0]);
+        assertEquals("got correct column in position 2", "description", cols[1]);
+        assertEquals("got correct column in position 3", "characteristicname", cols[2]);
+        assertEquals("got correct column in position 4", "measureunitcode", cols[3]);
+        assertEquals("got correct column in position 5", "resultsamplefraction", cols[4]);
+        assertEquals("got correct column in position 6", "resulttemperaturebasis", cols[5]);
+        assertEquals("got correct column in position 7", "resultstatisticalbasis", cols[6]);
+        assertEquals("got correct column in position 8", "resulttimebasis", cols[7]);
+        assertEquals("got correct column in position 9", "resultweightbasis", cols[8]);
+        assertEquals("got correct column in position 10", "resultparticlesizebasis", cols[9]);
+        assertEquals("got correct column in position 11", "last_rev_dt", cols[10]);
     }
 
 }

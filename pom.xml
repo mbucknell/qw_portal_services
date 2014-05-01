@@ -5,7 +5,7 @@
   <version>0.7-SNAPSHOT</version>
   <packaging>war</packaging>
   <name>QW Portal Services Web Service</name>
-  
+
       <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <build.scm.version>${buildNumber}</build.scm.version>
@@ -15,12 +15,12 @@
         <slf4j-version>1.6.1</slf4j-version>
         <qwcore-version>1.2-SNAPSHOT</qwcore-version>
     </properties>
-    
+
     <ciManagement>
         <system>Jenkins</system>
         <url>http://cida-eros-wqpdev.er.usgs.gov:8081/jenkins/job/qw_portal_services/</url> 
     </ciManagement>
-    
+
     <scm>
         <developerConnection>scm:svn:https://cida-svn.er.usgs.gov/repos/dev/usgs/qw/qw_portal_services/trunk</developerConnection> 
     </scm> 
@@ -59,6 +59,16 @@
             <groupId>gov.usgs.cida</groupId>
             <artifactId>resourcefolder</artifactId>
             <version>0.0.1</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>org.slf4j</artifactId>
+                    <groupId>slf4j-api</groupId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-log4j12</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.tuckey</groupId>
@@ -70,12 +80,16 @@
                     <artifactId>servlet-api</artifactId>
                 </exclusion>                    
                 <exclusion>
+                    <groupId>log4j</groupId>
+                    <artifactId>log4j</artifactId>
+                </exclusion>
+                <exclusion>
                     <groupId>org.slf4j</groupId>
                     <artifactId>slf4j-api</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
-        
+
         <dependency>
             <groupId>com.oracle</groupId>
             <artifactId>ojdbc6</artifactId>
@@ -120,7 +134,7 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-  
+
     <repositories>
         <repository>
             <id>cida-qw-releases</id>
@@ -321,15 +335,4 @@
             </plugins>
         </pluginManagement>
     </build>
-    
-    <reporting>
-        <plugins>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>cobertura-maven-plugin</artifactId>
-                <version>2.6</version>
-             </plugin>
-        </plugins>
-    </reporting>
-    
 </project>

@@ -15,15 +15,15 @@ public class AggregatedCode extends Code {
 
     private static final long serialVersionUID = 7174466649683434137L;
 
-    protected SortedSet<String> providers;
+    protected SortedSet<String> providers = new TreeSet<>();
 
     public AggregatedCode(Code inCode, String inProvider) {
         if (null == inCode) {
             throw new IllegalArgumentException("Must provide the Code to use this constructor.");
         }
-        setValue(inCode.getValue());
-        setDesc(inCode.getDesc());
-        addProvider(inProvider);
+        value = inCode.getValue();
+        desc = inCode.getDesc();
+        providers.add(translateProvider(inProvider));
     }
 
     public AggregatedCode() {
@@ -38,10 +38,13 @@ public class AggregatedCode extends Code {
         if (null == inProvider || 0 == inProvider.length()) {
             throw new IllegalArgumentException("The provider cannot be empty.");
         }
-        if (null == providers) {
-            providers = new TreeSet<>();
-        }
-        providers.add(inProvider.toUpperCase());
+        providers.add(translateProvider(inProvider));
     }
 
+    private String translateProvider(final String inProvider) {
+        if (null == inProvider || 0 == inProvider.length()) {
+            throw new IllegalArgumentException("The provider cannot be empty.");
+        }
+        return inProvider.toUpperCase();
+    }
 }

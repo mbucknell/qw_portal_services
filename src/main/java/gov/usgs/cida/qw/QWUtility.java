@@ -1,5 +1,6 @@
 package gov.usgs.cida.qw;
 
+import gov.usgs.cida.qw.resourcefolder.QwCodeOuterFace;
 import gov.usgs.cida.resourcefolder.Response;
 
 import java.util.Map.Entry;
@@ -10,7 +11,12 @@ import javax.naming.Binding;
 import javax.naming.InitialContext;
 import javax.naming.NamingEnumeration;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class QWUtility {
+
+    private static final Logger LOG = LoggerFactory.getLogger(QwCodeOuterFace.class);
 
     public static final String PROVIDERS_XML;
 
@@ -30,8 +36,8 @@ public class QWUtility {
             }
             PROVIDERS_XML = sb.append("</providers>").toString();
         } catch (Exception e) {
-            e.printStackTrace();
-            throw new IllegalArgumentException("java:comp/env/WQP/providers not configured correctly.");
+            LOG.info(e.getMessage());;
+            throw new IllegalArgumentException("java:comp/env/WQP/providers not configured correctly.", e);
         }
     }
 

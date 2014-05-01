@@ -1,5 +1,7 @@
 package gov.usgs.cida.qw.webservice.codes;
 
+import gov.usgs.cida.qw.QWConstants;
+
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.HashMap;
@@ -20,7 +22,7 @@ public class CountryCodesMvcService extends AggregatedCodesMvcService {
 
     private static final Logger LOG = LoggerFactory.getLogger(CountryCodesMvcService.class);
 
-    @RequestMapping(value={"countries", "countrycode"}, method=RequestMethod.GET, produces="application/xml")
+    @RequestMapping(value={"countries", "countrycode"}, method=RequestMethod.GET, produces=QWConstants.MIME_TYPE_APPLICATION_XML)
     public void getCountries(HttpServletRequest request, HttpServletResponse response) throws URISyntaxException, IOException {
         LOG.debug("countries");
         Map<String, List<String>> queryParams = new HashMap<>();

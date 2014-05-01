@@ -36,7 +36,7 @@ class AggregatedCodesMvcServiceSpec extends QwServicesSpec {
         
         and: "We get correct encoding and headers"
         mockHttpServletResponse.getCharacterEncoding() == QWConstants.DEFAULT_ENCODING
-        mockHttpServletResponse.getHeader("Content-Type") == "application/xml;charset=UTF-8"
+        mockHttpServletResponse.getHeader(QWConstants.HEADER_CONTENT_TYPE) == "application/xml;charset=UTF-8"
         mockHttpServletResponse.getHeader("test") == "wow, it failed!"
         mockHttpServletResponse.getHeaders("more").toString() == "[so did, this]"
     }
@@ -56,7 +56,7 @@ class AggregatedCodesMvcServiceSpec extends QwServicesSpec {
         
         and: "We get correct encoding, headers, and output"
         mockHttpServletResponse.getCharacterEncoding() == QWConstants.DEFAULT_ENCODING
-        mockHttpServletResponse.getHeader("Content-Type") == "application/xml;charset=UTF-8"
+        mockHttpServletResponse.getHeader(QWConstants.HEADER_CONTENT_TYPE) == "application/xml;charset=UTF-8"
         mockHttpServletResponse.getHeader("test") == "wow, it works!"
         mockHttpServletResponse.getHeaders("more").toString() == "[how about, this]"
         mockHttpServletResponse.getContentAsString() == "<Codes/>"

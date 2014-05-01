@@ -52,10 +52,10 @@ public abstract class AggregatedCodesMvcService extends MvcService {
         if (inRequest.getParameterMap().isEmpty()) {
             LOG.debug("No parameters");
             inResponse.setStatus(HttpStatus.BAD_REQUEST.value());
-            inResponse.addHeader("Content-Type","application/text");
+            inResponse.addHeader(QWConstants.HEADER_CONTENT_TYPE, QWConstants.MIME_TYPE_TEXT);
         } else {
             LOG.debug("got parameters");
-            inResponse.addHeader("Content-Type","application/xml");
+            inResponse.addHeader(QWConstants.HEADER_CONTENT_TYPE, QWConstants.MIME_TYPE_APPLICATION_XML);
 
             Response resp = inOuterFace.callResources(buildRequest(inRequest, inResourceDefinitionURI, inQueryParams));
             inResponse.setStatus(resp.getStatus().getCode());

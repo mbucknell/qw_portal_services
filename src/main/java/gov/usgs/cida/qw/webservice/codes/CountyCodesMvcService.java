@@ -1,5 +1,7 @@
 package gov.usgs.cida.qw.webservice.codes;
 
+import gov.usgs.cida.qw.QWConstants;
+
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.Arrays;
@@ -22,7 +24,7 @@ public class CountyCodesMvcService extends AggregatedCodesMvcService {
 
     private static final Logger LOG = LoggerFactory.getLogger(CountyCodesMvcService.class);
 
-    @RequestMapping(value={"counties", "countycode"}, method=RequestMethod.GET, produces="application/xml")
+    @RequestMapping(value={"counties", "countycode"}, method=RequestMethod.GET, produces=QWConstants.MIME_TYPE_APPLICATION_XML)
     public void getCounties(final @RequestParam(value="statecode", required=true) String[] statecode,
             HttpServletRequest request, HttpServletResponse response) throws URISyntaxException, IOException {
         LOG.debug("counties");

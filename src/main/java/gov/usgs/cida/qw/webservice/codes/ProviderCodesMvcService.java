@@ -21,7 +21,7 @@ public class ProviderCodesMvcService {
 
     private static final Logger LOG = LoggerFactory.getLogger(ProviderCodesMvcService.class);
 
-    @RequestMapping(value="providers", method=RequestMethod.GET, produces="application/xml")
+    @RequestMapping(value="providers", method=RequestMethod.GET, produces=QWConstants.MIME_TYPE_APPLICATION_XML)
     @ResponseBody
     public String getProviders(HttpServletRequest request, HttpServletResponse response) throws NamingException {
         LOG.debug("providers");
