@@ -28,7 +28,7 @@ public class PCodeDaoTest extends BaseSpringTest {
     public void getRows() {
         List<LinkedHashMap<String, Object>> rows = pCodeDao.getRows();
         assertNotNull("got something", rows);
-        assertTrue("got a bunch of rows of data", rows.size() > 10);
+        assertTrue("got a bunch of rows of data", rows.size() > 5);
         assertEquals("got the correct number of columns", 11, rows.get(0).keySet().size());
 
         Object[] cols = rows.get(0).keySet().toArray();

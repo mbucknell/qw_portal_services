@@ -36,7 +36,7 @@ public class QWUtility {
             }
             PROVIDERS_XML = sb.append("</providers>").toString();
         } catch (Exception e) {
-            LOG.info(e.getMessage());;
+            LOG.info(e.getMessage());
             throw new IllegalArgumentException("java:comp/env/WQP/providers not configured correctly.", e);
         }
     }

@@ -219,7 +219,7 @@ public class QwCodeOuterFace implements OuterFace {
             } catch (Exception e) {
                 //TODO Houston we have a problem...
                 LOG.info(e.getMessage());
-                throw new IllegalArgumentException("Problems unmarshalling MessageBody stream: " + e);
+                throw new IllegalArgumentException("Problems unmarshalling MessageBody stream.", e);
             }
             //o will be a list and c will be a code - otherwise we would get an exception from the unmarshal above.
             List<?> codes = (List<?>) o;
