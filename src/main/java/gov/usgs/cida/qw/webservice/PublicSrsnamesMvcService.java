@@ -35,7 +35,7 @@ public class PublicSrsnamesMvcService extends MvcService {
     @Resource
     private IPCodeDao pCodeDao;
 
-    @RequestMapping(value={"publicsrsnames", "public_srsnames"}, method=RequestMethod.GET, produces="application/json")
+    @RequestMapping(value={"publicsrsnames", "public_srsnames"}, method=RequestMethod.GET, produces=QWConstants.MIME_TYPE_APPLICATION_JSON)
     @ResponseBody
     public Map<String, Object> getPublicSrsnamesJson(HttpServletRequest request, HttpServletResponse response) {
         LOG.debug("publicsrsnamesJson");
@@ -51,14 +51,14 @@ public class PublicSrsnamesMvcService extends MvcService {
                 maxLastRevStr = new SimpleDateFormat("MMMMM yyyy").format(maxLastRevDate);
             }
 
-            response.setContentType("application/json");
+            response.setContentType(QWConstants.MIME_TYPE_APPLICATION_JSON);
             rtn.put("maxLastRevDate", maxLastRevStr);
             rtn.put("pcodes", data);
         }
         return rtn;
     }
 
-    @RequestMapping(value={"publicsrsnames", "public_srsnames"}, method=RequestMethod.GET, produces="text/csv")
+    @RequestMapping(value={"publicsrsnames", "public_srsnames"}, method=RequestMethod.GET, produces=QWConstants.MIME_TYPE_TEXT_CSV)
     public void getPublicSrsnamesCsv(HttpServletRequest request, HttpServletResponse response) {
         LOG.debug("publicsrsnamesCsv");
         if (request.getParameterMap().isEmpty()) {
@@ -72,7 +72,7 @@ public class PublicSrsnamesMvcService extends MvcService {
                 dateString = new SimpleDateFormat("MMMMM_yyyy").format(maxLastRevDate);
             }
 
-            response.setHeader("Content-disposition", "attachment;filename=\"public_srsnames_" + dateString + ".zip\"");
+            response.setHeader(QWConstants.HEADER_CONTENT_DISPOSITION, "attachment;filename=\"public_srsnames_" + dateString + ".zip\"");
 
             try {
                 ZipOutputStream gzipOut = new ZipOutputStream(response.getOutputStream());
