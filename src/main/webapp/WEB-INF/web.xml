@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="WINDOWS-1252"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
-    <description>QW Webservices</description>
-    <display-name>QW Webservices</display-name>
+    <description>WQP Misc Webservices</description>
+    <display-name>WQP Misc Webservices</display-name>
     <session-config>
         <session-timeout>35</session-timeout>
     </session-config>
-    <error-page>  
-        <error-code>404</error-code>  
-        <location>/notfound.html</location>  
-    </error-page>  
    
+    <filter>
+        <filter-name>WQPFilter</filter-name>
+        <filter-class>gov.usgs.cida.qw.OnePlusParameterFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>WQPFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    
     <filter>
         <filter-name>UrlRewriteFilter</filter-name>
         <filter-class>org.tuckey.web.filters.urlrewrite.UrlRewriteFilter</filter-class>
@@ -28,6 +33,7 @@
         <dispatcher>REQUEST</dispatcher>
         <dispatcher>FORWARD</dispatcher>
     </filter-mapping>
+
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>/WEB-INF/springmvc-servlet.xml</param-value>

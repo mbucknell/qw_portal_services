@@ -27,12 +27,12 @@
         <constructor-arg value="http://localhost:8080/storetqw/"/>
     </bean>
 
-    <bean id="qwDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-        <property name="driverClassName" value="oracle.jdbc.OracleDriver"/>
-        <property name="url" value="${jdbc.nwisQw.url}"/>
-        <property name="username" value="${jdbc.nwisQw.username}"/>
-        <property name="password" value="${jdbc.nwisQw.password}"/>
-    </bean>
+<!--     <bean id="qwDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"> -->
+<!--         <property name="driverClassName" value="oracle.jdbc.OracleDriver"/> -->
+<!--         <property name="url" value="${jdbc.nwisQw.url}"/> -->
+<!--         <property name="username" value="${jdbc.nwisQw.username}"/> -->
+<!--         <property name="password" value="${jdbc.nwisQw.password}"/> -->
+<!--     </bean> -->
     
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="oracle.jdbc.OracleDriver"/>

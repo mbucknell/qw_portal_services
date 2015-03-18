@@ -6,21 +6,26 @@
 
     <!-- Global configuration settings for the mapper.-->
     <settings>
-        <setting name="cacheEnabled" value="true"/>
+        <setting name="cacheEnabled" value="false"/>
         <setting name="lazyLoadingEnabled" value="false"/>
         <setting name="aggressiveLazyLoading" value="false"/>
     </settings>
     
     <typeAliases>
         <typeAlias alias="Export" type="gov.usgs.cida.qw.Export" />
+        <typeAlias alias="Code" type="gov.usgs.cida.qw.codes.Code" />
     </typeAliases>
 
     <typeHandlers>
-        <typeHandler javaType="Export" handler="gov.usgs.cida.qw.dao.typehandler.ExportTypeHandler"/>
+        <typeHandler javaType="Export" handler="gov.usgs.cida.qw.ExportTypeHandler"/>
+		<typeHandler javaType="org.joda.time.LocalDateTime" handler="gov.usgs.cida.qw.LocalDateTimeTypeHandler"/>
     </typeHandlers>
 
     <mappers>
-        <mapper resource="mybatis/mapper.xml"/>
+        <mapper resource="mybatis/srsnamesMapper.xml"/>
+        <mapper resource="mybatis/lastUpdateMapper.xml"/>
+        <mapper resource="mybatis/codeMapper.xml"/>
+        <mapper resource="mybatis/summaryMapper.xml"/>
     </mappers>
     
 </configuration>

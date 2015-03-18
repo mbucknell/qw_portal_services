@@ -10,10 +10,13 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <build.scm.version>${buildNumber}</build.scm.version>
         <cida.maven.url>http://internal.cida.usgs.gov/maven</cida.maven.url>
-        <cida.svn.url>https://cida-svn.er.usgs.gov/repos/dev</cida.svn.url>
-        <spring-version>4.0.0.RELEASE</spring-version>
+		<spring-version>4.1.1.RELEASE</spring-version>
         <slf4j-version>1.6.1</slf4j-version>
         <qwcore-version>1.2</qwcore-version>
+        <mybatis-version>3.2.8</mybatis-version>
+        <mybatis-spring-version>1.2.2</mybatis-spring-version>
+		<joda-time-version>2.7</joda-time-version>
+		<jackson-version>2.4.1.3</jackson-version>
     </properties>
 
     <ciManagement>
@@ -21,9 +24,12 @@
         <url>http://cida-eros-wqpdev.er.usgs.gov:8081/jenkins/job/qw_portal_services/</url> 
     </ciManagement>
 
-    <scm>
-        <developerConnection>scm:svn:https://cida-svn.er.usgs.gov/repos/dev/usgs/qw/qw_portal_services/trunk</developerConnection> 
-    </scm> 
+	<scm>
+		<connection>scm:git:http://cida-eros-stash.er.usgs.gov:7999/wqp/qw_portal_services.git</connection>
+		<developerConnection>scm:git:ssh://cida-eros-stash.er.usgs.gov:7999/wqp/qw_portal_services.git</developerConnection>
+		<url>http:cida-eros-stash.er.usgs.gov:7999/wqp/qw_portal_services.git</url>
+		<tag>HEAD</tag>
+	</scm>
 
       <dependencies>
         <dependency>
@@ -32,48 +38,141 @@
             <version>3.1.0</version>
             <scope>provided</scope>
         </dependency>
+<!--         <dependency> -->
+<!--             <groupId>gov.usgs.cida.qw</groupId> -->
+<!--             <artifactId>qwcore</artifactId> -->
+<!--             <version>${qwcore-version}</version> -->
+<!--         </dependency> -->
+<!--         <dependency> -->
+<!--             <groupId>org.codehaus.woodstox</groupId> -->
+<!--             <artifactId>woodstox-core-asl</artifactId> -->
+<!--             <version>4.1.3</version> -->
+<!--             <exclusions> -->
+<!--                 <exclusion> -->
+<!--                     <artifactId>stax-api</artifactId> -->
+<!--                     <groupId>stax</groupId> -->
+<!--                 </exclusion> -->
+<!--             </exclusions> -->
+<!--         </dependency> -->
+<!--         <dependency> -->
+<!--             <groupId>com.thoughtworks.xstream</groupId> -->
+<!--             <artifactId>xstream</artifactId> -->
+<!--             <version>1.3.1</version> -->
+<!--         </dependency> -->
+
+
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.3</version>
+		</dependency>
+		<dependency>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time</artifactId>
+			<version>${joda-time-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.velocity</groupId>
+			<artifactId>velocity-tools</artifactId>
+			<version>2.0</version>
+		</dependency>
+
+ 	<!-- Logging -->
         <dependency>
-            <groupId>gov.usgs.cida.qw</groupId>
-            <artifactId>qwcore</artifactId>
-            <version>${qwcore-version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.codehaus.woodstox</groupId>
-            <artifactId>woodstox-core-asl</artifactId>
-            <version>4.1.3</version>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>${slf4j-version}</version>
             <exclusions>
                 <exclusion>
-                    <artifactId>stax-api</artifactId>
-                    <groupId>stax</groupId>
+                    <artifactId>log4j</artifactId>
+                    <groupId>log4j</groupId>
                 </exclusion>
             </exclusions>
         </dependency>
         <dependency>
-            <groupId>com.thoughtworks.xstream</groupId>
-            <artifactId>xstream</artifactId>
-            <version>1.3.1</version>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.16</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>mail</artifactId>
+                    <groupId>javax.mail</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>activation</artifactId>
+                    <groupId>javax.activation</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>jmxtools</artifactId>
+                    <groupId>com.sun.jdmk</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>jms</artifactId>
+                    <groupId>javax.jms</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>jmxri</artifactId>
+                    <groupId>com.sun.jmx</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
 
         <dependency>
-            <groupId>gov.usgs.cida</groupId>
-            <artifactId>resourcefolder</artifactId>
-            <version>0.0.1</version>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>${spring-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>${spring-version}</version>
             <exclusions>
                 <exclusion>
-                    <artifactId>org.slf4j</artifactId>
-                    <groupId>slf4j-api</groupId>
+                    <groupId>aopalliance</groupId>
+                    <artifactId>aopalliance</artifactId>
                 </exclusion>
                 <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>slf4j-log4j12</artifactId>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-beans</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-core</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+            <version>${mybatis-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis-spring</artifactId>
+            <version>${mybatis-spring-version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>spring-context</artifactId>
+                    <groupId>org.springframework</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>spring-core</artifactId>
+                    <groupId>org.springframework</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>spring-beans</artifactId>
+                    <groupId>org.springframework</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        
+        
+
         <dependency>
             <groupId>org.tuckey</groupId>
             <artifactId>urlrewritefilter</artifactId>
-            <version>3.2.0-1</version>
+            <version>4.0.4</version>
             <exclusions>
                 <exclusion>
                     <groupId>javax.servlet</groupId>
@@ -89,6 +188,14 @@
                 </exclusion>
             </exclusions>
         </dependency>
+
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${jackson-version}</version>
+		</dependency>
+
 
         <dependency>
             <groupId>com.oracle</groupId>
@@ -114,25 +221,17 @@
             <version>${spring-version}</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.spockframework</groupId>
-            <artifactId>spock-core</artifactId>
-            <version>1.0-groovy-2.0-SNAPSHOT</version>
-            <scope>test</scope>
-        </dependency>
-        <!-- Optional dependencies for using Spock -->
-        <dependency> <!-- enables mocking of classes (in addition to interfaces) -->
-            <groupId>cglib</groupId>
-            <artifactId>cglib-nodep</artifactId>
-            <version>2.2.2</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.objenesis</groupId>
-            <artifactId>objenesis</artifactId>
-            <version>1.2</version>
-            <scope>test</scope>
-        </dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<version>1.10.19</version>
+		</dependency>
+		<dependency>
+			<groupId>uk.co.datumedge</groupId>
+			<artifactId>hamcrest-json</artifactId>
+			<version>0.2</version>
+			<scope>test</scope>
+		</dependency>
     </dependencies>
 
     <repositories>
@@ -185,13 +284,13 @@
             </testResource>
         </testResources>
         <plugins>
-            <plugin>
-                <artifactId>maven-release-plugin</artifactId>
-                <version>2.4.1</version>
-                <configuration>
-                    <tagBase>${cida.svn.url}/usgs/qw/qw_portal_services/tags</tagBase>
-                </configuration>
-            </plugin>
+<!--             <plugin> -->
+<!--                 <artifactId>maven-release-plugin</artifactId> -->
+<!--                 <version>2.4.1</version> -->
+<!--                 <configuration> -->
+<!--                     <tagBase>${cida.svn.url}/usgs/qw/qw_portal_services/tags</tagBase> -->
+<!--                 </configuration> -->
+<!--             </plugin> -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
