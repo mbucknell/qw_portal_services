@@ -1,26 +1,31 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>gov.usgs.cida</groupId>
-  <artifactId>qw_portal_services</artifactId>
-  <version>0.8-SNAPSHOT</version>
-  <packaging>war</packaging>
-  <name>QW Portal Services Web Service</name>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>gov.usgs.cida</groupId>
+	<artifactId>qw_portal_services</artifactId>
+	<version>0.8-SNAPSHOT</version>
+	<packaging>war</packaging>
+	<name>QW Portal Services Web Service</name>
 
-      <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <build.scm.version>${buildNumber}</build.scm.version>
         <cida.maven.url>http://internal.cida.usgs.gov/maven</cida.maven.url>
-		<spring-version>4.1.1.RELEASE</spring-version>
-        <slf4j-version>1.6.1</slf4j-version>
-        <qwcore-version>1.2</qwcore-version>
-        <mybatis-version>3.2.8</mybatis-version>
-        <mybatis-spring-version>1.2.2</mybatis-spring-version>
-		<joda-time-version>2.7</joda-time-version>
+        
+		<commons-version>3.3</commons-version>
 		<jackson-version>2.4.1.3</jackson-version>
-    </properties>
+		<joda-time-version>2.7</joda-time-version>
+        <log4j-version>1.2.16</log4j-version>
+        <mybatis-spring-version>1.2.2</mybatis-spring-version>
+        <mybatis-version>3.2.8</mybatis-version>
+		<servlet-version>3.1.0</servlet-version>
+        <slf4j-version>1.6.1</slf4j-version>
+		<spring-version>4.1.1.RELEASE</spring-version>
+		<urlrewritefilter-version>4.0.4</urlrewritefilter-version>
+		<velocity-tools-version>2.0</velocity-tools-version>
+	</properties>
 
-    <ciManagement>
-        <system>Jenkins</system>
+	<ciManagement>
+		<system>Jenkins</system>
         <url>http://cida-eros-wqpdev.er.usgs.gov:8081/jenkins/job/qw_portal_services/</url> 
     </ciManagement>
 
@@ -31,40 +36,19 @@
 		<tag>HEAD</tag>
 	</scm>
 
-      <dependencies>
+	<dependencies>
+      
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
-            <version>3.1.0</version>
+            <version>${servlet-version}</version>
             <scope>provided</scope>
         </dependency>
-<!--         <dependency> -->
-<!--             <groupId>gov.usgs.cida.qw</groupId> -->
-<!--             <artifactId>qwcore</artifactId> -->
-<!--             <version>${qwcore-version}</version> -->
-<!--         </dependency> -->
-<!--         <dependency> -->
-<!--             <groupId>org.codehaus.woodstox</groupId> -->
-<!--             <artifactId>woodstox-core-asl</artifactId> -->
-<!--             <version>4.1.3</version> -->
-<!--             <exclusions> -->
-<!--                 <exclusion> -->
-<!--                     <artifactId>stax-api</artifactId> -->
-<!--                     <groupId>stax</groupId> -->
-<!--                 </exclusion> -->
-<!--             </exclusions> -->
-<!--         </dependency> -->
-<!--         <dependency> -->
-<!--             <groupId>com.thoughtworks.xstream</groupId> -->
-<!--             <artifactId>xstream</artifactId> -->
-<!--             <version>1.3.1</version> -->
-<!--         </dependency> -->
-
 
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
-			<version>3.3</version>
+			<version>${commons-version}</version>
 		</dependency>
 		<dependency>
 			<groupId>joda-time</groupId>
@@ -74,48 +58,48 @@
 		<dependency>
 			<groupId>org.apache.velocity</groupId>
 			<artifactId>velocity-tools</artifactId>
-			<version>2.0</version>
+			<version>${velocity-tools-version}</version>
 		</dependency>
 
- 	<!-- Logging -->
-        <dependency>
+ 		<!-- Logging -->
+		<dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
             <version>${slf4j-version}</version>
-            <exclusions>
-                <exclusion>
-                    <artifactId>log4j</artifactId>
-                    <groupId>log4j</groupId>
-                </exclusion>
-            </exclusions>
+<!--             <exclusions> -->
+<!--                 <exclusion> -->
+<!--                     <artifactId>log4j</artifactId> -->
+<!--                     <groupId>log4j</groupId> -->
+<!--                 </exclusion> -->
+<!--             </exclusions> -->
         </dependency>
-        <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>1.2.16</version>
-            <exclusions>
-                <exclusion>
-                    <artifactId>mail</artifactId>
-                    <groupId>javax.mail</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>activation</artifactId>
-                    <groupId>javax.activation</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>jmxtools</artifactId>
-                    <groupId>com.sun.jdmk</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>jms</artifactId>
-                    <groupId>javax.jms</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>jmxri</artifactId>
-                    <groupId>com.sun.jmx</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
+<!--         <dependency> -->
+<!--             <groupId>log4j</groupId> -->
+<!--             <artifactId>log4j</artifactId> -->
+<!--             <version>${log4j-version}</version> -->
+<!--             <exclusions> -->
+<!--                 <exclusion> -->
+<!--                     <artifactId>mail</artifactId> -->
+<!--                     <groupId>javax.mail</groupId> -->
+<!--                 </exclusion> -->
+<!--                 <exclusion> -->
+<!--                     <artifactId>activation</artifactId> -->
+<!--                     <groupId>javax.activation</groupId> -->
+<!--                 </exclusion> -->
+<!--                 <exclusion> -->
+<!--                     <artifactId>jmxtools</artifactId> -->
+<!--                     <groupId>com.sun.jdmk</groupId> -->
+<!--                 </exclusion> -->
+<!--                 <exclusion> -->
+<!--                     <artifactId>jms</artifactId> -->
+<!--                     <groupId>javax.jms</groupId> -->
+<!--                 </exclusion> -->
+<!--                 <exclusion> -->
+<!--                     <artifactId>jmxri</artifactId> -->
+<!--                     <groupId>com.sun.jmx</groupId> -->
+<!--                 </exclusion> -->
+<!--             </exclusions> -->
+<!--         </dependency> -->
 
 
         <dependency>
@@ -127,20 +111,20 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
             <version>${spring-version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>aopalliance</groupId>
-                    <artifactId>aopalliance</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.springframework</groupId>
-                    <artifactId>spring-beans</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.springframework</groupId>
-                    <artifactId>spring-core</artifactId>
-                </exclusion>
-            </exclusions>
+<!--             <exclusions> -->
+<!--                 <exclusion> -->
+<!--                     <groupId>aopalliance</groupId> -->
+<!--                     <artifactId>aopalliance</artifactId> -->
+<!--                 </exclusion> -->
+<!--                 <exclusion> -->
+<!--                     <groupId>org.springframework</groupId> -->
+<!--                     <artifactId>spring-beans</artifactId> -->
+<!--                 </exclusion> -->
+<!--                 <exclusion> -->
+<!--                     <groupId>org.springframework</groupId> -->
+<!--                     <artifactId>spring-core</artifactId> -->
+<!--                 </exclusion> -->
+<!--             </exclusions> -->
         </dependency>
         <dependency>
             <groupId>org.mybatis</groupId>
@@ -151,20 +135,20 @@
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis-spring</artifactId>
             <version>${mybatis-spring-version}</version>
-            <exclusions>
-                <exclusion>
-                    <artifactId>spring-context</artifactId>
-                    <groupId>org.springframework</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>spring-core</artifactId>
-                    <groupId>org.springframework</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>spring-beans</artifactId>
-                    <groupId>org.springframework</groupId>
-                </exclusion>
-            </exclusions>
+<!--             <exclusions> -->
+<!--                 <exclusion> -->
+<!--                     <artifactId>spring-context</artifactId> -->
+<!--                     <groupId>org.springframework</groupId> -->
+<!--                 </exclusion> -->
+<!--                 <exclusion> -->
+<!--                     <artifactId>spring-core</artifactId> -->
+<!--                     <groupId>org.springframework</groupId> -->
+<!--                 </exclusion> -->
+<!--                 <exclusion> -->
+<!--                     <artifactId>spring-beans</artifactId> -->
+<!--                     <groupId>org.springframework</groupId> -->
+<!--                 </exclusion> -->
+<!--             </exclusions> -->
         </dependency>
         
         
@@ -172,21 +156,21 @@
         <dependency>
             <groupId>org.tuckey</groupId>
             <artifactId>urlrewritefilter</artifactId>
-            <version>4.0.4</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>javax.servlet</groupId>
-                    <artifactId>servlet-api</artifactId>
-                </exclusion>                    
-                <exclusion>
-                    <groupId>log4j</groupId>
-                    <artifactId>log4j</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>slf4j-api</artifactId>
-                </exclusion>
-            </exclusions>
+            <version>${urlrewritefilter-version}</version>
+<!--             <exclusions> -->
+<!--                 <exclusion> -->
+<!--                     <groupId>javax.servlet</groupId> -->
+<!--                     <artifactId>servlet-api</artifactId> -->
+<!--                 </exclusion>                     -->
+<!--                 <exclusion> -->
+<!--                     <groupId>log4j</groupId> -->
+<!--                     <artifactId>log4j</artifactId> -->
+<!--                 </exclusion> -->
+<!--                 <exclusion> -->
+<!--                     <groupId>org.slf4j</groupId> -->
+<!--                     <artifactId>slf4j-api</artifactId> -->
+<!--                 </exclusion> -->
+<!--             </exclusions> -->
         </dependency>
 
 
@@ -203,13 +187,16 @@
             <version>11.2.0.2.0-1</version>
             <scope>provided</scope>
         </dependency>
+
+
+ 		<!-- Testing -->
         <dependency>
             <groupId>commons-dbcp</groupId>
             <artifactId>commons-dbcp</artifactId>
             <version>1.4</version>
             <scope>test</scope>
         </dependency>
-           <dependency>
+		<dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.11</version>
@@ -251,14 +238,6 @@
             <id>nexus</id>
             <name>CIDA Nexus</name>
             <url>${cida.maven.url}/content/groups/public/</url>
-        </repository>
-        <!-- Only required if a snapshot version of Spock is used -->
-        <repository>
-            <id>spock-snapshots</id>
-            <url>http://oss.sonatype.org/content/repositories/snapshots/</url>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
         </repository>
     </repositories>
 
@@ -312,7 +291,7 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>buildnumber-maven-plugin</artifactId>
-                <version>1.2</version>
+                <version>1.3</version>
                 <executions>
                     <execution>
                         <phase>validate</phase>
@@ -328,6 +307,7 @@
                         <svn>javasvn</svn>
                     </providerImplementations>
                     <revisionOnScmFailure>unknown</revisionOnScmFailure>
+                    <shortRevisionLength>7</shortRevisionLength>
                 </configuration>
             </plugin>
             <plugin>

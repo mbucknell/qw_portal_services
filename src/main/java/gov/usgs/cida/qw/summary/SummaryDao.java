@@ -9,8 +9,8 @@ import org.mybatis.spring.support.SqlSessionDaoSupport;
 
 public class SummaryDao extends SqlSessionDaoSupport {
 
-	public List<RowCounts> retrieveCounts(String selectId, Map<String, Object> queryParams) {
-		return getSqlSession().selectList(selectId, queryParams);
+	public List<RowCounts> retrieveCounts(Map<String, Object> queryParams) {
+		return getSqlSession().selectList("summary.discreteSampleCountBin",  queryParams);
 	}
 
 }

@@ -42,103 +42,40 @@ public class SummaryController extends BaseRestController {
     	this.summaryDao = summaryDao;
     }
 
-    //TODO
-//The <Environment name="wqp.geoserver.coverage.sld.endpoint" type="java.lang.String" value="http://cida-eros-wqpdev.er.usgs.gov:8080/nwisqw/Summary"/>
-//eventually goes here.
-	
-//	return Config.SLD_ENDPOINT +
-//			'?dataSource=' + CoverageMapConfig.SLD_DATASOURCE[source] +
-//			'&geometry=' + CoverageMapConfig.SLD_GEOMETRY[display_by] +
-//			'&timeFrame=' + CoverageMapConfig.SLD_TIMEFRAME[date_filter];
-
     @RequestMapping(method=RequestMethod.GET)
     public String getSummarySld(final @RequestParam(value="dataSource") String[] dataSource,
     		final @RequestParam(value="geometry") String[] geometry,
     		final @RequestParam(value="timeFrame") String[] timeFrame,
     		HttpServletRequest request, HttpServletResponse response, WebRequest webRequest) {
-        LOG.debug("publicsrsnamesJson");
+        LOG.debug("summary");
         if (isNotModified(webRequest)) {
             return null;
         } else {
-    		MapDataSource source = MapDataSource.fromAbbreviation(dataSource[0]);
-    		MapGeometry geom = MapGeometry.fromAbbreviation(geometry[0]);
-    		String tf = "ALL_TIME";
+    		MapDataSource mapDataSource = MapDataSource.fromAbbreviation(dataSource[0]);
+    		MapGeometry mapGeometry = MapGeometry.fromAbbreviation(geometry[0]);
+    		String timeFrameString = "ALL_TIME";
     		if (timeFrame != null && timeFrame.length > 0 && timeFrame[0].length() > 0) {
     			char timeFrameChar = timeFrame[0].charAt(0);
     			switch (timeFrameChar) {
     			case '5':
-    				tf = "PAST_60_MONTHS";
+    				timeFrameString = "PAST_60_MONTHS";
     				break;
     			case '1':
-    				tf = "PAST_12_MONTHS";
+    				timeFrameString = "PAST_12_MONTHS";
     				break;
     			default:
     				break;
     			}
     		} 
-    		
-    		
-    		
-    		
-    		
-    		
-    		return SldTemplateEngine.generateDynamicStyle(source, geom, retrieveBinValues(source, geom, tf), "binSLDTemplate.vm");
+
+    		return SldTemplateEngine.generateDynamicStyle(mapDataSource, mapGeometry, retrieveBinValues(mapDataSource, mapGeometry, timeFrameString), "binSLDTemplate.vm");
         }
     }
 
-	
-//	private XMLStreamReader lookupDiscreteSampleCount(IRPCRequest request) {
-//		//replace with
-//		Map<String, Object> queryParams = preProcessAndValidateParams(request);
-//		String[] sourceString = (String[]) queryParams.get("dataSource");
-//		MapDataSource source = MapDataSource.fromAbbreviation(sourceString[0]);
-//		
-//		String[] geometryString = (String[]) queryParams.get("geometry");
-//		MapGeometry geometry = MapGeometry.fromAbbreviation(geometryString[0]);
-//		
-//		String[] timeFrameString = (String[]) queryParams.get("timeFrame");
-//		String timeFrame = "ALL_TIME";
-//		if (timeFrameString != null && timeFrameString.length > 0 && timeFrameString[0].length() > 0) {
-//			char timeFrameChar = timeFrameString[0].charAt(0);
-//			switch (timeFrameChar) {
-//			case '5':
-//				timeFrame = "PAST_60_MONTHS";
-//				break;
-//			case '1':
-//				timeFrame = "PAST_12_MONTHS";
-//				break;
-//			default:
-//				break;
-//			}
-//		}
-//		
-//		String sldXML = getDynamicStyle(source, geometry, timeFrame);
-//		XMLStreamReader streamReader = null;
-//		try {
-//			StringReader stringReader = new StringReader(sldXML);
-//	        streamReader = XMLInputFactory.newInstance().createXMLStreamReader(stringReader);
-//
-//		} catch (Exception e) {
-////			throw new WebServiceFrameworkException(e);
-//		}
-//
-//		return streamReader;
-//	}
-	
-//	public String getDynamicStyle(MapDataSource source, MapGeometry geom, String timeFrame) {
-//		String key = "" + source.getStringAbbreviation() + geom.getStringAbbreviation();
-//		String sld;// = SLD_CACHE.get(key);
-//			sld = SldTemplateEngine.generateDynamicStyle(source, geom, retrieveBinValues(source, geom, timeFrame), "binSLDTemplate.vm");
-////			if (sld != null) {
-////				SLD_CACHE.put(key, sld);
-////			}
-//		return sld;
-//	}
-	
 	private String[] retrieveBinValues(MapDataSource source, MapGeometry geom, String timeFrame) {
 		String[] binValues = new String[0];
 		if (summaryDao != null) {
-			List<RowCounts> bins = summaryDao.retrieveCounts("discreteSampleCountBin", deriveDbParams(source, geom, timeFrame));
+			List<RowCounts> bins = summaryDao.retrieveCounts(deriveDbParams(source, geom, timeFrame));
 			if (bins != null) {
 				binValues = new String[bins.size()*2];
 				Integer previousMax = -1;
