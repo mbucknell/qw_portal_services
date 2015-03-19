@@ -68,7 +68,7 @@ public class SldTemplateEngine {
 			Map<String, String> attribs = new HashMap<String, String>();
 			String min = binValues[(bin*2)];
 			String max = binValues[(bin*2)+1];
-			attribs.put("title", min + " - " +max);//"bin" + (bin+1));
+			attribs.put("title", min + " - " +max);
 			attribs.put("color", colors[bin]);
 			attribs.put("betweenMin", min);
 			attribs.put("betweenMax", max);
