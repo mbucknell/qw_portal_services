@@ -17,7 +17,7 @@
     <bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
 		<property name="favorParameter" value="true" /> 
 		<property name="parameterName" value="mimetype" /> 
-        <property name="defaultContentType" value="application/json" />
+        <property name="defaultContentType" value="application/xml" />
         <property name="mediaTypes" >
             <map>
                 <entry key="xml" value="application/xml" />
