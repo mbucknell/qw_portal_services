@@ -6,8 +6,6 @@ import gov.usgs.cida.qw.codes.CodeList;
 import gov.usgs.cida.qw.codes.CodeType;
 import gov.usgs.cida.qw.codes.dao.CodeDao;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -76,22 +74,6 @@ public abstract class CodesRestController extends BaseRestController {
         }
 
         return true;
-    }
-
-    protected Map<String, Object> processRequestParam(final String key, final String[] param) {
-    	Map<String, Object> queryParams = new HashMap<>();
-    	ArrayList<String> splitParam = new ArrayList<>();
-    	if (null != param) {
-    		for (int i=0; i<param.length; i++) {
-    			if (StringUtils.isNotBlank(param[i])) {
-    				splitParam.addAll(Arrays.asList(param[i].split(";")));
-    			}
-    		}
-    		if (splitParam.size() > 0) {
-    			queryParams.put(key, splitParam.toArray(new String[splitParam.size()]));
-    		}
-    	}
-    	return queryParams;
     }
 
 }

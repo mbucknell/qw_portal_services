@@ -21,14 +21,18 @@ public class ApplicationVersion implements ServletContextAware {
             Properties props = new Properties();
             props.load(servletContext.getResourceAsStream(name));
             String projectVersion = (String) props.get("Project-Version");
-            currentVersion.append(projectVersion);
-            if (projectVersion.endsWith("-SNAPSHOT")) {
-            	currentVersion.append(" Built at: " + (String) props.get("BuildTime"));
-            	currentVersion.append(" From commit: " + (String) props.get("Implementation-Build"));
+            if (null == projectVersion) {
+            	currentVersion.append("Unavailable");
+            } else {
+	            currentVersion.append(projectVersion);
+	            if (projectVersion.endsWith("-SNAPSHOT")) {
+	            	currentVersion.append(" Built at: " + (String) props.get("BuildTime"));
+	            	currentVersion.append(" From commit: " + (String) props.get("Implementation-Build"));
+	            }
             }
         } catch (Exception e) {
             LOG.info("unable to get application version", e);
-            currentVersion.append("Unavailable");
+            currentVersion.append(" Error Encountered");
         }
         return currentVersion.toString();
     }

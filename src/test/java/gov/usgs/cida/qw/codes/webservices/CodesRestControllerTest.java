@@ -4,7 +4,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertArrayEquals;
 import static org.mockito.Matchers.anyMap;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.when;
@@ -16,14 +15,12 @@ import gov.usgs.cida.qw.codes.dao.CodeDao;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.lang3.StringUtils;
 import org.joda.time.LocalDateTime;
 import org.junit.Before;
 import org.junit.Test;
@@ -72,7 +69,7 @@ public class CodesRestControllerTest {
     
     @SuppressWarnings("unchecked")
 	@Test
-	public void getList() {
+	public void getListTest() {
         when(lastUpdateDao.getLastEtl()).thenReturn(localFromUTC);
         when(codeDao.getRecordCount(eq(CodeType.COUNTRYCODE), anyMap())).thenReturn(12);
         when(codeDao.getCodes(eq(CodeType.COUNTRYCODE), anyMap())).thenAnswer(new Answer<List<Code>>() {
@@ -145,6 +142,14 @@ public class CodesRestControllerTest {
     	assertEquals("null", code.getDesc());
     	assertEquals("null", code.getProviders());
     	
+    	//even more funky values
+    	codeList = testController.getList(CodeType.COUNTRYCODE,  "xx x", "X", "2", null, webRequest);
+    	assertEquals(1, codeList.getCodes().size());
+    	code = (Code) codeList.getCodes().toArray()[0];
+    	assertEquals("xx x", code.getValue());
+    	assertEquals("null", code.getDesc());
+    	assertEquals("2", code.getProviders());
+    	
     	//later pages
     	codeList = testController.getList(CodeType.COUNTRYCODE,  "xx x", "4", "15", null, webRequest);
     	assertEquals(1, codeList.getCodes().size());
@@ -156,7 +161,7 @@ public class CodesRestControllerTest {
 	}
 
 	@Test
-	public void getCode() {
+	public void getCodeTest() {
         when(lastUpdateDao.getLastEtl()).thenReturn(localFromUTC);
         Code us = new Code();
         us.setValue("US");
@@ -200,46 +205,4 @@ public class CodesRestControllerTest {
 		assertTrue(CodesRestController.isInteger("1234"));
 	}
 	
-	@Test
-	public void processRequestParamTest() {
-		//NPE avoidance
-		Map<String, Object> queryParams = testController.processRequestParam(null, null);
-		assertEquals(0, queryParams.size());
-		queryParams = testController.processRequestParam("test", null);
-		assertEquals(0, queryParams.size());
-		queryParams = testController.processRequestParam(null, new String[]{"",""});
-		assertEquals(0, queryParams.size());
-		
-		//Easy normal path
-		queryParams = testController.processRequestParam("test", new String[]{"a","b"});
-		assertEquals(1, queryParams.size());
-		assertTrue(queryParams.containsKey("test"));
-		String[] parsed = (String[]) queryParams.get("test");
-		assertArrayEquals(new String[]{"a","b"}, parsed);
-		
-		//Throw in some delimited
-		queryParams = testController.processRequestParam("test", new String[]{"a","b;c","d","e;f"});
-		assertEquals(1, queryParams.size());
-		assertTrue(queryParams.containsKey("test"));
-		parsed = (String[]) queryParams.get("test");
-		assertArrayEquals(new String[]{"a","b","c","d","e","f"}, parsed);
-
-	}
-	
-    protected Map<String, Object> processRequestParam(final String key, final String[] param) {
-    	Map<String, Object> queryParams = new HashMap<>();
-    	ArrayList<String> splitParam = new ArrayList<>();
-    	if (null != key && null != param) {
-    		for (int i=0; i<param.length; i++) {
-    			if (StringUtils.isNotBlank(param[i])) {
-    				splitParam.addAll(Arrays.asList(param[i].split(";")));
-    			}
-    		}
-    		if (splitParam.size() > 0) {
-    			queryParams.put(key, splitParam.toArray());
-    		}
-    	}
-    	return queryParams;
-    }
-
 }

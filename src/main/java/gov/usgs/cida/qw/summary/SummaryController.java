@@ -43,39 +43,27 @@ public class SummaryController extends BaseRestController {
     }
 
     @RequestMapping(method=RequestMethod.GET)
-    public String getSummarySld(final @RequestParam(value="dataSource") String[] dataSource,
-    		final @RequestParam(value="geometry") String[] geometry,
-    		final @RequestParam(value="timeFrame") String[] timeFrame,
+    public String getSummarySld(final @RequestParam(value="dataSource") String dataSource,
+    		final @RequestParam(value="geometry") String geometry,
+    		final @RequestParam(value="timeFrame") String timeFrame,
     		HttpServletRequest request, HttpServletResponse response, WebRequest webRequest) {
         LOG.debug("summary");
         if (isNotModified(webRequest)) {
             return null;
         } else {
-    		MapDataSource mapDataSource = MapDataSource.fromAbbreviation(dataSource[0]);
-    		MapGeometry mapGeometry = MapGeometry.fromAbbreviation(geometry[0]);
-    		String timeFrameString = "ALL_TIME";
-    		if (timeFrame != null && timeFrame.length > 0 && timeFrame[0].length() > 0) {
-    			char timeFrameChar = timeFrame[0].charAt(0);
-    			switch (timeFrameChar) {
-    			case '5':
-    				timeFrameString = "PAST_60_MONTHS";
-    				break;
-    			case '1':
-    				timeFrameString = "PAST_12_MONTHS";
-    				break;
-    			default:
-    				break;
-    			}
-    		} 
+    		MapDataSource mapDataSource = MapDataSource.fromAbbreviation(dataSource);
+    		MapGeometry mapGeometry = MapGeometry.fromAbbreviation(geometry);
 
-    		return SldTemplateEngine.generateDynamicStyle(mapDataSource, mapGeometry, retrieveBinValues(mapDataSource, mapGeometry, timeFrameString), "binSLDTemplate.vm");
+        	Map<String, Object> dbparms = deriveDbParams(mapDataSource, mapGeometry, timeFrame);
+        	String[] binValues = retrieveBinValues(dbparms);
+    		return SldTemplateEngine.generateDynamicStyle(mapDataSource, mapGeometry, binValues, "binSLDTemplate.vm");
         }
     }
 
-	private String[] retrieveBinValues(MapDataSource source, MapGeometry geom, String timeFrame) {
+	protected String[] retrieveBinValues(Map<String, Object> parms) {
 		String[] binValues = new String[0];
-		if (summaryDao != null) {
-			List<RowCounts> bins = summaryDao.retrieveCounts(deriveDbParams(source, geom, timeFrame));
+		if (null != summaryDao && null != parms && 3 == parms.size()) {
+			List<RowCounts> bins = summaryDao.retrieveCounts(parms);
 			if (bins != null) {
 				binValues = new String[bins.size()*2];
 				Integer previousMax = -1;
@@ -101,26 +89,63 @@ public class SummaryController extends BaseRestController {
 		return binValues;
 	}
 
-	private Map<String, Object> deriveDbParams(MapDataSource source, MapGeometry geom, String timeFrame){
-		Map<String, Object> dbParams = new HashMap<String, Object>();
-		switch (source) {
-		case All:
-			List<String> allSourcesList = new ArrayList<String>();;
-			for (int i = 0; i < MapDataSource.values().length; i++) {
-				MapDataSource tempSource = MapDataSource.values()[i];
-				if (!MapDataSource.All.equals(tempSource)) {
-					allSourcesList.add(""+tempSource.getStringAbbreviation());
-				}
-			}
-			dbParams.put("sources", allSourcesList.toArray());
-			break;
-		default:
-			dbParams.put("sources", new String[]{""+source.getStringAbbreviation()});
-			break;
+	protected Map<String, Object> deriveDbParams(MapDataSource mapDataSource, MapGeometry mapGeometry, String timeFrame) {
+		Map<String, Object> parms = new HashMap<String, Object>();
+		Object[] ds = getDataSources(mapDataSource);
+		String geom = getGeometry(mapGeometry);
+		String tf = getTimeFrame(timeFrame);
+		if(0 < ds.length && null != geom && null != tf) {
+			parms.put("sources", ds);
+			parms.put("geometry", geom);
+			parms.put("timeFrame", tf);
 		}
-		dbParams.put("timeFrame", timeFrame);
-		dbParams.put("geometry", geom.toString());
-		return dbParams;
+		return parms;
+	}
+	
+	protected Object[] getDataSources(MapDataSource mapDataSource) {
+		List<String> rtn = new ArrayList<>();
+		if (null != mapDataSource) {
+			switch (mapDataSource) {
+			case All:
+				for (int i = 0; i < MapDataSource.values().length; i++) {
+					MapDataSource tempSource = MapDataSource.values()[i];
+					if (!MapDataSource.All.equals(tempSource)) {
+						rtn.add(tempSource.getStringAbbreviation());
+					}
+				}
+				break;
+			default:
+				rtn.add(mapDataSource.getStringAbbreviation());
+				break;
+			}
+		}
+		return rtn.toArray();
+	}
+	
+	protected String getGeometry(MapGeometry mapGeometry) {
+		if (null != mapGeometry) {
+			return mapGeometry.toString();
+		} else {
+			return null;
+		}
+	}
+	
+	protected String getTimeFrame(String timeFrame) {
+		String rtn = "ALL_TIME";
+		if (timeFrame != null && timeFrame.length() > 0) {
+			char timeFrameChar = timeFrame.charAt(0);
+			switch (timeFrameChar) {
+			case '5':
+				rtn = "PAST_60_MONTHS";
+				break;
+			case '1':
+				rtn = "PAST_12_MONTHS";
+				break;
+			default:
+				break;
+			}
+		} 
+		return rtn;
 	}
 	
 	public static class RowCounts {

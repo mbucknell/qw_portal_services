@@ -7,12 +7,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static uk.co.datumedge.hamcrest.json.SameJSONAs.sameJSONObjectAs;
 import gov.usgs.cida.qw.BaseSpringTest;
+import gov.usgs.cida.qw.IntegrationTest;
 import gov.usgs.cida.qw.LastUpdateDao;
 import gov.usgs.cida.qw.codes.dao.CodeDao;
 
 import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -25,6 +27,7 @@ import org.springframework.web.filter.CharacterEncodingFilter;
 //Note that we have had database consistency issues in the past with this method of testing. Since WQP is read-only,
 //   we should not have a problem... Remove the @WebAppConfiguration, WebApplicationContext,
 //   and use MockMvcBuilders.standaloneSetup(controller).build() if you need to do database CUD...  
+@Category(IntegrationTest.class)
 @WebAppConfiguration
 public class ProviderRestControllerTest extends BaseSpringTest {
 
