@@ -1,11 +1,16 @@
 package gov.usgs.cida.qw;
 
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertEquals;
 
 import org.joda.time.LocalDateTime;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.github.springtestdbunit.annotation.DatabaseSetup;
+
+@Category(IntegrationTest.class)
+@DatabaseSetup("classpath:/testData/lastUpdateDaoTest.xml")
 public class LastUpdateDaoTest extends BaseSpringTest {
 	
     @Autowired
@@ -14,8 +19,7 @@ public class LastUpdateDaoTest extends BaseSpringTest {
     @Test
     public void getLastEtlTest() {
     	LocalDateTime x = lastUpdateDao.getLastEtl();
-    	assertNotNull(x);
-    	//TODO make sure correct value after we have a ci database...
+    	assertEquals("2015-03-27T13:38:05.000", x.toString());
     }
 
 }

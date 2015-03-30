@@ -1,5 +1,8 @@
 package gov.usgs.cida.qw.codes.webservices;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import gov.usgs.cida.qw.LastUpdateDao;
 import gov.usgs.cida.qw.codes.Code;
 import gov.usgs.cida.qw.codes.CodeList;
@@ -34,13 +37,15 @@ public class CountyRestController extends CodesRestController {
     }
 
     @RequestMapping(method=RequestMethod.GET)
-    public CodeList getCounties(final @RequestParam(value="statecode", required=false) String[] statecode,
+    public CodeList getCounties(final @RequestParam(value="statecode", required=false) String[] statecodes,
     		final @RequestParam(value="text", required=false) String text,
     		final @RequestParam(value="pagenumber", required=false) String pageNumber,
     		final @RequestParam(value="pagesize", required=false) String pageSize,
     		WebRequest webRequest) {
         LOG.debug("counties");
-        return getList(CodeType.COUNTYCODE, text, pageNumber, pageSize, processRequestParam("statecode", statecode), webRequest);
+        Map<String, Object> addlParms = new HashMap<>();
+        addlParms.put("statecode", statecodes);
+        return getList(CodeType.COUNTYCODE, text, pageNumber, pageSize, addlParms, webRequest);
     }
 
     @RequestMapping(value="{countycode}", method=RequestMethod.GET)

@@ -33,12 +33,7 @@ public class ExportTypeHandler implements TypeHandler<Export> {
      */
     @Override
     public Export getResult(ResultSet rs, int columnIndex) throws SQLException {
-        Export export = new Export();
-        for (int i = 1; i <= rs.getMetaData().getColumnCount(); i++) {
-            export.put(rs.getMetaData().getColumnName(i), nullCheckValue(rs.getObject(i)));
-        }
-
-        return export;
+    	throw new UnsupportedOperationException("Not currently needed for this application so not implemented");
     }
 
     /** 
@@ -64,6 +59,11 @@ public class ExportTypeHandler implements TypeHandler<Export> {
         return export;
     }
 
+    /** 
+     * We convert nulls to an empty string to avoid having the text "null" in the output of the Export
+     * @param value
+     * @return the value or an empty string.
+     */
     private Object nullCheckValue(Object value) {
         return null == value ? "" : value;
     }
