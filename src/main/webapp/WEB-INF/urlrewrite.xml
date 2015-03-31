@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+    <!DOCTYPE urlrewrite
+        PUBLIC "-//tuckey.org//DTD UrlRewrite 3.2//EN"
+        "http://www.tuckey.org/res/dtds/urlrewrite3.2.dtd">
+
+<urlrewrite use-query-string="true">
+    <rule match-type="regex">  
+        <note>Force URL to lower case</note>
+        <from casesensitive="true">^(.*[A-Z].*)\?(.*)$</from>
+        <to type="forward" last="true">${lower:$1}</to>  
+    </rule>
+</urlrewrite>
