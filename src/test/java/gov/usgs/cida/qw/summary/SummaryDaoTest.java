@@ -2,6 +2,7 @@ package gov.usgs.cida.qw.summary;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import gov.usgs.cida.qw.BaseSpringTest;
 import gov.usgs.cida.qw.IntegrationTest;
 import gov.usgs.cida.qw.summary.SummaryController.RowCounts;
 
@@ -15,10 +16,16 @@ import org.junit.experimental.categories.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.github.springtestdbunit.annotation.DatabaseSetup;
+import com.github.springtestdbunit.annotation.DatabaseSetups;
+import com.github.springtestdbunit.annotation.DatabaseTearDown;
 
 @Category(IntegrationTest.class)
-@DatabaseSetup("classpath:/testData/summaryTest.xml")
-public class SummaryDaoTest extends gov.usgs.cida.qw.BaseSpringTest {
+@DatabaseSetups({
+	@DatabaseSetup("classpath:/testData/clearAll.xml"),
+	@DatabaseSetup("classpath:/testData/summary.xml")
+})
+@DatabaseTearDown("classpath:/testData/clearAll.xml")
+public class SummaryDaoTest extends BaseSpringTest {
 
     @Autowired
     private SummaryDao summaryDao;

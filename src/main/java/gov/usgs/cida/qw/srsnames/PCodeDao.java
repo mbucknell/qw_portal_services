@@ -6,10 +6,6 @@ import java.util.List;
 
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 
-/**
- * @author drsteini
- *
- */
 public class PCodeDao extends SqlSessionDaoSupport {
 
     /** 

@@ -1,0 +1,40 @@
+{
+    "codes": [
+        {
+            "value": "US:19",
+            "desc": "IOWA",
+            "providers": "STEWARDS"
+        },
+        {
+            "value": "US:21",
+            "desc": "KENTUCKY",
+            "providers": "NWIS STORET"
+        },
+        {
+            "value": "US:31",
+            "desc": "NEBRASKA",
+            "providers": "STEWARDS STORET"
+        },
+        {
+            "value": "US:32",
+            "desc": "NEVADA",
+            "providers": "STEWARDS"
+        },
+        {
+            "value": "US:48",
+            "desc": "TEXAS",
+            "providers": "STEWARDS"
+        },
+        {
+            "value": "US:49",
+            "desc": "UTAH",
+            "providers": "NWIS STEWARDS STORET"
+        },
+        {
+            "value": "US:78",
+            "desc": "VIRGIN ISLANDS",
+            "providers": "STORET"
+        }
+    ],
+    "recordCount": 7
+}

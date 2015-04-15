@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.WebRequest;
 
 @RestController
-@RequestMapping(value={"codes/sitetypes", "codes/siteType"}, produces={MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
+@RequestMapping(value={"codes/sitetypes", "codes/sitetype"}, produces={MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
 public class SiteTypeRestController extends CodesRestController {
 
     private static final Logger LOG = LoggerFactory.getLogger(SiteTypeRestController.class);

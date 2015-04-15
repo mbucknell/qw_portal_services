@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.WebRequest;
 
 @RestController
-@RequestMapping(value={"codes/samplemedia", "codes/sampleMedia"}, produces={MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
+@RequestMapping(value={"codes/samplemedia"}, produces={MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
 public class SampleMediaRestController extends CodesRestController {
 
     private static final Logger LOG = LoggerFactory.getLogger(SampleMediaRestController.class);

@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.WebRequest;
 
 @RestController
-@RequestMapping(value={"codes/characteristicnames", "codes/characteristicName"}, produces={MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
+@RequestMapping(value={"codes/characteristicnames", "codes/characteristicname"}, produces={MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
 public class CharacteristicNameRestController extends CodesRestController {
 
     private static final Logger LOG = LoggerFactory.getLogger(CharacteristicNameRestController.class);

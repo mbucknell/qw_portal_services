@@ -22,19 +22,19 @@ public class OnePlusParameterFilterTest {
 
     @Test
 	public void testSomethingAboutDoFilter() throws IOException, ServletException {
-		OnePlusParameterFilter filter = new OnePlusParameterFilter();
+		WQPFilter filter = new WQPFilter();
 
 		//Bad request because no parameters sent
 		filter.doFilter(mockRequest, servletResponse, filterChain);
 	    assertEquals(HttpStatus.BAD_REQUEST.value(), servletResponse.getStatus());
-	    assertEquals(OnePlusParameterFilter.DEFAULT_ENCODING, servletResponse.getCharacterEncoding());
+	    assertEquals(WQPFilter.DEFAULT_ENCODING, servletResponse.getCharacterEncoding());
 	    
 	    //Good request because a parameter was sent
 	    Map<String, String[]> parms = new HashMap<>();
     	parms.put("something", new String[]{"US"});
 	    mockRequest.addParameters(parms);
 	    filter.doFilter(mockRequest, servletResponse, filterChain);
-	    assertEquals(OnePlusParameterFilter.DEFAULT_ENCODING, servletResponse.getCharacterEncoding());
+	    assertEquals(WQPFilter.DEFAULT_ENCODING, servletResponse.getCharacterEncoding());
     }
 	
 }

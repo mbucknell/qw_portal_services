@@ -11,8 +11,10 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Component;
 
-public class OnePlusParameterFilter implements Filter {
+@Component
+public class WQPFilter implements Filter {
 
     public static final String DEFAULT_ENCODING = "UTF-8";
 

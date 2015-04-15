@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.WebRequest;
 
 @RestController
-@RequestMapping(value={"codes/characteristictypes", "codes/characteristicType"}, produces={MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
+@RequestMapping(value={"codes/characteristictypes", "codes/characteristictype"}, produces={MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
 public class CharacteristicTypeRestController extends CodesRestController {
 
     private static final Logger LOG = LoggerFactory.getLogger(CharacteristicTypeRestController.class);
@@ -42,7 +42,7 @@ public class CharacteristicTypeRestController extends CodesRestController {
         return getList(CodeType.CHARACTERISTICTYPE, text, pageNumber, pageSize, null, webRequest);
     }
 
-    @RequestMapping(value="{characteristicname}", method=RequestMethod.GET)
+    @RequestMapping(value="{characteristictype}", method=RequestMethod.GET)
     public Code getCharacteristicType(final @PathVariable(value="characteristictype") String characteristictype,
     		WebRequest webRequest, HttpServletResponse response) {
         LOG.debug("characteristicType");

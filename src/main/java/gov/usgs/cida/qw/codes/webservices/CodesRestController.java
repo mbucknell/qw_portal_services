@@ -1,11 +1,14 @@
 package gov.usgs.cida.qw.codes.webservices;
 
 import gov.usgs.cida.qw.BaseRestController;
+import gov.usgs.cida.qw.WQPFilter;
 import gov.usgs.cida.qw.codes.Code;
 import gov.usgs.cida.qw.codes.CodeList;
 import gov.usgs.cida.qw.codes.CodeType;
 import gov.usgs.cida.qw.codes.dao.CodeDao;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,6 +24,7 @@ public abstract class CodesRestController extends BaseRestController {
 
     protected CodeList getList(final CodeType codeType, final String text, final String inPageNumber, final String inPageSize,
     		final Map<String, Object> addlParms, WebRequest webRequest) {
+        CodeList codes = new CodeList();
         if (isNotModified(webRequest)) {
             return null;
         } else {
@@ -30,7 +34,11 @@ public abstract class CodesRestController extends BaseRestController {
 	        }
 
 	        if (StringUtils.isNotEmpty(text)) {
-	            queryParams.put("text", text);
+	            try {
+					queryParams.put("text", URLDecoder.decode(text, WQPFilter.DEFAULT_ENCODING));
+				} catch (UnsupportedEncodingException e) {
+					throw new AssertionError("UTF-8 not supported");
+				}
 	        }
 
 	    	if (isInteger(inPageSize) && Integer.parseInt(inPageSize) > 0) {
@@ -44,7 +52,6 @@ public abstract class CodesRestController extends BaseRestController {
 	    			queryParams.put("offset", (pageNumber - 1) * fetchSize);
 	    		}
 	    	}
-	        CodeList codes = new CodeList();
 	        codes.setCodes(codeDao.getCodes(codeType, queryParams));
 	        codes.setRecordCount(codeDao.getRecordCount(codeType, queryParams));
 	        return codes;
@@ -54,7 +61,11 @@ public abstract class CodesRestController extends BaseRestController {
     protected Code getCode(final CodeType codeType, final String codeValue, WebRequest webRequest, HttpServletResponse response) {
     	Code rtn = null;
         if (!isNotModified(webRequest)) {
-        	rtn = codeDao.getCode(codeType, codeValue);
+        	try {
+				rtn = codeDao.getCode(codeType, URLDecoder.decode(codeValue, WQPFilter.DEFAULT_ENCODING));
+			} catch (UnsupportedEncodingException e) {
+				throw new AssertionError("UTF-8 not supported");
+			}
         	if (null == rtn) {
         		response.setStatus(HttpStatus.NOT_FOUND.value());
         	}

@@ -27,7 +27,7 @@ public class CodeDaoTest extends BaseSpringTest {
     private CodeDao codeDao;
 
     @Test
-    @DatabaseSetup("classpath:/testData/charNameTest.xml")
+    @DatabaseSetup("classpath:/testData/charName.xml")
     public void charNameTest() {
         List<Code> codes = codeDao.getCodes(CodeType.CHARACTERISTICNAME);
         assertNotNull(codes);
@@ -82,7 +82,7 @@ public class CodeDaoTest extends BaseSpringTest {
     }
     
     @Test
-    @DatabaseSetup("classpath:/testData/charTypeTest.xml")
+    @DatabaseSetup("classpath:/testData/charType.xml")
     public void charTypeTest() {
         List<Code> codes = codeDao.getCodes(CodeType.CHARACTERISTICTYPE);
         assertNotNull(codes);
@@ -137,7 +137,7 @@ public class CodeDaoTest extends BaseSpringTest {
     }
     
     @Test
-    @DatabaseSetup("classpath:/testData/countryCodeTest.xml")
+    @DatabaseSetup("classpath:/testData/countryCode.xml")
     public void countryCodeTest() {
         List<Code> codes = codeDao.getCodes(CodeType.COUNTRYCODE);
         assertNotNull(codes);
@@ -192,7 +192,7 @@ public class CodeDaoTest extends BaseSpringTest {
     }
     
     @Test
-    @DatabaseSetup("classpath:/testData/countyCodeTest.xml")
+    @DatabaseSetup("classpath:/testData/countyCode.xml")
     public void countyCodeTest() {
         List<Code> codes = codeDao.getCodes(CodeType.COUNTYCODE);
         assertNotNull(codes);
@@ -324,7 +324,7 @@ public class CodeDaoTest extends BaseSpringTest {
     }
     
     @Test
-    @DatabaseSetup("classpath:/testData/organizationTest.xml")
+    @DatabaseSetup("classpath:/testData/organization.xml")
     public void organizationTest() {
         List<Code> codes = codeDao.getCodes(CodeType.ORGANIZATION);
         assertNotNull(codes);
@@ -393,7 +393,7 @@ public class CodeDaoTest extends BaseSpringTest {
     }
     
     @Test
-    @DatabaseSetup("classpath:/testData/sampleMediaTest.xml")
+    @DatabaseSetup("classpath:/testData/sampleMedia.xml")
     public void sampleMediaTest() {
         List<Code> codes = codeDao.getCodes(CodeType.SAMPLEMEDIA);
         assertNotNull(codes);
@@ -448,7 +448,7 @@ public class CodeDaoTest extends BaseSpringTest {
     }
     
     @Test
-    @DatabaseSetup("classpath:/testData/siteTypeTest.xml")
+    @DatabaseSetup("classpath:/testData/siteType.xml")
     public void siteTypeTest() {
         List<Code> codes = codeDao.getCodes(CodeType.SITETYPE);
         assertNotNull(codes);
@@ -503,7 +503,7 @@ public class CodeDaoTest extends BaseSpringTest {
     }
     
     @Test
-    @DatabaseSetup("classpath:/testData/stateCodeTest.xml")
+    @DatabaseSetup("classpath:/testData/stateCode.xml")
     public void stateCodeTest() {
         List<Code> codes = codeDao.getCodes(CodeType.STATECODE);
         assertNotNull(codes);
@@ -589,7 +589,7 @@ public class CodeDaoTest extends BaseSpringTest {
     }
     
     @Test
-    @DatabaseSetup("classpath:/testData/countryCodeTest.xml")
+    @DatabaseSetup("classpath:/testData/countryCode.xml")
     public void pagingTest() {
     	//no fetchsize = all
     	Map<String, Object> parms = new HashMap<String, Object>();

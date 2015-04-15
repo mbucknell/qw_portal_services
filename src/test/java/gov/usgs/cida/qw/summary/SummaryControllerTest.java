@@ -10,30 +10,33 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import gov.usgs.cida.qw.BaseSpringTest;
 import gov.usgs.cida.qw.IntegrationTest;
 import gov.usgs.cida.qw.LastUpdateDao;
+import gov.usgs.cida.qw.WQPFilter;
 import gov.usgs.cida.qw.summary.SldTemplateEngine.MapDataSource;
 import gov.usgs.cida.qw.summary.SldTemplateEngine.MapGeometry;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.annotation.Resource;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import com.github.springtestdbunit.annotation.DatabaseSetup;
+import com.github.springtestdbunit.annotation.DatabaseSetups;
+import com.github.springtestdbunit.annotation.DatabaseTearDown;
 
 @Category(IntegrationTest.class)
-@WebAppConfiguration
-@DatabaseSetup("classpath:/testData/srsnamesTest.xml")
+@DatabaseSetups({
+	@DatabaseSetup("classpath:/testData/clearAll.xml"),
+	@DatabaseSetup("classpath:/testData/summary.xml")
+})
+@DatabaseTearDown("classpath:/testData/clearAll.xml")
 public class SummaryControllerTest extends BaseSpringTest {
 
 	@Autowired
@@ -42,8 +45,6 @@ public class SummaryControllerTest extends BaseSpringTest {
     private SummaryDao summaryDao;
     @Autowired
     private WebApplicationContext wac;
-    @Resource(name="summarySld")
-    private String summarySld;
 
     private MockMvc mockMvc;
     
@@ -143,12 +144,12 @@ public class SummaryControllerTest extends BaseSpringTest {
 
     @Test
     public void getSummarySldTest() throws Exception {
-        MvcResult rtn = mockMvc.perform(get("/Summary?dataSource=A&geometry=S&timeFrame=1"))
+        MvcResult rtn = mockMvc.perform(get("/summary?dataSource=A&geometry=S&timeFrame=1"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_XML))
-//TODO                .andExpect(content().encoding(DEFAULT_ENCODING))
+                .andExpect(content().encoding(WQPFilter.DEFAULT_ENCODING))
                 .andReturn();
-        assertEquals(harmonizeXml(summarySld), harmonizeXml(rtn.getResponse().getContentAsString()));
+        assertEquals(harmonizeXml(getCompareFile("summary.sld")), harmonizeXml(rtn.getResponse().getContentAsString()));
     }
 
 }
