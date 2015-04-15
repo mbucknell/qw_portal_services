@@ -8,7 +8,6 @@ import org.dbunit.ext.oracle.OracleDataTypeFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.ImportResource;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.core.env.Environment;
@@ -17,7 +16,6 @@ import com.github.springtestdbunit.bean.DatabaseConfigBean;
 import com.github.springtestdbunit.bean.DatabaseDataSourceConnectionFactoryBean;
 
 @Configuration
-@ImportResource("classpath:/spring/qwPortalServicesContext.xml")
 @PropertySource(value = "classpath:database_init.properties")
 public class TestSpringConfig extends SpringConfig {
 	
