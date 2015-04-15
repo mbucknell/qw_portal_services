@@ -1,0 +1,100 @@
+{
+    "codes": [
+        {
+            "value": "AA",
+            "desc": "AA COUNTRY",
+            "providers": "NWIS STEWARDS STORET"
+        },
+        {
+            "value": "AB",
+            "desc": "AB COUNTRY",
+            "providers": "NWIS STEWARDS STORET"
+        },
+        {
+            "value": "AC",
+            "desc": "AC COUNTRY",
+            "providers": "NWIS STEWARDS"
+        },
+        {
+            "value": "AD",
+            "desc": "AD COUNTRY",
+            "providers": "NWIS"
+        },
+        {
+            "value": "AE",
+            "desc": "AE COUNTRY",
+            "providers": "STEWARDS"
+        },
+        {
+            "value": "AF",
+            "desc": "AF COUNTRY",
+            "providers": "NWIS STORET"
+        },
+        {
+            "value": "AG",
+            "desc": "AG COUNTRY",
+            "providers": "STEWARDS STORET"
+        },
+        {
+            "value": "AH",
+            "desc": "AH COUNTRY",
+            "providers": "STEWARDS"
+        },
+        {
+            "value": "AI",
+            "desc": "AI COUNTRY",
+            "providers": "STEWARDS"
+        },
+        {
+            "value": "AJ",
+            "desc": "AJ COUNTRY",
+            "providers": "NWIS STEWARDS STORET"
+        },
+        {
+            "value": "AK",
+            "desc": "AK COUNTRY",
+            "providers": "STORET"
+        },
+        {
+            "value": "CN",
+            "desc": "CANADA",
+            "providers": "NWIS STORET"
+        },
+        {
+            "value": "CV",
+            "desc": "CAPE VERDE",
+            "providers": "NWIS"
+        },
+        {
+            "value": "GT",
+            "desc": "GUATEMALA",
+            "providers": "NWIS"
+        },
+        {
+            "value": "IZ",
+            "desc": "IRAQ",
+            "providers": "NWIS"
+        },
+        {
+            "value": "MX",
+            "desc": "MEXICO",
+            "providers": "NWIS STORET"
+        },
+        {
+            "value": "PE",
+            "desc": "PERU",
+            "providers": "NWIS"
+        },
+        {
+            "value": "RM",
+            "desc": "MARSHALL ISLANDS",
+            "providers": "NWIS"
+        },
+        {
+            "value": "US",
+            "desc": "UNITED STATES OF AMERICA",
+            "providers": "NWIS STEWARDS STORET"
+        }
+    ],
+    "recordCount": 19
+}

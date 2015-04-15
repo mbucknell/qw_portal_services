@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 
 @Category(IntegrationTest.class)
-@DatabaseSetup("classpath:/testData/lastUpdateDaoTest.xml")
+@DatabaseSetup("classpath:/testData/lastUpdateDao.xml")
 public class LastUpdateDaoTest extends BaseSpringTest {
 	
     @Autowired

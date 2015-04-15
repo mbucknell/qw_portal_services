@@ -25,7 +25,7 @@ public class SldTemplateEngine {
 		colorMapBySource.put(MapDataSource.EPA.getStringAbbreviation(), blues);
 		colorMapBySource.put(MapDataSource.USGS.getStringAbbreviation(), greens);
 	}
-	
+	public static int COLOR_COUNT = reds.length;
 	
 	/**
 	 * initialize the engine once.

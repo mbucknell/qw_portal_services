@@ -1,0 +1,49 @@
+{
+    "codes": [
+        {
+            "value": "Acetochlor",
+            "providers": "NWIS STEWARDS STORET"
+        },
+        {
+            "value": "Alachlor",
+            "providers": "NWIS STEWARDS STORET"
+        },
+        {
+            "value": "Alkalinity",
+            "providers": "NWIS STEWARDS"
+        },
+        {
+            "value": "Aluminum",
+            "providers": "NWIS"
+        },
+        {
+            "value": "Aminomethylphosphonic Acid",
+            "providers": "STEWARDS"
+        },
+        {
+            "value": "Ammonia",
+            "providers": "NWIS STORET"
+        },
+        {
+            "value": "Ammonium",
+            "providers": "STEWARDS STORET"
+        },
+        {
+            "value": "Ammonium-Nitrogen",
+            "providers": "STEWARDS"
+        },
+        {
+            "value": "Arsenic",
+            "providers": "STEWARDS"
+        },
+        {
+            "value": "Atrazine",
+            "providers": "NWIS STEWARDS STORET"
+        },
+        {
+            "value": "Calcium",
+            "providers": "STORET"
+        }
+    ],
+    "recordCount": 11
+}

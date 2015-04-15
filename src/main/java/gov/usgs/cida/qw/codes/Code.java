@@ -6,8 +6,11 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 @XmlRootElement (name = "Code")
 @XmlType(propOrder = {"value", "desc", "providers"})
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class Code implements Serializable {
 
     private static final long serialVersionUID = 7174466649683434137L;

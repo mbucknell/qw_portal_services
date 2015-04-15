@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<Codes>
+	<Code value='AA' desc='AA COUNTRY' providers='NWIS STEWARDS STORET'/>
+	<Code value='AB' desc='AB COUNTRY' providers='NWIS STEWARDS STORET'/>
+	<Code value='AC' desc='AC COUNTRY' providers='NWIS STEWARDS'/>
+	<Code value='AD' desc='AD COUNTRY' providers='NWIS'/>
+	<Code value='AE' desc='AE COUNTRY' providers='STEWARDS'/>
+	<Code value='AF' desc='AF COUNTRY' providers='NWIS STORET'/>
+	<Code value='AG' desc='AG COUNTRY' providers='STEWARDS STORET'/>
+	<Code value='AH' desc='AH COUNTRY' providers='STEWARDS'/>
+	<Code value='AI' desc='AI COUNTRY' providers='STEWARDS'/>
+	<Code value='AJ' desc='AJ COUNTRY' providers='NWIS STEWARDS STORET'/>
+	<Code value='AK' desc='AK COUNTRY' providers='STORET'/>
+	<Code value='CN' desc='CANADA' providers='NWIS STORET'/>
+	<Code value='CV' desc='CAPE VERDE' providers='NWIS'/>
+	<Code value='GT' desc='GUATEMALA' providers='NWIS'/>
+	<Code value='IZ' desc='IRAQ' providers='NWIS'/>
+	<Code value='MX' desc='MEXICO' providers='NWIS STORET'/>
+	<Code value='PE' desc='PERU' providers='NWIS'/>
+	<Code value='RM' desc='MARSHALL ISLANDS' providers='NWIS'/>
+	<Code value='US' desc='UNITED STATES OF AMERICA' providers='NWIS STEWARDS STORET'/>
+	<recordCount>19</recordCount>
+</Codes>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Codes>
+	<Code value="Acetochlor" providers="NWIS STEWARDS STORET"/>
+	<Code value="Alachlor" providers="NWIS STEWARDS STORET"/>
+	<Code value="Alkalinity" providers="NWIS STEWARDS"/>
+	<Code value="Aluminum" providers="NWIS"/>
+	<Code value="Aminomethylphosphonic Acid" providers="STEWARDS"/>
+	<Code value="Ammonia" providers="NWIS STORET"/>
+	<Code value="Ammonium" providers="STEWARDS STORET"/>
+	<Code value="Ammonium-Nitrogen" providers="STEWARDS"/>
+	<Code value="Arsenic" providers="STEWARDS"/>
+	<Code value="Atrazine" providers="NWIS STEWARDS STORET"/>
+	<Code value="Calcium" providers="STORET"/>
+	<recordCount>11</recordCount>
+</Codes>

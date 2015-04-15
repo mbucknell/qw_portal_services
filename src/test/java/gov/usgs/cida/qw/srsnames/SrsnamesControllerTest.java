@@ -10,6 +10,7 @@ import static uk.co.datumedge.hamcrest.json.SameJSONAs.sameJSONObjectAs;
 import gov.usgs.cida.qw.BaseSpringTest;
 import gov.usgs.cida.qw.IntegrationTest;
 import gov.usgs.cida.qw.LastUpdateDao;
+import gov.usgs.cida.qw.WQPFilter;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -21,25 +22,27 @@ import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
-import javax.annotation.Resource;
-
 import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import com.github.springtestdbunit.annotation.DatabaseSetup;
+import com.github.springtestdbunit.annotation.DatabaseSetups;
+import com.github.springtestdbunit.annotation.DatabaseTearDown;
 
 @Category(IntegrationTest.class)
-@WebAppConfiguration
-@DatabaseSetup("classpath:/testData/srsnamesTest.xml")
+@DatabaseSetups({
+	@DatabaseSetup("classpath:/testData/clearAll.xml"),
+	@DatabaseSetup("classpath:/testData/srsnames.xml")
+})
+@DatabaseTearDown("classpath:/testData/clearAll.xml")
 public class SrsnamesControllerTest extends BaseSpringTest {
 
 	@Autowired
@@ -48,10 +51,6 @@ public class SrsnamesControllerTest extends BaseSpringTest {
     private PCodeDao pCodeDao;
     @Autowired
     private WebApplicationContext wac;
-    @Resource(name="srsnamesJson")
-    private String srsnamesJson;
-    @Resource(name="srsnamesCsv")
-    private String srsnamesCsv;
 
     private MockMvc mockMvc;
 
@@ -62,13 +61,13 @@ public class SrsnamesControllerTest extends BaseSpringTest {
 
     @Test
     public void getAsJsonTest() throws Exception {
-        MvcResult rtn = mockMvc.perform(get("/publicsrsnames?mimetype=json").accept(MediaType.parseMediaType(MediaType.APPLICATION_JSON_VALUE)))
+        MvcResult rtn = mockMvc.perform(get("/publicsrsnames?mimetype=json").accept(MediaType.APPLICATION_JSON))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
-            .andExpect(content().encoding(DEFAULT_ENCODING))
+            .andExpect(content().encoding(WQPFilter.DEFAULT_ENCODING))
             .andReturn();
         assertThat(new JSONObject(rtn.getResponse().getContentAsString()),
-                sameJSONObjectAs(new JSONObject(srsnamesJson)));
+                sameJSONObjectAs(new JSONObject(getCompareFile("srsnames.json"))));
     }
 
     @Test
@@ -94,7 +93,7 @@ public class SrsnamesControllerTest extends BaseSpringTest {
     public void getAsCsvTest() throws Exception {
         MvcResult rtn = mockMvc.perform(get("/publicsrsnames?mimetype=csv").accept(MediaType.parseMediaType(SrsnamesController.MIME_TYPE_TEXT_CSV)))
             .andExpect(status().isOk())
-            .andExpect(content().encoding(DEFAULT_ENCODING))
+            .andExpect(content().encoding(WQPFilter.DEFAULT_ENCODING))
             .andReturn();
         assertTrue(rtn.getResponse().getHeader(SrsnamesController.HEADER_CONTENT_DISPOSITION).contains("attachment;filename=\"public_srsnames_"));
         assertTrue(rtn.getResponse().getHeader(SrsnamesController.HEADER_CONTENT_DISPOSITION).contains(".zip\""));
@@ -108,7 +107,7 @@ public class SrsnamesControllerTest extends BaseSpringTest {
         while ((len = zip.read(buffer)) > 0) {
         os.write(buffer, 0, len);
         }
-        assertEquals(srsnamesCsv, os.toString(DEFAULT_ENCODING));
+        assertEquals(getCompareFile("srsnames.csv"), os.toString(WQPFilter.DEFAULT_ENCODING));
     }
 
 }

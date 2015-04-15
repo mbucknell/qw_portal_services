@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<Codes>
+	<Code value='CN:90:000' desc='CN, NEW BRUNSWICK, UNSPECIFIED' providers='NWIS STEWARDS STORET'/>
+	<Code value='MX:81:000' desc='MX, TAMULIPAS, UNSPECIFIED' providers='NWIS STEWARDS STORET'/>
+	<Code value='US:16:053' desc='US, IDAHO, JEROME' providers='NWIS STEWARDS'/>
+	<Code value='US:16:083' desc='US, IDAHO, TWIN FALLS' providers='NWIS'/>
+	<Code value='US:18:033' desc='US, INDIANA, DE KALB' providers='STEWARDS'/>
+	<Code value='US:19:015' desc='US, IOWA, BOONE' providers='NWIS STORET'/>
+	<Code value='US:19:079' desc='US, IOWA, HAMILTON' providers='STEWARDS STORET'/>
+	<Code value='US:24:011' desc='US, MARYLAND, CAROLINE' providers='STEWARDS'/>
+	<Code value='US:24:019' desc='US, MARYLAND, DORCHESTER' providers='STEWARDS'/>
+	<Code value='US:28:107' desc='US, MISSISSIPPI, PANOLA' providers='NWIS STEWARDS STORET'/>
+	<Code value='US:55:027' desc='US, WISCONSIN, DODGE' providers='STORET'/>
+	<recordCount>11</recordCount>
+</Codes>

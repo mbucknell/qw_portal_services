@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<Codes>
+	<Code value='Aggregate groundwater use' providers='NWIS STEWARDS STORET'/>
+	<Code value='Aggregate surface-water-use' providers='NWIS STEWARDS STORET'/>
+	<Code value='Atmosphere' providers='NWIS STEWARDS'/>
+	<Code value='Glacier' providers='NWIS'/>
+	<Code value='Lake, Reservoir, Impoundment' providers='STEWARDS'/>
+	<Code value='Land' providers='NWIS STORET'/>
+	<Code value='Ocean' providers='STEWARDS STORET'/>
+	<Code value='Spring' providers='STEWARDS'/>
+	<Code value='Stream' providers='STEWARDS'/>
+	<Code value='Well' providers='NWIS STEWARDS STORET'/>
+	<Code value='Wetland' providers='STORET'/>
+	<recordCount>11</recordCount>
+</Codes>

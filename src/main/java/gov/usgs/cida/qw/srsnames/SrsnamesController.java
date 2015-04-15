@@ -2,6 +2,7 @@ package gov.usgs.cida.qw.srsnames;
 
 import gov.usgs.cida.qw.BaseRestController;
 import gov.usgs.cida.qw.LastUpdateDao;
+import gov.usgs.cida.qw.WQPFilter;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -35,8 +36,6 @@ import org.springframework.web.context.request.WebRequest;
 public class SrsnamesController extends BaseRestController {
 
     private static final Logger LOG = LoggerFactory.getLogger(SrsnamesController.class);
-    public static final String MIME_TYPE_TEXT_CSV = "text/csv";
-    public static final String HEADER_CONTENT_DISPOSITION = "Content-disposition";
     
     private PCodeDao pCodeDao;
 
@@ -50,11 +49,11 @@ public class SrsnamesController extends BaseRestController {
     @RequestMapping(produces=MediaType.APPLICATION_JSON_VALUE)
     public Map<String, Object> getPublicSrsnamesJson(HttpServletRequest request, HttpServletResponse response, WebRequest webRequest) {
         LOG.debug("publicsrsnamesJson");
+        response.setCharacterEncoding(WQPFilter.DEFAULT_ENCODING);
         if (isNotModified(webRequest)) {
             return null;
         } else {
 	        Map<String, Object> rtn = new HashMap<>();
-	        response.setCharacterEncoding(DEFAULT_ENCODING);
 	        List<LinkedHashMap<String, Object>> data = pCodeDao.getRows();
 	        String maxLastRevStr = "";
 	        Date maxLastRevDate = pCodeDao.getLastModified();
@@ -72,8 +71,8 @@ public class SrsnamesController extends BaseRestController {
     @RequestMapping(produces=MIME_TYPE_TEXT_CSV)
     public void getPublicSrsnamesCsv(HttpServletRequest request, HttpServletResponse response, WebRequest webRequest) {
         LOG.debug("publicsrsnamesCsv");
+        response.setCharacterEncoding(WQPFilter.DEFAULT_ENCODING);
         if (!isNotModified(webRequest)) {
-	        response.setCharacterEncoding(DEFAULT_ENCODING);
 	        List<LinkedHashMap<String, Object>> data = pCodeDao.getRows();
 	        String dateString = "";
 	        Date maxLastRevDate = pCodeDao.getLastModified();

@@ -2,10 +2,12 @@ package gov.usgs.cida.qw.summary;
 
 import gov.usgs.cida.qw.BaseRestController;
 import gov.usgs.cida.qw.LastUpdateDao;
+import gov.usgs.cida.qw.WQPFilter;
 import gov.usgs.cida.qw.srsnames.SrsnamesController;
 import gov.usgs.cida.qw.summary.SldTemplateEngine.MapDataSource;
 import gov.usgs.cida.qw.summary.SldTemplateEngine.MapGeometry;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -18,20 +20,18 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.WebRequest;
 
-
 @RestController
-@RequestMapping("Summary")
+@RequestMapping("summary")
 public class SummaryController extends BaseRestController {
 
     private static final Logger LOG = LoggerFactory.getLogger(SrsnamesController.class);
-    public static final String MIME_TYPE_TEXT_CSV = "text/csv";
-    public static final String HEADER_CONTENT_DISPOSITION = "Content-disposition";
     
     private SummaryDao summaryDao;
 
@@ -46,8 +46,9 @@ public class SummaryController extends BaseRestController {
     public String getSummarySld(final @RequestParam(value="dataSource") String dataSource,
     		final @RequestParam(value="geometry") String geometry,
     		final @RequestParam(value="timeFrame") String timeFrame,
-    		HttpServletRequest request, HttpServletResponse response, WebRequest webRequest) {
+    		HttpServletRequest request, HttpServletResponse response, WebRequest webRequest) throws IOException {
         LOG.debug("summary");
+        response.setCharacterEncoding(WQPFilter.DEFAULT_ENCODING);
         if (isNotModified(webRequest)) {
             return null;
         } else {
@@ -56,7 +57,12 @@ public class SummaryController extends BaseRestController {
 
         	Map<String, Object> dbparms = deriveDbParams(mapDataSource, mapGeometry, timeFrame);
         	String[] binValues = retrieveBinValues(dbparms);
-    		return SldTemplateEngine.generateDynamicStyle(mapDataSource, mapGeometry, binValues, "binSLDTemplate.vm");
+        	if (SldTemplateEngine.COLOR_COUNT > binValues.length) {
+        		response.sendError(HttpStatus.NO_CONTENT.value());
+        		return null;
+        	} else {
+        		return SldTemplateEngine.generateDynamicStyle(mapDataSource, mapGeometry, binValues, "binSLDTemplate.vm");
+        	}
         }
     }
 

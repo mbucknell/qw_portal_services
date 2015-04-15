@@ -1,0 +1,49 @@
+{
+    "codes": [
+        {
+            "value": "Aaa",
+            "providers": "NWIS STEWARDS STORET"
+        },
+        {
+            "value": "Air",
+            "providers": "NWIS STEWARDS STORET"
+        },
+        {
+            "value": "Biological Tissue",
+            "providers": "NWIS STEWARDS"
+        },
+        {
+            "value": "Earth",
+            "providers": "NWIS"
+        },
+        {
+            "value": "Habitat",
+            "providers": "STEWARDS"
+        },
+        {
+            "value": "Other",
+            "providers": "NWIS STORET"
+        },
+        {
+            "value": "Sediment",
+            "providers": "STEWARDS STORET"
+        },
+        {
+            "value": "Soil",
+            "providers": "STEWARDS"
+        },
+        {
+            "value": "Tissue",
+            "providers": "STEWARDS"
+        },
+        {
+            "value": "Water",
+            "providers": "NWIS STEWARDS STORET"
+        },
+        {
+            "value": "Xylophone",
+            "providers": "STORET"
+        }
+    ],
+    "recordCount": 11
+}

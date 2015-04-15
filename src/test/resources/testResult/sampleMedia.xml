@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<Codes>
+	<Code value='Aaa' providers='NWIS STEWARDS STORET'/>
+	<Code value='Air' providers='NWIS STEWARDS STORET'/>
+	<Code value='Biological Tissue' providers='NWIS STEWARDS'/>
+	<Code value='Earth' providers='NWIS'/>
+	<Code value='Habitat' providers='STEWARDS'/>
+	<Code value='Other' providers='NWIS STORET'/>
+	<Code value='Sediment' providers='STEWARDS STORET'/>
+	<Code value='Soil' providers='STEWARDS'/>
+	<Code value='Tissue' providers='STEWARDS'/>
+	<Code value='Water' providers='NWIS STEWARDS STORET'/>
+	<Code value='Xylophone' providers='STORET'/>
+	<recordCount>11</recordCount>
+</Codes>

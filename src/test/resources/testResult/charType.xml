@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Codes>
+	<Code value="Inorganics, Major, Metals" providers="NWIS STEWARDS STORET"/>
+	<Code value="Inorganics, Major, Non-metals" providers="NWIS STEWARDS STORET"/>
+	<Code value="Inorganics, Minor, Metals" providers="NWIS STEWARDS"/>
+	<Code value="Inorganics, Minor, Non-metals" providers="NWIS"/>
+	<Code value="Microbiological" providers="STEWARDS"/>
+	<Code value="Nutrient" providers="NWIS STORET"/>
+	<Code value="Organics, Other" providers="STEWARDS STORET"/>
+	<Code value="Organics, PCBs" providers="STEWARDS"/>
+	<Code value="Organics, Pesticide" providers="STEWARDS"/>
+	<Code value="Physical" providers="NWIS STEWARDS STORET"/>
+	<Code value="Population/Community" providers="STORET"/>
+	<recordCount>11</recordCount>
+</Codes>

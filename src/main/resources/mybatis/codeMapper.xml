@@ -153,6 +153,12 @@
 		<include refid="joinDataSource"/>
 		<where>
 			<include refid="textSearch"/>
+            <if test="statecode != null">
+                and state_code in
+                    <foreach item="i" collection="statecode" open="(" separator="," close=")">
+                        #{i,jdbcType=VARCHAR}
+                    </foreach>
+            </if>
 		</where>
     </select>
 

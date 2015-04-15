@@ -14,9 +14,15 @@ import org.junit.experimental.categories.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.github.springtestdbunit.annotation.DatabaseSetup;
+import com.github.springtestdbunit.annotation.DatabaseSetups;
+import com.github.springtestdbunit.annotation.DatabaseTearDown;
 
 @Category(IntegrationTest.class)
-@DatabaseSetup("classpath:/testData/srsnamesTest.xml")
+@DatabaseSetups({
+	@DatabaseSetup("classpath:/testData/clearAll.xml"),
+	@DatabaseSetup("classpath:/testData/srsnames.xml")
+})
+@DatabaseTearDown("classpath:/testData/clearAll.xml")
 public class PCodeDaoTest extends BaseSpringTest {
 
     @Autowired
