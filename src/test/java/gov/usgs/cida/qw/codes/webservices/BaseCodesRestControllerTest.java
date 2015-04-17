@@ -76,24 +76,24 @@ public abstract class BaseCodesRestControllerTest extends BaseSpringTest {
 		//no query parms is bad
 		mockMvc.perform(get(testEndpoint)).andExpect(status().isBadRequest());
 
-		MvcResult rtn = runMock(testEndpoint + "/" + codeValue + "?mimeType=json", MediaType.APPLICATION_JSON_VALUE, null);
+		MvcResult rtn = runMock(testEndpoint + "?value=" + codeValue + "&mimeType=json", MediaType.APPLICATION_JSON_VALUE, null);
 		assertThat(new JSONObject(rtn.getResponse().getContentAsString()),
 			sameJSONObjectAs(new JSONObject(codeJson)));
 
-		rtn = runMock(testEndpoint + "/" + codeValue +  "?x=y", MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_JSON);
+		rtn = runMock(testEndpoint + "?value=" + codeValue + "&x=y", MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_JSON);
 		assertThat(new JSONObject(rtn.getResponse().getContentAsString()),
 			sameJSONObjectAs(new JSONObject(codeJson)));
 	}
 
 	public void runGetCodeAsXml(String testEndpoint, String codeValue, String codeXml) throws Exception {
 		//xml is the default
-		MvcResult rtn = runMock(testEndpoint + "/" + codeValue +  "?x=y", MediaType.APPLICATION_XML_VALUE, null);
+		MvcResult rtn = runMock(testEndpoint + "?value=" + codeValue + "&x=y", MediaType.APPLICATION_XML_VALUE, null);
 		assertEquals(harmonizeXml(codeXml), harmonizeXml(rtn.getResponse().getContentAsString()));
 
-		rtn = runMock(testEndpoint + "/" + codeValue +  "?mimeType=xml", MediaType.APPLICATION_XML_VALUE, null);
+		rtn = runMock(testEndpoint + "?value=" + codeValue + "&mimeType=xml", MediaType.APPLICATION_XML_VALUE, null);
 		assertEquals(harmonizeXml(codeXml), harmonizeXml(rtn.getResponse().getContentAsString()));
         
-		rtn = runMock(testEndpoint + "/" + codeValue +  "?x=y", MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_XML);
+		rtn = runMock(testEndpoint + "?value=" + codeValue + "&x=y", MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_XML);
 		assertEquals(harmonizeXml(codeXml), harmonizeXml(rtn.getResponse().getContentAsString()));
 	}
 

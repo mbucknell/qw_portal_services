@@ -26,7 +26,7 @@ public class SpringInitializer implements WebApplicationInitializer {
 		ctx.register(SpringConfig.class);
 		
 		FilterRegistration urlRewriteFilter = servletContext.addFilter("UrlRewriteFilter", UrlRewriteFilter.class);
-		urlRewriteFilter.setInitParameter("logLevel", "ERROR");
+		urlRewriteFilter.setInitParameter("logLevel", "TRACE");
 		urlRewriteFilter.setInitParameter("confReloadCheckInterval", "60");
 		urlRewriteFilter.addMappingForUrlPatterns(EnumSet.of(DispatcherType.FORWARD, DispatcherType.REQUEST), false, "/*");
 

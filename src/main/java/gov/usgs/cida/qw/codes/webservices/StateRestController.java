@@ -1,13 +1,13 @@
 package gov.usgs.cida.qw.codes.webservices;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import gov.usgs.cida.qw.LastUpdateDao;
 import gov.usgs.cida.qw.codes.Code;
 import gov.usgs.cida.qw.codes.CodeList;
 import gov.usgs.cida.qw.codes.CodeType;
 import gov.usgs.cida.qw.codes.dao.CodeDao;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -16,7 +16,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -36,7 +35,7 @@ public class StateRestController extends CodesRestController {
     	this.codeDao = codeDao;
     }
 
-    @RequestMapping(method=RequestMethod.GET)
+    @RequestMapping(params="!value", method=RequestMethod.GET)
     public CodeList getStates(final @RequestParam(value="countrycode", required=false) String[] countrycodes,
     		final @RequestParam(value="text", required=false) String text,
     		final @RequestParam(value="pagenumber", required=false) String pageNumber,
@@ -48,10 +47,10 @@ public class StateRestController extends CodesRestController {
         return getList(CodeType.STATECODE, text, pageNumber, pageSize, addlParms, webRequest);
     }
 
-    @RequestMapping(value="{statecode}", method=RequestMethod.GET)
-    public Code getState(final @PathVariable(value="statecode") String statecode, WebRequest webRequest, HttpServletResponse response) {
+    @RequestMapping(params="value", method=RequestMethod.GET)
+    public Code getState(final @RequestParam(value="value") String value, WebRequest webRequest, HttpServletResponse response) {
         LOG.debug("state");
-        return getCode(CodeType.STATECODE, statecode, webRequest, response);
+        return getCode(CodeType.STATECODE, value, webRequest, response);
     }
 
 }

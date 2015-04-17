@@ -13,7 +13,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -33,7 +32,7 @@ public class CharacteristicTypeRestController extends CodesRestController {
     	this.codeDao = codeDao;
     }
 
-    @RequestMapping(method=RequestMethod.GET)
+    @RequestMapping(params="!value", method=RequestMethod.GET)
     public CodeList getCharacteristicTypes(final @RequestParam(value="text", required=false) String text,
     		final @RequestParam(value="pagenumber", required=false) String pageNumber,
     		final @RequestParam(value="pagesize", required=false) String pageSize,
@@ -42,11 +41,11 @@ public class CharacteristicTypeRestController extends CodesRestController {
         return getList(CodeType.CHARACTERISTICTYPE, text, pageNumber, pageSize, null, webRequest);
     }
 
-    @RequestMapping(value="{characteristictype}", method=RequestMethod.GET)
-    public Code getCharacteristicType(final @PathVariable(value="characteristictype") String characteristictype,
+    @RequestMapping(params="value", method=RequestMethod.GET)
+    public Code getCharacteristicType(final @RequestParam(value="value") String value,
     		WebRequest webRequest, HttpServletResponse response) {
         LOG.debug("characteristicType");
-        return getCode(CodeType.CHARACTERISTICTYPE, characteristictype, webRequest, response);
+        return getCode(CodeType.CHARACTERISTICTYPE, value, webRequest, response);
     }
 
 }
