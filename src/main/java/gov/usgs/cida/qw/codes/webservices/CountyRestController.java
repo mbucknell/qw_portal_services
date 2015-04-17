@@ -1,13 +1,13 @@
 package gov.usgs.cida.qw.codes.webservices;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import gov.usgs.cida.qw.LastUpdateDao;
 import gov.usgs.cida.qw.codes.Code;
 import gov.usgs.cida.qw.codes.CodeList;
 import gov.usgs.cida.qw.codes.CodeType;
 import gov.usgs.cida.qw.codes.dao.CodeDao;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -16,7 +16,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -36,7 +35,7 @@ public class CountyRestController extends CodesRestController {
     	this.codeDao = codeDao;
     }
 
-    @RequestMapping(method=RequestMethod.GET)
+    @RequestMapping(params="!value", method=RequestMethod.GET)
     public CodeList getCounties(final @RequestParam(value="statecode", required=false) String[] statecodes,
     		final @RequestParam(value="text", required=false) String text,
     		final @RequestParam(value="pagenumber", required=false) String pageNumber,
@@ -48,10 +47,10 @@ public class CountyRestController extends CodesRestController {
         return getList(CodeType.COUNTYCODE, text, pageNumber, pageSize, addlParms, webRequest);
     }
 
-    @RequestMapping(value="{countycode}", method=RequestMethod.GET)
-    public Code getCounty(final @PathVariable(value="countycode") String countycode, WebRequest webRequest, HttpServletResponse response) {
+    @RequestMapping(params="value", method=RequestMethod.GET)
+    public Code getCounty(final @RequestParam(value="value") String value, WebRequest webRequest, HttpServletResponse response) {
         LOG.debug("county");
-        return getCode(CodeType.COUNTYCODE, countycode, webRequest, response);
+        return getCode(CodeType.COUNTYCODE, value, webRequest, response);
     }
 
 }

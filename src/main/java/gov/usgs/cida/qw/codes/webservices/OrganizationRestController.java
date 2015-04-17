@@ -13,7 +13,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -33,7 +32,7 @@ public class OrganizationRestController extends CodesRestController {
     	this.codeDao = codeDao;
     }
 
-    @RequestMapping(method=RequestMethod.GET)
+    @RequestMapping(params="!value", method=RequestMethod.GET)
     public CodeList getOrganizations(final @RequestParam(value="text", required=false) String text,
     		final @RequestParam(value="pagenumber", required=false) String pageNumber,
     		final @RequestParam(value="pagesize", required=false) String pageSize,
@@ -42,10 +41,10 @@ public class OrganizationRestController extends CodesRestController {
         return getList(CodeType.ORGANIZATION, text, pageNumber, pageSize, null, webRequest);
     }
 
-    @RequestMapping(value="{organization}", method=RequestMethod.GET)
-    public Code getOrganization(final @PathVariable(value="organization") String organization, WebRequest webRequest, HttpServletResponse response) {
+    @RequestMapping(params="value", method=RequestMethod.GET)
+    public Code getOrganization(final @RequestParam(value="value") String value, WebRequest webRequest, HttpServletResponse response) {
         LOG.debug("organization");
-        return getCode(CodeType.ORGANIZATION, organization, webRequest, response);
+        return getCode(CodeType.ORGANIZATION, value, webRequest, response);
     }
     
 }
