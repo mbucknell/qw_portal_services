@@ -17,7 +17,7 @@
 	</sql>
 	
 	<sql id="codeValueSearch">
-		where upper(code_value) = upper(#{value,jdbcType=VARCHAR})
+		where code_value = #{value,jdbcType=VARCHAR}
 	</sql>
     
     <sql id="listAggProviders">
@@ -197,7 +197,7 @@
     <select id="codeDataSource" parameterType="String" resultMap="codeResult">
 		select text code_value
           from data_source
-		 where upper(text) = upper(#{value,jdbcType=VARCHAR})
+		 where text = #{value,jdbcType=VARCHAR}
 		    order by text
     </select>
 
