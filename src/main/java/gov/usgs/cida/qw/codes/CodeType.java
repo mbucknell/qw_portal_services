@@ -3,16 +3,17 @@ package gov.usgs.cida.qw.codes;
 
 public enum CodeType {
 
-    ORGANIZATION ("codeOrganization"),
-    SITETYPE ("codeSiteType"),
-    SAMPLETYPE ("codeSampleType"),
-    SAMPLEMEDIA ("codeSampleMedia"),
-    COUNTYCODE ("codeCountyCode"),
-    STATECODE ("codeStateCode"),
-    COUNTRYCODE ("codeCountryCode"),
-    CHARACTERISTICTYPE ("codeCharacteristicType"),
     CHARACTERISTICNAME ("codeCharacteristicName"),
-    DATASOURCE ("codeDataSource");
+    CHARACTERISTICTYPE ("codeCharacteristicType"),
+    DATASOURCE ("codeDataSource"),
+    COUNTRYCODE ("codeCountryCode"),
+    COUNTYCODE ("codeCountyCode"),
+    ORGANIZATION ("codeOrganization"),
+    PROJECT ("codeProject"),
+    SAMPLEMEDIA ("codeSampleMedia"),
+    SAMPLETYPE ("codeSampleType"),
+    SITETYPE ("codeSiteType"),
+    STATECODE ("codeStateCode");
     
     public static final String CODES_MAPPER_NAMESPACE = "codes";
 

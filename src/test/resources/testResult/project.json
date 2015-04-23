@@ -1,0 +1,49 @@
+{
+    "codes": [
+        {
+            "value": "Aaa",
+            "providers": "NWIS STEWARDS STORET"
+        },
+        {
+            "value": "Aab",
+            "providers": "NWIS STEWARDS STORET"
+        },
+        {
+            "value": "Bb b",
+            "providers": "NWIS STEWARDS"
+        },
+        {
+            "value": "ccc",
+            "providers": "NWIS"
+        },
+        {
+            "value": "ddd",
+            "providers": "STEWARDS"
+        },
+        {
+            "value": "eee",
+            "providers": "NWIS STORET"
+        },
+        {
+            "value": "fff",
+            "providers": "STEWARDS STORET"
+        },
+        {
+            "value": "ggg",
+            "providers": "STEWARDS"
+        },
+        {
+            "value": "hhh",
+            "providers": "STEWARDS"
+        },
+        {
+            "value": "iii",
+            "providers": "NWIS STEWARDS STORET"
+        },
+        {
+            "value": "jjj",
+            "providers": "STORET"
+        }
+    ],
+    "recordCount": 11
+}

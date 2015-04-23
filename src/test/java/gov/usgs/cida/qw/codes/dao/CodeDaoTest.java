@@ -447,6 +447,62 @@ public class CodeDaoTest extends BaseSpringTest {
         assertEquals("NWIS STEWARDS STORET", codes.get(0).getProviders());
     }
     
+    
+    @Test
+    @DatabaseSetup("classpath:/testData/project.xml")
+    public void projectTest() {
+        List<Code> codes = codeDao.getCodes(CodeType.PROJECT);
+        assertNotNull(codes);
+        assertEquals(11, codes.size());
+        assertEquals("ggg", codes.get(7).getValue());
+        assertNull(codes.get(7).getDesc());
+        assertEquals("NWIS STEWARDS STORET", codes.get(0).getProviders());
+        assertEquals("NWIS STEWARDS STORET", codes.get(1).getProviders());
+        assertEquals("NWIS STEWARDS", codes.get(2).getProviders());
+        assertEquals("NWIS", codes.get(3).getProviders());
+        assertEquals("STEWARDS", codes.get(4).getProviders());
+        assertEquals("NWIS STORET", codes.get(5).getProviders());
+        assertEquals("STEWARDS STORET", codes.get(6).getProviders());
+        assertEquals("STEWARDS", codes.get(7).getProviders());
+        assertEquals("STEWARDS", codes.get(8).getProviders());
+        assertEquals("NWIS STEWARDS STORET", codes.get(9).getProviders());
+        assertEquals("STORET", codes.get(10).getProviders());
+    	
+        Map<String, Object> parms = new HashMap<String, Object>();
+        int cnt = codeDao.getRecordCount(CodeType.PROJECT, parms);
+        assertEquals(11, cnt);
+
+        parms.put("text", "aa");
+        codes = codeDao.getCodes(CodeType.PROJECT, parms);
+        assertNotNull(codes);
+        assertEquals(2, codes.size());
+        assertEquals("Aab", codes.get(1).getValue());
+        assertNull(codes.get(1).getDesc());
+        assertEquals("NWIS STEWARDS STORET", codes.get(1).getProviders());
+        
+        cnt = codeDao.getRecordCount(CodeType.PROJECT, parms);
+        assertEquals(2, cnt);
+        
+        Code code = codeDao.getCode(CodeType.PROJECT, null);
+        assertNull(code);
+        code = codeDao.getCode(CodeType.PROJECT, "xxx");
+        assertNull(code);
+        code = codeDao.getCode(CodeType.PROJECT, "eee");
+        assertEquals("eee", code.getValue());
+        assertNull(code.getDesc());
+        assertEquals("NWIS STORET", code.getProviders());
+
+        parms.clear();
+        parms.put("fetchSize", 3);
+        parms.put("offset", 9);
+        codes = codeDao.getCodes(CodeType.PROJECT, parms);
+        assertNotNull(codes);
+        assertEquals(2, codes.size());
+        assertEquals("iii", codes.get(0).getValue());
+        assertNull(codes.get(0).getDesc());
+        assertEquals("NWIS STEWARDS STORET", codes.get(0).getProviders());
+    }
+    
     @Test
     @DatabaseSetup("classpath:/testData/siteType.xml")
     public void siteTypeTest() {
