@@ -251,6 +251,36 @@
 
 
 
+    <select id="codeProject" parameterType="String" resultMap="codeResult">
+		<include refid="selectStart"/>
+        project
+		<include refid="joinDataSource"/>
+		<include refid="codeValueSearch"/>
+		<include refid="groupAndOrderBy"/>
+    </select>
+
+    <select id="codeProjectList" parameterType="map" resultMap="codeResult">
+		<include refid="selectStart"/>
+        project
+		<include refid="joinDataSource"/>
+		<where>
+			<include refid="textSearch"/>
+		</where>
+		<include refid="groupAndOrderBy"/>
+		<include refid="paging"/>
+    </select>
+
+    <select id="codeProjectCount" parameterType="map" resultType="int">
+		<include refid="selectCount"/>
+		project
+		<include refid="joinDataSource"/>
+		<where>
+			<include refid="textSearch"/>
+		</where>
+    </select>
+
+
+
     <select id="codeSampleMedia" parameterType="String" resultMap="codeResult">
 		<include refid="selectStart"/>
         sample_media
