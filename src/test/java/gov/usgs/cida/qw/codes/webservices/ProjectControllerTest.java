@@ -7,14 +7,12 @@ import org.junit.experimental.categories.Category;
 
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.github.springtestdbunit.annotation.DatabaseSetups;
-import com.github.springtestdbunit.annotation.DatabaseTearDown;
 
 @Category(IntegrationTest.class)
 @DatabaseSetups({
 	@DatabaseSetup("classpath:/testData/clearAll.xml"),
 	@DatabaseSetup("classpath:/testData/project.xml")
 })
-@DatabaseTearDown("classpath:/testData/clearAll.xml")
 public class ProjectControllerTest extends BaseCodesRestControllerTest {
 
 	public static String TEST_ENDPOINT = "/codes/projects";

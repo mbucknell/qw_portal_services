@@ -7,14 +7,12 @@ import org.junit.experimental.categories.Category;
 
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.github.springtestdbunit.annotation.DatabaseSetups;
-import com.github.springtestdbunit.annotation.DatabaseTearDown;
 
 @Category(IntegrationTest.class)
 @DatabaseSetups({
 	@DatabaseSetup("classpath:/testData/clearAll.xml"),
 	@DatabaseSetup("classpath:/testData/charType.xml")
 })
-@DatabaseTearDown("classpath:/testData/clearAll.xml")
 public class CharacteristicTypeRestControllerTest extends BaseCodesRestControllerTest {
 
 	public static String TEST_ENDPOINT = "/codes/characteristictypes";
@@ -23,8 +21,8 @@ public class CharacteristicTypeRestControllerTest extends BaseCodesRestControlle
 	public static String CODE_JSON = "{\"value\":\"Population/Community\",\"providers\":\"STORET\"}";
 	public static String CODE_XML = XML_HEADER +"<Code value=\"Population/Community\" providers=\"STORET\"/>";
 	public static String SEARCH_TEXT = "Inorganics";
-	public static String SEARCH_JSON = "{\"codes\":[{\"value\":\"Inorganics, Major, Non-metals\",\"providers\":\"NWIS STEWARDS STORET\"}],\"recordCount\":4}";
-	public static String SEARCH_XML = XML_HEADER + "<Codes><Code value=\"Inorganics, Major, Non-metals\" providers=\"NWIS STEWARDS STORET\"/><recordCount>4</recordCount></Codes>"; 
+	public static String SEARCH_JSON = "{\"codes\":[{\"value\":\"Inorganics, Minor, Metals\",\"providers\":\"NWIS STEWARDS\"}],\"recordCount\":4}";
+	public static String SEARCH_XML = XML_HEADER + "<Codes><Code value=\"Inorganics, Minor, Metals\" providers=\"NWIS STEWARDS\"/><recordCount>4</recordCount></Codes>"; 
 	public static String COMPARE_FILE_JSON = "charType.json";
 	public static String COMPARE_FILE_XML = "charType.xml";
 	
