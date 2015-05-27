@@ -7,14 +7,12 @@ import org.junit.experimental.categories.Category;
 
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.github.springtestdbunit.annotation.DatabaseSetups;
-import com.github.springtestdbunit.annotation.DatabaseTearDown;
 
 @Category(IntegrationTest.class)
 @DatabaseSetups({
 	@DatabaseSetup("classpath:/testData/clearAll.xml"),
 	@DatabaseSetup("classpath:/testData/organization.xml")
 })
-@DatabaseTearDown("classpath:/testData/clearAll.xml")
 public class OrganizationRestControllerTest extends BaseCodesRestControllerTest {
 
 	public static String TEST_ENDPOINT = "/codes/organizations";
@@ -23,8 +21,8 @@ public class OrganizationRestControllerTest extends BaseCodesRestControllerTest 
 	public static String CODE_JSON = "{\"value\":\"FWC_WQMP\",\"desc\":\"Florida Keys NMS - Water Quality Monitoring Program\",\"providers\":\"NWIS\"}";
 	public static String CODE_XML = XML_HEADER +"<Code value=\"FWC_WQMP\" desc=\"Florida Keys NMS - Water Quality Monitoring Program\" providers=\"NWIS\"/>";
 	public static String SEARCH_TEXT = "in";
-	public static String SEARCH_JSON = "{\"codes\":[{\"value\":\"USGS-VA\",\"desc\":\"USGS Virginia Water Science Center\",\"providers\":\"STEWARDS\"}],\"recordCount\":5}";
-	public static String SEARCH_XML = XML_HEADER + "<Codes><Code value=\"USGS-VA\" desc=\"USGS Virginia Water Science Center\" providers=\"STEWARDS\"/><recordCount>5</recordCount></Codes>"; 
+	public static String SEARCH_JSON = "{\"codes\":[{\"value\":\"USGS-WA\",\"desc\":\"USGS Washington Water Science Center\",\"providers\":\"STEWARDS\"}],\"recordCount\":5}";
+	public static String SEARCH_XML = XML_HEADER + "<Codes><Code value=\"USGS-WA\" desc=\"USGS Washington Water Science Center\" providers=\"STEWARDS\"/><recordCount>5</recordCount></Codes>"; 
 	public static String COMPARE_FILE_JSON = "organization.json";
 	public static String COMPARE_FILE_XML = "organization.xml";
 	

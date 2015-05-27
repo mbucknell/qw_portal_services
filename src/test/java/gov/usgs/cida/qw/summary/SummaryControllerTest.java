@@ -29,14 +29,12 @@ import org.springframework.web.context.WebApplicationContext;
 
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.github.springtestdbunit.annotation.DatabaseSetups;
-import com.github.springtestdbunit.annotation.DatabaseTearDown;
 
 @Category(IntegrationTest.class)
 @DatabaseSetups({
 	@DatabaseSetup("classpath:/testData/clearAll.xml"),
 	@DatabaseSetup("classpath:/testData/summary.xml")
 })
-@DatabaseTearDown("classpath:/testData/clearAll.xml")
 public class SummaryControllerTest extends BaseSpringTest {
 
 	@Autowired

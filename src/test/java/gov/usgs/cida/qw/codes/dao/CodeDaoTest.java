@@ -54,9 +54,9 @@ public class CodeDaoTest extends BaseSpringTest {
         codes = codeDao.getCodes(CodeType.CHARACTERISTICNAME, parms);
         assertNotNull(codes);
         assertEquals(4, codes.size());
-        assertEquals("Alkalinity", codes.get(1).getValue());
+        assertEquals("Alachlor", codes.get(1).getValue());
         assertNull(codes.get(1).getDesc());
-        assertEquals("NWIS STEWARDS", codes.get(1).getProviders());
+        assertEquals("NWIS STEWARDS STORET", codes.get(1).getProviders());
         
         cnt = codeDao.getRecordCount(CodeType.CHARACTERISTICNAME, parms);
         assertEquals(4, cnt);
@@ -109,9 +109,9 @@ public class CodeDaoTest extends BaseSpringTest {
         codes = codeDao.getCodes(CodeType.CHARACTERISTICTYPE, parms);
         assertNotNull(codes);
         assertEquals(7, codes.size());
-        assertEquals("Inorganics, Major, Non-metals", codes.get(1).getValue());
+        assertEquals("Organics, Other", codes.get(1).getValue());
         assertNull(codes.get(1).getDesc());
-        assertEquals("NWIS STEWARDS STORET", codes.get(1).getProviders());
+        assertEquals("STEWARDS STORET", codes.get(1).getProviders());
         
         cnt = codeDao.getRecordCount(CodeType.CHARACTERISTICTYPE, parms);
         assertEquals(7, cnt);
@@ -351,8 +351,8 @@ public class CodeDaoTest extends BaseSpringTest {
         codes = codeDao.getCodes(CodeType.ORGANIZATION, parms);
         assertNotNull(codes);
         assertEquals(5, codes.size());
-        assertEquals("USGS-VA", codes.get(1).getValue());
-        assertEquals("USGS Virginia Water Science Center", codes.get(1).getDesc());
+        assertEquals("USGS-WA", codes.get(1).getValue());
+        assertEquals("USGS Washington Water Science Center", codes.get(1).getDesc());
         assertEquals("STEWARDS", codes.get(1).getProviders());
         
         cnt = codeDao.getRecordCount(CodeType.ORGANIZATION, parms);
@@ -362,12 +362,12 @@ public class CodeDaoTest extends BaseSpringTest {
         codes = codeDao.getCodes(CodeType.ORGANIZATION, parms);
         assertNotNull(codes);
         assertEquals(2, codes.size());
-        assertEquals("0800257_WQX", codes.get(0).getValue());
-        assertEquals("Clear Creek  Superfund",codes.get(0).getDesc());
-        assertEquals("NWIS STEWARDS STORET", codes.get(0).getProviders());
-        assertEquals("ARS", codes.get(1).getValue());
-        assertEquals("USDA Agricultural Research Service",codes.get(1).getDesc());
-        assertEquals("NWIS STEWARDS", codes.get(1).getProviders());
+        assertEquals("ARS", codes.get(0).getValue());
+        assertEquals("USDA Agricultural Research Service",codes.get(0).getDesc());
+        assertEquals("NWIS STEWARDS", codes.get(0).getProviders());
+        assertEquals("0800257_WQX", codes.get(1).getValue());
+        assertEquals("Clear Creek  Superfund",codes.get(1).getDesc());
+        assertEquals("NWIS STEWARDS STORET", codes.get(1).getProviders());
         
         cnt = codeDao.getRecordCount(CodeType.ORGANIZATION, parms);
         assertEquals(2, cnt);
@@ -420,9 +420,9 @@ public class CodeDaoTest extends BaseSpringTest {
         codes = codeDao.getCodes(CodeType.SAMPLEMEDIA, parms);
         assertNotNull(codes);
         assertEquals(2, codes.size());
-        assertEquals("Tissue", codes.get(1).getValue());
+        assertEquals("Biological Tissue", codes.get(1).getValue());
         assertNull(codes.get(1).getDesc());
-        assertEquals("STEWARDS", codes.get(1).getProviders());
+        assertEquals("NWIS STEWARDS", codes.get(1).getProviders());
         
         cnt = codeDao.getRecordCount(CodeType.SAMPLEMEDIA, parms);
         assertEquals(2, cnt);
@@ -531,9 +531,9 @@ public class CodeDaoTest extends BaseSpringTest {
         codes = codeDao.getCodes(CodeType.SITETYPE, parms);
         assertNotNull(codes);
         assertEquals(5, codes.size());
-        assertEquals("Aggregate surface-water-use", codes.get(1).getValue());
+        assertEquals("Atmosphere", codes.get(1).getValue());
         assertNull(codes.get(1).getDesc());
-        assertEquals("NWIS STEWARDS STORET", codes.get(1).getProviders());
+        assertEquals("NWIS STEWARDS", codes.get(1).getProviders());
         
         cnt = codeDao.getRecordCount(CodeType.SITETYPE, parms);
         assertEquals(5, cnt);

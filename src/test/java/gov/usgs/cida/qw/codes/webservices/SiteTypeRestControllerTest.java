@@ -7,14 +7,12 @@ import org.junit.experimental.categories.Category;
 
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.github.springtestdbunit.annotation.DatabaseSetups;
-import com.github.springtestdbunit.annotation.DatabaseTearDown;
 
 @Category(IntegrationTest.class)
 @DatabaseSetups({
 	@DatabaseSetup("classpath:/testData/clearAll.xml"),
 	@DatabaseSetup("classpath:/testData/siteType.xml")
 })
-@DatabaseTearDown("classpath:/testData/clearAll.xml")
 public class SiteTypeRestControllerTest extends BaseCodesRestControllerTest {
 
 	public static String TEST_ENDPOINT = "/codes/sitetypes";
@@ -23,8 +21,8 @@ public class SiteTypeRestControllerTest extends BaseCodesRestControllerTest {
 	public static String CODE_JSON = "{\"value\":\"Lake, Reservoir, Impoundment\",\"providers\":\"STEWARDS\"}";
 	public static String CODE_XML = XML_HEADER +"<Code value=\"Lake, Reservoir, Impoundment\" providers=\"STEWARDS\"/>";
 	public static String SEARCH_TEXT = "re";
-	public static String SEARCH_JSON = "{\"codes\":[{\"value\":\"Aggregate surface-water-use\",\"providers\":\"NWIS STEWARDS STORET\"}],\"recordCount\":5}";
-	public static String SEARCH_XML = XML_HEADER + "<Codes><Code value=\"Aggregate surface-water-use\" providers=\"NWIS STEWARDS STORET\"/><recordCount>5</recordCount></Codes>"; 
+	public static String SEARCH_JSON = "{\"codes\":[{\"value\":\"Atmosphere\",\"providers\":\"NWIS STEWARDS\"}],\"recordCount\":5}";
+	public static String SEARCH_XML = XML_HEADER + "<Codes><Code value=\"Atmosphere\" providers=\"NWIS STEWARDS\"/><recordCount>5</recordCount></Codes>"; 
 	public static String COMPARE_FILE_JSON = "siteType.json";
 	public static String COMPARE_FILE_XML = "siteType.xml";
 	
