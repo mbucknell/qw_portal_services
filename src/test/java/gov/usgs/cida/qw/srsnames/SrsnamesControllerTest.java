@@ -103,7 +103,7 @@ public class SrsnamesControllerTest extends BaseSpringTest {
         int len;
         byte[] buffer = new byte[1024];
         while ((len = zip.read(buffer)) > 0) {
-        os.write(buffer, 0, len);
+        	os.write(buffer, 0, len);
         }
         assertEquals(getCompareFile("srsnames.csv"), os.toString(WQPFilter.DEFAULT_ENCODING));
     }
