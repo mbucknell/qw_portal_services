@@ -1,0 +1,49 @@
+{
+    "codes": [
+        {
+            "value": "Amphibians",
+            "providers": "NWIS STEWARDS STORET"
+        },
+        {
+            "value": "Aquatic Vegetation",
+            "providers": "NWIS STEWARDS STORET"
+        },
+        {
+            "value": "Bacteria/Virus",
+            "providers": "NWIS STEWARDS"
+        },
+        {
+            "value": "Benthic Macroinvertebrates",
+            "providers": "NWIS"
+        },
+        {
+            "value": "Birds",
+            "providers": "STEWARDS"
+        },
+        {
+            "value": "Corals",
+            "providers": "NWIS STORET"
+        },
+        {
+            "value": "Fish/Nekton",
+            "providers": "STEWARDS STORET"
+        },
+        {
+            "value": "Invertebrates",
+            "providers": "STEWARDS"
+        },
+        {
+            "value": "Periphyton",
+            "providers": "STEWARDS"
+        },
+        {
+            "value": "Phytoplankton/Zooplankton",
+            "providers": "NWIS STEWARDS STORET"
+        },
+        {
+            "value": "Terrestrial Vegetation",
+            "providers": "STORET"
+        }
+    ],
+    "recordCount": 11
+}
