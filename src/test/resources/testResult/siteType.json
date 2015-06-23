@@ -1,0 +1,49 @@
+{
+    "codes": [
+        {
+            "value": "Aggregate groundwater use",
+            "providers": "NWIS STEWARDS STORET"
+        },
+        {
+            "value": "Aggregate surface-water-use",
+            "providers": "NWIS STEWARDS STORET"
+        },
+        {
+            "value": "Atmosphere",
+            "providers": "NWIS STEWARDS"
+        },
+        {
+            "value": "Glacier",
+            "providers": "NWIS"
+        },
+        {
+            "value": "Lake, Reservoir, Impoundment",
+            "providers": "STEWARDS"
+        },
+        {
+            "value": "Land",
+            "providers": "NWIS STORET"
+        },
+        {
+            "value": "Ocean",
+            "providers": "STEWARDS STORET"
+        },
+        {
+            "value": "Spring",
+            "providers": "STEWARDS"
+        },
+        {
+            "value": "Stream",
+            "providers": "STEWARDS"
+        },
+        {
+            "value": "Well",
+            "providers": "NWIS STEWARDS STORET"
+        },
+        {
+            "value": "Wetland",
+            "providers": "STORET"
+        }
+    ],
+    "recordCount": 11
+}

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+
+<mapper namespace="srsnames">
+
+    <select id="getLastModifiedDate" resultType="java.util.Date">
+        select max_last_rev_dt
+          from public_srsnames
+               fetch first 1 row only
+    </select>
+
+    <select id="get" resultType="Export">
+        select parm_cd "parm_cd",
+               description "description",
+               characteristicname "characteristicname",
+               measureunitcode "measureunitcode",
+               resultsamplefraction "resultsamplefraction",
+               resulttemperaturebasis "resulttemperaturebasis",
+               resultstatisticalbasis "resultstatisticalbasis",
+               resulttimebasis "resulttimebasis",
+               resultweightbasis "resultweightbasis",
+               resultparticlesizebasis "resultparticlesizebasis",
+               to_char(last_rev_dt, 'yyyy-mm-dd') "last_rev_dt" 
+          from public_srsnames
+             order by 1
+    </select>
+
+</mapper>

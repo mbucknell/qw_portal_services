@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<Codes>
+	<Code value='US:19' desc='IOWA' providers='STEWARDS'/>
+	<Code value='US:21' desc='KENTUCKY' providers='NWIS STORET'/>
+	<Code value='US:31' desc='NEBRASKA' providers='STEWARDS STORET'/>
+	<Code value='US:32' desc='NEVADA' providers='STEWARDS'/>
+	<Code value='US:48' desc='TEXAS' providers='STEWARDS'/>
+	<Code value='US:49' desc='UTAH' providers='NWIS STEWARDS STORET'/>
+	<Code value='US:78' desc='VIRGIN ISLANDS' providers='STORET'/>
+	<recordCount>7</recordCount>
+</Codes>

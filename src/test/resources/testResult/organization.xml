@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<Codes>
+	<Code value='0800257_WQX' desc='Clear Creek  Superfund' providers='NWIS STEWARDS STORET'/>
+	<Code value='21FLCOT_WQX' desc='City of Tallahassee Stormwater' providers='NWIS STEWARDS STORET'/>
+	<Code value='ARS' desc='USDA Agricultural Research Service' providers='NWIS STEWARDS'/>
+	<Code value='FWC_WQMP' desc='Florida Keys NMS - Water Quality Monitoring Program' providers='NWIS'/>
+	<Code value='USGS-AL' desc='USGS Alabama Water Science Center' providers='STEWARDS'/>
+	<Code value='USGS-HI' desc='USGS Hawaii Water Science Center' providers='NWIS STORET'/>
+	<Code value='USGS-UT' desc='USGS Utah Water Science Center' providers='STEWARDS STORET'/>
+	<Code value='USGS-VA' desc='USGS Virginia Water Science Center' providers='STEWARDS'/>
+	<Code value='USGS-WA' desc='USGS Washington Water Science Center' providers='STEWARDS'/>
+	<Code value='USGS-WI' desc='USGS Wisconsin Water Science Center' providers='NWIS STEWARDS STORET'/>
+	<Code value='USGS-WY' desc='USGS Wyoming Water Science Center' providers='STORET'/>
+	<recordCount>11</recordCount>
+</Codes>

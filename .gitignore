@@ -1,0 +1,7 @@
+/target/
+/.settings/
+/.classpath
+/.project
+/classpath^%
+/qw_portal_services.log
+/bin/

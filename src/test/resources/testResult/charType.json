@@ -1,0 +1,49 @@
+{
+    "codes": [
+        {
+            "value": "Inorganics, Major, Metals",
+            "providers": "NWIS STEWARDS STORET"
+        },
+        {
+            "value": "Inorganics, Major, Non-metals",
+            "providers": "NWIS STEWARDS STORET"
+        },
+        {
+            "value": "Inorganics, Minor, Metals",
+            "providers": "NWIS STEWARDS"
+        },
+        {
+            "value": "Inorganics, Minor, Non-metals",
+            "providers": "NWIS"
+        },
+        {
+            "value": "Microbiological",
+            "providers": "STEWARDS"
+        },
+        {
+            "value": "Nutrient",
+            "providers": "NWIS STORET"
+        },
+        {
+            "value": "Organics, Other",
+            "providers": "STEWARDS STORET"
+        },
+        {
+            "value": "Organics, PCBs",
+            "providers": "STEWARDS"
+        },
+        {
+            "value": "Organics, Pesticide",
+            "providers": "STEWARDS"
+        },
+        {
+            "value": "Physical",
+            "providers": "NWIS STEWARDS STORET"
+        },
+        {
+            "value": "Population/Community",
+            "providers": "STORET"
+        }
+    ],
+    "recordCount": 11
+}
