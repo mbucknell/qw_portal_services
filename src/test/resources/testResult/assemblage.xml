@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<Codes>
+	<Code value='Amphibians' providers='NWIS STEWARDS STORET'/>
+	<Code value='Aquatic Vegetation' providers='NWIS STEWARDS STORET'/>
+	<Code value='Bacteria/Virus' providers='NWIS STEWARDS'/>
+	<Code value='Benthic Macroinvertebrates' providers='NWIS'/>
+	<Code value='Birds' providers='STEWARDS'/>
+	<Code value='Corals' providers='NWIS STORET'/>
+	<Code value='Fish/Nekton' providers='STEWARDS STORET'/>
+	<Code value='Invertebrates' providers='STEWARDS'/>
+	<Code value='Periphyton' providers='STEWARDS'/>
+	<Code value='Phytoplankton/Zooplankton' providers='NWIS STEWARDS STORET'/>
+	<Code value='Terrestrial Vegetation' providers='STORET'/>
+	<recordCount>11</recordCount>
+</Codes>

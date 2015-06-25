@@ -75,6 +75,36 @@
     
     
     
+    <select id="codeAssemblage" parameterType="String" resultMap="codeResult">
+		<include refid="selectStart"/>
+		assemblage
+		<include refid="joinDataSource"/>
+		<include refid="codeValueSearch"/>
+		<include refid="groupAndOrderBy"/>
+    </select>
+
+    <select id="codeAssemblageList" parameterType="map" resultMap="codeResult">
+		<include refid="selectStart"/>
+		assemblage
+		<include refid="joinDataSource"/>
+		<where>
+			<include refid="textSearch"/>
+		</where>
+		<include refid="groupAndOrderBySearch"/>
+		<include refid="paging"/>
+    </select>
+
+    <select id="codeAssemblageCount" parameterType="map" resultType="int">
+		<include refid="selectCount"/>
+		assemblage
+		<include refid="joinDataSource"/>
+		<where>
+			<include refid="textSearch"/>
+		</where>
+    </select>
+
+
+
     <select id="codeCharacteristicName" parameterType="String" resultMap="codeResult">
 		<include refid="selectStart"/>
 		char_name

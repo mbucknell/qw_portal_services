@@ -3,7 +3,8 @@ package gov.usgs.cida.qw.codes;
 
 public enum CodeType {
 
-    CHARACTERISTICNAME ("codeCharacteristicName"),
+	ASSEMBLAGE ("codeAssemblage"),
+	CHARACTERISTICNAME ("codeCharacteristicName"),
     CHARACTERISTICTYPE ("codeCharacteristicType"),
     DATASOURCE ("codeDataSource"),
     COUNTRYCODE ("codeCountryCode"),
