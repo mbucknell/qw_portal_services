@@ -439,5 +439,35 @@
 		<include refid="joinDataSource"/>
 		<include refid="stateWhere"/>
     </select>
+    
+    
+    
+    <select id="codeSubjectTaxonomicName" parameterType="String" resultMap="codeResult">
+		<include refid="selectStart"/>
+		taxa_name
+		<include refid="joinDataSource"/>
+		<include refid="codeValueSearch"/>
+		<include refid="groupAndOrderBy"/>
+    </select>
+
+    <select id="codeSubjectTaxonomicNameList" parameterType="map" resultMap="codeResult">
+		<include refid="selectStart"/>
+		taxa_name
+		<include refid="joinDataSource"/>
+		<where>
+			<include refid="textSearch"/>
+		</where>
+		<include refid="groupAndOrderBySearch"/>
+		<include refid="paging"/>
+    </select>
+
+    <select id="codeSubjectTaxonomicNameCount" parameterType="map" resultType="int">
+		<include refid="selectCount"/>
+		taxa_name
+		<include refid="joinDataSource"/>
+		<where>
+			<include refid="textSearch"/>
+		</where>
+    </select>
 
 </mapper> 

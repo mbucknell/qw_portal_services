@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <taxa_name data_source_id="1" code_value="Amphiura acrystata"/>
+  <taxa_name data_source_id="2" code_value="Amphiura acrystata"/>
+  <taxa_name data_source_id="3" code_value="Amphiura acrystata"/>
+  
+  <taxa_name data_source_id="1" code_value="Anax junius"/>
+  <taxa_name data_source_id="2" code_value="Anax junius"/>
+  <taxa_name data_source_id="3" code_value="Anax junius"/>
+  
+  <taxa_name data_source_id="1" code_value="Baetisca obesa"/>
+  <taxa_name data_source_id="2" code_value="Baetisca obesa"/>
+  
+  <taxa_name data_source_id="2" code_value="Bugula neritina"/>
+  
+  <taxa_name data_source_id="1" code_value="Bugula pacifica"/>
+  
+  <taxa_name data_source_id="2" code_value="Caloneis molaris"/>
+  <taxa_name data_source_id="3" code_value="Caloneis molaris"/>
+  
+  <taxa_name data_source_id="1" code_value="Fallacia sublucidula"/>
+  <taxa_name data_source_id="3" code_value="Fallacia sublucidula"/>
+  
+  <taxa_name data_source_id="1" code_value="Ichthyomyzon unicuspis"/>
+  
+  <taxa_name data_source_id="1" code_value="Paguristes turgidus"/>
+  
+  <taxa_name data_source_id="1" code_value="Panomya ampla"/>
+  <taxa_name data_source_id="2" code_value="Panomya ampla"/>
+  <taxa_name data_source_id="3" code_value="Panomya ampla"/>
+  
+  <taxa_name data_source_id="3" code_value="Tabularia waernii"/>
+</dataset>

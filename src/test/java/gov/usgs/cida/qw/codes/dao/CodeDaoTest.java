@@ -742,4 +742,59 @@ public class CodeDaoTest extends BaseSpringTest {
         assertEquals("RM", codes.get(0).getValue());
     }
 
+    @Test
+    @DatabaseSetup("classpath:/testData/subjectTaxonomicName.xml")
+    public void subjectTaxonomicNameTest() {
+        List<Code> codes = codeDao.getCodes(CodeType.SUBJECTTAXONOMICNAME);
+        assertNotNull(codes);
+        assertEquals(11, codes.size());
+        assertEquals("Ichthyomyzon unicuspis", codes.get(7).getValue());
+        assertNull(codes.get(7).getDesc());
+        assertEquals("NWIS STEWARDS STORET", codes.get(0).getProviders());
+        assertEquals("NWIS STEWARDS STORET", codes.get(1).getProviders());
+        assertEquals("NWIS STEWARDS", codes.get(2).getProviders());
+        assertEquals("NWIS", codes.get(3).getProviders());
+        assertEquals("STEWARDS", codes.get(4).getProviders());
+        assertEquals("NWIS STORET", codes.get(5).getProviders());
+        assertEquals("STEWARDS STORET", codes.get(6).getProviders());
+        assertEquals("STEWARDS", codes.get(7).getProviders());
+        assertEquals("STEWARDS", codes.get(8).getProviders());
+        assertEquals("NWIS STEWARDS STORET", codes.get(9).getProviders());
+        assertEquals("STORET", codes.get(10).getProviders());
+    	
+        Map<String, Object> parms = new HashMap<String, Object>();
+        int cnt = codeDao.getRecordCount(CodeType.SUBJECTTAXONOMICNAME, parms);
+        assertEquals(11, cnt);
+
+        parms.put("text", "pa");
+        codes = codeDao.getCodes(CodeType.SUBJECTTAXONOMICNAME, parms);
+        assertNotNull(codes);
+        assertEquals(3, codes.size());
+        assertEquals("Bugula pacifica", codes.get(1).getValue());
+        assertNull(codes.get(1).getDesc());
+        assertEquals("STEWARDS", codes.get(1).getProviders());
+        
+        cnt = codeDao.getRecordCount(CodeType.SUBJECTTAXONOMICNAME, parms);
+        assertEquals(3, cnt);
+        
+        Code code = codeDao.getCode(CodeType.SUBJECTTAXONOMICNAME, null);
+        assertNull(code);
+        code = codeDao.getCode(CodeType.SUBJECTTAXONOMICNAME, "xxx");
+        assertNull(code);
+        code = codeDao.getCode(CodeType.SUBJECTTAXONOMICNAME, "Fallacia sublucidula");
+        assertEquals("Fallacia sublucidula", code.getValue());
+        assertNull(code.getDesc());
+        assertEquals("STEWARDS STORET", code.getProviders());
+
+        parms.clear();
+        parms.put("fetchSize", 3);
+        parms.put("offset", 9);
+        codes = codeDao.getCodes(CodeType.SUBJECTTAXONOMICNAME, parms);
+        assertNotNull(codes);
+        assertEquals(2, codes.size());
+        assertEquals("Panomya ampla", codes.get(0).getValue());
+        assertNull(codes.get(0).getDesc());
+        assertEquals("NWIS STEWARDS STORET", codes.get(0).getProviders());
+    }
+    
 }
