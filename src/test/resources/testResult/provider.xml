@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Codes>
+	<Code value="BIODATA"/>
 	<Code value="NWIS"/>
 	<Code value="STEWARDS"/>
 	<Code value="STORET"/>
-	<recordCount>3</recordCount>
+	<recordCount>4</recordCount>
 </Codes>
