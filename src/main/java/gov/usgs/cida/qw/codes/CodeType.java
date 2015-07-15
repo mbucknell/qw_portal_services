@@ -14,7 +14,8 @@ public enum CodeType {
     SAMPLEMEDIA ("codeSampleMedia"),
     SAMPLETYPE ("codeSampleType"),
     SITETYPE ("codeSiteType"),
-    STATECODE ("codeStateCode");
+    STATECODE ("codeStateCode"),
+    SUBJECTTAXONOMICNAME("codeSubjectTaxonomicName");
     
     public static final String CODES_MAPPER_NAMESPACE = "codes";
 

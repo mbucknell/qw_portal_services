@@ -20,32 +20,32 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.WebRequest;
 
 @RestController
-@RequestMapping(value={"codes/assemblages", "codes/assemblage"}, produces={MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
-public class AssemblageRestController extends CodesRestController {
+@RequestMapping(value={"codes/subjectTaxonomicNames", "codes/subjectTaxonomicName"}, produces={MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
+public class SubjectTaxonomicNameRestController extends CodesRestController {
 
-    private static final Logger LOG = LoggerFactory.getLogger(CharacteristicNameRestController.class);
+    private static final Logger LOG = LoggerFactory.getLogger(SubjectTaxonomicNameRestController.class);
 
     @Autowired
-	public AssemblageRestController(@Qualifier("lastUpdateDao") final LastUpdateDao lastUpdateDao,
+	public SubjectTaxonomicNameRestController(@Qualifier("lastUpdateDao") final LastUpdateDao lastUpdateDao,
 			@Qualifier("codeDao") final CodeDao codeDao) {
     	this.lastUpdateDao = lastUpdateDao;
     	this.codeDao = codeDao;
     }
 
     @RequestMapping(params="!value", method=RequestMethod.GET)
-    public CodeList getAssemblageNames(final @RequestParam(value="text", required=false) String text,
+    public CodeList getTaxonomicNames(final @RequestParam(value="text", required=false) String text,
     		final @RequestParam(value="pagenumber", required=false) String pageNumber,
     		final @RequestParam(value="pagesize", required=false) String pageSize,
     		WebRequest webRequest) {
-        LOG.debug("assemblageNames");
-        return getList(CodeType.ASSEMBLAGE, text, pageNumber, pageSize, null, webRequest);
+        LOG.debug("subjectTaxonomicNames");
+        return getList(CodeType.SUBJECTTAXONOMICNAME, text, pageNumber, pageSize, null, webRequest);
     }
 
     @RequestMapping(params="value", method=RequestMethod.GET)
-    public Code getAssemblageName(final @RequestParam(value="value") String value,
+    public Code getTaxonomicName(final @RequestParam(value="value") String value,
     		WebRequest webRequest, HttpServletResponse response) {
-        LOG.debug("assemblageName");
-        return getCode(CodeType.ASSEMBLAGE, value, webRequest, response);
+        LOG.debug("subjectTaxonomicName");
+        return getCode(CodeType.SUBJECTTAXONOMICNAME, value, webRequest, response);
     }
 
 }

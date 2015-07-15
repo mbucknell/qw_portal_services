@@ -1,0 +1,49 @@
+{
+    "codes": [
+        {
+            "value": "Amphiura acrystata",
+            "providers": "NWIS STEWARDS STORET"
+        },
+        {
+            "value": "Anax junius",
+            "providers": "NWIS STEWARDS STORET"
+        },
+        {
+            "value": "Baetisca obesa",
+            "providers": "NWIS STEWARDS"
+        },
+        {
+            "value": "Bugula neritina",
+            "providers": "NWIS"
+        },
+        {
+            "value": "Bugula pacifica",
+            "providers": "STEWARDS"
+        },
+        {
+            "value": "Caloneis molaris",
+            "providers": "NWIS STORET"
+        },
+        {
+            "value": "Fallacia sublucidula",
+            "providers": "STEWARDS STORET"
+        },
+        {
+            "value": "Ichthyomyzon unicuspis",
+            "providers": "STEWARDS"
+        },
+        {
+            "value": "Paguristes turgidus",
+            "providers": "STEWARDS"
+        },
+        {
+            "value": "Panomya ampla",
+            "providers": "NWIS STEWARDS STORET"
+        },
+        {
+            "value": "Tabularia waernii",
+            "providers": "STORET"
+        }
+    ],
+    "recordCount": 11
+}
