@@ -1,6 +1,9 @@
 {
     "codes": [
         {
+            "value": "BIODATA"
+        },
+        {
             "value": "NWIS"
         },
         {
@@ -10,5 +13,5 @@
             "value": "STORET"
         }
     ],
-    "recordCount": 3
+    "recordCount": 4
 }

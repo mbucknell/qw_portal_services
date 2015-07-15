@@ -329,20 +329,23 @@ public class CodeDaoTest extends BaseSpringTest {
     public void dataSourceTest() {
         List<Code> codes = codeDao.getCodes(CodeType.DATASOURCE);
         assertNotNull(codes);
-        assertEquals(3, codes.size());
-        assertEquals("NWIS", codes.get(0).getValue());
+        assertEquals(4, codes.size());
+        assertEquals("BIODATA", codes.get(0).getValue());
         assertNull(codes.get(0).getDesc());
         assertNull(codes.get(0).getProviders());
-        assertEquals("STEWARDS", codes.get(1).getValue());
+        assertEquals("NWIS", codes.get(1).getValue());
         assertNull(codes.get(1).getDesc());
         assertNull(codes.get(1).getProviders());
-        assertEquals("STORET", codes.get(2).getValue());
+        assertEquals("STEWARDS", codes.get(2).getValue());
         assertNull(codes.get(2).getDesc());
         assertNull(codes.get(2).getProviders());
+        assertEquals("STORET", codes.get(3).getValue());
+        assertNull(codes.get(3).getDesc());
+        assertNull(codes.get(3).getProviders());
    	
         Map<String, Object> parms = new HashMap<String, Object>();
         int cnt = codeDao.getRecordCount(CodeType.DATASOURCE, parms);
-        assertEquals(3, cnt);
+        assertEquals(4, cnt);
 
         parms.put("text", "st");
         codes = codeDao.getCodes(CodeType.DATASOURCE, parms);
@@ -372,8 +375,8 @@ public class CodeDaoTest extends BaseSpringTest {
         parms.put("offset", 2);
         codes = codeDao.getCodes(CodeType.DATASOURCE, parms);
         assertNotNull(codes);
-        assertEquals(1, codes.size());
-        assertEquals("STORET", codes.get(0).getValue());
+        assertEquals(2, codes.size());
+        assertEquals("STEWARDS", codes.get(0).getValue());
         assertNull(codes.get(0).getDesc());
         assertNull(codes.get(0).getProviders());
     }
