@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.WebRequest;
 
 @RestController
-@RequestMapping(value={"codes/subjectTaxonomicNames", "codes/subjectTaxonomicName"}, produces={MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
+@RequestMapping(value={"codes/subjecttaxonomicnames", "codes/subjecttaxonomicname"}, produces={MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
 public class SubjectTaxonomicNameRestController extends CodesRestController {
 
     private static final Logger LOG = LoggerFactory.getLogger(SubjectTaxonomicNameRestController.class);

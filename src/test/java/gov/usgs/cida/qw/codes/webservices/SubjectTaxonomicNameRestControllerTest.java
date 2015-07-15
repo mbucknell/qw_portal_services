@@ -11,7 +11,7 @@ import com.github.springtestdbunit.annotation.DatabaseSetups;
 @Category(IntegrationTest.class)
 @DatabaseSetups({
 	@DatabaseSetup("classpath:/testData/clearAll.xml"),
-	@DatabaseSetup("classpath:/testData/subjectTaxonomicName.xml")
+	@DatabaseSetup("classpath:/testData/subjecttaxonomicname.xml")
 })
 public class SubjectTaxonomicNameRestControllerTest extends BaseCodesRestControllerTest {
 
