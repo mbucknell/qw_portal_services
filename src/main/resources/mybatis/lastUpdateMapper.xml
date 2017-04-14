@@ -3,9 +3,9 @@
 
 <mapper namespace="lastEtl">
 
-	<select id="get" resultType="org.joda.time.LocalDateTime" useCache="false">
-		select completed_utc
-		  from last_etl
-	</select>
+    <select id="get" resultType="java.time.LocalDateTime" useCache="false">
+        select completed_utc
+          from last_etl
+    </select>
 
 </mapper>

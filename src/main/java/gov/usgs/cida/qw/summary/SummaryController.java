@@ -1,12 +1,5 @@
 package gov.usgs.cida.qw.summary;
 
-import gov.usgs.cida.qw.BaseRestController;
-import gov.usgs.cida.qw.LastUpdateDao;
-import gov.usgs.cida.qw.WQPFilter;
-import gov.usgs.cida.qw.srsnames.SrsnamesController;
-import gov.usgs.cida.qw.summary.SldTemplateEngine.MapDataSource;
-import gov.usgs.cida.qw.summary.SldTemplateEngine.MapGeometry;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,44 +20,50 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.WebRequest;
 
+import gov.usgs.cida.qw.BaseRestController;
+import gov.usgs.cida.qw.LastUpdateDao;
+import gov.usgs.cida.qw.srsnames.SrsnamesController;
+import gov.usgs.cida.qw.summary.SldTemplateEngine.MapDataSource;
+import gov.usgs.cida.qw.summary.SldTemplateEngine.MapGeometry;
+
 @RestController
 @RequestMapping("summary")
 public class SummaryController extends BaseRestController {
 
-    private static final Logger LOG = LoggerFactory.getLogger(SrsnamesController.class);
-    
-    private SummaryDao summaryDao;
+	private static final Logger LOG = LoggerFactory.getLogger(SrsnamesController.class);
 
-    @Autowired
+	private SummaryDao summaryDao;
+
+	@Autowired
 	public SummaryController(@Qualifier("lastUpdateDao") final LastUpdateDao lastUpdateDao,
 			@Qualifier("summaryDao") final SummaryDao summaryDao) {
-    	this.lastUpdateDao = lastUpdateDao;
-    	this.summaryDao = summaryDao;
-    }
+		this.lastUpdateDao = lastUpdateDao;
+		this.summaryDao = summaryDao;
+	}
 
-    @RequestMapping(method=RequestMethod.GET)
-    public String getSummarySld(final @RequestParam(value="dataSource") String dataSource,
-    		final @RequestParam(value="geometry") String geometry,
-    		final @RequestParam(value="timeFrame") String timeFrame,
-    		HttpServletRequest request, HttpServletResponse response, WebRequest webRequest) throws IOException {
-        LOG.debug("summary");
-        response.setCharacterEncoding(WQPFilter.DEFAULT_ENCODING);
-        if (isNotModified(webRequest)) {
-            return null;
-        } else {
-    		MapDataSource mapDataSource = MapDataSource.fromAbbreviation(dataSource);
-    		MapGeometry mapGeometry = MapGeometry.fromAbbreviation(geometry);
+	@RequestMapping(method=RequestMethod.GET)
+	public String getSummarySld(final @RequestParam(value="dataSource") String dataSource,
+			final @RequestParam(value="geometry") String geometry,
+			final @RequestParam(value="timeFrame") String timeFrame,
+			HttpServletRequest request, HttpServletResponse response, WebRequest webRequest) throws IOException {
+		LOG.debug("summary");
+		response.setCharacterEncoding("ISO-8859-1");
+		if (isNotModified(webRequest)) {
+			return null;
+		} else {
+			MapDataSource mapDataSource = MapDataSource.fromAbbreviation(dataSource);
+			MapGeometry mapGeometry = MapGeometry.fromAbbreviation(geometry);
 
-        	Map<String, Object> dbparms = deriveDbParams(mapDataSource, mapGeometry, timeFrame);
-        	String[] binValues = retrieveBinValues(dbparms);
-        	if (SldTemplateEngine.COLOR_COUNT > binValues.length) {
-        		response.sendError(HttpStatus.NO_CONTENT.value());
-        		return null;
-        	} else {
-        		return SldTemplateEngine.generateDynamicStyle(mapDataSource, mapGeometry, binValues, "binSLDTemplate.vm");
-        	}
-        }
-    }
+			Map<String, Object> dbparms = deriveDbParams(mapDataSource, mapGeometry, timeFrame);
+			String[] binValues = retrieveBinValues(dbparms);
+			if (SldTemplateEngine.COLOR_COUNT > binValues.length) {
+				response.sendError(HttpStatus.NO_CONTENT.value());
+				return null;
+			} else {
+				return SldTemplateEngine.generateDynamicStyle(mapDataSource, mapGeometry, binValues, "binSLDTemplate.vm");
+			}
+		}
+	}
 
 	protected String[] retrieveBinValues(Map<String, Object> parms) {
 		String[] binValues = new String[0];
@@ -107,7 +106,7 @@ public class SummaryController extends BaseRestController {
 		}
 		return parms;
 	}
-	
+
 	protected Object[] getDataSources(MapDataSource mapDataSource) {
 		List<String> rtn = new ArrayList<>();
 		if (null != mapDataSource) {
@@ -127,7 +126,7 @@ public class SummaryController extends BaseRestController {
 		}
 		return rtn.toArray();
 	}
-	
+
 	protected String getGeometry(MapGeometry mapGeometry) {
 		if (null != mapGeometry) {
 			return mapGeometry.toString();
@@ -135,7 +134,7 @@ public class SummaryController extends BaseRestController {
 			return null;
 		}
 	}
-	
+
 	protected String getTimeFrame(String timeFrame) {
 		String rtn = "ALL_TIME";
 		if (timeFrame != null && timeFrame.length() > 0) {
@@ -153,7 +152,7 @@ public class SummaryController extends BaseRestController {
 		} 
 		return rtn;
 	}
-	
+
 	public static class RowCounts {
 		List<Integer> counts = new ArrayList<Integer>();
 		public void setValue(Integer value) {

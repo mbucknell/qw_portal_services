@@ -34,7 +34,7 @@ public abstract class BaseCodesRestControllerTest extends BaseSpringTest {
 	private WebApplicationContext wac;
 
 	private MockMvc mockMvc;
-	
+
 	@Before
 	public void setup() {
 		mockMvc = MockMvcBuilders.webAppContextSetup(wac).addFilters(corsFilter, wqpFilter).build();
@@ -44,18 +44,18 @@ public abstract class BaseCodesRestControllerTest extends BaseSpringTest {
 		//no query parms is bad
 		mockMvc.perform(get(testEndpoint)).andExpect(status().isBadRequest());
 
-		MvcResult rtn = runMock(testEndpoint + "?mimeType=json", MediaType.APPLICATION_JSON_VALUE, null);
+		MvcResult rtn = runMock(testEndpoint + "?mimeType=json", MediaType.APPLICATION_JSON_UTF8_VALUE, null);
 		assertThat(new JSONObject(rtn.getResponse().getContentAsString()),
 			sameJSONObjectAs(new JSONObject(getCompareFile(compareFile))));
-        
-		rtn = runMock(testEndpoint + "?x=y", MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_JSON);
+
+		rtn = runMock(testEndpoint + "?x=y", MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.APPLICATION_JSON);
 		assertThat(new JSONObject(rtn.getResponse().getContentAsString()),
 			sameJSONObjectAs(new JSONObject(getCompareFile(compareFile))));
-       
-		rtn = runMock(testEndpoint + "?mimeType=json&text=" + searchText + "&pagenumber=2&pagesize=1", MediaType.APPLICATION_JSON_VALUE, null);
+
+		rtn = runMock(testEndpoint + "?mimeType=json&text=" + searchText + "&pagenumber=2&pagesize=1", MediaType.APPLICATION_JSON_UTF8_VALUE, null);
 		assertThat(new JSONObject(rtn.getResponse().getContentAsString()),
 			sameJSONObjectAs(new JSONObject(searchJson)));
-    }
+	}
 
 	public void runGetListAsXmlTest(String testEndpoint, String searchText, String compareFile, String searchXml) throws Exception {
 		//xml is the default
@@ -64,7 +64,7 @@ public abstract class BaseCodesRestControllerTest extends BaseSpringTest {
 
 		rtn = runMock(testEndpoint + "?mimeType=xml", MediaType.APPLICATION_XML_VALUE, null);
 		assertEquals(harmonizeXml(getCompareFile(compareFile)), harmonizeXml(rtn.getResponse().getContentAsString()));
-        
+
 		rtn = runMock(testEndpoint + "?x=y", MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_XML);
 		assertEquals(harmonizeXml(getCompareFile(compareFile)), harmonizeXml(rtn.getResponse().getContentAsString()));
 
@@ -76,11 +76,11 @@ public abstract class BaseCodesRestControllerTest extends BaseSpringTest {
 		//no query parms is bad
 		mockMvc.perform(get(testEndpoint)).andExpect(status().isBadRequest());
 
-		MvcResult rtn = runMock(testEndpoint + "?value=" + codeValue + "&mimeType=json", MediaType.APPLICATION_JSON_VALUE, null);
+		MvcResult rtn = runMock(testEndpoint + "?value=" + codeValue + "&mimeType=json", MediaType.APPLICATION_JSON_UTF8_VALUE, null);
 		assertThat(new JSONObject(rtn.getResponse().getContentAsString()),
 			sameJSONObjectAs(new JSONObject(codeJson)));
 
-		rtn = runMock(testEndpoint + "?value=" + codeValue + "&x=y", MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_JSON);
+		rtn = runMock(testEndpoint + "?value=" + codeValue + "&x=y", MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.APPLICATION_JSON);
 		assertThat(new JSONObject(rtn.getResponse().getContentAsString()),
 			sameJSONObjectAs(new JSONObject(codeJson)));
 	}
@@ -92,7 +92,7 @@ public abstract class BaseCodesRestControllerTest extends BaseSpringTest {
 
 		rtn = runMock(testEndpoint + "?value=" + codeValue + "&mimeType=xml", MediaType.APPLICATION_XML_VALUE, null);
 		assertEquals(harmonizeXml(codeXml), harmonizeXml(rtn.getResponse().getContentAsString()));
-        
+
 		rtn = runMock(testEndpoint + "?value=" + codeValue + "&x=y", MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_XML);
 		assertEquals(harmonizeXml(codeXml), harmonizeXml(rtn.getResponse().getContentAsString()));
 	}

@@ -18,7 +18,6 @@
 
     <typeHandlers>
         <typeHandler javaType="Export" handler="gov.usgs.cida.qw.ExportTypeHandler"/>
-		<typeHandler javaType="org.joda.time.LocalDateTime" handler="gov.usgs.cida.qw.LocalDateTimeTypeHandler"/>
     </typeHandlers>
 
     <mappers>

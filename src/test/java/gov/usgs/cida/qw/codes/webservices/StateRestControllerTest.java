@@ -1,6 +1,6 @@
 package gov.usgs.cida.qw.codes.webservices;
 
-import gov.usgs.cida.qw.IntegrationTest;
+import gov.usgs.cida.qw.DatabaseRequiredTest;
 
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
@@ -8,7 +8,7 @@ import org.junit.experimental.categories.Category;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.github.springtestdbunit.annotation.DatabaseSetups;
 
-@Category(IntegrationTest.class)
+@Category(DatabaseRequiredTest.class)
 @DatabaseSetups({
 	@DatabaseSetup("classpath:/testData/clearAll.xml"),
 	@DatabaseSetup("classpath:/testData/stateCode.xml")
@@ -28,13 +28,13 @@ public class StateRestControllerTest extends BaseCodesRestControllerTest {
 	public static String SEARCH_XML_WITH = XML_HEADER + "<Codes><Code value=\"US:48\" desc=\"US, TEXAS\" providers=\"STEWARDS\"/><recordCount>2</recordCount></Codes>"; 
 	public static String COMPARE_FILE_JSON = "stateCode.json";
 	public static String COMPARE_FILE_XML = "stateCode.xml";
-	
+
 	@Test
 	public void getListAsJsonTest() throws Exception {
 		runGetListAsJsonTest(TEST_ENDPOINT, SEARCH_TEXT_WO, COMPARE_FILE_JSON, SEARCH_JSON_WO);
 		runGetListAsJsonTest(TEST_LEGACY_ENDPOINT, SEARCH_TEXT_WO, COMPARE_FILE_JSON, SEARCH_JSON_WO);
 		runGetListAsJsonTest(TEST_LEGACY_ENDPOINT, SEARCH_TEXT_WITH, COMPARE_FILE_JSON, SEARCH_JSON_WITH);
-    }
+	}
 
 	@Test
 	public void getListAsXmlTest() throws Exception {
