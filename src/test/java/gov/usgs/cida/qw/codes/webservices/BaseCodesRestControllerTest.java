@@ -4,12 +4,8 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static uk.co.datumedge.hamcrest.json.SameJSONAs.sameJSONObjectAs;
-import gov.usgs.cida.qw.BaseSpringTest;
-import gov.usgs.cida.qw.CORSFilter;
-import gov.usgs.cida.qw.WQPFilter;
 
 import org.json.JSONObject;
 import org.junit.Before;
@@ -21,13 +17,14 @@ import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import gov.usgs.cida.qw.BaseSpringTest;
+import gov.usgs.cida.qw.WQPFilter;
+
 //Note that we have had database consistency issues in the past with this method of testing. Since WQP is read-only,
 //we should not have a problem... Remove the @WebAppConfiguration, WebApplicationContext,
 //and use MockMvcBuilders.standaloneSetup(controller).build() if you need to do database CUD...  
 public abstract class BaseCodesRestControllerTest extends BaseSpringTest {
 
-	@Autowired
-	protected CORSFilter corsFilter;
 	@Autowired
 	protected WQPFilter wqpFilter;
 	@Autowired
@@ -37,7 +34,7 @@ public abstract class BaseCodesRestControllerTest extends BaseSpringTest {
 
 	@Before
 	public void setup() {
-		mockMvc = MockMvcBuilders.webAppContextSetup(wac).addFilters(corsFilter, wqpFilter).build();
+		mockMvc = MockMvcBuilders.webAppContextSetup(wac).addFilters(wqpFilter).build();
 	}
 
 	public void runGetListAsJsonTest(String testEndpoint, String searchText, String compareFile, String searchJson) throws Exception {
@@ -106,9 +103,6 @@ public abstract class BaseCodesRestControllerTest extends BaseSpringTest {
 			.andExpect(status().isOk())
 			.andExpect(content().contentType(expectedMediaType))
 			.andExpect(content().encoding(WQPFilter.DEFAULT_ENCODING))
-			.andExpect(header().string(CORSFilter.HEADER_CORS, CORSFilter.HEADER_CORS_VALUE))
-			.andExpect(header().string(CORSFilter.HEADER_CORS_METHODS , CORSFilter.HEADER_CORS_METHODS_VALUE))
-			.andExpect(header().string(CORSFilter.HEADER_CORS_MAX_AGE , CORSFilter.HEADER_CORS_MAX_AGE_VALUE))
 			.andReturn();
 	}
 }
