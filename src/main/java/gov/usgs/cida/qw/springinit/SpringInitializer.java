@@ -17,14 +17,14 @@ import org.springframework.web.servlet.DispatcherServlet;
 import org.tuckey.web.filters.urlrewrite.UrlRewriteFilter;
 
 public class SpringInitializer implements WebApplicationInitializer {
-	
+
 	/**
 	 *  gets invoked automatically when application context loads
 	 */
 	public void onStartup(ServletContext servletContext) throws ServletException {		
 		AnnotationConfigWebApplicationContext ctx = new AnnotationConfigWebApplicationContext();
 		ctx.register(SpringConfig.class);
-		
+
 		FilterRegistration urlRewriteFilter = servletContext.addFilter("UrlRewriteFilter", UrlRewriteFilter.class);
 		urlRewriteFilter.setInitParameter("logLevel", "TRACE");
 		urlRewriteFilter.setInitParameter("confReloadCheckInterval", "60");

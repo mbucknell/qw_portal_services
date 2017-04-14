@@ -23,28 +23,28 @@ import org.springframework.web.context.request.WebRequest;
 @RequestMapping(value={"codes/organizations", "codes/organization"}, produces={MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
 public class OrganizationRestController extends CodesRestController {
 
-    private static final Logger LOG = LoggerFactory.getLogger(OrganizationRestController.class);
+	private static final Logger LOG = LoggerFactory.getLogger(OrganizationRestController.class);
 
-    @Autowired
+	@Autowired
 	public OrganizationRestController(@Qualifier("lastUpdateDao") final LastUpdateDao lastUpdateDao,
 			@Qualifier("codeDao") final CodeDao codeDao) {
-    	this.lastUpdateDao = lastUpdateDao;
-    	this.codeDao = codeDao;
-    }
+		this.lastUpdateDao = lastUpdateDao;
+		this.codeDao = codeDao;
+	}
 
-    @RequestMapping(params="!value", method=RequestMethod.GET)
-    public CodeList getOrganizations(final @RequestParam(value="text", required=false) String text,
-    		final @RequestParam(value="pagenumber", required=false) String pageNumber,
-    		final @RequestParam(value="pagesize", required=false) String pageSize,
-    		WebRequest webRequest) {
-        LOG.debug("organizations");
-        return getList(CodeType.ORGANIZATION, text, pageNumber, pageSize, null, webRequest);
-    }
+	@RequestMapping(params="!value", method=RequestMethod.GET)
+	public CodeList getOrganizations(final @RequestParam(value="text", required=false) String text,
+			final @RequestParam(value="pagenumber", required=false) String pageNumber,
+			final @RequestParam(value="pagesize", required=false) String pageSize,
+			WebRequest webRequest) {
+		LOG.debug("organizations");
+		return getList(CodeType.ORGANIZATION, text, pageNumber, pageSize, null, webRequest);
+	}
 
-    @RequestMapping(params="value", method=RequestMethod.GET)
-    public Code getOrganization(final @RequestParam(value="value") String value, WebRequest webRequest, HttpServletResponse response) {
-        LOG.debug("organization");
-        return getCode(CodeType.ORGANIZATION, value, webRequest, response);
-    }
-    
+	@RequestMapping(params="value", method=RequestMethod.GET)
+	public Code getOrganization(final @RequestParam(value="value") String value, WebRequest webRequest, HttpServletResponse response) {
+		LOG.debug("organization");
+		return getCode(CodeType.ORGANIZATION, value, webRequest, response);
+	}
+
 }

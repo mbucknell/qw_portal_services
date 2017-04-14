@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class WQPFilter implements Filter {
 
-    public static final String DEFAULT_ENCODING = "UTF-8";
+	public static final String DEFAULT_ENCODING = "UTF-8";
 
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
@@ -27,11 +27,11 @@ public class WQPFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response,
 			FilterChain chain) throws IOException, ServletException {
 		response.setCharacterEncoding(DEFAULT_ENCODING);
-        if (request.getParameterMap().isEmpty()) {
-        	((HttpServletResponse) response).setStatus(HttpStatus.BAD_REQUEST.value());
-        } else {
-        	chain.doFilter(request, response);
-        }
+		if (request.getParameterMap().isEmpty()) {
+			((HttpServletResponse) response).setStatus(HttpStatus.BAD_REQUEST.value());
+		} else {
+			chain.doFilter(request, response);
+		}
 	}
 
 	@Override

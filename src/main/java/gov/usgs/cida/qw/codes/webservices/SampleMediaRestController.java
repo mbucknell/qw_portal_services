@@ -23,28 +23,28 @@ import org.springframework.web.context.request.WebRequest;
 @RequestMapping(value={"codes/samplemedia"}, produces={MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
 public class SampleMediaRestController extends CodesRestController {
 
-    private static final Logger LOG = LoggerFactory.getLogger(SampleMediaRestController.class);
+	private static final Logger LOG = LoggerFactory.getLogger(SampleMediaRestController.class);
 
-    @Autowired
+	@Autowired
 	public SampleMediaRestController(@Qualifier("lastUpdateDao") final LastUpdateDao lastUpdateDao,
 			@Qualifier("codeDao") final CodeDao codeDao) {
-    	this.lastUpdateDao = lastUpdateDao;
-    	this.codeDao = codeDao;
-    }
+		this.lastUpdateDao = lastUpdateDao;
+		this.codeDao = codeDao;
+	}
 
-    @RequestMapping(params="!value", method=RequestMethod.GET)
-    public CodeList getSampleMedia(final @RequestParam(value="text", required=false) String text,
-    		final @RequestParam(value="pagenumber", required=false) String pageNumber,
-    		final @RequestParam(value="pagesize", required=false) String pageSize,
-    		WebRequest webRequest) {
-        LOG.debug("samplemedia");
-        return getList(CodeType.SAMPLEMEDIA, text, pageNumber, pageSize, null, webRequest);
-    }
+	@RequestMapping(params="!value", method=RequestMethod.GET)
+	public CodeList getSampleMedia(final @RequestParam(value="text", required=false) String text,
+			final @RequestParam(value="pagenumber", required=false) String pageNumber,
+			final @RequestParam(value="pagesize", required=false) String pageSize,
+			WebRequest webRequest) {
+		LOG.debug("samplemedia");
+		return getList(CodeType.SAMPLEMEDIA, text, pageNumber, pageSize, null, webRequest);
+	}
 
-    @RequestMapping(params="value", method=RequestMethod.GET)
-    public Code getASampleMedia(final @RequestParam(value="value") String value, WebRequest webRequest, HttpServletResponse response) {
-        LOG.debug("aSampleMedia");
-        return getCode(CodeType.SAMPLEMEDIA, value, webRequest, response);
-    }
+	@RequestMapping(params="value", method=RequestMethod.GET)
+	public Code getASampleMedia(final @RequestParam(value="value") String value, WebRequest webRequest, HttpServletResponse response) {
+		LOG.debug("aSampleMedia");
+		return getCode(CodeType.SAMPLEMEDIA, value, webRequest, response);
+	}
 
 }

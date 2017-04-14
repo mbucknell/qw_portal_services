@@ -23,28 +23,28 @@ import org.springframework.web.context.request.WebRequest;
 @RequestMapping(value={"codes/sitetypes", "codes/sitetype"}, produces={MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
 public class SiteTypeRestController extends CodesRestController {
 
-    private static final Logger LOG = LoggerFactory.getLogger(SiteTypeRestController.class);
+	private static final Logger LOG = LoggerFactory.getLogger(SiteTypeRestController.class);
 
-    @Autowired
+	@Autowired
 	public SiteTypeRestController(@Qualifier("lastUpdateDao") final LastUpdateDao lastUpdateDao,
 			@Qualifier("codeDao") final CodeDao codeDao) {
-    	this.lastUpdateDao = lastUpdateDao;
-    	this.codeDao = codeDao;
-    }
+		this.lastUpdateDao = lastUpdateDao;
+		this.codeDao = codeDao;
+	}
 
-    @RequestMapping(params="!value", method=RequestMethod.GET)
-    public CodeList getSiteTypes(final @RequestParam(value="text", required=false) String text,
-    		final @RequestParam(value="pagenumber", required=false) String pageNumber,
-    		final @RequestParam(value="pagesize", required=false) String pageSize,
-    		WebRequest webRequest) {
-        LOG.debug("sitetypes");
-        return getList(CodeType.SITETYPE, text, pageNumber, pageSize, null, webRequest);
-    }
+	@RequestMapping(params="!value", method=RequestMethod.GET)
+	public CodeList getSiteTypes(final @RequestParam(value="text", required=false) String text,
+			final @RequestParam(value="pagenumber", required=false) String pageNumber,
+			final @RequestParam(value="pagesize", required=false) String pageSize,
+			WebRequest webRequest) {
+		LOG.debug("sitetypes");
+		return getList(CodeType.SITETYPE, text, pageNumber, pageSize, null, webRequest);
+	}
 
-    @RequestMapping(params="value", method=RequestMethod.GET)
-    public Code getSiteType(final @RequestParam(value="value") String value, WebRequest webRequest, HttpServletResponse response) {
-        LOG.debug("sitetype");
-        return getCode(CodeType.SITETYPE, value, webRequest, response);
-    }
+	@RequestMapping(params="value", method=RequestMethod.GET)
+	public Code getSiteType(final @RequestParam(value="value") String value, WebRequest webRequest, HttpServletResponse response) {
+		LOG.debug("sitetype");
+		return getCode(CodeType.SITETYPE, value, webRequest, response);
+	}
 
 }

@@ -23,29 +23,29 @@ import org.springframework.web.context.request.WebRequest;
 @RequestMapping(value={"codes/subjecttaxonomicnames", "codes/subjecttaxonomicname"}, produces={MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
 public class SubjectTaxonomicNameRestController extends CodesRestController {
 
-    private static final Logger LOG = LoggerFactory.getLogger(SubjectTaxonomicNameRestController.class);
+	private static final Logger LOG = LoggerFactory.getLogger(SubjectTaxonomicNameRestController.class);
 
-    @Autowired
+	@Autowired
 	public SubjectTaxonomicNameRestController(@Qualifier("lastUpdateDao") final LastUpdateDao lastUpdateDao,
 			@Qualifier("codeDao") final CodeDao codeDao) {
-    	this.lastUpdateDao = lastUpdateDao;
-    	this.codeDao = codeDao;
-    }
+		this.lastUpdateDao = lastUpdateDao;
+		this.codeDao = codeDao;
+	}
 
-    @RequestMapping(params="!value", method=RequestMethod.GET)
-    public CodeList getTaxonomicNames(final @RequestParam(value="text", required=false) String text,
-    		final @RequestParam(value="pagenumber", required=false) String pageNumber,
-    		final @RequestParam(value="pagesize", required=false) String pageSize,
-    		WebRequest webRequest) {
-        LOG.debug("subjectTaxonomicNames");
-        return getList(CodeType.SUBJECTTAXONOMICNAME, text, pageNumber, pageSize, null, webRequest);
-    }
+	@RequestMapping(params="!value", method=RequestMethod.GET)
+	public CodeList getTaxonomicNames(final @RequestParam(value="text", required=false) String text,
+			final @RequestParam(value="pagenumber", required=false) String pageNumber,
+			final @RequestParam(value="pagesize", required=false) String pageSize,
+			WebRequest webRequest) {
+		LOG.debug("subjectTaxonomicNames");
+		return getList(CodeType.SUBJECTTAXONOMICNAME, text, pageNumber, pageSize, null, webRequest);
+	}
 
-    @RequestMapping(params="value", method=RequestMethod.GET)
-    public Code getTaxonomicName(final @RequestParam(value="value") String value,
-    		WebRequest webRequest, HttpServletResponse response) {
-        LOG.debug("subjectTaxonomicName");
-        return getCode(CodeType.SUBJECTTAXONOMICNAME, value, webRequest, response);
-    }
+	@RequestMapping(params="value", method=RequestMethod.GET)
+	public Code getTaxonomicName(final @RequestParam(value="value") String value,
+			WebRequest webRequest, HttpServletResponse response) {
+		LOG.debug("subjectTaxonomicName");
+		return getCode(CodeType.SUBJECTTAXONOMICNAME, value, webRequest, response);
+	}
 
 }

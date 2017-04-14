@@ -27,35 +27,35 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @ComponentScan(basePackages="gov.usgs.cida.qw")
 @EnableWebMvc
 public class SpringConfig extends WebMvcConfigurerAdapter {
-	
+
 	@Autowired
 	CustomStringToArrayConverter customStringToArrayConverter;
-	
+
 	@Override
 	public void addFormatters(FormatterRegistry registry) {
-        registry.addConverter(customStringToArrayConverter);
+		registry.addConverter(customStringToArrayConverter);
 	}
-    
-    @Override
-    public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
-        configurer
-        	.favorPathExtension(false)
-        	.favorParameter(true)
-        	.parameterName("mimeType")
-        	.defaultContentType(MediaType.APPLICATION_XML)
-        	.mediaType("csv", new MediaType("text","csv"))
-         	.mediaType("xml", MediaType.APPLICATION_XML)
-        	.mediaType("json", MediaType.APPLICATION_JSON)
-        	;
-    }
 
-    @Bean
-    public DataSource dataSource() throws Exception {
-        Context ctx = new InitialContext();
-        return (DataSource) ctx.lookup("java:comp/env/jdbc/WQPQW");
-    }
-    
-    @Bean
+	@Override
+	public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
+		configurer
+			.favorPathExtension(false)
+			.favorParameter(true)
+			.parameterName("mimeType")
+			.defaultContentType(MediaType.APPLICATION_XML)
+			.mediaType("csv", new MediaType("text","csv"))
+			.mediaType("xml", MediaType.APPLICATION_XML)
+			.mediaType("json", MediaType.APPLICATION_JSON)
+			;
+	}
+
+	@Bean
+	public DataSource dataSource() throws Exception {
+		Context ctx = new InitialContext();
+		return (DataSource) ctx.lookup("java:comp/env/jdbc/WQPQW");
+	}
+
+	@Bean
 	public SqlSessionFactoryBean sqlSessionFactory() throws Exception {
 		SqlSessionFactoryBean sqlSessionFactory = new SqlSessionFactoryBean();
 		Resource mybatisConfig = new ClassPathResource("mybatis/mybatisConfig.xml");
@@ -64,12 +64,12 @@ public class SpringConfig extends WebMvcConfigurerAdapter {
 		return sqlSessionFactory;
 	}
 
-    @Bean
-    public PCodeDao pCodeDao() throws Exception {
-    	PCodeDao dao = new PCodeDao();
-    	dao.setSqlSessionFactory(sqlSessionFactory().getObject());
-    	return dao;
-    }
+	@Bean
+	public PCodeDao pCodeDao() throws Exception {
+		PCodeDao dao = new PCodeDao();
+		dao.setSqlSessionFactory(sqlSessionFactory().getObject());
+		return dao;
+	}
 
 	@Bean
 	public CodeDao codeDao() throws Exception {

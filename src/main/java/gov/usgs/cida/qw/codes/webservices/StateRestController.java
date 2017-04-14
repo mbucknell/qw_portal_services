@@ -26,31 +26,31 @@ import org.springframework.web.context.request.WebRequest;
 @RequestMapping(value={"codes/states", "codes/statecode"}, produces={MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
 public class StateRestController extends CodesRestController {
 
-    private static final Logger LOG = LoggerFactory.getLogger(StateRestController.class);
+	private static final Logger LOG = LoggerFactory.getLogger(StateRestController.class);
 
-    @Autowired
+	@Autowired
 	public StateRestController(@Qualifier("lastUpdateDao") final LastUpdateDao lastUpdateDao,
 			@Qualifier("codeDao") final CodeDao codeDao) {
-    	this.lastUpdateDao = lastUpdateDao;
-    	this.codeDao = codeDao;
-    }
+		this.lastUpdateDao = lastUpdateDao;
+		this.codeDao = codeDao;
+	}
 
-    @RequestMapping(params="!value", method=RequestMethod.GET)
-    public CodeList getStates(final @RequestParam(value="countrycode", required=false) String[] countrycodes,
-    		final @RequestParam(value="text", required=false) String text,
-    		final @RequestParam(value="pagenumber", required=false) String pageNumber,
-    		final @RequestParam(value="pagesize", required=false) String pageSize,
-    		WebRequest webRequest) {
-        LOG.debug("states");
-        Map<String, Object> addlParms = new HashMap<>();
-        addlParms.put("countrycode", countrycodes);
-        return getList(CodeType.STATECODE, text, pageNumber, pageSize, addlParms, webRequest);
-    }
+	@RequestMapping(params="!value", method=RequestMethod.GET)
+	public CodeList getStates(final @RequestParam(value="countrycode", required=false) String[] countrycodes,
+			final @RequestParam(value="text", required=false) String text,
+			final @RequestParam(value="pagenumber", required=false) String pageNumber,
+			final @RequestParam(value="pagesize", required=false) String pageSize,
+			WebRequest webRequest) {
+		LOG.debug("states");
+		Map<String, Object> addlParms = new HashMap<>();
+		addlParms.put("countrycode", countrycodes);
+		return getList(CodeType.STATECODE, text, pageNumber, pageSize, addlParms, webRequest);
+	}
 
-    @RequestMapping(params="value", method=RequestMethod.GET)
-    public Code getState(final @RequestParam(value="value") String value, WebRequest webRequest, HttpServletResponse response) {
-        LOG.debug("state");
-        return getCode(CodeType.STATECODE, value, webRequest, response);
-    }
+	@RequestMapping(params="value", method=RequestMethod.GET)
+	public Code getState(final @RequestParam(value="value") String value, WebRequest webRequest, HttpServletResponse response) {
+		LOG.debug("state");
+		return getCode(CodeType.STATECODE, value, webRequest, response);
+	}
 
 }

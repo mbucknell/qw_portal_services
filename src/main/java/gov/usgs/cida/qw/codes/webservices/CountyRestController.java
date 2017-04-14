@@ -26,31 +26,31 @@ import org.springframework.web.context.request.WebRequest;
 @RequestMapping(value={"codes/counties", "codes/countycode"}, produces={MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
 public class CountyRestController extends CodesRestController {
 
-    private static final Logger LOG = LoggerFactory.getLogger(CountyRestController.class);
+	private static final Logger LOG = LoggerFactory.getLogger(CountyRestController.class);
 
-    @Autowired
+	@Autowired
 	public CountyRestController(@Qualifier("lastUpdateDao") final LastUpdateDao lastUpdateDao,
 			@Qualifier("codeDao") final CodeDao codeDao) {
-    	this.lastUpdateDao = lastUpdateDao;
-    	this.codeDao = codeDao;
-    }
+		this.lastUpdateDao = lastUpdateDao;
+		this.codeDao = codeDao;
+	}
 
-    @RequestMapping(params="!value", method=RequestMethod.GET)
-    public CodeList getCounties(final @RequestParam(value="statecode", required=false) String[] statecodes,
-    		final @RequestParam(value="text", required=false) String text,
-    		final @RequestParam(value="pagenumber", required=false) String pageNumber,
-    		final @RequestParam(value="pagesize", required=false) String pageSize,
-    		WebRequest webRequest) {
-        LOG.debug("counties");
-        Map<String, Object> addlParms = new HashMap<>();
-        addlParms.put("statecode", statecodes);
-        return getList(CodeType.COUNTYCODE, text, pageNumber, pageSize, addlParms, webRequest);
-    }
+	@RequestMapping(params="!value", method=RequestMethod.GET)
+	public CodeList getCounties(final @RequestParam(value="statecode", required=false) String[] statecodes,
+			final @RequestParam(value="text", required=false) String text,
+			final @RequestParam(value="pagenumber", required=false) String pageNumber,
+			final @RequestParam(value="pagesize", required=false) String pageSize,
+			WebRequest webRequest) {
+		LOG.debug("counties");
+		Map<String, Object> addlParms = new HashMap<>();
+		addlParms.put("statecode", statecodes);
+		return getList(CodeType.COUNTYCODE, text, pageNumber, pageSize, addlParms, webRequest);
+	}
 
-    @RequestMapping(params="value", method=RequestMethod.GET)
-    public Code getCounty(final @RequestParam(value="value") String value, WebRequest webRequest, HttpServletResponse response) {
-        LOG.debug("county");
-        return getCode(CodeType.COUNTYCODE, value, webRequest, response);
-    }
+	@RequestMapping(params="value", method=RequestMethod.GET)
+	public Code getCounty(final @RequestParam(value="value") String value, WebRequest webRequest, HttpServletResponse response) {
+		LOG.debug("county");
+		return getCode(CodeType.COUNTYCODE, value, webRequest, response);
+	}
 
 }

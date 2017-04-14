@@ -23,28 +23,28 @@ import org.springframework.web.context.request.WebRequest;
 @RequestMapping(value="codes/providers", produces={MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
 public class ProviderRestController extends CodesRestController {
 
-    private static final Logger LOG = LoggerFactory.getLogger(ProviderRestController.class);
+	private static final Logger LOG = LoggerFactory.getLogger(ProviderRestController.class);
 
-    @Autowired
+	@Autowired
 	public ProviderRestController(@Qualifier("lastUpdateDao") final LastUpdateDao lastUpdateDao,
 			@Qualifier("codeDao") final CodeDao codeDao) {
-    	this.lastUpdateDao = lastUpdateDao;
-    	this.codeDao = codeDao;
-    }
+		this.lastUpdateDao = lastUpdateDao;
+		this.codeDao = codeDao;
+	}
 
-    @RequestMapping(params="!value", method=RequestMethod.GET)
-    public CodeList getProviders(final @RequestParam(value="text", required=false) String text,
-    		final @RequestParam(value="pagenumber", required=false) String pageNumber,
-    		final @RequestParam(value="pagesize", required=false) String pageSize,
-    		WebRequest webRequest) {
-        LOG.debug("providers");
-        return getList(CodeType.DATASOURCE, text, pageNumber, pageSize, null, webRequest);
-    }
+	@RequestMapping(params="!value", method=RequestMethod.GET)
+	public CodeList getProviders(final @RequestParam(value="text", required=false) String text,
+			final @RequestParam(value="pagenumber", required=false) String pageNumber,
+			final @RequestParam(value="pagesize", required=false) String pageSize,
+			WebRequest webRequest) {
+		LOG.debug("providers");
+		return getList(CodeType.DATASOURCE, text, pageNumber, pageSize, null, webRequest);
+	}
 
-    @RequestMapping(params="value", method=RequestMethod.GET)
-    public Code getProvider(final @RequestParam(value="value") String value, WebRequest webRequest, HttpServletResponse response) {
-        LOG.debug("provider");
-        return getCode(CodeType.DATASOURCE, value, webRequest, response);
-    }
+	@RequestMapping(params="value", method=RequestMethod.GET)
+	public Code getProvider(final @RequestParam(value="value") String value, WebRequest webRequest, HttpServletResponse response) {
+		LOG.debug("provider");
+		return getCode(CodeType.DATASOURCE, value, webRequest, response);
+	}
 
 }

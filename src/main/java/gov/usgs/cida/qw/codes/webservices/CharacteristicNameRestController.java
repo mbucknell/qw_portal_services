@@ -23,29 +23,29 @@ import org.springframework.web.context.request.WebRequest;
 @RequestMapping(value={"codes/characteristicnames", "codes/characteristicname"}, produces={MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
 public class CharacteristicNameRestController extends CodesRestController {
 
-    private static final Logger LOG = LoggerFactory.getLogger(CharacteristicNameRestController.class);
+	private static final Logger LOG = LoggerFactory.getLogger(CharacteristicNameRestController.class);
 
-    @Autowired
+	@Autowired
 	public CharacteristicNameRestController(@Qualifier("lastUpdateDao") final LastUpdateDao lastUpdateDao,
 			@Qualifier("codeDao") final CodeDao codeDao) {
-    	this.lastUpdateDao = lastUpdateDao;
-    	this.codeDao = codeDao;
-    }
+		this.lastUpdateDao = lastUpdateDao;
+		this.codeDao = codeDao;
+	}
 
-    @RequestMapping(params="!value", method=RequestMethod.GET)
-    public CodeList getCharacteristicNames(final @RequestParam(value="text", required=false) String text,
-    		final @RequestParam(value="pagenumber", required=false) String pageNumber,
-    		final @RequestParam(value="pagesize", required=false) String pageSize,
-    		WebRequest webRequest) {
-        LOG.debug("characteristicNames");
-        return getList(CodeType.CHARACTERISTICNAME, text, pageNumber, pageSize, null, webRequest);
-    }
+	@RequestMapping(params="!value", method=RequestMethod.GET)
+	public CodeList getCharacteristicNames(final @RequestParam(value="text", required=false) String text,
+			final @RequestParam(value="pagenumber", required=false) String pageNumber,
+			final @RequestParam(value="pagesize", required=false) String pageSize,
+			WebRequest webRequest) {
+		LOG.debug("characteristicNames");
+		return getList(CodeType.CHARACTERISTICNAME, text, pageNumber, pageSize, null, webRequest);
+	}
 
-    @RequestMapping(params="value", method=RequestMethod.GET)
-    public Code getCharacteristicName(final @RequestParam(value="value") String value,
-    		WebRequest webRequest, HttpServletResponse response) {
-        LOG.debug("characteristicName");
-        return getCode(CodeType.CHARACTERISTICNAME, value, webRequest, response);
-    }
+	@RequestMapping(params="value", method=RequestMethod.GET)
+	public Code getCharacteristicName(final @RequestParam(value="value") String value,
+			WebRequest webRequest, HttpServletResponse response) {
+		LOG.debug("characteristicName");
+		return getCode(CodeType.CHARACTERISTICNAME, value, webRequest, response);
+	}
 
 }

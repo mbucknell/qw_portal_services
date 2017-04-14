@@ -9,10 +9,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class CodeList {
 
 	private Collection<Code> codes;
-	
+
 	private int recordCount;
 
-    @XmlElement (name = "Code")
+	@XmlElement (name = "Code")
 	public Collection<Code> getCodes() {
 		return codes;
 	}
@@ -21,7 +21,7 @@ public class CodeList {
 		codes = inCodes;
 	}
 
-    @XmlElement (name = "recordCount")
+	@XmlElement (name = "recordCount")
 	public int getRecordCount() {
 		return recordCount;
 	}
@@ -29,5 +29,5 @@ public class CodeList {
 	public void setRecordCount(final int inRecordCount) {
 		recordCount = inRecordCount;
 	}
-	
+
 }

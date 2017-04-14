@@ -18,15 +18,15 @@ import com.github.springtestdbunit.bean.DatabaseDataSourceConnectionFactoryBean;
 @Configuration
 @PropertySource(value = "classpath:database_init.properties")
 public class TestSpringConfig extends SpringConfig {
-	
+
 	@Autowired
 	private Environment env;
-	
+
 	@Bean
 	public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
 		return new PropertySourcesPlaceholderConfigurer();
 	}
-	   
+
 	@Bean
 	public OracleDataSource dataSource() throws SQLException {
 		OracleDataSource ds = new OracleDataSource();
@@ -38,7 +38,7 @@ public class TestSpringConfig extends SpringConfig {
 		ds.getConnection().createStatement().execute("create or replace synonym public_srsnames for public_srsnames_test");
 		return ds;
 	}
-    
+
 	@Bean
 	public DatabaseConfigBean dbUnitDatabaseConfig() {
 		DatabaseConfigBean dbUnitDbConfig = new DatabaseConfigBean();

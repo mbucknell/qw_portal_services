@@ -14,7 +14,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class Export extends LinkedHashMap<String, Object> {
 
-    /** suid. */
-    private static final long serialVersionUID = -4627386265399891290L;
+	/** suid. */
+	private static final long serialVersionUID = -4627386265399891290L;
 
 }

@@ -13,9 +13,8 @@ import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.runtime.RuntimeConstants;
 import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
 
-
 public class SldTemplateEngine {
-	
+
 	private static String[] reds = {"#F3C391", "#F6A061", "#F07F45", "#E36122", "#D23F11"};
 	private static String[] blues = {"#A3D9F0", "#61B5DE", "#308CC6", "#126BB0","#124989"};
 	private static String[] greens = {"#C0E6C2", "#89C09D", "#55A87F", "#009C66", "#008556"};
@@ -26,7 +25,7 @@ public class SldTemplateEngine {
 		colorMapBySource.put(MapDataSource.USGS.getStringAbbreviation(), greens);
 	}
 	public static int COLOR_COUNT = reds.length;
-	
+
 	/**
 	 * initialize the engine once.
 	 */
@@ -43,7 +42,7 @@ public class SldTemplateEngine {
 			throw new RuntimeException("something else went terribly wrong with initiating the Velocity engine", e);
 		}
 	}
-	
+
 	/**
 	 * create the sld based on the params and the bin values (using the given file as the template).
 	 */
@@ -113,7 +112,7 @@ public class SldTemplateEngine {
 					: charMap.get(getStringAbbreviationFromChar(geometryString.charAt(0)));
 		}
 	}
-	
+
 	/**
 	 * a simple enum to handle binding to parameters.
 	 */
@@ -121,7 +120,7 @@ public class SldTemplateEngine {
 		All('A'),
 		EPA('E'),
 		USGS('N');
-		
+
 		private final static Map<String, MapDataSource> charMap = new HashMap<String, MapDataSource>();
 		private final char abbreviation;
 		private MapDataSource(char inAbbrev) {
@@ -132,7 +131,7 @@ public class SldTemplateEngine {
 		}
 		private static String getStringAbbreviationFromChar(char abbrev){
 			return String.valueOf(abbrev).toUpperCase();
-		} 
+		}
 		static {
 			for (MapDataSource t : MapDataSource.values()) {
 				MapDataSource dup = charMap.put(t.getStringAbbreviation(), t);
