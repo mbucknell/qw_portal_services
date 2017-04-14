@@ -8,6 +8,7 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.http.HttpStatus;
@@ -27,9 +28,18 @@ public class WQPFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response,
 			FilterChain chain) throws IOException, ServletException {
 		response.setCharacterEncoding(DEFAULT_ENCODING);
-		if (request.getParameterMap().isEmpty()) {
+
+		String requestURI = "";
+		if (request instanceof HttpServletRequest) {
+			requestURI = ((HttpServletRequest)request).getRequestURI().toString();
+		}
+
+		if (request.getParameterMap().isEmpty()
+				//Only allow swagger to proceed without a query parameter
+				&& !requestURI.contains("swagger") && ! requestURI.contains("webjar") && ! requestURI.contains("v2")) {
 			((HttpServletResponse) response).setStatus(HttpStatus.BAD_REQUEST.value());
 		} else {
+			//Everyone else with at least one query parameter is good
 			chain.doFilter(request, response);
 		}
 	}

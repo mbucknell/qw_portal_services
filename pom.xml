@@ -19,6 +19,7 @@
 		<servlet-version>3.1.0</servlet-version>
 		<slf4j-version>1.7.25</slf4j-version>
 		<spring-version>4.3.7.RELEASE</spring-version>
+		<springfox-swagger-version>2.6.1</springfox-swagger-version>
 		<urlrewritefilter-version>4.0.4</urlrewritefilter-version>
 		<velocity-tools-version>2.0</velocity-tools-version>
 		<logback-classic-version>1.2.2</logback-classic-version>
@@ -125,6 +126,17 @@
 			<artifactId>ojdbc6</artifactId>
 			<version>11.2.0.2.0-1</version>
 			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>${springfox-swagger-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>${springfox-swagger-version}</version>
 		</dependency>
 
 		<!-- Testing -->

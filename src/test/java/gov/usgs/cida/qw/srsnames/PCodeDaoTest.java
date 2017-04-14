@@ -2,8 +2,6 @@ package gov.usgs.cida.qw.srsnames;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import gov.usgs.cida.qw.BaseSpringTest;
-import gov.usgs.cida.qw.DatabaseRequiredTest;
 
 import java.util.Date;
 import java.util.LinkedHashMap;
@@ -15,6 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.github.springtestdbunit.annotation.DatabaseSetups;
+
+import gov.usgs.cida.qw.BaseSpringTest;
+import gov.usgs.cida.qw.DatabaseRequiredTest;
 
 @Category(DatabaseRequiredTest.class)
 @DatabaseSetups({

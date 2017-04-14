@@ -1,9 +1,5 @@
 package gov.usgs.cida.qw.srsnames;
 
-import gov.usgs.cida.qw.BaseRestController;
-import gov.usgs.cida.qw.LastUpdateDao;
-import gov.usgs.cida.qw.WQPFilter;
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
@@ -22,12 +18,15 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.WebRequest;
+
+import gov.usgs.cida.qw.BaseRestController;
+import gov.usgs.cida.qw.LastUpdateDao;
+import gov.usgs.cida.qw.WQPFilter;
 
 //This off of the last system-wide etl rather than the public_srsnames.max_last_modified column
 //since it might be possible for codes to go away without updating the former date...
@@ -40,8 +39,7 @@ public class SrsnamesController extends BaseRestController {
 	private PCodeDao pCodeDao;
 
 	@Autowired
-	public SrsnamesController(@Qualifier("lastUpdateDao") final LastUpdateDao lastUpdateDao,
-			@Qualifier("pCodeDao") final PCodeDao pCodeDao) {
+	public SrsnamesController(final LastUpdateDao lastUpdateDao, final PCodeDao pCodeDao) {
 		this.lastUpdateDao = lastUpdateDao;
 		this.pCodeDao = pCodeDao;
 	}

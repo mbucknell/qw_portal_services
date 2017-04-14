@@ -22,7 +22,7 @@ public class SpringInitializer implements WebApplicationInitializer {
 	 */
 	public void onStartup(ServletContext servletContext) throws ServletException {		
 		AnnotationConfigWebApplicationContext ctx = new AnnotationConfigWebApplicationContext();
-		ctx.register(SpringConfig.class);
+		ctx.register(SpringConfig.class, JndiConfig.class, SwaggerConfig.class);
 
 		FilterRegistration urlRewriteFilter = servletContext.addFilter("UrlRewriteFilter", UrlRewriteFilter.class);
 		urlRewriteFilter.setInitParameter("logLevel", "TRACE");

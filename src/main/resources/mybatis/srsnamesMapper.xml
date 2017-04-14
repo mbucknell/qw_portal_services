@@ -3,13 +3,13 @@
 
 <mapper namespace="srsnames">
 
-    <select id="getLastModifiedDate" resultType="java.util.Date">
+    <select id="getLastModifiedDate" resultType="Date">
         select max_last_rev_dt
           from public_srsnames
                fetch first 1 row only
     </select>
 
-    <select id="get" resultType="Export">
+    <select id="get" resultType="LinkedHashMap">
         select parm_cd "parm_cd",
                description "description",
                characteristicname "characteristicname",
