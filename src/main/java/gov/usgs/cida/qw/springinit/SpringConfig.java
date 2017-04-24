@@ -6,10 +6,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.http.MediaType;
+import org.springframework.util.AntPathMatcher;
 import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import gov.usgs.cida.qw.CustomStringToArrayConverter;
@@ -46,11 +47,11 @@ public class SpringConfig extends WebMvcConfigurerAdapter {
 	}
 
 	@Override
-	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		registry.addResourceHandler("swagger-ui.html", "webjars/**")
-			.addResourceLocations("classpath:/META-INF/resources/", "classpath:/META-INF/resources/webjars/");
-
-		registry.setOrder(-1);
+	public void configurePathMatch(PathMatchConfigurer configurer) {
+		//This should make the url case insensitive
+		AntPathMatcher matcher = new AntPathMatcher();
+		matcher.setCaseSensitive(false);
+		configurer.setPathMatcher(matcher);
 	}
 
 }

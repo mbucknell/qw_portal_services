@@ -19,8 +19,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.WebRequest;
 
@@ -31,7 +31,7 @@ import gov.usgs.cida.qw.WQPFilter;
 //This off of the last system-wide etl rather than the public_srsnames.max_last_modified column
 //since it might be possible for codes to go away without updating the former date...
 @RestController
-@RequestMapping(value={"publicsrsnames", "public_srsnames"}, method=RequestMethod.GET)
+@RequestMapping(value={"publicsrsnames", "public_srsnames"})
 public class SrsnamesController extends BaseRestController {
 
 	private static final Logger LOG = LoggerFactory.getLogger(SrsnamesController.class);
@@ -44,7 +44,7 @@ public class SrsnamesController extends BaseRestController {
 		this.pCodeDao = pCodeDao;
 	}
 
-	@RequestMapping(produces=MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(produces=MediaType.APPLICATION_JSON_VALUE)
 	public Map<String, Object> getPublicSrsnamesJson(HttpServletRequest request, HttpServletResponse response, WebRequest webRequest) {
 		LOG.debug("publicsrsnamesJson");
 		response.setCharacterEncoding(WQPFilter.DEFAULT_ENCODING);
@@ -66,7 +66,7 @@ public class SrsnamesController extends BaseRestController {
 		}
 	}
 
-	@RequestMapping(produces=MIME_TYPE_TEXT_CSV)
+	@GetMapping(produces=MIME_TYPE_TEXT_CSV)
 	public void getPublicSrsnamesCsv(HttpServletRequest request, HttpServletResponse response, WebRequest webRequest) {
 		LOG.debug("publicsrsnamesCsv");
 		response.setCharacterEncoding(WQPFilter.DEFAULT_ENCODING);

@@ -13,13 +13,16 @@ import org.springframework.stereotype.Component;
 @Component
 public class SummaryDao extends SqlSessionDaoSupport {
 
+	private static final String NAME_SPACE = "summary";
+	private static final String BIN_QUERY = "discreteSampleCountBin";
+
 	@Autowired
 	public SummaryDao(SqlSessionFactory sqlSessionFactory) {
 		setSqlSessionFactory(sqlSessionFactory);
 	}
 
 	public List<RowCounts> retrieveCounts(Map<String, Object> queryParams) {
-		return getSqlSession().selectList("summary.discreteSampleCountBin",  queryParams);
+		return getSqlSession().selectList(String.join(".", NAME_SPACE, BIN_QUERY),  queryParams);
 	}
 
 }

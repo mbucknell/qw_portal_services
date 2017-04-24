@@ -12,6 +12,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class PCodeDao extends SqlSessionDaoSupport {
 
+	private static final String NAME_SPACE = "srsnames";
+	private static final String GET_ROWS_QUERY = "get";
+	private static final String GET_LAST_MODIFIED_QUERY = "getLastModifiedDate";
+
 	@Autowired
 	public PCodeDao(SqlSessionFactory sqlSessionFactory) {
 		setSqlSessionFactory(sqlSessionFactory);
@@ -22,7 +26,7 @@ public class PCodeDao extends SqlSessionDaoSupport {
 	 * @return the list of sorted pcodes.
 	 */
 	public List<LinkedHashMap<String, Object>> getRows() {
-		List<LinkedHashMap<String, Object>> data = getSqlSession().selectList("srsnames.get");
+		List<LinkedHashMap<String, Object>> data = getSqlSession().selectList(String.join(".", NAME_SPACE, GET_ROWS_QUERY));
 		//With the magic of Java 8 lambda, We convert nulls to an empty string to avoid having the text "null" in the output.
 		data.forEach((map) -> map.forEach((key, value) -> map.compute(key, (k, v) -> (v == null) ? "" : v)));
 		return data;
@@ -33,7 +37,7 @@ public class PCodeDao extends SqlSessionDaoSupport {
 	 * @return the most recent pcode data modification date.
 	 */
 	public Date getLastModified() {
-		return getSqlSession().selectOne("srsnames.getLastModifiedDate");
+		return getSqlSession().selectOne(String.join(".", NAME_SPACE, GET_LAST_MODIFIED_QUERY));
 	}
 
 }

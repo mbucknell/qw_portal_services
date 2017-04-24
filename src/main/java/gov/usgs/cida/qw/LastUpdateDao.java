@@ -10,13 +10,16 @@ import org.springframework.stereotype.Component;
 @Component
 public class LastUpdateDao extends SqlSessionDaoSupport {
 
+	private static final String NAME_SPACE = "lastEtl";
+	private static final String GET_QUERY = "get";
+
 	@Autowired
 	public LastUpdateDao(SqlSessionFactory sqlSessionFactory) {
 		setSqlSessionFactory(sqlSessionFactory);
 	}
 
 	public LocalDateTime getLastEtl() {
-		return getSqlSession().selectOne("lastEtl.get");
+		return getSqlSession().selectOne(String.join(".", NAME_SPACE, GET_QUERY));
 	}
 
 }

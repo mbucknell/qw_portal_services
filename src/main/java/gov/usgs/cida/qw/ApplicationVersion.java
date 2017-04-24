@@ -28,8 +28,8 @@ public class ApplicationVersion implements ServletContextAware {
 			} else {
 				currentVersion.append(projectVersion);
 				if (projectVersion.endsWith("-SNAPSHOT")) {
-					currentVersion.append(" Built at: " + (String) props.get("BuildTime"));
-					currentVersion.append(" From commit: " + (String) props.get("Implementation-Build"));
+					currentVersion.append(" Built at: ").append((String) props.get("BuildTime"));
+					currentVersion.append(" From commit: ").append((String) props.get("Implementation-Build"));
 				}
 			}
 		} catch (Exception e) {

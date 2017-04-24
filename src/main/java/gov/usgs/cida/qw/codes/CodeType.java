@@ -23,9 +23,9 @@ public enum CodeType {
 	private final String countSelectID;
 
 	private CodeType(String selectID) {
-		this.singleSelectID = CODES_MAPPER_NAMESPACE + "." + selectID;
-		this.listSelectID = CODES_MAPPER_NAMESPACE + "." + selectID + "List";
-		this.countSelectID = CODES_MAPPER_NAMESPACE + "." + selectID + "Count";
+		this.singleSelectID = String.join(".", CODES_MAPPER_NAMESPACE, selectID);
+		this.listSelectID = String.join(".", CODES_MAPPER_NAMESPACE, selectID + "List");
+		this.countSelectID = String.join(".", CODES_MAPPER_NAMESPACE, selectID + "Count");
 	}
 
 	public String getSingleSelectID() {

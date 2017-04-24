@@ -45,10 +45,6 @@ public abstract class BaseSpringTest {
 					"Total-Result-Count", "NWIS-Result-Count", "STEWARDS-Result-Count", "STORET-Result-Count",
 					"NWIS-Warning", "STEWARDS-Warning", "STORET-Warning"));
 
-	public String harmonizeXml(String xmlDoc) {
-		return xmlDoc.replace("\"", "'").replace("\r", "").replace("\n", "").replace("\t", "").replaceAll("> *<", "><");
-	}
-
 	public String getCompareFile(String file) throws IOException {
 		return new String(FileCopyUtils.copyToByteArray(new ClassPathResource("testResult/" + file).getInputStream()));
 	}

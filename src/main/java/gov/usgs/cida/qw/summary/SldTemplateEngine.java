@@ -24,7 +24,9 @@ public class SldTemplateEngine {
 		colorMapBySource.put(MapDataSource.EPA.getStringAbbreviation(), blues);
 		colorMapBySource.put(MapDataSource.USGS.getStringAbbreviation(), greens);
 	}
-	public static int COLOR_COUNT = reds.length;
+	public static final int COLOR_COUNT = reds.length;
+
+	private SldTemplateEngine() {}
 
 	/**
 	 * initialize the engine once.
@@ -65,7 +67,7 @@ public class SldTemplateEngine {
 		List<Map<String, String>> bins = new ArrayList<Map<String,String>>();
 		for (int bin = 0; bin < colors.length; bin++) {
 			Map<String, String> attribs = new HashMap<String, String>();
-			String min = binValues[(bin*2)];
+			String min = binValues[bin*2];
 			String max = binValues[(bin*2)+1];
 			attribs.put("title", min + " - " +max);
 			attribs.put("color", colors[bin]);

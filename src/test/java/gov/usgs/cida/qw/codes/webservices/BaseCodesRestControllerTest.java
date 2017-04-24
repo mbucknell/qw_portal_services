@@ -1,10 +1,11 @@
 package gov.usgs.cida.qw.codes.webservices;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assert.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.xmlunit.matchers.CompareMatcher.isIdenticalTo;
+import static org.xmlunit.matchers.CompareMatcher.isSimilarTo;
 import static uk.co.datumedge.hamcrest.json.SameJSONAs.sameJSONObjectAs;
 
 import org.json.JSONObject;
@@ -57,16 +58,16 @@ public abstract class BaseCodesRestControllerTest extends BaseSpringTest {
 	public void runGetListAsXmlTest(String testEndpoint, String searchText, String compareFile, String searchXml) throws Exception {
 		//xml is the default
 		MvcResult rtn = runMock(testEndpoint + "?x=y", MediaType.APPLICATION_XML_VALUE, null);
-		assertEquals(harmonizeXml(getCompareFile(compareFile)), harmonizeXml(rtn.getResponse().getContentAsString()));
+		assertThat(rtn.getResponse().getContentAsString(), isSimilarTo(getCompareFile(compareFile)).ignoreWhitespace().throwComparisonFailure());
 
 		rtn = runMock(testEndpoint + "?mimeType=xml", MediaType.APPLICATION_XML_VALUE, null);
-		assertEquals(harmonizeXml(getCompareFile(compareFile)), harmonizeXml(rtn.getResponse().getContentAsString()));
+		assertThat(rtn.getResponse().getContentAsString(), isIdenticalTo(getCompareFile(compareFile)).ignoreWhitespace().throwComparisonFailure());
 
 		rtn = runMock(testEndpoint + "?x=y", MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_XML);
-		assertEquals(harmonizeXml(getCompareFile(compareFile)), harmonizeXml(rtn.getResponse().getContentAsString()));
+		assertThat(rtn.getResponse().getContentAsString(), isIdenticalTo(getCompareFile(compareFile)).ignoreWhitespace().throwComparisonFailure());
 
 		rtn = runMock(testEndpoint + "?mimeType=xml&text=" + searchText + "&pagenumber=2&pagesize=1", MediaType.APPLICATION_XML_VALUE, null);
-		assertEquals(harmonizeXml(searchXml), harmonizeXml(rtn.getResponse().getContentAsString()));
+		assertThat(rtn.getResponse().getContentAsString(), isIdenticalTo(searchXml).ignoreWhitespace().throwComparisonFailure());
 	}
 
 	public void runGetCodeAsJson(String testEndpoint, String codeValue, String codeJson) throws Exception {
@@ -85,13 +86,13 @@ public abstract class BaseCodesRestControllerTest extends BaseSpringTest {
 	public void runGetCodeAsXml(String testEndpoint, String codeValue, String codeXml) throws Exception {
 		//xml is the default
 		MvcResult rtn = runMock(testEndpoint + "?value=" + codeValue + "&x=y", MediaType.APPLICATION_XML_VALUE, null);
-		assertEquals(harmonizeXml(codeXml), harmonizeXml(rtn.getResponse().getContentAsString()));
+		assertThat(rtn.getResponse().getContentAsString(), isIdenticalTo(codeXml));
 
 		rtn = runMock(testEndpoint + "?value=" + codeValue + "&mimeType=xml", MediaType.APPLICATION_XML_VALUE, null);
-		assertEquals(harmonizeXml(codeXml), harmonizeXml(rtn.getResponse().getContentAsString()));
+		assertThat(rtn.getResponse().getContentAsString(), isIdenticalTo(codeXml));
 
 		rtn = runMock(testEndpoint + "?value=" + codeValue + "&x=y", MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_XML);
-		assertEquals(harmonizeXml(codeXml), harmonizeXml(rtn.getResponse().getContentAsString()));
+		assertThat(rtn.getResponse().getContentAsString(), isIdenticalTo(codeXml));
 	}
 
 	public MvcResult runMock(String url, String expectedMediaType, MediaType acceptMediaType) throws Exception {

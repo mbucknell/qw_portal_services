@@ -14,8 +14,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpStatus;
+import org.springframework.util.StringUtils;
 import org.springframework.web.context.request.WebRequest;
 
 public abstract class CodesRestController extends BaseRestController {
@@ -33,7 +33,7 @@ public abstract class CodesRestController extends BaseRestController {
 				queryParams.putAll(addlParms);
 			}
 
-			if (StringUtils.isNotEmpty(text)) {
+			if (StringUtils.hasText(text)) {
 				try {
 					queryParams.put("text", URLDecoder.decode(text, WQPFilter.DEFAULT_ENCODING));
 				} catch (UnsupportedEncodingException e) {
@@ -70,7 +70,7 @@ public abstract class CodesRestController extends BaseRestController {
 	}
 	
 	public static Boolean isInteger(final String number) {
-		if (StringUtils.isBlank(number)) {
+		if (!StringUtils.hasText(number)) {
 			return false;
 		}
 

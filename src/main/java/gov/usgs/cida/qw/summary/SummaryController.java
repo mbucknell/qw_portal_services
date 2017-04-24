@@ -14,8 +14,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.WebRequest;
@@ -41,7 +41,7 @@ public class SummaryController extends BaseRestController {
 		this.summaryDao = summaryDao;
 	}
 
-	@RequestMapping(method=RequestMethod.GET)
+	@GetMapping
 	public String getSummarySld(final @RequestParam(value="dataSource") String dataSource,
 			final @RequestParam(value="geometry") String geometry,
 			final @RequestParam(value="timeFrame") String timeFrame,
@@ -74,8 +74,6 @@ public class SummaryController extends BaseRestController {
 				Integer previousMax = -1;
 				int i=0;
 				for (RowCounts binVals : bins) {
-					//value one is the bin number, not currently needed
-					//binVals.getCounts().get(1)
 					if (previousMax > 0){
 						//just to make sure there are no holes in the bin
 						binValues[i*2] = String.valueOf(previousMax+1);
@@ -84,9 +82,6 @@ public class SummaryController extends BaseRestController {
 					}
 					previousMax = binVals.getCounts().get(2);
 					binValues[i*2+1] = String.valueOf(previousMax);
-					 
-					//no present need for the count of data points in the given bin
-					//binVals.getCounts().get(3);
 					i++;
 				}
 			}
@@ -149,7 +144,7 @@ public class SummaryController extends BaseRestController {
 			default:
 				break;
 			}
-		} 
+		}
 		return rtn;
 	}
 
@@ -161,6 +156,5 @@ public class SummaryController extends BaseRestController {
 		public List<Integer> getCounts() {
 			return counts;
 		}
-		
 	}
 }

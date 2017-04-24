@@ -1,5 +1,6 @@
 package gov.usgs.cida.qw.summary;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
@@ -7,6 +8,7 @@ import static org.junit.Assert.assertTrue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.xmlunit.matchers.CompareMatcher.isSimilarTo;
 
 import java.nio.charset.Charset;
 import java.util.HashMap;
@@ -148,7 +150,7 @@ public class SummaryControllerTest extends BaseSpringTest {
 				.andExpect(content().contentType(new MediaType("application", "xml", Charset.forName("ISO-8859-1"))))
 				.andExpect(content().encoding("ISO-8859-1"))
 				.andReturn();
-		assertEquals(harmonizeXml(getCompareFile("summary.sld")), harmonizeXml(rtn.getResponse().getContentAsString()));
+		assertThat(rtn.getResponse().getContentAsString(), isSimilarTo(getCompareFile("summary.sld")).ignoreWhitespace().throwComparisonFailure());
 	}
 
 }
