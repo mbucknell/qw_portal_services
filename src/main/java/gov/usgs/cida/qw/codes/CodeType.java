@@ -1,44 +1,43 @@
 package gov.usgs.cida.qw.codes;
 
-
 public enum CodeType {
 
 	ASSEMBLAGE ("codeAssemblage"),
 	CHARACTERISTICNAME ("codeCharacteristicName"),
-    CHARACTERISTICTYPE ("codeCharacteristicType"),
-    DATASOURCE ("codeDataSource"),
-    COUNTRYCODE ("codeCountryCode"),
-    COUNTYCODE ("codeCountyCode"),
-    ORGANIZATION ("codeOrganization"),
-    PROJECT ("codeProject"),
-    SAMPLEMEDIA ("codeSampleMedia"),
-    SAMPLETYPE ("codeSampleType"),
-    SITETYPE ("codeSiteType"),
-    STATECODE ("codeStateCode"),
-    SUBJECTTAXONOMICNAME("codeSubjectTaxonomicName");
-    
-    public static final String CODES_MAPPER_NAMESPACE = "codes";
+	CHARACTERISTICTYPE ("codeCharacteristicType"),
+	DATASOURCE ("codeDataSource"),
+	COUNTRYCODE ("codeCountryCode"),
+	COUNTYCODE ("codeCountyCode"),
+	ORGANIZATION ("codeOrganization"),
+	PROJECT ("codeProject"),
+	SAMPLEMEDIA ("codeSampleMedia"),
+	SAMPLETYPE ("codeSampleType"),
+	SITETYPE ("codeSiteType"),
+	STATECODE ("codeStateCode"),
+	SUBJECTTAXONOMICNAME("codeSubjectTaxonomicName");
 
-    private final String singleSelectID;
-    private final String listSelectID;
-    private final String countSelectID;
+	public static final String CODES_MAPPER_NAMESPACE = "codes";
 
-    private CodeType(String selectID) {
-        this.singleSelectID = CODES_MAPPER_NAMESPACE + "." + selectID;
-        this.listSelectID = CODES_MAPPER_NAMESPACE + "." + selectID + "List";
-        this.countSelectID = CODES_MAPPER_NAMESPACE + "." + selectID + "Count";
-    }
+	private final String singleSelectID;
+	private final String listSelectID;
+	private final String countSelectID;
 
-    public String getSingleSelectID() {
-        return singleSelectID;
-    }
+	private CodeType(String selectID) {
+		this.singleSelectID = String.join(".", CODES_MAPPER_NAMESPACE, selectID);
+		this.listSelectID = String.join(".", CODES_MAPPER_NAMESPACE, selectID + "List");
+		this.countSelectID = String.join(".", CODES_MAPPER_NAMESPACE, selectID + "Count");
+	}
 
-    public String getListSelectID() {
-        return listSelectID;
-    }
+	public String getSingleSelectID() {
+		return singleSelectID;
+	}
 
-    public String getCountSelectID() {
-        return countSelectID;
-    }
+	public String getListSelectID() {
+		return listSelectID;
+	}
+
+	public String getCountSelectID() {
+		return countSelectID;
+	}
 
 }

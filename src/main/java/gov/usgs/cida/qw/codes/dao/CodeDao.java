@@ -7,24 +7,33 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class CodeDao extends SqlSessionDaoSupport {
 
-    public int getRecordCount(final CodeType codeType, final Map<String, Object> parameterMap) {
-        return getSqlSession().selectOne(codeType.getCountSelectID(), parameterMap);
-    }
+	@Autowired
+	public CodeDao(SqlSessionFactory sqlSessionFactory) {
+		setSqlSessionFactory(sqlSessionFactory);
+	}
 
-    public List<Code> getCodes(final CodeType codeType, final Map<String, Object> parameterMap) {
-        return getSqlSession().selectList(codeType.getListSelectID(), parameterMap);
-    }
+	public int getRecordCount(final CodeType codeType, final Map<String, Object> parameterMap) {
+		return getSqlSession().selectOne(codeType.getCountSelectID(), parameterMap);
+	}
 
-    public List<Code> getCodes(final CodeType codeType) {
-        return getCodes(codeType, new HashMap<String, Object>());
-    }
+	public List<Code> getCodes(final CodeType codeType, final Map<String, Object> parameterMap) {
+		return getSqlSession().selectList(codeType.getListSelectID(), parameterMap);
+	}
 
-    public Code getCode(final CodeType codeType, final String codeValue) {
-        return getSqlSession().selectOne(codeType.getSingleSelectID(), codeValue);
-    }
+	public List<Code> getCodes(final CodeType codeType) {
+		return getCodes(codeType, new HashMap<String, Object>());
+	}
+
+	public Code getCode(final CodeType codeType, final String codeValue) {
+		return getSqlSession().selectOne(codeType.getSingleSelectID(), codeValue);
+	}
 
 }

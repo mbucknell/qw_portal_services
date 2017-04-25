@@ -14,22 +14,22 @@ import org.springframework.web.context.WebApplicationContext;
 
 public class VersionControllerTest extends BaseSpringTest {
 
-    @Autowired
-    private WebApplicationContext wac;
+	@Autowired
+	private WebApplicationContext wac;
 
-    private MockMvc mockMvc;
+	private MockMvc mockMvc;
 
-    @Before
-    public void setup() {
-        mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
-    }
+	@Before
+	public void setup() {
+		mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
+	}
 
-    @Test
-    public void getVersionTest() throws Exception {
-        MvcResult rtn = mockMvc.perform(get("/version"))
-            .andExpect(status().isOk())
-            .andReturn();
-        assertEquals("Application Version: Unavailable", rtn.getResponse().getContentAsString());
-    }
+	@Test
+	public void getVersionTest() throws Exception {
+		MvcResult rtn = mockMvc.perform(get("/version"))
+			.andExpect(status().isOk())
+			.andReturn();
+		assertEquals("Application Version: Unavailable", rtn.getResponse().getContentAsString());
+	}
 
 }

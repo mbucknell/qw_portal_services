@@ -9,465 +9,465 @@
         <result property="providers" column="providers"/>
     </resultMap>
 
-	<sql id="textSearch">
-		<if test="text != null">
-			(upper(description) like '%' || upper(#{text}) || '%' or
-			 upper(code_value) like '%' || upper(#{text}) || '%')
-		</if>
-	</sql>
-	
-	<sql id="codeValueSearch">
-		where code_value = #{value,jdbcType=VARCHAR}
-	</sql>
-    
-    <sql id="listAggProviders">
-    	listagg(data_source.text, ' ') within group (order by data_source.text) providers
+    <sql id="textSearch">
+        <if test="text != null">
+            (upper(description) like '%' || upper(#{text}) || '%' or
+             upper(code_value) like '%' || upper(#{text}) || '%')
+        </if>
     </sql>
-    
+
+    <sql id="codeValueSearch">
+        where code_value = #{value,jdbcType=VARCHAR}
+    </sql>
+
+    <sql id="listAggProviders">
+        listagg(data_source.text, ' ') within group (order by data_source.text) providers
+    </sql>
+
     <sql id="selectStart">
         select c.code_value,
                min(c.description) description,
                <include refid="listAggProviders"/>
-          from     
+          from
     </sql>
-    
+
     <sql id="selectCount">
         select count(distinct c.code_value)
-          from     
+          from
     </sql>
-    
+
     <sql id="joinDataSource">
-    	c
+        c
         join data_source
           on c.data_source_id = data_source.data_source_id
     </sql>
-    
+
     <sql id="groupBy">
-		group by c.code_value
+        group by c.code_value
     </sql>
-    
+
     <sql id="groupAndOrderBy">
-		<include refid="groupBy"/>
-		order by c.code_value
+        <include refid="groupBy"/>
+        order by c.code_value
     </sql>
-    
+
     <sql id="groupAndOrderBySearch">
-		<include refid="groupBy"/>
-		order by
-		<if test="text != null">
-		         length(c.code_value),
-		</if>
+        <include refid="groupBy"/>
+        order by
+        <if test="text != null">
+                 length(c.code_value),
+        </if>
                  c.code_value
     </sql>
-    
+
     <sql id="paging">
-		<if test="fetchSize != null">
-			<choose>
-				<when test="offset == null || offset == 0">
-					fetch first ${fetchSize} rows only
-				</when>
-				<otherwise>
-					offset ${offset} rows fetch next ${fetchSize} rows only
-				</otherwise>			
-			</choose>
-		</if>
+        <if test="fetchSize != null">
+            <choose>
+                <when test="offset == null || offset == 0">
+                    fetch first ${fetchSize} rows only
+                </when>
+                <otherwise>
+                    offset ${offset} rows fetch next ${fetchSize} rows only
+                </otherwise>
+            </choose>
+        </if>
     </sql>
-    
-    
-    
+
+
+
     <select id="codeAssemblage" parameterType="String" resultMap="codeResult">
-		<include refid="selectStart"/>
-		assemblage
-		<include refid="joinDataSource"/>
-		<include refid="codeValueSearch"/>
-		<include refid="groupAndOrderBy"/>
+        <include refid="selectStart"/>
+        assemblage
+        <include refid="joinDataSource"/>
+        <include refid="codeValueSearch"/>
+        <include refid="groupAndOrderBy"/>
     </select>
 
     <select id="codeAssemblageList" parameterType="map" resultMap="codeResult">
-		<include refid="selectStart"/>
-		assemblage
-		<include refid="joinDataSource"/>
-		<where>
-			<include refid="textSearch"/>
-		</where>
-		<include refid="groupAndOrderBySearch"/>
-		<include refid="paging"/>
+        <include refid="selectStart"/>
+        assemblage
+        <include refid="joinDataSource"/>
+        <where>
+            <include refid="textSearch"/>
+        </where>
+        <include refid="groupAndOrderBySearch"/>
+        <include refid="paging"/>
     </select>
 
     <select id="codeAssemblageCount" parameterType="map" resultType="int">
-		<include refid="selectCount"/>
-		assemblage
-		<include refid="joinDataSource"/>
-		<where>
-			<include refid="textSearch"/>
-		</where>
+        <include refid="selectCount"/>
+        assemblage
+        <include refid="joinDataSource"/>
+        <where>
+            <include refid="textSearch"/>
+        </where>
     </select>
 
 
 
     <select id="codeCharacteristicName" parameterType="String" resultMap="codeResult">
-		<include refid="selectStart"/>
-		char_name
-		<include refid="joinDataSource"/>
-		<include refid="codeValueSearch"/>
-		<include refid="groupAndOrderBy"/>
+        <include refid="selectStart"/>
+        char_name
+        <include refid="joinDataSource"/>
+        <include refid="codeValueSearch"/>
+        <include refid="groupAndOrderBy"/>
     </select>
 
     <select id="codeCharacteristicNameList" parameterType="map" resultMap="codeResult">
-		<include refid="selectStart"/>
-		char_name
-		<include refid="joinDataSource"/>
-		<where>
-			<include refid="textSearch"/>
-		</where>
-		<include refid="groupAndOrderBySearch"/>
-		<include refid="paging"/>
+        <include refid="selectStart"/>
+        char_name
+        <include refid="joinDataSource"/>
+        <where>
+            <include refid="textSearch"/>
+        </where>
+        <include refid="groupAndOrderBySearch"/>
+        <include refid="paging"/>
     </select>
 
     <select id="codeCharacteristicNameCount" parameterType="map" resultType="int">
-		<include refid="selectCount"/>
-		char_name
-		<include refid="joinDataSource"/>
-		<where>
-			<include refid="textSearch"/>
-		</where>
+        <include refid="selectCount"/>
+        char_name
+        <include refid="joinDataSource"/>
+        <where>
+            <include refid="textSearch"/>
+        </where>
     </select>
 
 
 
     <select id="codeCharacteristicType" parameterType="String" resultMap="codeResult">
-		<include refid="selectStart"/>
+        <include refid="selectStart"/>
         char_type
-		<include refid="joinDataSource"/>
-		<include refid="codeValueSearch"/>
-		<include refid="groupAndOrderBy"/>
+        <include refid="joinDataSource"/>
+        <include refid="codeValueSearch"/>
+        <include refid="groupAndOrderBy"/>
     </select>
 
     <select id="codeCharacteristicTypeList" parameterType="map" resultMap="codeResult">
-		<include refid="selectStart"/>
+        <include refid="selectStart"/>
         char_type
-		<include refid="joinDataSource"/>
-		<where>
-			<include refid="textSearch"/>
-		</where>
-		<include refid="groupAndOrderBySearch"/>
-		<include refid="paging"/>
+        <include refid="joinDataSource"/>
+        <where>
+            <include refid="textSearch"/>
+        </where>
+        <include refid="groupAndOrderBySearch"/>
+        <include refid="paging"/>
     </select>
 
     <select id="codeCharacteristicTypeCount" parameterType="map" resultType="int">
-		<include refid="selectCount"/>
-		char_type
-		<include refid="joinDataSource"/>
-		<where>
-			<include refid="textSearch"/>
-		</where>
+        <include refid="selectCount"/>
+        char_type
+        <include refid="joinDataSource"/>
+        <where>
+            <include refid="textSearch"/>
+        </where>
     </select>
 
 
 
     <select id="codeCountyCode" parameterType="String" resultMap="codeResult">
-		<include refid="selectStart"/>
+        <include refid="selectStart"/>
         county
-		<include refid="joinDataSource"/>
-		<include refid="codeValueSearch"/>
-		<include refid="groupAndOrderBy"/>
+        <include refid="joinDataSource"/>
+        <include refid="codeValueSearch"/>
+        <include refid="groupAndOrderBy"/>
     </select>
 
     <select id="codeCountyCodeList" parameterType="map" resultMap="codeResult">
-		<include refid="selectStart"/>
+        <include refid="selectStart"/>
         county
-		<include refid="joinDataSource"/>
-		<where>
-			<include refid="textSearch"/>
+        <include refid="joinDataSource"/>
+        <where>
+            <include refid="textSearch"/>
             <if test="statecode != null">
                 and state_code in
                     <foreach item="i" collection="statecode" open="(" separator="," close=")">
                         #{i,jdbcType=VARCHAR}
                     </foreach>
             </if>
-		</where>
-		<include refid="groupAndOrderBySearch"/>
-		<include refid="paging"/>
+        </where>
+        <include refid="groupAndOrderBySearch"/>
+        <include refid="paging"/>
     </select>
 
     <select id="codeCountyCodeCount" parameterType="map" resultType="int">
-		<include refid="selectCount"/>
-		county
-		<include refid="joinDataSource"/>
-		<where>
-			<include refid="textSearch"/>
+        <include refid="selectCount"/>
+        county
+        <include refid="joinDataSource"/>
+        <where>
+            <include refid="textSearch"/>
             <if test="statecode != null">
                 and state_code in
                     <foreach item="i" collection="statecode" open="(" separator="," close=")">
                         #{i,jdbcType=VARCHAR}
                     </foreach>
             </if>
-		</where>
+        </where>
     </select>
 
 
 
     <select id="codeCountryCode" parameterType="String" resultMap="codeResult">
-		<include refid="selectStart"/>
+        <include refid="selectStart"/>
         country
-		<include refid="joinDataSource"/>
-		<include refid="codeValueSearch"/>
-		<include refid="groupAndOrderBy"/>
+        <include refid="joinDataSource"/>
+        <include refid="codeValueSearch"/>
+        <include refid="groupAndOrderBy"/>
     </select>
 
     <select id="codeCountryCodeList" parameterType="map" resultMap="codeResult">
-		<include refid="selectStart"/>
+        <include refid="selectStart"/>
         country
-		<include refid="joinDataSource"/>
-		<where>
-			<include refid="textSearch"/>
-		</where>
-		<include refid="groupAndOrderBySearch"/>
-		<include refid="paging"/>
+        <include refid="joinDataSource"/>
+        <where>
+            <include refid="textSearch"/>
+        </where>
+        <include refid="groupAndOrderBySearch"/>
+        <include refid="paging"/>
     </select>
 
     <select id="codeCountryCodeCount" parameterType="map" resultType="int">
-		<include refid="selectCount"/>
-		country
-		<include refid="joinDataSource"/>
-		<where>
-			<include refid="textSearch"/>
-		</where>
+        <include refid="selectCount"/>
+        country
+        <include refid="joinDataSource"/>
+        <where>
+            <include refid="textSearch"/>
+        </where>
     </select>
 
 
 
     <select id="codeDataSource" parameterType="String" resultMap="codeResult">
-		select text code_value
+        select text code_value
           from data_source
-		 where text = #{value,jdbcType=VARCHAR}
-		    order by text
+         where text = #{value,jdbcType=VARCHAR}
+            order by text
     </select>
 
     <select id="codeDataSourceList" parameterType="map" resultMap="codeResult">
-		select text code_value
+        select text code_value
           from data_source
         <if test="text != null">
-        	where upper(text) like '%' || upper(#{text}) || '%'
+            where upper(text) like '%' || upper(#{text}) || '%'
         </if>
-		    order by text
-		<include refid="paging"/>
+            order by text
+        <include refid="paging"/>
     </select>
 
     <select id="codeDataSourceCount" parameterType="map" resultType="int">
-		select count(*)
-		from data_source
+        select count(*)
+        from data_source
         <if test="text != null">
-        	where upper(text) like '%' || upper(#{text}) || '%'
+            where upper(text) like '%' || upper(#{text}) || '%'
         </if>
     </select>
 
 
 
     <select id="codeOrganization" parameterType="String" resultMap="codeResult">
-		<include refid="selectStart"/>
+        <include refid="selectStart"/>
         organization
-		<include refid="joinDataSource"/>
-		<include refid="codeValueSearch"/>
-		<include refid="groupAndOrderBy"/>
+        <include refid="joinDataSource"/>
+        <include refid="codeValueSearch"/>
+        <include refid="groupAndOrderBy"/>
     </select>
 
     <select id="codeOrganizationList" parameterType="map" resultMap="codeResult">
-		<include refid="selectStart"/>
+        <include refid="selectStart"/>
         organization
-		<include refid="joinDataSource"/>
-		<where>
-			<include refid="textSearch"/>
-		</where>
-		<include refid="groupAndOrderBySearch"/>
-		<include refid="paging"/>
+        <include refid="joinDataSource"/>
+        <where>
+            <include refid="textSearch"/>
+        </where>
+        <include refid="groupAndOrderBySearch"/>
+        <include refid="paging"/>
     </select>
 
     <select id="codeOrganizationCount" parameterType="map" resultType="int">
-		<include refid="selectCount"/>
-		organization
-		<include refid="joinDataSource"/>
-		<where>
-			<include refid="textSearch"/>
-		</where>
+        <include refid="selectCount"/>
+        organization
+        <include refid="joinDataSource"/>
+        <where>
+            <include refid="textSearch"/>
+        </where>
     </select>
 
 
 
     <select id="codeProject" parameterType="String" resultMap="codeResult">
-		<include refid="selectStart"/>
+        <include refid="selectStart"/>
         project
-		<include refid="joinDataSource"/>
-		<include refid="codeValueSearch"/>
-		<include refid="groupAndOrderBy"/>
+        <include refid="joinDataSource"/>
+        <include refid="codeValueSearch"/>
+        <include refid="groupAndOrderBy"/>
     </select>
 
     <select id="codeProjectList" parameterType="map" resultMap="codeResult">
-		<include refid="selectStart"/>
+        <include refid="selectStart"/>
         project
-		<include refid="joinDataSource"/>
-		<where>
-			<include refid="textSearch"/>
-		</where>
-		<include refid="groupAndOrderBySearch"/>
-		<include refid="paging"/>
+        <include refid="joinDataSource"/>
+        <where>
+            <include refid="textSearch"/>
+        </where>
+        <include refid="groupAndOrderBySearch"/>
+        <include refid="paging"/>
     </select>
 
     <select id="codeProjectCount" parameterType="map" resultType="int">
-		<include refid="selectCount"/>
-		project
-		<include refid="joinDataSource"/>
-		<where>
-			<include refid="textSearch"/>
-		</where>
+        <include refid="selectCount"/>
+        project
+        <include refid="joinDataSource"/>
+        <where>
+            <include refid="textSearch"/>
+        </where>
     </select>
 
 
 
     <select id="codeSampleMedia" parameterType="String" resultMap="codeResult">
-		<include refid="selectStart"/>
+        <include refid="selectStart"/>
         sample_media
-		<include refid="joinDataSource"/>
-		<include refid="codeValueSearch"/>
-		<include refid="groupAndOrderBy"/>
+        <include refid="joinDataSource"/>
+        <include refid="codeValueSearch"/>
+        <include refid="groupAndOrderBy"/>
     </select>
 
     <select id="codeSampleMediaList" parameterType="map" resultMap="codeResult">
-		<include refid="selectStart"/>
+        <include refid="selectStart"/>
         sample_media
-		<include refid="joinDataSource"/>
-		<where>
-			<include refid="textSearch"/>
-		</where>
-		<include refid="groupAndOrderBySearch"/>
-		<include refid="paging"/>
+        <include refid="joinDataSource"/>
+        <where>
+            <include refid="textSearch"/>
+        </where>
+        <include refid="groupAndOrderBySearch"/>
+        <include refid="paging"/>
     </select>
 
     <select id="codeSampleMediaCount" parameterType="map" resultType="int">
-		<include refid="selectCount"/>
-		sample_media
-		<include refid="joinDataSource"/>
-		<where>
-			<include refid="textSearch"/>
-		</where>
+        <include refid="selectCount"/>
+        sample_media
+        <include refid="joinDataSource"/>
+        <where>
+            <include refid="textSearch"/>
+        </where>
     </select>
 
 
 
     <select id="codeSiteType" parameterType="String" resultMap="codeResult">
-		<include refid="selectStart"/>
+        <include refid="selectStart"/>
         site_type
-		<include refid="joinDataSource"/>
-		<include refid="codeValueSearch"/>
-		<include refid="groupAndOrderBy"/>
+        <include refid="joinDataSource"/>
+        <include refid="codeValueSearch"/>
+        <include refid="groupAndOrderBy"/>
     </select>
 
     <select id="codeSiteTypeList" parameterType="map" resultMap="codeResult">
-		<include refid="selectStart"/>
+        <include refid="selectStart"/>
         site_type
-		<include refid="joinDataSource"/>
-		<where>
-			<include refid="textSearch"/>
-		</where>
-		<include refid="groupAndOrderBySearch"/>
-		<include refid="paging"/>
+        <include refid="joinDataSource"/>
+        <where>
+            <include refid="textSearch"/>
+        </where>
+        <include refid="groupAndOrderBySearch"/>
+        <include refid="paging"/>
     </select>
 
     <select id="codeSiteTypeCount" parameterType="map" resultType="int">
-		<include refid="selectCount"/>
-		site_type
-		<include refid="joinDataSource"/>
-		<where>
-			<include refid="textSearch"/>
-		</where>
+        <include refid="selectCount"/>
+        site_type
+        <include refid="joinDataSource"/>
+        <where>
+            <include refid="textSearch"/>
+        </where>
     </select>
 
 
 
-	<sql id="descriptionChoice">
-		<choose>
-        	<when test="countrycode != null &amp;&amp; countrycode.length > 1">
-            	c.description_with_country
+    <sql id="descriptionChoice">
+        <choose>
+            <when test="countrycode != null &amp;&amp; countrycode.length > 1">
+                c.description_with_country
             </when>
             <otherwise>
-            	c.description_with_out_country
+                c.description_with_out_country
             </otherwise>
-	    </choose>
-	</sql>
-	
-	<sql id="stateWhere">
-		<where>
-		<if test="text != null">
-			(upper(c.description_with_out_country) like '%' || upper(#{text}) || '%' or
-			 upper(c.code_value) like '%' || upper(#{text}) || '%')
-		</if>
-			<choose>
-           		<when test="countrycode != null">
-					and c.country_code in <foreach item="i" collection="countrycode" open="(" separator="," close=")">#{i}</foreach>
-            	</when>
-				<otherwise>
-            		and c.country_code = 'US'
-            	</otherwise>
-			</choose>
-		</where>
-	</sql>
-	
+        </choose>
+    </sql>
+
+    <sql id="stateWhere">
+        <where>
+        <if test="text != null">
+            (upper(c.description_with_out_country) like '%' || upper(#{text}) || '%' or
+             upper(c.code_value) like '%' || upper(#{text}) || '%')
+        </if>
+            <choose>
+                   <when test="countrycode != null">
+                    and c.country_code in <foreach item="i" collection="countrycode" open="(" separator="," close=")">#{i}</foreach>
+                </when>
+                <otherwise>
+                    and c.country_code = 'US'
+                </otherwise>
+            </choose>
+        </where>
+    </sql>
+
     <select id="codeStateCode" parameterType="String" resultMap="codeResult">
-		select c.code_value,
+        select c.code_value,
                min(c.description_with_country) description,
         <include refid="listAggProviders"/>
           from state
-		<include refid="joinDataSource"/>
-		<include refid="codeValueSearch"/>
-		<include refid="groupAndOrderBy"/>
-	</select>
+        <include refid="joinDataSource"/>
+        <include refid="codeValueSearch"/>
+        <include refid="groupAndOrderBy"/>
+    </select>
 
     <select id="codeStateCodeList" parameterType="map" resultMap="codeResult">
-		select c.code_value,
+        select c.code_value,
                min(<include refid="descriptionChoice"/>) description,
         <include refid="listAggProviders"/>
           from state
-		<include refid="joinDataSource"/>
-		<include refid="stateWhere"/>
-		<include refid="groupAndOrderBySearch"/>
-		<include refid="paging"/>
-	</select>
+        <include refid="joinDataSource"/>
+        <include refid="stateWhere"/>
+        <include refid="groupAndOrderBySearch"/>
+        <include refid="paging"/>
+    </select>
 
     <select id="codeStateCodeCount" parameterType="map" resultType="int">
-		<include refid="selectCount"/>
-		state
-		<include refid="joinDataSource"/>
-		<include refid="stateWhere"/>
+        <include refid="selectCount"/>
+        state
+        <include refid="joinDataSource"/>
+        <include refid="stateWhere"/>
     </select>
-    
-    
-    
+
+
+
     <select id="codeSubjectTaxonomicName" parameterType="String" resultMap="codeResult">
-		<include refid="selectStart"/>
-		taxa_name
-		<include refid="joinDataSource"/>
-		<include refid="codeValueSearch"/>
-		<include refid="groupAndOrderBy"/>
+        <include refid="selectStart"/>
+        taxa_name
+        <include refid="joinDataSource"/>
+        <include refid="codeValueSearch"/>
+        <include refid="groupAndOrderBy"/>
     </select>
 
     <select id="codeSubjectTaxonomicNameList" parameterType="map" resultMap="codeResult">
-		<include refid="selectStart"/>
-		taxa_name
-		<include refid="joinDataSource"/>
-		<where>
-			<include refid="textSearch"/>
-		</where>
-		<include refid="groupAndOrderBySearch"/>
-		<include refid="paging"/>
+        <include refid="selectStart"/>
+        taxa_name
+        <include refid="joinDataSource"/>
+        <where>
+            <include refid="textSearch"/>
+        </where>
+        <include refid="groupAndOrderBySearch"/>
+        <include refid="paging"/>
     </select>
 
     <select id="codeSubjectTaxonomicNameCount" parameterType="map" resultType="int">
-		<include refid="selectCount"/>
-		taxa_name
-		<include refid="joinDataSource"/>
-		<where>
-			<include refid="textSearch"/>
-		</where>
+        <include refid="selectCount"/>
+        taxa_name
+        <include refid="joinDataSource"/>
+        <where>
+            <include refid="textSearch"/>
+        </where>
     </select>
 
 </mapper> 

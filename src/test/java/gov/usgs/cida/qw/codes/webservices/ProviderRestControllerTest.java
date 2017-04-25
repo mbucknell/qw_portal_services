@@ -1,11 +1,11 @@
 package gov.usgs.cida.qw.codes.webservices;
 
-import gov.usgs.cida.qw.IntegrationTest;
+import gov.usgs.cida.qw.DatabaseRequiredTest;
 
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
-@Category(IntegrationTest.class)
+@Category(DatabaseRequiredTest.class)
 public class ProviderRestControllerTest extends BaseCodesRestControllerTest {
 
 	public static String TEST_ENDPOINT = "/codes/providers";
@@ -17,11 +17,11 @@ public class ProviderRestControllerTest extends BaseCodesRestControllerTest {
 	public static String SEARCH_XML = XML_HEADER + "<Codes><Code value=\"STORET\"/><recordCount>2</recordCount></Codes>"; 
 	public static String COMPARE_FILE_JSON = "provider.json";
 	public static String COMPARE_FILE_XML = "provider.xml";
-	
+
 	@Test
 	public void getListAsJsonTest() throws Exception {
 		runGetListAsJsonTest(TEST_ENDPOINT, SEARCH_TEXT, COMPARE_FILE_JSON, SEARCH_JSON);
-    }
+	}
 
 	@Test
 	public void getListAsXmlTest() throws Exception {

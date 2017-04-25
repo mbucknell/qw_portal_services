@@ -31,24 +31,20 @@ import com.github.springtestdbunit.annotation.DbUnitConfiguration;
 @DbUnitConfiguration(dataSetLoader = ColumnSensingFlatXMLDataSetLoader.class, databaseConnection="dbUnitDatabaseConnection")
 public abstract class BaseSpringTest {
 
-    public static String ia = "US:19";
-    public static String nb = "CN:90";
-    public static Object[] states = new Object[]{ia, nb};
-    public static String[] organizations = new String[]{"ARS"};
-    public static String[] countries1 = new String[]{"US"};
-    public static String[] countries2 = new String[]{"US", "CN", "GT", "MX"};
+	public static String ia = "US:19";
+	public static String nb = "CN:90";
+	public static Object[] states = new Object[]{ia, nb};
+	public static String[] organizations = new String[]{"ARS"};
+	public static String[] countries1 = new String[]{"US"};
+	public static String[] countries2 = new String[]{"US", "CN", "GT", "MX"};
 
-    public static String XML_HEADER = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>";
-    
+	public static String XML_HEADER = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>";
+
 	public List<String> acceptHeaders = new ArrayList<>(
 			Arrays.asList("Total-Site-Count", "NWIS-Site-Count", "STEWARDS-Site-Count", "STORET-Site-Count",
 					"Total-Result-Count", "NWIS-Result-Count", "STEWARDS-Result-Count", "STORET-Result-Count",
 					"NWIS-Warning", "STEWARDS-Warning", "STORET-Warning"));
 
-	public String harmonizeXml(String xmlDoc) {
-		return xmlDoc.replace("\"", "'").replace("\r", "").replace("\n", "").replace("\t", "").replaceAll("> *<", "><");
-	}
-	
 	public String getCompareFile(String file) throws IOException {
 		return new String(FileCopyUtils.copyToByteArray(new ClassPathResource("testResult/" + file).getInputStream()));
 	}
