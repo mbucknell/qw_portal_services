@@ -26,9 +26,8 @@ import org.springframework.web.context.request.WebRequest;
 
 import gov.usgs.cida.qw.BaseRestController;
 import gov.usgs.cida.qw.LastUpdateDao;
-import gov.usgs.cida.qw.WQPFilter;
 
-//This off of the last system-wide etl rather than the public_srsnames.max_last_modified column
+//This is off of the last system-wide etl rather than the public_srsnames.max_last_modified column
 //since it might be possible for codes to go away without updating the former date...
 @RestController
 @RequestMapping(value={"publicsrsnames", "public_srsnames"})
@@ -47,7 +46,7 @@ public class SrsnamesController extends BaseRestController {
 	@GetMapping(produces=MediaType.APPLICATION_JSON_VALUE)
 	public Map<String, Object> getPublicSrsnamesJson(HttpServletRequest request, HttpServletResponse response, WebRequest webRequest) {
 		LOG.debug("publicsrsnamesJson");
-		response.setCharacterEncoding(WQPFilter.DEFAULT_ENCODING);
+		response.setCharacterEncoding(BaseRestController.DEFAULT_ENCODING);
 		if (isNotModified(webRequest)) {
 			return null;
 		} else {
@@ -66,10 +65,10 @@ public class SrsnamesController extends BaseRestController {
 		}
 	}
 
-	@GetMapping(produces=MIME_TYPE_TEXT_CSV)
+	@GetMapping(produces=MEDIA_TYPE_TEXT_CSV_UTF8_VALUE)
 	public void getPublicSrsnamesCsv(HttpServletRequest request, HttpServletResponse response, WebRequest webRequest) {
 		LOG.debug("publicsrsnamesCsv");
-		response.setCharacterEncoding(WQPFilter.DEFAULT_ENCODING);
+		response.setCharacterEncoding(BaseRestController.DEFAULT_ENCODING);
 		if (!isNotModified(webRequest)) {
 			List<LinkedHashMap<String, Object>> data = pCodeDao.getRows();
 			String dateString = "";

@@ -5,14 +5,15 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.WebRequest;
 
+import gov.usgs.cida.qw.BaseRestController;
 import gov.usgs.cida.qw.LastUpdateDao;
 import gov.usgs.cida.qw.codes.Code;
 import gov.usgs.cida.qw.codes.CodeList;
@@ -20,14 +21,13 @@ import gov.usgs.cida.qw.codes.CodeType;
 import gov.usgs.cida.qw.codes.dao.CodeDao;
 
 @RestController
-@RequestMapping(value={"codes/samplemedia"}, produces={MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
+@RequestMapping(value={"codes/samplemedia"}, produces={BaseRestController.MEDIA_TYPE_APPLICATION_XML_UTF8_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
 public class SampleMediaRestController extends CodesRestController {
 
 	private static final Logger LOG = LoggerFactory.getLogger(SampleMediaRestController.class);
 
 	@Autowired
-	public SampleMediaRestController(@Qualifier("lastUpdateDao") final LastUpdateDao lastUpdateDao,
-			@Qualifier("codeDao") final CodeDao codeDao) {
+	public SampleMediaRestController(final LastUpdateDao lastUpdateDao, final CodeDao codeDao) {
 		this.lastUpdateDao = lastUpdateDao;
 		this.codeDao = codeDao;
 	}
@@ -41,8 +41,8 @@ public class SampleMediaRestController extends CodesRestController {
 		return getList(CodeType.SAMPLEMEDIA, text, pageNumber, pageSize, null, webRequest);
 	}
 
-	@GetMapping(params="value")
-	public Code getASampleMedia(final @RequestParam(value="value") String value, WebRequest webRequest, HttpServletResponse response) {
+	@GetMapping("/{value}")
+	public Code getASampleMedia(final @PathVariable(value="value") String value, WebRequest webRequest, HttpServletResponse response) {
 		LOG.debug("aSampleMedia");
 		return getCode(CodeType.SAMPLEMEDIA, value, webRequest, response);
 	}

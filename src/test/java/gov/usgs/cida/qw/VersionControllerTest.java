@@ -26,7 +26,7 @@ public class VersionControllerTest extends BaseSpringTest {
 
 	@Test
 	public void getVersionTest() throws Exception {
-		MvcResult rtn = mockMvc.perform(get("/version"))
+		MvcResult rtn = mockMvc.perform(get("/version?mimeType=text"))
 			.andExpect(status().isOk())
 			.andReturn();
 		assertEquals("Application Version: Unavailable", rtn.getResponse().getContentAsString());

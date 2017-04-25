@@ -10,7 +10,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.xmlunit.matchers.CompareMatcher.isSimilarTo;
 
-import java.nio.charset.Charset;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,7 +17,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -27,6 +25,7 @@ import org.springframework.web.context.WebApplicationContext;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.github.springtestdbunit.annotation.DatabaseSetups;
 
+import gov.usgs.cida.qw.BaseRestController;
 import gov.usgs.cida.qw.BaseSpringTest;
 import gov.usgs.cida.qw.DatabaseRequiredTest;
 import gov.usgs.cida.qw.LastUpdateDao;
@@ -147,8 +146,8 @@ public class SummaryControllerTest extends BaseSpringTest {
 	public void getSummarySldTest() throws Exception {
 		MvcResult rtn = mockMvc.perform(get("/summary?dataSource=A&geometry=S&timeFrame=1"))
 				.andExpect(status().isOk())
-				.andExpect(content().contentType(new MediaType("application", "xml", Charset.forName("ISO-8859-1"))))
-				.andExpect(content().encoding("ISO-8859-1"))
+				.andExpect(content().contentType(BaseRestController.MEDIA_TYPE_APPLICATION_XML_UTF8_VALUE))
+				.andExpect(content().encoding(BaseRestController.DEFAULT_ENCODING))
 				.andReturn();
 		assertThat(rtn.getResponse().getContentAsString(), isSimilarTo(getCompareFile("summary.sld")).ignoreWhitespace().throwComparisonFailure());
 	}

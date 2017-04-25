@@ -7,10 +7,11 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static uk.co.datumedge.hamcrest.json.SameJSONAs.sameJSONObjectAs;
+
+import gov.usgs.cida.qw.BaseRestController;
 import gov.usgs.cida.qw.BaseSpringTest;
 import gov.usgs.cida.qw.DatabaseRequiredTest;
 import gov.usgs.cida.qw.LastUpdateDao;
-import gov.usgs.cida.qw.WQPFilter;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -62,7 +63,7 @@ public class SrsnamesControllerTest extends BaseSpringTest {
 		MvcResult rtn = mockMvc.perform(get("/publicsrsnames?mimetype=json").accept(MediaType.APPLICATION_JSON))
 			.andExpect(status().isOk())
 			.andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
-			.andExpect(content().encoding(WQPFilter.DEFAULT_ENCODING))
+			.andExpect(content().encoding(BaseRestController.DEFAULT_ENCODING))
 			.andReturn();
 		assertThat(new JSONObject(rtn.getResponse().getContentAsString()),
 				sameJSONObjectAs(new JSONObject(getCompareFile("srsnames.json"))));
@@ -89,9 +90,9 @@ public class SrsnamesControllerTest extends BaseSpringTest {
 
 	@Test
 	public void getAsCsvTest() throws Exception {
-		MvcResult rtn = mockMvc.perform(get("/publicsrsnames?mimetype=csv").accept(MediaType.parseMediaType(SrsnamesController.MIME_TYPE_TEXT_CSV)))
+		MvcResult rtn = mockMvc.perform(get("/publicsrsnames?mimetype=csv").accept(MediaType.parseMediaType(SrsnamesController.MEDIA_TYPE_TEXT_CSV_UTF8_VALUE)))
 			.andExpect(status().isOk())
-			.andExpect(content().encoding(WQPFilter.DEFAULT_ENCODING))
+			.andExpect(content().encoding(BaseRestController.DEFAULT_ENCODING))
 			.andReturn();
 		assertTrue(rtn.getResponse().getHeader(SrsnamesController.HEADER_CONTENT_DISPOSITION).contains("attachment;filename=\"public_srsnames_"));
 		assertTrue(rtn.getResponse().getHeader(SrsnamesController.HEADER_CONTENT_DISPOSITION).contains(".zip\""));
@@ -105,7 +106,7 @@ public class SrsnamesControllerTest extends BaseSpringTest {
 		while ((len = zip.read(buffer)) > 0) {
 			os.write(buffer, 0, len);
 		}
-		assertEquals(getCompareFile("srsnames.csv"), os.toString(WQPFilter.DEFAULT_ENCODING));
+		assertEquals(getCompareFile("srsnames.csv"), os.toString(BaseRestController.DEFAULT_ENCODING));
 	}
 
 }

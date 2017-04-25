@@ -1,7 +1,6 @@
 package gov.usgs.cida.qw.codes.webservices;
 
 import gov.usgs.cida.qw.BaseRestController;
-import gov.usgs.cida.qw.WQPFilter;
 import gov.usgs.cida.qw.codes.Code;
 import gov.usgs.cida.qw.codes.CodeList;
 import gov.usgs.cida.qw.codes.CodeType;
@@ -35,7 +34,7 @@ public abstract class CodesRestController extends BaseRestController {
 
 			if (StringUtils.hasText(text)) {
 				try {
-					queryParams.put("text", URLDecoder.decode(text, WQPFilter.DEFAULT_ENCODING));
+					queryParams.put("text", URLDecoder.decode(text, BaseRestController.DEFAULT_ENCODING));
 				} catch (UnsupportedEncodingException e) {
 					throw new AssertionError("UTF-8 not supported");
 				}
@@ -61,7 +60,11 @@ public abstract class CodesRestController extends BaseRestController {
 	protected Code getCode(final CodeType codeType, final String codeValue, WebRequest webRequest, HttpServletResponse response) {
 		Code rtn = null;
 		if (!isNotModified(webRequest)) {
-			rtn = codeDao.getCode(codeType, codeValue);
+			try {
+				rtn = codeDao.getCode(codeType, URLDecoder.decode(codeValue, BaseRestController.DEFAULT_ENCODING));
+			} catch (UnsupportedEncodingException e) {
+				throw new AssertionError("UTF-8 not supported");
+			}
 			if (null == rtn) {
 				response.setStatus(HttpStatus.NOT_FOUND.value());
 			}
