@@ -17,7 +17,7 @@ public class CharacteristicTypeRestControllerTest extends BaseCodesRestControlle
 
 	public static String TEST_ENDPOINT = "/codes/characteristictypes";
 	public static String TEST_LEGACY_ENDPOINT = "/codes/characteristictype";
-	public static String CODE_VALUE = "Population/Community";
+	public static String CODE_VALUE = "Population%2FCommunity";
 	public static String CODE_JSON = "{\"value\":\"Population/Community\",\"providers\":\"STORET\"}";
 	public static String CODE_XML = XML_HEADER +"<Code value=\"Population/Community\" providers=\"STORET\"/>";
 	public static String SEARCH_TEXT = "Inorganics";

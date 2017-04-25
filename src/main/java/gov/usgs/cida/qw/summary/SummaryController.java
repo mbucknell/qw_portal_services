@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,8 +34,7 @@ public class SummaryController extends BaseRestController {
 	private SummaryDao summaryDao;
 
 	@Autowired
-	public SummaryController(@Qualifier("lastUpdateDao") final LastUpdateDao lastUpdateDao,
-			@Qualifier("summaryDao") final SummaryDao summaryDao) {
+	public SummaryController(final LastUpdateDao lastUpdateDao, final SummaryDao summaryDao) {
 		this.lastUpdateDao = lastUpdateDao;
 		this.summaryDao = summaryDao;
 	}

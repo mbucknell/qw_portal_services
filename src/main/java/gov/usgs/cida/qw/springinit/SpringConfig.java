@@ -1,6 +1,7 @@
 package gov.usgs.cida.qw.springinit;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -12,8 +13,11 @@ import org.springframework.web.servlet.config.annotation.DefaultServletHandlerCo
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
+import gov.usgs.cida.qw.BaseRestController;
 import gov.usgs.cida.qw.CustomStringToArrayConverter;
+import gov.usgs.cida.qw.UrlPathHelperNonDecoding;
 
 @Configuration
 @Import(MybatisConfig.class)
@@ -39,10 +43,11 @@ public class SpringConfig extends WebMvcConfigurerAdapter {
 			.favorPathExtension(false)
 			.favorParameter(true)
 			.parameterName("mimeType")
-			.defaultContentType(MediaType.APPLICATION_XML)
-			.mediaType("csv", new MediaType("text","csv"))
-			.mediaType("xml", MediaType.APPLICATION_XML)
-			.mediaType("json", MediaType.APPLICATION_JSON)
+			.defaultContentType(BaseRestController.MEDIA_TYPE_APPLICATION_XML_UTF8)
+			.mediaType("csv", BaseRestController.MEDIA_TYPE_TEXT_CSV_UTF8)
+			.mediaType("xml", BaseRestController.MEDIA_TYPE_APPLICATION_XML_UTF8)
+			.mediaType("json", MediaType.APPLICATION_JSON_UTF8)
+			.mediaType("text", MediaType.TEXT_PLAIN)
 			;
 	}
 
@@ -52,6 +57,16 @@ public class SpringConfig extends WebMvcConfigurerAdapter {
 		AntPathMatcher matcher = new AntPathMatcher();
 		matcher.setCaseSensitive(false);
 		configurer.setPathMatcher(matcher);
+	}
+
+	@Bean
+	public RequestMappingHandlerMapping getRequestMappingHandlerMapping() {
+		//This is needed to allow encoded slashes in the code url - for example Fish/Nekton is a valid value and must be passed in the url as Fish%2FNekton
+		//Be sure to also set the tomcat property org.apache.tomcat.util.buf.UDecoder.ALLOW_ENCODED_SLASH=true
+		RequestMappingHandlerMapping rtn = new RequestMappingHandlerMapping();
+		rtn.setOrder(-1);
+		rtn.setUrlPathHelper(new UrlPathHelperNonDecoding());
+		return rtn;
 	}
 
 }
