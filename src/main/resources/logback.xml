@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <configuration scan="true" scanPeriod="15 minutes">
-
 	<appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
 		<encoder>
 			<pattern>%d{ISO8601} %p %t %c{40}.%M - %m%n</pattern>
@@ -9,12 +8,12 @@
 
 	<appender name="file"
 		class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<File>${catalina.base}/logs/nldi-services.log</File>
+		<File>${catalina.base}/logs/qw_portal_services.log</File>
 		<encoder>
 			<pattern>%d{ISO8601} %p %t %c{40}.%M - %m%n</pattern>
 		</encoder>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<fileNamePattern>${catalina.base}/logs/nldi-services.%d{yyyy-MM-dd}.log
+			<fileNamePattern>${catalina.base}/logs/qw_portal_services.%d{yyyy-MM-dd}.log
 			</fileNamePattern>
 			<maxHistory>30</maxHistory>
 		</rollingPolicy>
@@ -33,5 +32,6 @@
 	<logger name="org.springframework" level="INFO" />
 	<logger name="org.mybatis" level="INFO" />
 	<logger name="java.sql" level="INFO" />
+	<logger name="springfox" level="INFO" />
 
 </configuration>

@@ -19,9 +19,13 @@ import gov.usgs.cida.qw.codes.Code;
 import gov.usgs.cida.qw.codes.CodeList;
 import gov.usgs.cida.qw.codes.CodeType;
 import gov.usgs.cida.qw.codes.dao.CodeDao;
+import gov.usgs.cida.qw.swagger.SwaggerConfig;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
+@Api(tags={SwaggerConfig.COUNTRY_CODE_TAG_NAME})
 @RestController
-@RequestMapping(value={"codes/countries", "codes/countrycode"}, produces={BaseRestController.MEDIA_TYPE_APPLICATION_XML_UTF8_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
+@RequestMapping(value="codes/countrycode", produces={BaseRestController.MEDIA_TYPE_APPLICATION_XML_UTF8_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
 public class CountriesRestController extends CodesRestController {
 
 	private static final Logger LOG = LoggerFactory.getLogger(CountriesRestController.class);
@@ -32,7 +36,8 @@ public class CountriesRestController extends CodesRestController {
 		super.codeDao = codeDao;
 	}
 
-	@GetMapping(params="!value")
+	@ApiOperation(value="Return a filtered and paged list of valid Country Codes.")
+	@GetMapping()
 	public CodeList getCountries(final @RequestParam(value="text", required=false) String text,
 			final @RequestParam(value="pagenumber", required=false) String pageNumber,
 			final @RequestParam(value="pagesize", required=false) String pageSize,
@@ -41,6 +46,7 @@ public class CountriesRestController extends CodesRestController {
 		return getList(CodeType.COUNTRYCODE, text, pageNumber, pageSize, null, webRequest);
 	}
 
+	@ApiOperation(value="Return the requested Country Code.")
 	@GetMapping("/{value}")
 	public Code getCountry(final @PathVariable(value="value") String value, WebRequest webRequest, HttpServletResponse response) {
 		LOG.debug("country");

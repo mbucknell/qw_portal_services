@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Bean;
 public class JndiConfig {
 
 	private final Context ctx;
-	
+
 	public JndiConfig() throws NamingException {
 		ctx = new InitialContext();
 	}
@@ -18,6 +18,16 @@ public class JndiConfig {
 	@Bean
 	public DataSource dataSource() throws Exception {
 		return (DataSource) ctx.lookup("java:comp/env/jdbc/WQPQW");
+	}
+
+	@Bean
+	public String displayHost() throws NamingException {
+		return (String) ctx.lookup("java:comp/env/qwPortalServices/displayHost");
+	}
+
+	@Bean
+	public String displayPath() throws NamingException {
+		return (String) ctx.lookup("java:comp/env/qwPortalServices/displayPath");
 	}
 
 }

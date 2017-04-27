@@ -44,7 +44,7 @@ public class GlobalDefaultExceptionHandler {
 			//Server logs can be used to troubleshoot problems.
 			String msgText = "Something bad happened. Contact us with Reference Number: " + hashValue;
 			LOG.error(msgText, ex);
-			rtn.put(ERROR, msgText);
+			response.sendError(HttpStatus.INTERNAL_SERVER_ERROR.value(), msgText);
 		}
 		return rtn;
 	}

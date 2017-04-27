@@ -19,9 +19,13 @@ import gov.usgs.cida.qw.codes.Code;
 import gov.usgs.cida.qw.codes.CodeList;
 import gov.usgs.cida.qw.codes.CodeType;
 import gov.usgs.cida.qw.codes.dao.CodeDao;
+import gov.usgs.cida.qw.swagger.SwaggerConfig;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
+@Api(tags={SwaggerConfig.CHARACTERISTIC_TYPE_TAG_NAME})
 @RestController
-@RequestMapping(value={"codes/characteristictypes", "codes/characteristictype"}, produces={BaseRestController.MEDIA_TYPE_APPLICATION_XML_UTF8_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
+@RequestMapping(value="codes/characteristictype", produces={BaseRestController.MEDIA_TYPE_APPLICATION_XML_UTF8_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
 public class CharacteristicTypeRestController extends CodesRestController {
 
 	private static final Logger LOG = LoggerFactory.getLogger(CharacteristicTypeRestController.class);
@@ -32,7 +36,8 @@ public class CharacteristicTypeRestController extends CodesRestController {
 		this.codeDao = codeDao;
 	}
 
-	@GetMapping(params="!value")
+	@ApiOperation(value="Return a filtered and paged list of valid Characteristic Types.")
+	@GetMapping()
 	public CodeList getCharacteristicTypes(final @RequestParam(value="text", required=false) String text,
 			final @RequestParam(value="pagenumber", required=false) String pageNumber,
 			final @RequestParam(value="pagesize", required=false) String pageSize,
@@ -41,6 +46,7 @@ public class CharacteristicTypeRestController extends CodesRestController {
 		return getList(CodeType.CHARACTERISTICTYPE, text, pageNumber, pageSize, null, webRequest);
 	}
 
+	@ApiOperation(value="Return the requested Characteristic Type.")
 	@GetMapping("/{value}")
 	public Code getAssemblageName(final @PathVariable(value="value") String value, WebRequest webRequest, HttpServletResponse response) {
 		LOG.debug("characteristicType");

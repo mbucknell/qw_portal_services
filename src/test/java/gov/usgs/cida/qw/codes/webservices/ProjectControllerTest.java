@@ -15,7 +15,7 @@ import com.github.springtestdbunit.annotation.DatabaseSetups;
 })
 public class ProjectControllerTest extends BaseCodesRestControllerTest {
 
-	public static String TEST_ENDPOINT = "/codes/projects";
+	public static String TEST_ENDPOINT = "/codes/project";
 	public static String CODE_VALUE = "Bb b";
 	public static String CODE_JSON = "{\"value\":\"Bb b\",\"providers\":\"NWIS STEWARDS\"}";
 	public static String CODE_XML = XML_HEADER +"<Code value=\"Bb b\" providers=\"NWIS STEWARDS\"/>";

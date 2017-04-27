@@ -22,9 +22,13 @@ import gov.usgs.cida.qw.codes.Code;
 import gov.usgs.cida.qw.codes.CodeList;
 import gov.usgs.cida.qw.codes.CodeType;
 import gov.usgs.cida.qw.codes.dao.CodeDao;
+import gov.usgs.cida.qw.swagger.SwaggerConfig;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
+@Api(tags={SwaggerConfig.STATE_CODE_TAG_NAME})
 @RestController
-@RequestMapping(value={"codes/states", "codes/statecode"}, produces={BaseRestController.MEDIA_TYPE_APPLICATION_XML_UTF8_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
+@RequestMapping(value="codes/statecode", produces={BaseRestController.MEDIA_TYPE_APPLICATION_XML_UTF8_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
 public class StateRestController extends CodesRestController {
 
 	private static final Logger LOG = LoggerFactory.getLogger(StateRestController.class);
@@ -35,7 +39,8 @@ public class StateRestController extends CodesRestController {
 		this.codeDao = codeDao;
 	}
 
-	@GetMapping(params="!value")
+	@ApiOperation(value="Return a filtered and paged list of valid State Codes.")
+	@GetMapping()
 	public CodeList getStates(final @RequestParam(value="countrycode", required=false) String[] countrycodes,
 			final @RequestParam(value="text", required=false) String text,
 			final @RequestParam(value="pagenumber", required=false) String pageNumber,
@@ -47,6 +52,7 @@ public class StateRestController extends CodesRestController {
 		return getList(CodeType.STATECODE, text, pageNumber, pageSize, addlParms, webRequest);
 	}
 
+	@ApiOperation(value="Return the requested State Code.")
 	@GetMapping("/{value}")
 	public Code getState(final @PathVariable(value="value") String value, WebRequest webRequest, HttpServletResponse response) {
 		LOG.debug("state");
