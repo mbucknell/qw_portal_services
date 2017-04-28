@@ -19,11 +19,14 @@ import gov.usgs.cida.qw.codes.Code;
 import gov.usgs.cida.qw.codes.CodeList;
 import gov.usgs.cida.qw.codes.CodeType;
 import gov.usgs.cida.qw.codes.dao.CodeDao;
+import gov.usgs.cida.qw.swagger.SwaggerConfig;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
+@Api(tags={SwaggerConfig.ASSEMBLAGE_TAG_NAME})
 @RestController
-@RequestMapping(value={"codes/assemblages", "codes/assemblage"}, produces={BaseRestController.MEDIA_TYPE_APPLICATION_XML_UTF8_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
+@RequestMapping(value="codes/assemblage", produces={BaseRestController.MEDIA_TYPE_APPLICATION_XML_UTF8_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
 public class AssemblageRestController extends CodesRestController {
-
 	private static final Logger LOG = LoggerFactory.getLogger(CharacteristicNameRestController.class);
 
 	@Autowired
@@ -32,6 +35,7 @@ public class AssemblageRestController extends CodesRestController {
 		this.codeDao = codeDao;
 	}
 
+	@ApiOperation(value="Return a filtered and paged list of valid Assemblages.")
 	@GetMapping()
 	public CodeList getAssemblageNames(final @RequestParam(value="text", required=false) String text,
 			final @RequestParam(value="pagenumber", required=false) String pageNumber,
@@ -41,6 +45,7 @@ public class AssemblageRestController extends CodesRestController {
 		return getList(CodeType.ASSEMBLAGE, text, pageNumber, pageSize, null, webRequest);
 	}
 
+	@ApiOperation(value="Return the requested Assemblage.")
 	@GetMapping("/{value}")
 	public Code getAssemblageName(final @PathVariable(value="value") String value,
 			WebRequest webRequest, HttpServletResponse response) {

@@ -8,11 +8,13 @@ import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
 
+import gov.usgs.cida.qw.swagger.SwaggerConfig;
+
 public class SpringInitializer implements WebApplicationInitializer {
 
 	public void onStartup(ServletContext servletContext) throws ServletException {
 		AnnotationConfigWebApplicationContext ctx = new AnnotationConfigWebApplicationContext();
-		ctx.register(SpringConfig.class, JndiConfig.class);
+		ctx.register(SpringConfig.class, JndiConfig.class, SwaggerConfig.class);
 
 		Dynamic servlet = servletContext.addServlet("springDispatcher", new DispatcherServlet(ctx));
 		servlet.addMapping("/");

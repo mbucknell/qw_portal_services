@@ -19,9 +19,13 @@ import gov.usgs.cida.qw.codes.Code;
 import gov.usgs.cida.qw.codes.CodeList;
 import gov.usgs.cida.qw.codes.CodeType;
 import gov.usgs.cida.qw.codes.dao.CodeDao;
+import gov.usgs.cida.qw.swagger.SwaggerConfig;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
+@Api(tags={SwaggerConfig.SUBJECT_TAXONOMIC_NAME_TAG_NAME})
 @RestController
-@RequestMapping(value={"codes/subjecttaxonomicnames", "codes/subjecttaxonomicname"}, produces={BaseRestController.MEDIA_TYPE_APPLICATION_XML_UTF8_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
+@RequestMapping(value="codes/subjecttaxonomicname", produces={BaseRestController.MEDIA_TYPE_APPLICATION_XML_UTF8_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
 public class SubjectTaxonomicNameRestController extends CodesRestController {
 
 	private static final Logger LOG = LoggerFactory.getLogger(SubjectTaxonomicNameRestController.class);
@@ -32,6 +36,7 @@ public class SubjectTaxonomicNameRestController extends CodesRestController {
 		this.codeDao = codeDao;
 	}
 
+	@ApiOperation(value="Return a filtered and paged list of valid Taxonomic Names.")
 	@GetMapping()
 	public CodeList getTaxonomicNames(final @RequestParam(value="text", required=false) String text,
 			final @RequestParam(value="pagenumber", required=false) String pageNumber,
@@ -41,6 +46,7 @@ public class SubjectTaxonomicNameRestController extends CodesRestController {
 		return getList(CodeType.SUBJECTTAXONOMICNAME, text, pageNumber, pageSize, null, webRequest);
 	}
 
+	@ApiOperation(value="Return the requested Taxonomic Name.")
 	@GetMapping("/{value}")
 	public Code getTaxonomicName(final @PathVariable(value="value") String value, WebRequest webRequest, HttpServletResponse response) {
 		LOG.debug("subjectTaxonomicName");

@@ -60,9 +60,9 @@ public class SrsnamesControllerTest extends BaseSpringTest {
 
 	@Test
 	public void getAsJsonTest() throws Exception {
-		MvcResult rtn = mockMvc.perform(get("/publicsrsnames?mimetype=json").accept(MediaType.APPLICATION_JSON))
+		MvcResult rtn = mockMvc.perform(get("/public_srsnames?mimetype=json").accept(MediaType.APPLICATION_JSON))
 			.andExpect(status().isOk())
-			.andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+			.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
 			.andExpect(content().encoding(BaseRestController.DEFAULT_ENCODING))
 			.andReturn();
 		assertThat(new JSONObject(rtn.getResponse().getContentAsString()),
@@ -70,10 +70,10 @@ public class SrsnamesControllerTest extends BaseSpringTest {
 	}
 
 	@Test
-	public void doCsvTest() {
+	public void writeCsvDataTest() {
 		OutputStream stream = new ByteArrayOutputStream();
 		PrintWriter writer = new PrintWriter(stream);
-		SrsnamesController service = new SrsnamesController(lastUpdateDao, pCodeDao);
+		SrsnamesController service = new SrsnamesController(lastUpdateDao, pCodeDao, null);
 		LinkedHashMap<String, Object> item1 = new LinkedHashMap<String, Object>();
 		item1.put("bb", "222");
 		item1.put("aa", "111");
@@ -83,14 +83,14 @@ public class SrsnamesControllerTest extends BaseSpringTest {
 		List<LinkedHashMap<String, Object>> data = new ArrayList<LinkedHashMap<String, Object>>();
 		data.add(item1);
 		data.add(item2);
-		service.doCsv(writer, data);
+		service.writeCsvData(writer, data);
 		writer.close();
 		assertEquals("\"bb\",\"aa\"\n\"222\",\"111\"\n\"bbb\",\"ccc\"\n", stream.toString());
 	}
 
 	@Test
 	public void getAsCsvTest() throws Exception {
-		MvcResult rtn = mockMvc.perform(get("/publicsrsnames?mimetype=csv").accept(MediaType.parseMediaType(SrsnamesController.MEDIA_TYPE_TEXT_CSV_UTF8_VALUE)))
+		MvcResult rtn = mockMvc.perform(get("/public_srsnames?mimetype=csv").accept(MediaType.parseMediaType(SrsnamesController.MEDIA_TYPE_TEXT_CSV_UTF8_VALUE)))
 			.andExpect(status().isOk())
 			.andExpect(content().encoding(BaseRestController.DEFAULT_ENCODING))
 			.andReturn();

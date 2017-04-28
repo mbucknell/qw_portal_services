@@ -24,9 +24,14 @@ import gov.usgs.cida.qw.LastUpdateDao;
 import gov.usgs.cida.qw.srsnames.SrsnamesController;
 import gov.usgs.cida.qw.summary.SldTemplateEngine.MapDataSource;
 import gov.usgs.cida.qw.summary.SldTemplateEngine.MapGeometry;
+import gov.usgs.cida.qw.swagger.SwaggerConfig;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 
+@Api(tags={SwaggerConfig.SUMMARY_TAG_NAME})
 @RestController
-@RequestMapping("summary")
+@RequestMapping(value="summary", produces=BaseRestController.MEDIA_TYPE_APPLICATION_XML_UTF8_VALUE)
 public class SummaryController extends BaseRestController {
 
 	private static final Logger LOG = LoggerFactory.getLogger(SrsnamesController.class);
@@ -39,10 +44,11 @@ public class SummaryController extends BaseRestController {
 		this.summaryDao = summaryDao;
 	}
 
+	@ApiOperation(value="Return the requested National Results Coverage Map SLD.")
 	@GetMapping
-	public String getSummarySld(final @RequestParam(value="dataSource") String dataSource,
-			final @RequestParam(value="geometry") String geometry,
-			final @RequestParam(value="timeFrame") String timeFrame,
+	public String getSummarySld(@ApiParam(value="A=All; E=EPA; N=NWIS", allowableValues="A,E,N") final @RequestParam(value="dataSource") String dataSource,
+			@ApiParam(value="S=States; C=Counties; H=Huc8", allowableValues="S,C,H") final @RequestParam(value="geometry") String geometry,
+			@ApiParam(value="A=All; 1=Last 12 Months; 5=Last 5 Years", allowableValues="A,1,5") final @RequestParam(value="timeFrame") String timeFrame,
 			HttpServletRequest request, HttpServletResponse response, WebRequest webRequest) throws IOException {
 		LOG.debug("summary");
 		response.setCharacterEncoding("ISO-8859-1");

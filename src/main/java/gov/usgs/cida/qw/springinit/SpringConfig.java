@@ -3,7 +3,6 @@ package gov.usgs.cida.qw.springinit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.http.MediaType;
@@ -12,6 +11,7 @@ import org.springframework.web.servlet.config.annotation.ContentNegotiationConfi
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
@@ -19,7 +19,6 @@ import gov.usgs.cida.qw.BaseRestController;
 import gov.usgs.cida.qw.CustomStringToArrayConverter;
 import gov.usgs.cida.qw.UrlPathHelperNonDecoding;
 
-@Configuration
 @Import(MybatisConfig.class)
 @ComponentScan(basePackages="gov.usgs.cida.qw")
 @EnableWebMvc
@@ -67,6 +66,14 @@ public class SpringConfig extends WebMvcConfigurerAdapter {
 		rtn.setOrder(-1);
 		rtn.setUrlPathHelper(new UrlPathHelperNonDecoding());
 		return rtn;
+	}
+
+	@Override
+	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+		registry.addResourceHandler("swagger-ui.html", "webjars/**")
+			.addResourceLocations("classpath:/META-INF/resources/", "classpath:/META-INF/resources/webjars/");
+
+		registry.setOrder(-1);
 	}
 
 }
