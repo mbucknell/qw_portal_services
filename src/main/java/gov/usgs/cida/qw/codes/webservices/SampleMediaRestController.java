@@ -7,7 +7,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -46,9 +45,9 @@ public class SampleMediaRestController extends CodesRestController {
 		return getList(CodeType.SAMPLEMEDIA, text, pageNumber, pageSize, null, webRequest);
 	}
 
-	@ApiOperation(value="Return the requested Sample Media.")
-	@GetMapping("/{value}")
-	public Code getASampleMedia(final @PathVariable(value="value") String value, WebRequest webRequest, HttpServletResponse response) {
+	@ApiOperation(value="Validate and return the requested Sample Media.")
+	@GetMapping("/validate")
+	public Code getASampleMedia(final @RequestParam(value="value") String value, WebRequest webRequest, HttpServletResponse response) {
 		LOG.debug("aSampleMedia");
 		return getCode(CodeType.SAMPLEMEDIA, value, webRequest, response);
 	}

@@ -7,7 +7,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -46,9 +45,9 @@ public class CharacteristicNameRestController extends CodesRestController {
 		return getList(CodeType.CHARACTERISTICNAME, text, pageNumber, pageSize, null, webRequest);
 	}
 
-	@ApiOperation(value="Return the requested Characteristic Name.")
-	@GetMapping("/{value}")
-	public Code getCharacteristicName(final @PathVariable(value="value") String value, WebRequest webRequest, HttpServletResponse response) {
+	@ApiOperation(value="Validate and return the requested Characteristic Name.")
+	@GetMapping("/validate")
+	public Code getCharacteristicName(final @RequestParam(value="value") String value, WebRequest webRequest, HttpServletResponse response) {
 		LOG.debug("characteristicName");
 		return getCode(CodeType.CHARACTERISTICNAME, value, webRequest, response);
 	}

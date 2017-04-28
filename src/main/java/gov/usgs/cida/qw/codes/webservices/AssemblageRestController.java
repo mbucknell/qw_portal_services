@@ -7,7 +7,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -45,9 +44,9 @@ public class AssemblageRestController extends CodesRestController {
 		return getList(CodeType.ASSEMBLAGE, text, pageNumber, pageSize, null, webRequest);
 	}
 
-	@ApiOperation(value="Return the requested Assemblage.")
-	@GetMapping("/{value}")
-	public Code getAssemblageName(final @PathVariable(value="value") String value,
+	@ApiOperation(value="Validate and return the requested Assemblage.")
+	@GetMapping("/validate")
+	public Code getAssemblageName(final @RequestParam(value="value") String value,
 			WebRequest webRequest, HttpServletResponse response) {
 		LOG.debug("assemblageName");
 		return getCode(CodeType.ASSEMBLAGE, value, webRequest, response);

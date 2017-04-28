@@ -1,7 +1,6 @@
 package gov.usgs.cida.qw.springinit;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
 import org.springframework.format.FormatterRegistry;
@@ -13,11 +12,9 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
 import gov.usgs.cida.qw.BaseRestController;
 import gov.usgs.cida.qw.CustomStringToArrayConverter;
-import gov.usgs.cida.qw.UrlPathHelperNonDecoding;
 
 @Import(MybatisConfig.class)
 @ComponentScan(basePackages="gov.usgs.cida.qw")
@@ -56,16 +53,6 @@ public class SpringConfig extends WebMvcConfigurerAdapter {
 		AntPathMatcher matcher = new AntPathMatcher();
 		matcher.setCaseSensitive(false);
 		configurer.setPathMatcher(matcher);
-	}
-
-	@Bean
-	public RequestMappingHandlerMapping getRequestMappingHandlerMapping() {
-		//This is needed to allow encoded slashes in the code url - for example Fish/Nekton is a valid value and must be passed in the url as Fish%2FNekton
-		//Be sure to also set the tomcat property org.apache.tomcat.util.buf.UDecoder.ALLOW_ENCODED_SLASH=true
-		RequestMappingHandlerMapping rtn = new RequestMappingHandlerMapping();
-		rtn.setOrder(-1);
-		rtn.setUrlPathHelper(new UrlPathHelperNonDecoding());
-		return rtn;
 	}
 
 	@Override
