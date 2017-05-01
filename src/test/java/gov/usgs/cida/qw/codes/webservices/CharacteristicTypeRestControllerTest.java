@@ -16,7 +16,7 @@ import com.github.springtestdbunit.annotation.DatabaseSetups;
 public class CharacteristicTypeRestControllerTest extends BaseCodesRestControllerTest {
 
 	public static String TEST_ENDPOINT = "/codes/characteristictype";
-	public static String CODE_VALUE = "Population%2FCommunity";
+	public static String CODE_VALUE = "Population/Community";
 	public static String CODE_JSON = "{\"value\":\"Population/Community\",\"providers\":\"STORET\"}";
 	public static String CODE_XML = XML_HEADER +"<Code value=\"Population/Community\" providers=\"STORET\"/>";
 	public static String SEARCH_TEXT = "Inorganics";

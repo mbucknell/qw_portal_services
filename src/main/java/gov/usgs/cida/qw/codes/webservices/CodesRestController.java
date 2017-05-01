@@ -60,11 +60,7 @@ public abstract class CodesRestController extends BaseRestController {
 	protected Code getCode(final CodeType codeType, final String codeValue, WebRequest webRequest, HttpServletResponse response) {
 		Code rtn = null;
 		if (!isNotModified(webRequest)) {
-			try {
-				rtn = codeDao.getCode(codeType, URLDecoder.decode(codeValue, BaseRestController.DEFAULT_ENCODING));
-			} catch (UnsupportedEncodingException e) {
-				throw new AssertionError("UTF-8 not supported");
-			}
+			rtn = codeDao.getCode(codeType, codeValue);
 			if (null == rtn) {
 				response.setStatus(HttpStatus.NOT_FOUND.value());
 			}
