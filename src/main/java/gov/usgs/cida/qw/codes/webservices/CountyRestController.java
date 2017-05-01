@@ -10,7 +10,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,9 +21,13 @@ import gov.usgs.cida.qw.codes.Code;
 import gov.usgs.cida.qw.codes.CodeList;
 import gov.usgs.cida.qw.codes.CodeType;
 import gov.usgs.cida.qw.codes.dao.CodeDao;
+import gov.usgs.cida.qw.swagger.SwaggerConfig;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
+@Api(tags={SwaggerConfig.COUNTY_CODE_TAG_NAME})
 @RestController
-@RequestMapping(value={"codes/counties", "codes/countycode"}, produces={BaseRestController.MEDIA_TYPE_APPLICATION_XML_UTF8_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
+@RequestMapping(value="codes/countycode", produces={BaseRestController.MEDIA_TYPE_APPLICATION_XML_UTF8_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
 public class CountyRestController extends CodesRestController {
 
 	private static final Logger LOG = LoggerFactory.getLogger(CountyRestController.class);
@@ -35,7 +38,8 @@ public class CountyRestController extends CodesRestController {
 		this.codeDao = codeDao;
 	}
 
-	@GetMapping(params="!value")
+	@ApiOperation(value="Return a filtered and paged list of valid County Codes.")
+	@GetMapping()
 	public CodeList getCounties(final @RequestParam(value="statecode", required=false) String[] statecodes,
 			final @RequestParam(value="text", required=false) String text,
 			final @RequestParam(value="pagenumber", required=false) String pageNumber,
@@ -47,8 +51,9 @@ public class CountyRestController extends CodesRestController {
 		return getList(CodeType.COUNTYCODE, text, pageNumber, pageSize, addlParms, webRequest);
 	}
 
-	@GetMapping("/{value}")
-	public Code getCounty(final @PathVariable(value="value") String value, WebRequest webRequest, HttpServletResponse response) {
+	@ApiOperation(value="Validate and return the requested County Code.")
+	@GetMapping("/validate")
+	public Code getCounty(final @RequestParam(value="value") String value, WebRequest webRequest, HttpServletResponse response) {
 		LOG.debug("county");
 		return getCode(CodeType.COUNTYCODE, value, webRequest, response);
 	}

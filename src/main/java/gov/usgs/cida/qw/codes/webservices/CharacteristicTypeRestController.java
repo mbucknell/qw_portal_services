@@ -7,7 +7,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,9 +18,13 @@ import gov.usgs.cida.qw.codes.Code;
 import gov.usgs.cida.qw.codes.CodeList;
 import gov.usgs.cida.qw.codes.CodeType;
 import gov.usgs.cida.qw.codes.dao.CodeDao;
+import gov.usgs.cida.qw.swagger.SwaggerConfig;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
+@Api(tags={SwaggerConfig.CHARACTERISTIC_TYPE_TAG_NAME})
 @RestController
-@RequestMapping(value={"codes/characteristictypes", "codes/characteristictype"}, produces={BaseRestController.MEDIA_TYPE_APPLICATION_XML_UTF8_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
+@RequestMapping(value="codes/characteristictype", produces={BaseRestController.MEDIA_TYPE_APPLICATION_XML_UTF8_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
 public class CharacteristicTypeRestController extends CodesRestController {
 
 	private static final Logger LOG = LoggerFactory.getLogger(CharacteristicTypeRestController.class);
@@ -32,7 +35,8 @@ public class CharacteristicTypeRestController extends CodesRestController {
 		this.codeDao = codeDao;
 	}
 
-	@GetMapping(params="!value")
+	@ApiOperation(value="Return a filtered and paged list of valid Characteristic Types.")
+	@GetMapping()
 	public CodeList getCharacteristicTypes(final @RequestParam(value="text", required=false) String text,
 			final @RequestParam(value="pagenumber", required=false) String pageNumber,
 			final @RequestParam(value="pagesize", required=false) String pageSize,
@@ -41,8 +45,9 @@ public class CharacteristicTypeRestController extends CodesRestController {
 		return getList(CodeType.CHARACTERISTICTYPE, text, pageNumber, pageSize, null, webRequest);
 	}
 
-	@GetMapping("/{value}")
-	public Code getAssemblageName(final @PathVariable(value="value") String value, WebRequest webRequest, HttpServletResponse response) {
+	@ApiOperation(value="Validate and return the requested Characteristic Type.")
+	@GetMapping("/validate")
+	public Code getAssemblageName(final @RequestParam(value="value") String value, WebRequest webRequest, HttpServletResponse response) {
 		LOG.debug("characteristicType");
 		return getCode(CodeType.CHARACTERISTICTYPE, value, webRequest, response);
 	}

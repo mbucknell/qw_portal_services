@@ -66,24 +66,24 @@ public abstract class BaseCodesRestControllerTest extends BaseSpringTest {
 	}
 
 	public void runGetCodeAsJson(String testEndpoint, String codeValue, String codeJson) throws Exception {
-		MvcResult rtn = runMock(testEndpoint + "/" + codeValue + "?mimeType=json", MediaType.APPLICATION_JSON_UTF8_VALUE, null);
+		MvcResult rtn = runMock(testEndpoint + "/validate?value=" + codeValue + "&mimeType=json", MediaType.APPLICATION_JSON_UTF8_VALUE, null);
 		assertThat(new JSONObject(rtn.getResponse().getContentAsString()),
 			sameJSONObjectAs(new JSONObject(codeJson)));
 
-		rtn = runMock(testEndpoint + "/" + codeValue, MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.APPLICATION_JSON_UTF8);
+		rtn = runMock(testEndpoint + "/validate?value=" + codeValue, MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.APPLICATION_JSON_UTF8);
 		assertThat(new JSONObject(rtn.getResponse().getContentAsString()),
 			sameJSONObjectAs(new JSONObject(codeJson)));
 	}
 
 	public void runGetCodeAsXml(String testEndpoint, String codeValue, String codeXml) throws Exception {
 		//xml is the default
-		MvcResult rtn = runMock(testEndpoint + "/" + codeValue, BaseRestController.MEDIA_TYPE_APPLICATION_XML_UTF8_VALUE, null);
+		MvcResult rtn = runMock(testEndpoint + "/validate?value=" + codeValue, BaseRestController.MEDIA_TYPE_APPLICATION_XML_UTF8_VALUE, null);
 		assertThat(rtn.getResponse().getContentAsString(), isIdenticalTo(codeXml));
 
-		rtn = runMock(testEndpoint + "/" + codeValue + "?mimeType=xml", BaseRestController.MEDIA_TYPE_APPLICATION_XML_UTF8_VALUE, null);
+		rtn = runMock(testEndpoint + "/validate?value=" + codeValue + "&mimeType=xml", BaseRestController.MEDIA_TYPE_APPLICATION_XML_UTF8_VALUE, null);
 		assertThat(rtn.getResponse().getContentAsString(), isIdenticalTo(codeXml));
 
-		rtn = runMock(testEndpoint + "/" + codeValue, BaseRestController.MEDIA_TYPE_APPLICATION_XML_UTF8_VALUE, BaseRestController.MEDIA_TYPE_APPLICATION_XML_UTF8);
+		rtn = runMock(testEndpoint + "/validate?value=" + codeValue, BaseRestController.MEDIA_TYPE_APPLICATION_XML_UTF8_VALUE, BaseRestController.MEDIA_TYPE_APPLICATION_XML_UTF8);
 		assertThat(rtn.getResponse().getContentAsString(), isIdenticalTo(codeXml));
 	}
 
