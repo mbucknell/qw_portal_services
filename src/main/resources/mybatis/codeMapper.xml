@@ -15,6 +15,13 @@
              upper(code_value) like '%' || upper(#{text}) || '%')
         </if>
     </sql>
+    
+    <sql id="mlTextSearch">
+        <if test="text != null">
+            (upper(station_name) like '%' || upper(#{text}) || '%' or
+             upper(site_id) like '%' || upper(#{text}) || '%')
+        </if>
+    </sql>
 
     <sql id="codeValueSearch">
         where code_value = #{value,jdbcType=VARCHAR}
@@ -30,9 +37,16 @@
                <include refid="listAggProviders"/>
           from
     </sql>
+    
+    <sql id="monitoringLocationSelect">
+        select c.site_id as code_value,
+               min(c.station_name) description,
+               <include refid="listAggProviders" />
+        from station      
+    </sql>
 
     <sql id="selectCount">
-        select count(distinct c.code_value)
+        select count(distinct code_value)
           from
     </sql>
 
@@ -58,6 +72,24 @@
                  length(c.code_value),
         </if>
                  c.code_value
+    </sql>
+    
+    <sql id="mlGroupBy">
+        group by c.site_id
+    </sql>
+
+    <sql id="mlGroupAndOrderBy">
+        <include refid="mlGroupBy"/>
+        order by c.site_id
+    </sql>
+
+    <sql id="mlGroupAndOrderBySearch">
+        <include refid="mlGroupBy"/>
+        order by
+        <if test="text != null">
+                 length(c.site_id),
+        </if>
+                 c.site_id
     </sql>
 
     <sql id="paging">
@@ -292,6 +324,32 @@
         </where>
     </select>
 
+
+    <select id="codeMonitoringLocation" parameterType="String" resultMap="codeResult">
+        <include refid="monitoringLocationSelect" />
+        <include refid="joinDataSource"/>
+        <include refid="codeValueSearch"/>
+        <include refid="mlGroupAndOrderBy"/>
+    </select>
+    
+    <select id="codeMonitoringLocationList" parameterType="map" resultMap="codeResult">
+        <include refid="monitoringLocationSelect" />
+        <include refid="joinDataSource"/>
+        <where>
+            <include refid="mlTextSearch"/>
+        </where>
+        <include refid="mlGroupAndOrderBySearch"/>
+        <include refid="paging"/>
+    </select>
+    
+    <select id="codeMonitoringLocationCount" parameterType="map" resultType="int">
+        select count(distinct c.site_id) 
+        from station
+        <include refid="joinDataSource"/>
+        <where>
+            <include refid="mlTextSearch"/>
+        </where>
+    </select>
 
 
     <select id="codeProject" parameterType="String" resultMap="codeResult">

@@ -33,6 +33,7 @@ public class SwaggerConfig {
 	public static final String COUNTRY_CODE_TAG_NAME = "Country Code";
 	public static final String COUNTY_CODE_TAG_NAME = "County Code";
 	public static final String ORGANIZATION_TAG_NAME = "Organization";
+	public static final String MONITORING_LOCATION_TAG_NAME = "Monitoring Location";
 	public static final String PROJECT_TAG_NAME = "Project";
 	public static final String PROVIDERS_TAG_NAME = "Providers";
 	public static final String SAMPLE_MEDIA_TAG_NAME = "Sample Media";
