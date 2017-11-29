@@ -26,13 +26,13 @@
 
 	<ciManagement>
 		<system>Jenkins</system>
-		<url>http://cida-eros-wqpdev.er.usgs.gov:8081/jenkins/job/qw_portal_services/</url> 
+		<url>https://cida-eros-wqpdev.er.usgs.gov:8444/jenkins/view/Web%20Services/job/qw_portal_services/</url> 
 	</ciManagement>
 
 	<scm>
-		<connection>scm:git:http://cida-eros-stash.er.usgs.gov:7999/wqp/qw_portal_services.git</connection>
-		<developerConnection>scm:git:ssh://cida-eros-stash.er.usgs.gov:7999/wqp/qw_portal_services.git</developerConnection>
-		<url>http:cida-eros-stash.er.usgs.gov:7999/wqp/qw_portal_services.git</url>
+		<connection>scm:git:https://github.com/NWQMC/qw_portal_services.git</connection>
+		<developerConnection>scm:git:git@github.com:NWQMC/qw_portal_services.git</developerConnection>
+		<url>https://github.com/NWQMC/qw_portal_services.git</url>
 		<tag>HEAD</tag>
 	</scm>
 
