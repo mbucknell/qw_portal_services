@@ -26,6 +26,10 @@
     <sql id="codeValueSearch">
         where code_value = #{value,jdbcType=VARCHAR}
     </sql>
+    
+    <sql id="mlCodeValueSearch">
+        where site_id = #{value,jdbcType=VARCHAR}
+    </sql>
 
     <sql id="listAggProviders">
         listagg(data_source.text, ' ') within group (order by data_source.text) providers
@@ -328,7 +332,7 @@
     <select id="codeMonitoringLocation" parameterType="String" resultMap="codeResult">
         <include refid="monitoringLocationSelect" />
         <include refid="joinDataSource"/>
-        <include refid="codeValueSearch"/>
+        <include refid="mlCodeValueSearch"/>
         <include refid="mlGroupAndOrderBy"/>
     </select>
     
