@@ -330,7 +330,7 @@
 						</goals>
 						<configuration>
 							<includes>
-								<include>**/*.class</include>
+								<include>**/MonitoringLocationRestControllerTest.class</include>
 							</includes>
 						</configuration>
 					</execution>
