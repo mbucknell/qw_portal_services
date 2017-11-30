@@ -62,7 +62,7 @@
     </sql>
 
     <sql id="selectCount">
-        select count(distinct code_value)
+        select count(distinct c.code_value)
           from
     </sql>
 
