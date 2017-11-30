@@ -11,7 +11,7 @@ import com.github.springtestdbunit.annotation.DatabaseSetups;
 @Category(DatabaseRequiredTest.class)
 @DatabaseSetups({
 	@DatabaseSetup("classpath:/testData/clearAll.xml"),
-	@DatabaseSetup("classpath:/testData/stationCode.xml")
+	@DatabaseSetup("classpath:/testData/monitoringLocation.xml")
 })
 public class MonitoringLocationRestControllerTest extends BaseCodesRestControllerTest{
 	
@@ -22,8 +22,8 @@ public class MonitoringLocationRestControllerTest extends BaseCodesRestControlle
 	public static String SEARCH_TEXT = "USGS-070837";
 	public static String SEARCH_JSON = "{\"codes\":[{\"value\":\"USGS-07083710\",\"desc\":\"ARKANSAS RIVER BELOW EMPIRE GULCH NEAR MALTA, CO\",\"providers\":\"NWIS\"}],\"recordCount\":2}";
 	public static String SEARCH_XML = XML_HEADER + "<Codes><Code value=\"USGS-07083710\" desc=\"ARKANSAS RIVER BELOW EMPIRE GULCH NEAR MALTA, CO\" providers=\"NWIS\"/><recordCount>2</recordCount></Codes>"; 
-	public static String COMPARE_FILE_JSON = "stationCode.json";
-	public static String COMPARE_FILE_XML = "stationCode.xml";
+	public static String COMPARE_FILE_JSON = "monitoringLocation.json";
+	public static String COMPARE_FILE_XML = "monitoringLocation.xml";
 
 	@Test
 	public void getListAsJsonTest() throws Exception {

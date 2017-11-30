@@ -450,7 +450,7 @@ public class CodeDaoTest extends BaseSpringTest {
 	}
 	
 	@Test
-	@DatabaseSetup("classpath:/testData/stationCode.xml")
+	@DatabaseSetup("classpath:/testData/monitoringLocation.xml")
 	public void monitoringLocationTest() {
 		List<Code> codes = codeDao.getCodes(CodeType.MONITORINGLOCATION);
 		assertNotNull(codes);
