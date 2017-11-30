@@ -483,6 +483,56 @@ public class CodeDaoTest extends BaseSpringTest {
 		assertEquals("NWIS", code.getProviders());
 		
 		parms.clear();
+		parms.put("organizationid", new String[]{"USGS-CO"});
+		codes = codeDao.getCodes(CodeType.MONITORINGLOCATION, parms);
+		assertNotNull(codes);
+		assertEquals(3, codes.size());
+		assertEquals("USGS-07083000", codes.get(0).getValue());
+		cnt = codeDao.getRecordCount(CodeType.MONITORINGLOCATION, parms);
+		assertEquals(3, cnt);
+		
+		parms.clear();
+		parms.put("organizationid", new String[]{"USGS-CO", "USGS-AR"});
+		codes = codeDao.getCodes(CodeType.MONITORINGLOCATION, parms);
+		assertNotNull(codes);
+		assertEquals(5, codes.size());
+		assertEquals("USGS-07083000", codes.get(0).getValue());
+		cnt = codeDao.getRecordCount(CodeType.MONITORINGLOCATION, parms);
+		assertEquals(5, cnt);
+		
+		parms.clear();
+		parms.put("organizationid", new String[]{"USGS-GO"});
+		codes = codeDao.getCodes(CodeType.MONITORINGLOCATION, parms);
+		assertEquals(0, codes.size());
+		cnt = codeDao.getRecordCount(CodeType.MONITORINGLOCATION, parms);
+		assertEquals(0, cnt);
+		
+		parms.clear();
+		parms.put("provider", new String[]{"BIODATA"});
+		codes = codeDao.getCodes(CodeType.MONITORINGLOCATION, parms);
+		assertNotNull(codes);
+		assertEquals(1, codes.size());
+		assertEquals("USGS-07083000", codes.get(0).getValue());
+		cnt = codeDao.getRecordCount(CodeType.MONITORINGLOCATION, parms);
+		assertEquals(1, cnt);
+		
+		parms.clear();
+		parms.put("provider", new String[]{"BIODATA", "NWIS"});
+		codes = codeDao.getCodes(CodeType.MONITORINGLOCATION, parms);
+		assertNotNull(codes);
+		assertEquals(5, codes.size());
+		assertEquals("USGS-07083000", codes.get(0).getValue());
+		cnt = codeDao.getRecordCount(CodeType.MONITORINGLOCATION, parms);
+		assertEquals(5, cnt);
+		
+		parms.clear();
+		parms.put("provider", new String[]{"STORET"});
+		codes = codeDao.getCodes(CodeType.MONITORINGLOCATION, parms);
+		assertEquals(0, codes.size());
+		cnt = codeDao.getRecordCount(CodeType.MONITORINGLOCATION, parms);
+		assertEquals(0, cnt);
+		
+		parms.clear();
 		parms.put("fetchSize", 2);
 		parms.put("offset", 1);
 		codes = codeDao.getCodes(CodeType.MONITORINGLOCATION, parms);

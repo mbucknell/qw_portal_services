@@ -22,10 +22,16 @@
              upper(site_id) like '%' || upper(#{text}) || '%')
         </if>
         <if test="organizationid != null">
-            and organization = #{organizationid}
+            and organization in
+                <foreach item="i" collection="organizationid" open="(" separator="," close=")">
+                    #{i,jdbcType=VARCHAR}
+                </foreach>
         </if>
         <if test="provider != null">
-            and data_source = #{provider}
+            and data_source in
+                <foreach item="i" collection="provider" open="(" separator="," close=")">
+                    #{i,jdbcType=VARCHAR}
+                </foreach>
         </if>
     </sql>
 

@@ -40,8 +40,8 @@ public class MonitoringLocationRestController extends CodesRestController {
 	
 	@ApiOperation(value="Return a filtered and paged list of valid Monitoring Locations.")
 	@GetMapping()
-	public CodeList getMonitoringLocations(final @RequestParam(value="organizationid", required=false) String organizationid,
-			final @RequestParam(value="provider", required=false) String provider, 
+	public CodeList getMonitoringLocations(final @RequestParam(value="organizationid", required=false) String [] organizationid,
+			final @RequestParam(value="provider", required=false) String [] provider, 
 			final @RequestParam(value="text", required=false) String text,
 			final @RequestParam(value="pagenumber", required=false) String pageNumber,
 			final @RequestParam(value="pagesize", required=false) String pageSize,
