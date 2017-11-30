@@ -22,6 +22,8 @@ import gov.usgs.cida.qw.codes.dao.CodeDao;
 import gov.usgs.cida.qw.swagger.SwaggerConfig;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import java.util.HashMap;
+import java.util.Map;
 
 @Api(tags={SwaggerConfig.MONITORING_LOCATION_TAG_NAME})
 @RestController
@@ -38,12 +40,17 @@ public class MonitoringLocationRestController extends CodesRestController {
 	
 	@ApiOperation(value="Return a filtered and paged list of valid Monitoring Locations.")
 	@GetMapping()
-	public CodeList getMonitoringLocations(final @RequestParam(value="text", required=false) String text,
+	public CodeList getMonitoringLocations(final @RequestParam(value="organizationid", required=false) String organizationid,
+			final @RequestParam(value="provider", required=false) String provider, 
+			final @RequestParam(value="text", required=false) String text,
 			final @RequestParam(value="pagenumber", required=false) String pageNumber,
 			final @RequestParam(value="pagesize", required=false) String pageSize,
 			WebRequest webRequest) {
 		LOG.debug("monitoringlocations");
-		return getList(CodeType.MONITORINGLOCATION, text, pageNumber, pageSize, null, webRequest);
+		Map<String, Object> addlParms = new HashMap<>();
+		addlParms.put("organizationid", organizationid);
+		addlParms.put("provider", provider);
+		return getList(CodeType.MONITORINGLOCATION, text, pageNumber, pageSize, addlParms, webRequest);
 	}
 	
 	@ApiOperation(value="Validate and return the requested Monitoring Location.")

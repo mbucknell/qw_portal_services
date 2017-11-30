@@ -16,10 +16,16 @@
         </if>
     </sql>
     
-    <sql id="mlTextSearch">
+    <sql id="mlSearch">
         <if test="text != null">
             (upper(station_name) like '%' || upper(#{text}) || '%' or
              upper(site_id) like '%' || upper(#{text}) || '%')
+        </if>
+        <if test="organizationid != null">
+            and organization = #{organizationid}
+        </if>
+        <if test="provider != null">
+            and data_source = #{provider}
         </if>
     </sql>
 
@@ -340,7 +346,7 @@
         <include refid="monitoringLocationSelect" />
         <include refid="joinDataSource"/>
         <where>
-            <include refid="mlTextSearch"/>
+            <include refid="mlSearch"/>
         </where>
         <include refid="mlGroupAndOrderBySearch"/>
         <include refid="paging"/>
@@ -351,7 +357,7 @@
         from station
         <include refid="joinDataSource"/>
         <where>
-            <include refid="mlTextSearch"/>
+            <include refid="mlSearch"/>            
         </where>
     </select>
 
