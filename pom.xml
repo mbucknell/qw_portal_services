@@ -77,12 +77,12 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
-            <version>${spring-version}</version>
+			<version>${spring-version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-jdbc</artifactId>
-            <version>${spring-version}</version>
+			<version>${spring-version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.mybatis</groupId>
@@ -162,7 +162,7 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
-            <version>${spring-version}</version>
+			<version>${spring-version}</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -283,7 +283,7 @@
 						<manifestEntries>
 							<Implementation-Build>${build.scm.version}</Implementation-Build>
 							<!-- The following are non-standard manifest entries. Tag names have 
-								been styled according to Manifest conventions -->
+							been styled according to Manifest conventions -->
 							<BuildTime>${maven.build.timestamp}</BuildTime>
 							<Project-GroupId>${project.groupId}</Project-GroupId>
 							<Project-ArtifactId>${project.artifactId}</Project-ArtifactId>
