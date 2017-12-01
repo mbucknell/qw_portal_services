@@ -15,9 +15,32 @@
              upper(code_value) like '%' || upper(#{text}) || '%')
         </if>
     </sql>
+    
+    <sql id="mlSearch">
+        <if test="text != null">
+            (upper(station_name) like '%' || upper(#{text}) || '%' or
+             upper(site_id) like '%' || upper(#{text}) || '%')
+        </if>
+        <if test="organizationid != null">
+            and organization in
+                <foreach item="i" collection="organizationid" open="(" separator="," close=")">
+                    #{i,jdbcType=VARCHAR}
+                </foreach>
+        </if>
+        <if test="provider != null">
+            and data_source in
+                <foreach item="i" collection="provider" open="(" separator="," close=")">
+                    #{i,jdbcType=VARCHAR}
+                </foreach>
+        </if>
+    </sql>
 
     <sql id="codeValueSearch">
         where code_value = #{value,jdbcType=VARCHAR}
+    </sql>
+    
+    <sql id="mlCodeValueSearch">
+        where site_id = #{value,jdbcType=VARCHAR}
     </sql>
 
     <sql id="listAggProviders">
@@ -29,6 +52,13 @@
                min(c.description) description,
                <include refid="listAggProviders"/>
           from
+    </sql>
+    
+    <sql id="monitoringLocationSelect">
+        select c.site_id as code_value,
+               min(c.station_name) description,
+               <include refid="listAggProviders" />
+        from station      
     </sql>
 
     <sql id="selectCount">
@@ -58,6 +88,24 @@
                  length(c.code_value),
         </if>
                  c.code_value
+    </sql>
+    
+    <sql id="mlGroupBy">
+        group by c.site_id
+    </sql>
+
+    <sql id="mlGroupAndOrderBy">
+        <include refid="mlGroupBy"/>
+        order by c.site_id
+    </sql>
+
+    <sql id="mlGroupAndOrderBySearch">
+        <include refid="mlGroupBy"/>
+        order by
+        <if test="text != null">
+                 length(c.site_id),
+        </if>
+                 c.site_id
     </sql>
 
     <sql id="paging">
@@ -292,6 +340,32 @@
         </where>
     </select>
 
+
+    <select id="codeMonitoringLocation" parameterType="String" resultMap="codeResult">
+        <include refid="monitoringLocationSelect" />
+        <include refid="joinDataSource"/>
+        <include refid="mlCodeValueSearch"/>
+        <include refid="mlGroupAndOrderBy"/>
+    </select>
+    
+    <select id="codeMonitoringLocationList" parameterType="map" resultMap="codeResult">
+        <include refid="monitoringLocationSelect" />
+        <include refid="joinDataSource"/>
+        <where>
+            <include refid="mlSearch"/>
+        </where>
+        <include refid="mlGroupAndOrderBySearch"/>
+        <include refid="paging"/>
+    </select>
+    
+    <select id="codeMonitoringLocationCount" parameterType="map" resultType="int">
+        select count(distinct c.site_id) 
+        from station
+        <include refid="joinDataSource"/>
+        <where>
+            <include refid="mlSearch"/>            
+        </where>
+    </select>
 
 
     <select id="codeProject" parameterType="String" resultMap="codeResult">

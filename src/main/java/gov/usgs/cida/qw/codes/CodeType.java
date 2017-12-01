@@ -8,6 +8,7 @@ public enum CodeType {
 	DATASOURCE ("codeDataSource"),
 	COUNTRYCODE ("codeCountryCode"),
 	COUNTYCODE ("codeCountyCode"),
+	MONITORINGLOCATION ("codeMonitoringLocation"),
 	ORGANIZATION ("codeOrganization"),
 	PROJECT ("codeProject"),
 	SAMPLEMEDIA ("codeSampleMedia"),

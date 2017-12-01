@@ -448,6 +448,101 @@ public class CodeDaoTest extends BaseSpringTest {
 		assertEquals("USGS Wisconsin Water Science Center", codes.get(0).getDesc());
 		assertEquals("NWIS STEWARDS STORET", codes.get(0).getProviders());
 	}
+	
+	@Test
+	@DatabaseSetup("classpath:/testData/monitoringLocation.xml")
+	public void monitoringLocationTest() {
+		List<Code> codes = codeDao.getCodes(CodeType.MONITORINGLOCATION);
+		assertNotNull(codes);
+		assertEquals(5, codes.size());
+		assertEquals("USGS-07083000", codes.get(0).getValue());
+		assertEquals("HALFMOON CREEK NEAR MALTA, CO", codes.get(0).getDesc());
+		assertEquals("BIODATA NWIS", codes.get(0).getProviders());
+		
+		Map<String, Object> parms = new HashMap<String, Object>();
+		int cnt = codeDao.getRecordCount(CodeType.MONITORINGLOCATION, parms);
+		assertEquals(5, cnt);
+		
+		parms.put("text", "USGS-070837");
+		codes = codeDao.getCodes(CodeType.MONITORINGLOCATION, parms);
+		assertNotNull(codes);
+		assertEquals(2, codes.size());
+		assertEquals("USGS-07083700", codes.get(0).getValue());
+		assertEquals("USGS-07083710", codes.get(1).getValue());
+		
+		cnt = codeDao.getRecordCount(CodeType.MONITORINGLOCATION, parms);
+		assertEquals(2, cnt);
+		
+		Code code = codeDao.getCode(CodeType.MONITORINGLOCATION, null);
+		assertNull(code);
+		code = codeDao.getCode(CodeType.MONITORINGLOCATION, "USGS");
+		assertNull(code);
+		code = codeDao.getCode(CodeType.MONITORINGLOCATION, "USGS-07083200");
+		assertEquals("USGS-07083200", code.getValue());
+		assertEquals("HALFMOON CR BL HALFMOON DIVERSION NR LEADVILLE, CO", code.getDesc());
+		assertEquals("NWIS", code.getProviders());
+		
+		parms.clear();
+		parms.put("organizationid", new String[]{"USGS-CO"});
+		codes = codeDao.getCodes(CodeType.MONITORINGLOCATION, parms);
+		assertNotNull(codes);
+		assertEquals(3, codes.size());
+		assertEquals("USGS-07083000", codes.get(0).getValue());
+		cnt = codeDao.getRecordCount(CodeType.MONITORINGLOCATION, parms);
+		assertEquals(3, cnt);
+		
+		parms.clear();
+		parms.put("organizationid", new String[]{"USGS-CO", "USGS-AR"});
+		codes = codeDao.getCodes(CodeType.MONITORINGLOCATION, parms);
+		assertNotNull(codes);
+		assertEquals(5, codes.size());
+		assertEquals("USGS-07083000", codes.get(0).getValue());
+		cnt = codeDao.getRecordCount(CodeType.MONITORINGLOCATION, parms);
+		assertEquals(5, cnt);
+		
+		parms.clear();
+		parms.put("organizationid", new String[]{"USGS-GO"});
+		codes = codeDao.getCodes(CodeType.MONITORINGLOCATION, parms);
+		assertEquals(0, codes.size());
+		cnt = codeDao.getRecordCount(CodeType.MONITORINGLOCATION, parms);
+		assertEquals(0, cnt);
+		
+		parms.clear();
+		parms.put("provider", new String[]{"BIODATA"});
+		codes = codeDao.getCodes(CodeType.MONITORINGLOCATION, parms);
+		assertNotNull(codes);
+		assertEquals(1, codes.size());
+		assertEquals("USGS-07083000", codes.get(0).getValue());
+		cnt = codeDao.getRecordCount(CodeType.MONITORINGLOCATION, parms);
+		assertEquals(1, cnt);
+		
+		parms.clear();
+		parms.put("provider", new String[]{"BIODATA", "NWIS"});
+		codes = codeDao.getCodes(CodeType.MONITORINGLOCATION, parms);
+		assertNotNull(codes);
+		assertEquals(5, codes.size());
+		assertEquals("USGS-07083000", codes.get(0).getValue());
+		cnt = codeDao.getRecordCount(CodeType.MONITORINGLOCATION, parms);
+		assertEquals(5, cnt);
+		
+		parms.clear();
+		parms.put("provider", new String[]{"STORET"});
+		codes = codeDao.getCodes(CodeType.MONITORINGLOCATION, parms);
+		assertEquals(0, codes.size());
+		cnt = codeDao.getRecordCount(CodeType.MONITORINGLOCATION, parms);
+		assertEquals(0, cnt);
+		
+		parms.clear();
+		parms.put("fetchSize", 2);
+		parms.put("offset", 1);
+		codes = codeDao.getCodes(CodeType.MONITORINGLOCATION, parms);
+		assertNotNull(codes);
+		assertEquals(2, codes.size());
+		assertEquals("USGS-07083200", codes.get(0).getValue());
+		assertEquals("HALFMOON CR BL HALFMOON DIVERSION NR LEADVILLE, CO", codes.get(0).getDesc());
+		assertEquals("NWIS", codes.get(0).getProviders());
+		
+	}
 
 	@Test
 	@DatabaseSetup("classpath:/testData/sampleMedia.xml")
