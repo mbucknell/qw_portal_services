@@ -41,7 +41,7 @@ public abstract class CodesRestController extends BaseRestController {
 			}
 
 			if (isInteger(inPageSize) && Integer.parseInt(inPageSize) > 0) {
-				//We will repsect a fetchsize if given.
+				//We will respect a fetchsize if given.
 				Integer fetchSize = Integer.parseInt(inPageSize);
 				queryParams.put("fetchSize", fetchSize);
 
@@ -67,7 +67,7 @@ public abstract class CodesRestController extends BaseRestController {
 		}
 		return rtn;
 	}
-	
+
 	public static Boolean isInteger(final String number) {
 		if (!StringUtils.hasText(number)) {
 			return false;
