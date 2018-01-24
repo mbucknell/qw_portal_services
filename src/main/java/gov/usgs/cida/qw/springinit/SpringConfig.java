@@ -11,7 +11,7 @@ import org.springframework.web.servlet.config.annotation.DefaultServletHandlerCo
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import gov.usgs.cida.qw.BaseRestController;
 import gov.usgs.cida.qw.CustomStringToArrayConverter;
@@ -19,7 +19,7 @@ import gov.usgs.cida.qw.CustomStringToArrayConverter;
 @Import(MybatisConfig.class)
 @ComponentScan(basePackages="gov.usgs.cida.qw")
 @EnableWebMvc
-public class SpringConfig extends WebMvcConfigurerAdapter {
+public class SpringConfig implements WebMvcConfigurer {
 
 	@Autowired
 	CustomStringToArrayConverter customStringToArrayConverter;

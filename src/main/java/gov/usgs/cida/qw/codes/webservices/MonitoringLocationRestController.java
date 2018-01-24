@@ -29,22 +29,22 @@ import java.util.Map;
 @RestController
 @RequestMapping(value="codes/monitoringlocation", produces={BaseRestController.MEDIA_TYPE_APPLICATION_XML_UTF8_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
 public class MonitoringLocationRestController extends CodesRestController {
-	
+
 	private static final Logger LOG = LoggerFactory.getLogger(MonitoringLocationRestController.class);
-	
+
 	@Autowired
 	public MonitoringLocationRestController(final LastUpdateDao lastUpdateDao, final CodeDao codeDao) {
 		this.lastUpdateDao = lastUpdateDao;
 		this.codeDao = codeDao;
 	}
-	
+
 	@ApiOperation(value="Return a filtered and paged list of valid Monitoring Locations.")
 	@GetMapping()
 	public CodeList getMonitoringLocations(final @RequestParam(value="organizationid", required=false) String [] organizationid,
 			final @RequestParam(value="provider", required=false) String [] provider, 
 			final @RequestParam(value="text", required=false) String text,
-			final @RequestParam(value="pagenumber", required=false) String pageNumber,
-			final @RequestParam(value="pagesize", required=false) String pageSize,
+			final @RequestParam(value="pagenumber", required=false, defaultValue="1") String pageNumber,
+			final @RequestParam(value="pagesize", required=false, defaultValue="25") String pageSize,
 			WebRequest webRequest) {
 		LOG.debug("monitoringlocations");
 		Map<String, Object> addlParms = new HashMap<>();
@@ -52,12 +52,12 @@ public class MonitoringLocationRestController extends CodesRestController {
 		addlParms.put("provider", provider);
 		return getList(CodeType.MONITORINGLOCATION, text, pageNumber, pageSize, addlParms, webRequest);
 	}
-	
+
 	@ApiOperation(value="Validate and return the requested Monitoring Location.")
 	@GetMapping("/validate")
 	public Code getMonitoringLocation(final @RequestParam(value="value") String value, WebRequest webRequest, HttpServletResponse response) {
 		LOG.debug("monitoringlocation");
 		return getCode(CodeType.MONITORINGLOCATION, value, webRequest, response);
 	}
-	
+
 }
