@@ -1,0 +1,1 @@
+curl -v -k --header 'If-Modified-Since: Tue, 06 Feb 2018 15:42:28 GMT' https://localhost:8443/qw_portal_services/codes/statecode?mimeType=json
