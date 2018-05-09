@@ -2,9 +2,6 @@ package gov.usgs.cida.qw.summary;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import gov.usgs.cida.qw.BaseSpringTest;
-import gov.usgs.cida.qw.DatabaseRequiredTest;
-import gov.usgs.cida.qw.summary.SummaryController.RowCounts;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,18 +9,24 @@ import java.util.List;
 import java.util.Map;
 
 import org.junit.Test;
-import org.junit.experimental.categories.Category;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.github.springtestdbunit.annotation.DatabaseSetups;
 
-@Category(DatabaseRequiredTest.class)
+import gov.usgs.cida.qw.BaseIT;
+import gov.usgs.cida.qw.springinit.DBTestConfig;
+import gov.usgs.cida.qw.summary.SummaryController.RowCounts;
+
+@SpringBootTest(webEnvironment=WebEnvironment.NONE,
+		classes={DBTestConfig.class, SummaryDao.class})
 @DatabaseSetups({
 	@DatabaseSetup("classpath:/testData/clearAll.xml"),
 	@DatabaseSetup("classpath:/testData/summary.xml")
 })
-public class SummaryDaoTest extends BaseSpringTest {
+public class SummaryDaoIT extends BaseIT {
 
 	@Autowired
 	private SummaryDao summaryDao;

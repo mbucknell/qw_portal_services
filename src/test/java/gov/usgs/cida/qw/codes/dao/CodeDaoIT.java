@@ -5,23 +5,26 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
-import gov.usgs.cida.qw.BaseSpringTest;
-import gov.usgs.cida.qw.DatabaseRequiredTest;
-import gov.usgs.cida.qw.codes.Code;
-import gov.usgs.cida.qw.codes.CodeType;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.junit.Test;
-import org.junit.experimental.categories.Category;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 
-@Category(DatabaseRequiredTest.class)
-public class CodeDaoTest extends BaseSpringTest {
+import gov.usgs.cida.qw.BaseIT;
+import gov.usgs.cida.qw.codes.Code;
+import gov.usgs.cida.qw.codes.CodeType;
+import gov.usgs.cida.qw.springinit.DBTestConfig;
+
+@SpringBootTest(webEnvironment=WebEnvironment.NONE,
+		classes={DBTestConfig.class, CodeDao.class})
+public class CodeDaoIT extends BaseIT {
 
 	@Autowired
 	private CodeDao codeDao;

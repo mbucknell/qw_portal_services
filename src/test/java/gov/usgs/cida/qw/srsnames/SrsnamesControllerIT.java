@@ -8,11 +8,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static uk.co.datumedge.hamcrest.json.SameJSONAs.sameJSONObjectAs;
 
-import gov.usgs.cida.qw.BaseRestController;
-import gov.usgs.cida.qw.BaseSpringTest;
-import gov.usgs.cida.qw.DatabaseRequiredTest;
-import gov.usgs.cida.qw.LastUpdateDao;
-
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
@@ -24,39 +19,43 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 import org.json.JSONObject;
-import org.junit.Before;
 import org.junit.Test;
-import org.junit.experimental.categories.Category;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.github.springtestdbunit.annotation.DatabaseSetups;
 
-@Category(DatabaseRequiredTest.class)
+import gov.usgs.cida.qw.BaseIT;
+import gov.usgs.cida.qw.BaseRestController;
+import gov.usgs.cida.qw.CustomStringToArrayConverter;
+import gov.usgs.cida.qw.LastUpdateDao;
+import gov.usgs.cida.qw.springinit.DBTestConfig;
+import gov.usgs.cida.qw.springinit.SpringConfig;
+
+@EnableWebMvc
+@AutoConfigureMockMvc(secure=false)
+@SpringBootTest(webEnvironment=WebEnvironment.MOCK,
+	classes={DBTestConfig.class, SpringConfig.class, CustomStringToArrayConverter.class,
+			SrsnamesController.class, LastUpdateDao.class, PCodeDao.class})
 @DatabaseSetups({
 	@DatabaseSetup("classpath:/testData/clearAll.xml"),
 	@DatabaseSetup("classpath:/testData/srsnames.xml")
 })
-public class SrsnamesControllerTest extends BaseSpringTest {
+public class SrsnamesControllerIT extends BaseIT {
 
 	@Autowired
 	private LastUpdateDao lastUpdateDao;
 	@Autowired
 	private PCodeDao pCodeDao;
 	@Autowired
-	private WebApplicationContext wac;
-
 	private MockMvc mockMvc;
-
-	@Before
-	public void setup() {
-		mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
-	}
 
 	@Test
 	public void getAsJsonTest() throws Exception {

@@ -9,32 +9,19 @@ import static org.xmlunit.matchers.CompareMatcher.isSimilarTo;
 import static uk.co.datumedge.hamcrest.json.SameJSONAs.sameJSONObjectAs;
 
 import org.json.JSONObject;
-import org.junit.Before;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.RequestBuilder;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.context.WebApplicationContext;
 
+import gov.usgs.cida.qw.BaseIT;
 import gov.usgs.cida.qw.BaseRestController;
-import gov.usgs.cida.qw.BaseSpringTest;
 
-//Note that we have had database consistency issues in the past with this method of testing. Since WQP is read-only,
-//we should not have a problem... Remove the @WebAppConfiguration, WebApplicationContext,
-//and use MockMvcBuilders.standaloneSetup(controller).build() if you need to do database CUD...  
-public abstract class BaseCodesRestControllerTest extends BaseSpringTest {
+public abstract class BaseCodesRestControllerTest extends BaseIT {
 
 	@Autowired
-	private WebApplicationContext wac;
-
 	private MockMvc mockMvc;
-
-	@Before
-	public void setup() {
-		mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
-	}
 
 	public void runGetListAsJsonTest(String testEndpoint, String searchText, String compareFile, String searchJson) throws Exception {
 		MvcResult rtn = runMock(testEndpoint + "?mimeType=json", MediaType.APPLICATION_JSON_UTF8_VALUE, null);

@@ -2,43 +2,48 @@ package gov.usgs.cida.qw.springinit;
 
 import java.sql.SQLException;
 
+import javax.sql.DataSource;
+
 import org.dbunit.ext.oracle.OracleDataTypeFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
-import org.springframework.core.env.Environment;
+import org.springframework.context.annotation.Import;
 
 import com.github.springtestdbunit.bean.DatabaseConfigBean;
 import com.github.springtestdbunit.bean.DatabaseDataSourceConnectionFactoryBean;
 
-import gov.usgs.cida.qw.swagger.SwaggerServices;
 import oracle.jdbc.pool.OracleDataSource;
 
-@Configuration
-@PropertySource(value = "classpath:database_init.properties")
-public class TestSpringConfig extends SpringConfig {
+@TestConfiguration
+@Import(MybatisConfig.class)
+public class DBTestConfig {
+	private static final Logger LOG = LoggerFactory.getLogger(DBTestConfig.class);
 
-	@Autowired
-	private Environment env;
+	@Value("${wqpCoreUrl}")
+	private String datasourceUrl;
+
+	@Value("${wqpCoreUsername}")
+	private String datasourceUsername;
+
+	@Value("${wqpCorePassword}")
+	private String datasourcePassword;
 
 	@Bean
-	public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
-		return new PropertySourcesPlaceholderConfigurer();
-	}
-
-	@Bean
-	public OracleDataSource dataSource() throws SQLException {
+	public DataSource dataSource() throws SQLException {
+		LOG.info("datasource URL:" + datasourceUrl);
+		LOG.info("datasource Username:" + datasourceUsername);
 		OracleDataSource ds = new OracleDataSource();
-		ds.setURL(env.getProperty("jdbc.wqpCore.url"));
-		ds.setUser(env.getProperty("jdbc.wqpCore.username"));
-		ds.setPassword(env.getProperty("jdbc.wqpCore.password"));
+		ds.setURL(datasourceUrl);
+		ds.setUser(datasourceUsername);
+		ds.setPassword(datasourcePassword);
 		//Because I cannot get DBUnit to load via an Oracle synonym, we must make sure the synonym points to our
 		//permanent test table.
 		ds.getConnection().createStatement().execute("create or replace synonym public_srsnames for public_srsnames_test");
 		return ds;
-	}
+	};
 
 	@Bean
 	public DatabaseConfigBean dbUnitDatabaseConfig() {
@@ -56,11 +61,6 @@ public class TestSpringConfig extends SpringConfig {
 		dbUnitDatabaseConnection.setDataSource(dataSource());
 		dbUnitDatabaseConnection.setSchema("WQP_CORE");
 		return dbUnitDatabaseConnection;
-	}
-
-	@Bean
-	public SwaggerServices swaggerServices() {
-		return new SwaggerServices();
 	}
 
 }
