@@ -3,13 +3,17 @@ package gov.usgs.cida.qw.swagger;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 
+import org.apache.commons.lang.ArrayUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
+import org.springframework.core.env.Environment;
 import org.springframework.core.io.Resource;
 import org.yaml.snakeyaml.Yaml;
 
@@ -19,6 +23,7 @@ import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.schema.ModelRef;
 import springfox.documentation.service.AllowableListValues;
+import springfox.documentation.service.ApiKey;
 import springfox.documentation.service.Parameter;
 import springfox.documentation.service.Tag;
 import springfox.documentation.spi.DocumentationType;
@@ -58,6 +63,9 @@ public class SwaggerConfig {
 	@Value("file:${swaggerServicesConfigFile}")
 	private Resource servicesConfigFile;
 
+	@Autowired
+	private Environment environment;
+
 	@Bean
 	public SwaggerServices swaggerServices() {
 		SwaggerServices props = new SwaggerServices();
@@ -83,32 +91,39 @@ public class SwaggerConfig {
 				.build()
 		);
 
-		return new Docket(DocumentationType.SWAGGER_2)
-				.protocols(new HashSet<>(Arrays.asList("https")))
-				.host(displayHost)
-				.pathProvider(pathProvider())
-				.useDefaultResponseMessages(false)
-				.globalOperationParameters(operationParameters)
-				.tags(new Tag(ASSEMBLAGE_TAG_NAME, TAG_DESCRIPTION),
-						new Tag(CHARACTERISTIC_NAME_TAG_NAME, TAG_DESCRIPTION),
-						new Tag(CHARACTERISTIC_TYPE_TAG_NAME, TAG_DESCRIPTION),
-						new Tag(COUNTRY_CODE_TAG_NAME, TAG_DESCRIPTION),
-						new Tag(COUNTY_CODE_TAG_NAME, TAG_DESCRIPTION),
-						new Tag(ORGANIZATION_TAG_NAME, TAG_DESCRIPTION),
-						new Tag(PROJECT_TAG_NAME, TAG_DESCRIPTION),
-						new Tag(PROVIDERS_TAG_NAME, TAG_DESCRIPTION),
-						new Tag(SAMPLE_MEDIA_TAG_NAME, TAG_DESCRIPTION),
-						new Tag(SITE_TYPE_TAG_NAME, TAG_DESCRIPTION),
-						new Tag(SRSNAMES_TAG_NAME, "File Download"),
-						new Tag(STATE_CODE_TAG_NAME, TAG_DESCRIPTION),
-						new Tag(SUBJECT_TAXONOMIC_NAME_TAG_NAME, TAG_DESCRIPTION),
-						new Tag(SUMMARY_TAG_NAME, "Download"),
-						new Tag(VERSION_TAG_NAME, "Display")
-					)
-				.select().paths(PathSelectors.any())
-				.apis(RequestHandlerSelectors.basePackage("gov.usgs.cida.qw"))
-				.build()
+		Docket docket = new Docket(DocumentationType.SWAGGER_2)
+			.protocols(new HashSet<>(Arrays.asList("https")))
+			.host(displayHost)
+			.pathProvider(pathProvider())
+			.useDefaultResponseMessages(false)
+			.globalOperationParameters(operationParameters)
+			.tags(new Tag(ASSEMBLAGE_TAG_NAME, TAG_DESCRIPTION),
+					new Tag(CHARACTERISTIC_NAME_TAG_NAME, TAG_DESCRIPTION),
+					new Tag(CHARACTERISTIC_TYPE_TAG_NAME, TAG_DESCRIPTION),
+					new Tag(COUNTRY_CODE_TAG_NAME, TAG_DESCRIPTION),
+					new Tag(COUNTY_CODE_TAG_NAME, TAG_DESCRIPTION),
+					new Tag(ORGANIZATION_TAG_NAME, TAG_DESCRIPTION),
+					new Tag(PROJECT_TAG_NAME, TAG_DESCRIPTION),
+					new Tag(PROVIDERS_TAG_NAME, TAG_DESCRIPTION),
+					new Tag(SAMPLE_MEDIA_TAG_NAME, TAG_DESCRIPTION),
+					new Tag(SITE_TYPE_TAG_NAME, TAG_DESCRIPTION),
+					new Tag(SRSNAMES_TAG_NAME, "File Download"),
+					new Tag(STATE_CODE_TAG_NAME, TAG_DESCRIPTION),
+					new Tag(SUBJECT_TAXONOMIC_NAME_TAG_NAME, TAG_DESCRIPTION),
+					new Tag(SUMMARY_TAG_NAME, "Download"),
+					new Tag(VERSION_TAG_NAME, "Display")
+				)
+			.select().paths(PathSelectors.any())
+			.apis(RequestHandlerSelectors.basePackage("gov.usgs.cida.qw"))
+			.build()
 		;
+
+		if (ArrayUtils.contains(environment.getActiveProfiles(), "internal")) {
+			//Add in the Authorize button for WQP Internal
+			docket.securitySchemes(Collections.singletonList(apiKey()));
+		}
+
+		return docket;
 	}
 
 	@Bean
@@ -127,6 +142,10 @@ public class SwaggerConfig {
 		protected String getDocumentationPath() {
 			return displayPath;
 		}
+	}
+
+	private ApiKey apiKey() {
+		return new ApiKey("mykey", "Authorization", "header");
 	}
 
 	@Bean

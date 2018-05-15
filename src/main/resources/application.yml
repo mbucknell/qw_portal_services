@@ -7,18 +7,9 @@ spring:
     active: default, swagger
 
 management:
-#  endpoints:
-#    web:
-#      exposure:
-#        include: "*"
   info:
     git:
       mode: full
 
 logging:
   config: classpath:/logback-spring.xml
-#logging:
-#  path: "${catalina.base}/logs"
-#  file: "qw_portal_services.%d{yyyy-MM-dd}.log"
-#  file:
-#    maxHistory: 30

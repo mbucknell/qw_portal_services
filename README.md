@@ -15,6 +15,13 @@ This application is configured to be run in a Tomcat container. The development 
     />
 ```
 
+Security can be enabled by adding the following to the Tomcat's context.xml:
+
+```
+    <Parameter name="spring.profiles.active" value="default,swagger,internal" />
+    <Parameter name="oauthResourceKeyUri" value = "http://localhost:8081/localauth/oauth/token_key"/>
+```
+
 ## Automated Testing
 This application has two flavors of automated tests: unit tests (\*Test.java) and integration tests (\*IT.java) which require a database.
 
