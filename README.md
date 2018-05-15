@@ -22,9 +22,9 @@ This application has two flavors of automated tests: unit tests (\*Test.java) an
 An application-it.yml file needs to be created in the project root directory in order to run the integration tests. It should contain:
 
 ```
-wqpCoreUrl: <<url for ci database>>
-wqpCoreUsername: <<database username>>
-wqpCorePassword: <<database password>>
+wqpUrl: <<url for ci database>>
+wqpOwnerUsername: <<database username>>
+wqpOwnerPassword: <<database password>>
 ```
 
 ### Testing with Maven
@@ -36,9 +36,9 @@ When run this way, configuration information will be pulled from the maven setti
   <profile>
     <id>it</id>
     <properties>
-      <wqpCoreUrl><<url for ci database>></wqpCoreUrl>
-      <wqpCoreUsername><<database username>></wqpCoreUsername>
-      <wqpCorePassword><<database password>></wqpCorePassword>
+      <wqpUrl><<url for ci database>></wqpUrl>
+      <wqpOwnerUsername><<database username>></wqpOwnerUsername>
+      <wqpOwnerPassword><<database password>></wqpOwnerPassword>
     </properties>
   </profile>
 ```

@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 import com.github.springtestdbunit.bean.DatabaseConfigBean;
 import com.github.springtestdbunit.bean.DatabaseDataSourceConnectionFactoryBean;
@@ -22,13 +23,13 @@ import oracle.jdbc.pool.OracleDataSource;
 public class DBTestConfig {
 	private static final Logger LOG = LoggerFactory.getLogger(DBTestConfig.class);
 
-	@Value("${wqpCoreUrl}")
+	@Value("${wqpUrl}")
 	private String datasourceUrl;
 
-	@Value("${wqpCoreUsername}")
+	@Value("${wqpOwnerUsername}")
 	private String datasourceUsername;
 
-	@Value("${wqpCorePassword}")
+	@Value("${wqpOwnerPassword}")
 	private String datasourcePassword;
 
 	@Bean
@@ -61,6 +62,12 @@ public class DBTestConfig {
 		dbUnitDatabaseConnection.setDataSource(dataSource());
 		dbUnitDatabaseConnection.setSchema("WQP_CORE");
 		return dbUnitDatabaseConnection;
+	}
+
+	@Bean
+	public LocalValidatorFactoryBean validator() {
+		LocalValidatorFactoryBean validator = new LocalValidatorFactoryBean();
+		return validator;
 	}
 
 }
