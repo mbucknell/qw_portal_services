@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>gov.usgs.cida</groupId>
 	<artifactId>qw_portal_services</artifactId>
-	<version>1.4-SNAPSHOT</version>
+	<version>1.5-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>QW Portal Services Web Service</name>
 
