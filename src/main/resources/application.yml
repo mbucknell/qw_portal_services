@@ -3,9 +3,6 @@ spring:
   datasource:
     jndi-name: "java:comp/env/jdbc/WQPQW"
 
-  profiles:
-    active: default, swagger
-
 management:
   info:
     git:

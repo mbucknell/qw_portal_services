@@ -9,6 +9,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - CHANGELOG.md
 - README.md
 - Converted project to Spring Boot 2.
-
+- OAuth2 Security for Internal App.
 
 [Unreleased]: https://github.com/NWQMC/qw_portal_services/compare/qw_portal_services-1.4...master

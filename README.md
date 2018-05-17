@@ -19,7 +19,8 @@ Security can be enabled by adding the following to the Tomcat's context.xml:
 
 ```
     <Parameter name="spring.profiles.active" value="default,swagger,internal" />
-    <Parameter name="oauthResourceKeyUri" value = "http://localhost:8081/localauth/oauth/token_key"/>
+    <Parameter name="oauthResourceKeyUri" value = "<<url for token_key>>"/>
+    <Parameter name="oauthResourceId" value="wqp"/>
 ```
 
 ## Automated Testing

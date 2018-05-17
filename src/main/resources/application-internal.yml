@@ -1,8 +1,4 @@
 
-spring:
-  profiles:
-    active: default, swagger, internal
-
 security:
   require-ssl: true
   basic:
