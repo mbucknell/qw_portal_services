@@ -13,45 +13,44 @@ import static org.xmlunit.matchers.CompareMatcher.isSimilarTo;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.junit.Before;
 import org.junit.Test;
-import org.junit.experimental.categories.Category;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.github.springtestdbunit.annotation.DatabaseSetups;
 
+import gov.usgs.cida.qw.BaseIT;
 import gov.usgs.cida.qw.BaseRestController;
-import gov.usgs.cida.qw.BaseSpringTest;
-import gov.usgs.cida.qw.DatabaseRequiredTest;
+import gov.usgs.cida.qw.CustomStringToArrayConverter;
 import gov.usgs.cida.qw.LastUpdateDao;
+import gov.usgs.cida.qw.springinit.DBTestConfig;
+import gov.usgs.cida.qw.springinit.SpringConfig;
 import gov.usgs.cida.qw.summary.SldTemplateEngine.MapDataSource;
 import gov.usgs.cida.qw.summary.SldTemplateEngine.MapGeometry;
 
-@Category(DatabaseRequiredTest.class)
+@EnableWebMvc
+@AutoConfigureMockMvc(secure=false)
+@SpringBootTest(webEnvironment=WebEnvironment.MOCK,
+	classes={DBTestConfig.class, SpringConfig.class, CustomStringToArrayConverter.class,
+			SummaryController.class, LastUpdateDao.class, SummaryDao.class})
 @DatabaseSetups({
 	@DatabaseSetup("classpath:/testData/clearAll.xml"),
 	@DatabaseSetup("classpath:/testData/summary.xml")
 })
-public class SummaryControllerTest extends BaseSpringTest {
+public class SummaryControllerIT extends BaseIT {
 
 	@Autowired
 	private LastUpdateDao lastUpdateDao;
 	@Autowired
 	private SummaryDao summaryDao;
 	@Autowired
-	private WebApplicationContext wac;
-
 	private MockMvc mockMvc;
-
-	@Before
-	public void setup() {
-		mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
-	}
 
 	@Test
 	public void getDataSourcesTest() {

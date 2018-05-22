@@ -5,14 +5,18 @@ import static org.junit.Assert.assertEquals;
 import java.time.LocalDateTime;
 
 import org.junit.Test;
-import org.junit.experimental.categories.Category;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 
-@Category(DatabaseRequiredTest.class)
+import gov.usgs.cida.qw.springinit.DBTestConfig;
+
+@SpringBootTest(webEnvironment=WebEnvironment.NONE,
+		classes={DBTestConfig.class, LastUpdateDao.class})
 @DatabaseSetup("classpath:/testData/lastUpdateDao.xml")
-public class LastUpdateDaoTest extends BaseSpringTest {
+public class LastUpdateDaoIT extends BaseIT {
 
 	@Autowired
 	private LastUpdateDao lastUpdateDao;
