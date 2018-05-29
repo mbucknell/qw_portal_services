@@ -6,3 +6,5 @@
 /qw_portal_services.log
 /bin/
 /src/main/webapp/META-INF/context.xml
+/application-it.yml
+/application.yml

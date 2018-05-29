@@ -8,21 +8,23 @@ import java.util.LinkedHashMap;
 import java.util.List;
 
 import org.junit.Test;
-import org.junit.experimental.categories.Category;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.github.springtestdbunit.annotation.DatabaseSetups;
 
-import gov.usgs.cida.qw.BaseSpringTest;
-import gov.usgs.cida.qw.DatabaseRequiredTest;
+import gov.usgs.cida.qw.BaseIT;
+import gov.usgs.cida.qw.springinit.DBTestConfig;
 
-@Category(DatabaseRequiredTest.class)
+@SpringBootTest(webEnvironment=WebEnvironment.NONE,
+		classes={DBTestConfig.class, PCodeDao.class})
 @DatabaseSetups({
 	@DatabaseSetup("classpath:/testData/clearAll.xml"),
 	@DatabaseSetup("classpath:/testData/srsnames.xml")
 })
-public class PCodeDaoTest extends BaseSpringTest {
+public class PCodeDaoIT extends BaseIT {
 
 	@Autowired
 	private PCodeDao pCodeDao;
@@ -174,5 +176,6 @@ public class PCodeDaoTest extends BaseSpringTest {
 		assertEquals("< 0.5 mm", rows.get(9).get("resultparticlesizebasis"));
 		assertEquals("2010-09-24", rows.get(9).get("last_rev_dt"));
 	}
+
 
 }

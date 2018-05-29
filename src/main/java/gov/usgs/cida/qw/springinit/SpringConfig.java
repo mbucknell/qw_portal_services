@@ -1,24 +1,19 @@
 package gov.usgs.cida.qw.springinit;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.http.MediaType;
 import org.springframework.util.AntPathMatcher;
 import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import gov.usgs.cida.qw.BaseRestController;
 import gov.usgs.cida.qw.CustomStringToArrayConverter;
 
-@Import(MybatisConfig.class)
-@ComponentScan(basePackages="gov.usgs.cida.qw")
-@EnableWebMvc
+@Configuration
 public class SpringConfig implements WebMvcConfigurer {
 
 	@Autowired
@@ -32,7 +27,8 @@ public class SpringConfig implements WebMvcConfigurer {
 	@Override
 	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
 		configurer.enable();
-}
+	}
+
 	@Override
 	public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
 		configurer
@@ -43,7 +39,6 @@ public class SpringConfig implements WebMvcConfigurer {
 			.mediaType("csv", BaseRestController.MEDIA_TYPE_TEXT_CSV_UTF8)
 			.mediaType("xml", BaseRestController.MEDIA_TYPE_APPLICATION_XML_UTF8)
 			.mediaType("json", MediaType.APPLICATION_JSON_UTF8)
-			.mediaType("text", MediaType.TEXT_PLAIN)
 			;
 	}
 
@@ -53,14 +48,6 @@ public class SpringConfig implements WebMvcConfigurer {
 		AntPathMatcher matcher = new AntPathMatcher();
 		matcher.setCaseSensitive(false);
 		configurer.setPathMatcher(matcher);
-	}
-
-	@Override
-	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		registry.addResourceHandler("swagger-ui.html", "webjars/**")
-			.addResourceLocations("classpath:/META-INF/resources/", "classpath:/META-INF/resources/webjars/");
-
-		registry.setOrder(-1);
 	}
 
 }
