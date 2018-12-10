@@ -39,7 +39,19 @@
     </sql>
 
     <sql id="listAggProviders">
-        listagg(d.text, ' ') within group (order by d.text) providers
+        string_agg(d.text, ' ' order by d.text) as providers
+    </sql>
+    
+    <sql id="countyWhere">
+    	<where>
+	    	<include refid="textSearch"/>
+	    	<if test="statecode != null">
+	            and substring(code_value from '[^:]+:[^:]+') in
+	                <foreach item="i" collection="statecode" open="(" separator="," close=")">
+	                    #{i,jdbcType=VARCHAR}
+	                </foreach>
+	        </if>
+	     </where>
     </sql>
 
     <sql id="selectStart">
@@ -195,15 +207,7 @@
         <include refid="selectStart"/>
         county
         <include refid="joinDataSource"/>
-        <where>
-            <include refid="textSearch"/>
-            <if test="statecode != null">
-                and state_code in
-                    <foreach item="i" collection="statecode" open="(" separator="," close=")">
-                        #{i,jdbcType=VARCHAR}
-                    </foreach>
-            </if>
-        </where>
+        <include refid="countyWhere" />
         <include refid="groupAndOrderBySearch"/>
         <include refid="paging"/>
     </select>
@@ -212,15 +216,7 @@
         <include refid="selectCount"/>
         county
         <include refid="joinDataSource"/>
-        <where>
-            <include refid="textSearch"/>
-            <if test="statecode != null">
-                and state_code in
-                    <foreach item="i" collection="statecode" open="(" separator="," close=")">
-                        #{i,jdbcType=VARCHAR}
-                    </foreach>
-            </if>
-        </where>
+        <include refid="countyWhere" />
     </select>
 
 
@@ -445,16 +441,16 @@
 
     <sql id="stateWhere">
         <where>
-        <if test="text != null">
-            (upper(c.description_with_out_country) like '%' || upper(#{text}) || '%' or
-             upper(c.code_value) like '%' || upper(#{text}) || '%')
-        </if>
+	        <if test="text != null">
+	            (upper(c.description_with_out_country) like '%' || upper(#{text}) || '%' or
+	             upper(c.code_value) like '%' || upper(#{text}) || '%')
+	        </if>
             <choose>
-                   <when test="countrycode != null">
-                    and c.country_code in <foreach item="i" collection="countrycode" open="(" separator="," close=")">#{i}</foreach>
+                <when test="countrycode != null">
+                    and substring(c.code_value from '[^:]+') in <foreach item="i" collection="countrycode" open="(" separator="," close=")">#{i}</foreach>
                 </when>
                 <otherwise>
-                    and c.country_code = 'US'
+                    and substring(c.code_value from '[^:]+') = 'US'
                 </otherwise>
             </choose>
         </where>

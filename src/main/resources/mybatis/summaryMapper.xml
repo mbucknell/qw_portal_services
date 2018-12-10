@@ -3,7 +3,7 @@
 
 <mapper namespace="summary">
 
-    <resultMap id="discreteSampleCountBin" type="gov.usgs.cida.qw.summary.SummaryController$RowCounts">
+    <resultMap id="discreteSampleCountBinResult" type="gov.usgs.cida.qw.summary.SummaryController$RowCounts">
         <!--order is important here-->
         <result property="value" column="binNumber"/>
         <result property="value" column="binMin"/>
@@ -11,8 +11,8 @@
         <result property="value" column="binCount"/>
     </resultMap>
 
-    <select id="discreteSampleCountBin" parameterType="map" resultMap="discreteSampleCountBin" useCache="false">
-        select binNumber, min(discrete_sample_count) binMin, max(discrete_sample_count)binMax, count(*) binCount
+    <select id="discreteSampleCountBin" parameterType="map" resultMap="discreteSampleCountBinResult" useCache="false">
+        select count_by_bin.binNumber, min(count_by_bin.discrete_sample_count)binMin, max(count_by_bin.discrete_sample_count)binMax, count(*) binCount
           from (select discrete_sample_count, ntile(5) over (order by discrete_sample_count) binNumber
                   from (select sum(samples_${timeFrame}) discrete_sample_count
                           from qwportal_summary summ
@@ -29,10 +29,10 @@
                                             summ.huc8
                                         </when>
                                     </choose>
-                            having sum(samples_${timeFrame}) > 0
-                            order by sum(samples_${timeFrame})
-                       )
-               )
+                            having sum(summ.samples_${timeFrame}) > 0
+                            order by sum(summ.samples_${timeFrame})
+                       ) sample_count
+               ) count_by_bin
             group by binNumber
             order by binNumber
     </select>
