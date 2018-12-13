@@ -54,10 +54,10 @@ public class SwaggerConfig {
 	public static final String VERSION_TAG_NAME = "Application Version";
 	private static final String TAG_DESCRIPTION = "Lookup and Validate";
 
-	@Value("${qwPortalServices/displayHost}")
+	@Value("${qwPortalServices.displayHost}")
 	private String displayHost;
 
-	@Value("${qwPortalServices/displayPath}")
+	@Value("${qwPortalServices.displayPath}")
 	private String displayPath;
 
 	@Value("file:${swaggerServicesConfigFile}")

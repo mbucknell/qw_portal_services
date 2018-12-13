@@ -1,5 +1,7 @@
 package gov.usgs.cida.qw.springinit;
 
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.format.FormatterRegistry;
@@ -15,6 +17,9 @@ import gov.usgs.cida.qw.CustomStringToArrayConverter;
 
 @Configuration
 public class SpringConfig implements WebMvcConfigurer {
+		
+	@Autowired
+	DataSource dataSource;	
 
 	@Autowired
 	CustomStringToArrayConverter customStringToArrayConverter;
