@@ -15,6 +15,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.core.env.Environment;
 import org.springframework.core.io.Resource;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 import org.yaml.snakeyaml.Yaml;
 
 import springfox.documentation.PathProvider;
@@ -59,8 +62,11 @@ public class SwaggerConfig {
 
 	@Value("${qwPortalServices.displayPath}")
 	private String displayPath;
+	
+	@Value("${qwPortalServices.displayProtocol}")  
+	private String displayProtocol;
 
-	@Value("file:${swaggerServicesConfigFile}")
+	@Value("${swaggerServicesConfigFile}")
 	private Resource servicesConfigFile;
 
 	@Autowired
@@ -92,7 +98,7 @@ public class SwaggerConfig {
 		);
 
 		Docket docket = new Docket(DocumentationType.SWAGGER_2)
-			.protocols(new HashSet<>(Arrays.asList("https")))
+			.protocols(new HashSet<>(Arrays.asList(displayProtocol)))
 			.host(displayHost)
 			.pathProvider(pathProvider())
 			.useDefaultResponseMessages(false)
@@ -142,6 +148,7 @@ public class SwaggerConfig {
 		protected String getDocumentationPath() {
 			return displayPath;
 		}
+		
 	}
 
 	private ApiKey apiKey() {
@@ -153,6 +160,21 @@ public class SwaggerConfig {
 		//This is needed in swagger 2 for the "try it" button on head requests - should not be needed with swagger 3
 		//It is needed in all WQP projects!!!
 		return new UiConfiguration(null, "none", "alpha", "schema", new String[] { "get", "post", "head" }, false, true, null);
+	}
+	
+	@Bean
+	public CorsFilter corsFilter() {
+	    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+
+	    // Allow anyone and anything access. Probably ok for Swagger spec
+	    CorsConfiguration config = new CorsConfiguration();
+	    config.setAllowCredentials(true);
+	    config.addAllowedOrigin("*");
+	    config.addAllowedHeader("*");
+	    config.addAllowedMethod("*");
+
+	    source.registerCorsConfiguration("/v2/api-docs", config);
+	    return new CorsFilter(source);
 	}
 
 }

@@ -2,9 +2,9 @@
 services:
   - 
     name: Lookups
-    url: https://localhost:8443/qw_portal_services/v2/api-docs
+    url: 'http://localhost:8082/qw_portal_services/v2/api-docs'
     version: 2.0
   - 
     name: NLDI
-    url: https://cida.usgs.gov/nldi/v2/api-docs
+    url: 'https://cida.usgs.gov/nldi/v2/api-docs'
     version: 2.0

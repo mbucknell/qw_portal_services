@@ -7,10 +7,16 @@ spring:
     
   profiles:
     active: default,swagger
+    
+server:
+  port: ${serverPort}
+  servlet:
+    context-path: ${serverContextPath}
  
 qwPortalServices:
   displayHost: ${qwDisplayHost}
   displayPath: ${qwDisplayPath}
+  displayProtocol: ${qwDisplayProtocol}
   
 swaggerServicesConfigFile: classpath:/swaggerServices.yml
   
