@@ -5,7 +5,7 @@
 
     <select id="getLastModifiedDate" resultType="Date">
         select max_last_rev_dt
-          from public_srsnames_current
+          from public_srsnames
                fetch first 1 row only
     </select>
 
@@ -21,7 +21,7 @@
                resultweightbasis "resultweightbasis",
                resultparticlesizebasis "resultparticlesizebasis",
                to_char(last_rev_dt, 'yyyy-mm-dd') "last_rev_dt" 
-          from public_srsnames_current
+          from public_srsnames
              order by 1
     </select>
 
