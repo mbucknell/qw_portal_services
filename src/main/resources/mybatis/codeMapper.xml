@@ -12,7 +12,7 @@
     <sql id="textSearch">
         <if test="text != null">
             (upper(c.description) like '%' || upper(#{text}) || '%' or
-             upper(c.code_value) like '%' || upper(#{text}) || '%')
+            upper(c.code_value) like '%' || upper(#{text}) || '%')
         </if>
     </sql>
 
@@ -22,15 +22,15 @@
         </if>
         <if test="organizationid != null">
             and c.organization in
-                <foreach item="i" collection="organizationid" open="(" separator="," close=")">
-                    #{i,jdbcType=VARCHAR}
-                </foreach>
+            <foreach item="i" collection="organizationid" open="(" separator="," close=")">
+                #{i,jdbcType=VARCHAR}
+            </foreach>
         </if>
         <if test="provider != null">
             and d.text in
-                <foreach item="i" collection="provider" open="(" separator="," close=")">
-                    #{i,jdbcType=VARCHAR}
-                </foreach>
+            <foreach item="i" collection="provider" open="(" separator="," close=")">
+                #{i,jdbcType=VARCHAR}
+            </foreach>
         </if>
     </sql>
 
@@ -39,25 +39,37 @@
     </sql>
 
     <sql id="listAggProviders">
-        listagg(d.text, ' ') within group (order by d.text) providers
+        string_agg(d.text, ' ' order by d.text) as providers
+    </sql>
+    
+    <sql id="countyWhere">
+        <where>
+            <include refid="textSearch"/>
+            <if test="statecode != null">
+                and substring(code_value from '[^:]+:[^:]+') in
+                <foreach item="i" collection="statecode" open="(" separator="," close=")">
+                    #{i,jdbcType=VARCHAR}
+                </foreach>
+            </if>
+        </where>
     </sql>
 
     <sql id="selectStart">
         select c.code_value,
-               min(c.description) description,
-               <include refid="listAggProviders"/>
-          from
+        min(c.description) description,
+        <include refid="listAggProviders"/>
+        from
     </sql>
 
     <sql id="selectCount">
         select count(distinct c.code_value)
-          from
+        from
     </sql>
 
     <sql id="joinDataSource">
         c
         join data_source d
-          on c.data_source_id = d.data_source_id
+        on c.data_source_id = d.data_source_id
     </sql>
 
     <sql id="groupBy">
@@ -73,9 +85,9 @@
         <include refid="groupBy"/>
         order by
         <if test="text != null">
-                 length(c.code_value),
+            length(c.code_value),
         </if>
-                 c.code_value
+        c.code_value
     </sql>
 
     <sql id="paging">
@@ -195,15 +207,7 @@
         <include refid="selectStart"/>
         county
         <include refid="joinDataSource"/>
-        <where>
-            <include refid="textSearch"/>
-            <if test="statecode != null">
-                and state_code in
-                    <foreach item="i" collection="statecode" open="(" separator="," close=")">
-                        #{i,jdbcType=VARCHAR}
-                    </foreach>
-            </if>
-        </where>
+        <include refid="countyWhere" />
         <include refid="groupAndOrderBySearch"/>
         <include refid="paging"/>
     </select>
@@ -212,15 +216,7 @@
         <include refid="selectCount"/>
         county
         <include refid="joinDataSource"/>
-        <where>
-            <include refid="textSearch"/>
-            <if test="statecode != null">
-                and state_code in
-                    <foreach item="i" collection="statecode" open="(" separator="," close=")">
-                        #{i,jdbcType=VARCHAR}
-                    </foreach>
-            </if>
-        </where>
+        <include refid="countyWhere" />
     </select>
 
 
@@ -257,18 +253,18 @@
 
     <select id="codeDataSource" parameterType="String" resultMap="codeResult">
         select text code_value
-          from data_source
-         where text = #{value,jdbcType=VARCHAR}
-            order by text
+        from data_source
+        where text = #{value,jdbcType=VARCHAR}
+        order by text
     </select>
 
     <select id="codeDataSourceList" parameterType="map" resultMap="codeResult">
         select text code_value
-          from data_source
+        from data_source
         <if test="text != null">
             where upper(text) like '%' || upper(#{text}) || '%'
         </if>
-            order by text
+        order by text
         <include refid="paging"/>
     </select>
 
@@ -445,16 +441,16 @@
 
     <sql id="stateWhere">
         <where>
-        <if test="text != null">
-            (upper(c.description_with_out_country) like '%' || upper(#{text}) || '%' or
-             upper(c.code_value) like '%' || upper(#{text}) || '%')
-        </if>
+            <if test="text != null">
+                (upper(c.description_with_out_country) like '%' || upper(#{text}) || '%' or
+                upper(c.code_value) like '%' || upper(#{text}) || '%')
+            </if>
             <choose>
-                   <when test="countrycode != null">
-                    and c.country_code in <foreach item="i" collection="countrycode" open="(" separator="," close=")">#{i}</foreach>
+                <when test="countrycode != null">
+                    and substring(c.code_value from '[^:]+') in <foreach item="i" collection="countrycode" open="(" separator="," close=")">#{i}</foreach>
                 </when>
                 <otherwise>
-                    and c.country_code = 'US'
+                    and substring(c.code_value from '[^:]+') = 'US'
                 </otherwise>
             </choose>
         </where>
@@ -462,9 +458,9 @@
 
     <select id="codeStateCode" parameterType="String" resultMap="codeResult">
         select c.code_value,
-               min(c.description_with_country) description,
+        min(c.description_with_country) description,
         <include refid="listAggProviders"/>
-          from state
+        from state
         <include refid="joinDataSource"/>
         <include refid="codeValueSearch"/>
         <include refid="groupAndOrderBy"/>
@@ -472,9 +468,9 @@
 
     <select id="codeStateCodeList" parameterType="map" resultMap="codeResult">
         select c.code_value,
-               min(<include refid="descriptionChoice"/>) description,
+        min(<include refid="descriptionChoice"/>) description,
         <include refid="listAggProviders"/>
-          from state
+        from state
         <include refid="joinDataSource"/>
         <include refid="stateWhere"/>
         <include refid="groupAndOrderBySearch"/>
