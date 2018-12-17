@@ -2,7 +2,7 @@
 services:
   - 
     name: Lookups
-    url: 'http://localhost:8082/qw_portal_services/v2/api-docs'
+    url: 'http://localhost:8080/qw_portal_services/v2/api-docs'
     version: 2.0
   -
     name: WQP
