@@ -11,7 +11,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - README.md
 - Converted project to Spring Boot 2.
 - OAuth2 Security for Internal App.
-- Changed the pom to create a jar.
 - Dockerized project in preparation for building a docker image suitable for deployment.
+
+### Changes
+- Changed the pom to create a jar.
+
 
 [Unreleased]: https://github.com/NWQMC/qw_portal_services/compare/qw_portal_services-1.4...master
