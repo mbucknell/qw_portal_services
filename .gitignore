@@ -9,3 +9,5 @@
 /application-it.yml
 /application.yml
 nb-configuration.xml
+secrets.env
+
