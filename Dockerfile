@@ -16,7 +16,7 @@ RUN ${BUILD_COMMAND}
 FROM usgswma/wma-spring-boot-base:8-jre-slim
 
 ENV HEALTHY_RESPONSE_CONTAINS='{"status":"UP"}'
-COPY docker-entrypoint.sh /usr/local/bin/
+COPY --chown=1000:1000 docker-entrypoint.sh /usr/local/bin/
 COPY --from=build /build/target/qw_portal_services.jar app.jar
 CMD ["docker-entrypoint.sh"]
 HEALTHCHECK --interval=30s --timeout=3s \
