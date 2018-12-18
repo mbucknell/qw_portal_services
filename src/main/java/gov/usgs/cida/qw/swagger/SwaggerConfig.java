@@ -161,20 +161,5 @@ public class SwaggerConfig {
 		//It is needed in all WQP projects!!!
 		return new UiConfiguration(null, "none", "alpha", "schema", new String[] { "get", "post", "head" }, false, true, null);
 	}
-	
-	@Bean
-	public CorsFilter corsFilter() {
-	    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-
-	    // Allow anyone and anything access. Probably ok for Swagger spec
-	    CorsConfiguration config = new CorsConfiguration();
-	    config.setAllowCredentials(true);
-	    config.addAllowedOrigin("*");
-	    config.addAllowedHeader("*");
-	    config.addAllowedMethod("*");
-
-	    source.registerCorsConfiguration("/v2/api-docs", config);
-	    return new CorsFilter(source);
-	}
 
 }
