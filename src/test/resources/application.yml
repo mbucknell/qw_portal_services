@@ -1,9 +1,0 @@
-spring:
-  datasource:
-    url: "jdbc:postgresql://${wqpDbHost}:${wqpDbPort}/wqp_core"
-    username: ${wqpDbUsername}
-    password: ${wqpDbUserPassword}
-    driver-class-name: org.postgresql.Driver
-      
-  profiles: 
-    active: default,swagger

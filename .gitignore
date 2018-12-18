@@ -4,6 +4,7 @@
 /.project
 /classpath^%
 /qw_portal_services.log
+*/logs/*
 /bin/
 /src/main/webapp/META-INF/context.xml
 /application-it.yml

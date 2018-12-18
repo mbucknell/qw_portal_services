@@ -19,9 +19,6 @@ import gov.usgs.cida.qw.CustomStringToArrayConverter;
 public class SpringConfig implements WebMvcConfigurer {
 		
 	@Autowired
-	DataSource dataSource;	
-
-	@Autowired
 	CustomStringToArrayConverter customStringToArrayConverter;
 
 	@Override

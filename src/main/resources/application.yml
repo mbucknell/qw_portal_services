@@ -1,7 +1,7 @@
 
 spring:
   datasource:
-    url: "jdbc:postgresql://${wqpDbHost}:${wqpDbPort}/wqp_core"
+    url: "jdbc:postgresql://${wqpDbHost}:${wqpDbPort}/${wqpDbName}"
     username: ${wqpDbUsername}
     password: ${wqpDbUserPassword}
     
