@@ -21,6 +21,7 @@ import gov.usgs.cida.qw.codes.dao.CodeDao;
 import gov.usgs.cida.qw.swagger.SwaggerConfig;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import springfox.documentation.annotations.ApiIgnore;
 
 @Api(tags={SwaggerConfig.ORGANIZATION_TAG_NAME})
 @RestController
@@ -40,14 +41,14 @@ public class OrganizationRestController extends CodesRestController {
 	public CodeList getOrganizations(final @RequestParam(value="text", required=false) String text,
 			final @RequestParam(value="pagenumber", required=false) String pageNumber,
 			final @RequestParam(value="pagesize", required=false) String pageSize,
-			WebRequest webRequest) {
+			@ApiIgnore WebRequest webRequest) {
 		LOG.debug("organizations");
 		return getList(CodeType.ORGANIZATION, text, pageNumber, pageSize, null, webRequest);
 	}
 
 	@ApiOperation(value="Validate and return the requested Organization ID.")
 	@GetMapping("/validate")
-	public Code getOrganization(final @RequestParam(value="value") String value, WebRequest webRequest, HttpServletResponse response) {
+	public Code getOrganization(final @RequestParam(value="value") String value, @ApiIgnore WebRequest webRequest, HttpServletResponse response) {
 		LOG.debug("organization");
 		return getCode(CodeType.ORGANIZATION, value, webRequest, response);
 	}
