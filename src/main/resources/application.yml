@@ -1,12 +1,22 @@
 
 spring:
   datasource:
-    jndi-name: "java:comp/env/jdbc/WQPQW"
-
-management:
-  info:
-    git:
-      mode: full
-
-logging:
-  config: classpath:/logback-spring.xml
+    url: "jdbc:postgresql://${wqpDbHost}:${wqpDbPort}/${wqpDbName}"
+    username: ${wqpDbUsername}
+    password: ${wqpDbUserPassword}
+    
+  profiles:
+    active: default,swagger
+    
+server:
+  port: ${serverPort}
+  servlet:
+    context-path: ${serverContextPath}
+ 
+qwPortalServices:
+  displayHost: ${qwDisplayHost}
+  displayPath: ${qwDisplayPath}
+  displayProtocol: ${qwDisplayProtocol}
+  
+swaggerServicesConfigFile: classpath:/swaggerServices.yml
+  

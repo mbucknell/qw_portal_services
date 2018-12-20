@@ -2,29 +2,28 @@
 Water Quality Portal (WQP) Lookup Service
 
 ## Local Configuration
-This application is configured to be run in a Tomcat container. The development configuration (context.xml and swaggerServices.yml) can be copied to your local Tomcat. Required configuration is:
+This application is configured to be run as a jar. It can also be run using the command ``` mvn spring-boot:run ``` . 
+To run in a development environment, create an application.yml file in
+the project's home directory with the following:
 
 ```
-    <Environment name="qwPortalServices/displayHost" type="java.lang.String" value="localhost:8443"/>
-    <Environment name="qwPortalServices/displayPath" type="java.lang.String" value="/qw_portal_services"/>
-    <Environment name="swaggerServicesConfigFile" type="java.lang.String" value="${catalina.base}/conf/swaggerServices.yml"/>"
-    <Resource name="jdbc/WQPQW" 
-        .
-        .
-        .
-    />
+wqpDbHost: 127.0.0.1
+wqpDbPort: 5434
+wqpDbUsername: wqp_user
+wqpDbUserPassword: wqp_user_password
+
+serverPort: 8082
+serverContextPath: /qw_portal_services
+
+qwDisplayHost: localHost:8082
+qwDisplayPath: /qw_portal_services
+qwDisplayProtocol: http
 ```
 
-Security can be enabled by adding the following to the Tomcat's context.xml:
-
-```
-    <Parameter name="spring.profiles.active" value="default,swagger,internal" />
-    <Parameter name="oauthResourceKeyUri" value = "<<url for token_key>>"/>
-    <Parameter name="oauthResourceId" value="wqp"/>
-```
 
 ## Automated Testing
 This application has two flavors of automated tests: unit tests (\*Test.java) and integration tests (\*IT.java) which require a database.
+The docker-compose commands in https://github.com/NWQMC/schema-wqp-core can be used to create the CI database
 
 ### Testing with an IDE
 An application-it.yml file needs to be created in the project root directory in order to run the integration tests. It should contain:
@@ -50,3 +49,8 @@ When run this way, configuration information will be pulled from the maven setti
     </properties>
   </profile>
 ```
+
+## Building the docker images
+You will need to provide a secrets.env that has valid values for the values in secrets.env.sample. This file
+plus config.env will contain the environment variables for the application. The docker image builds the jar and then runs
+the application. The application will be available at localhost:8080/qw_portal_services

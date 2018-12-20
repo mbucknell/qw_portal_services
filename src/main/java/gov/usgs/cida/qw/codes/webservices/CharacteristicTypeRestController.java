@@ -21,6 +21,7 @@ import gov.usgs.cida.qw.codes.dao.CodeDao;
 import gov.usgs.cida.qw.swagger.SwaggerConfig;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import springfox.documentation.annotations.ApiIgnore;
 
 @Api(tags={SwaggerConfig.CHARACTERISTIC_TYPE_TAG_NAME})
 @RestController
@@ -40,14 +41,14 @@ public class CharacteristicTypeRestController extends CodesRestController {
 	public CodeList getCharacteristicTypes(final @RequestParam(value="text", required=false) String text,
 			final @RequestParam(value="pagenumber", required=false) String pageNumber,
 			final @RequestParam(value="pagesize", required=false) String pageSize,
-			WebRequest webRequest) {
+			@ApiIgnore WebRequest webRequest) {
 		LOG.debug("characteristictypes");
 		return getList(CodeType.CHARACTERISTICTYPE, text, pageNumber, pageSize, null, webRequest);
 	}
 
 	@ApiOperation(value="Validate and return the requested Characteristic Type.")
 	@GetMapping("/validate")
-	public Code getAssemblageName(final @RequestParam(value="value") String value, WebRequest webRequest, HttpServletResponse response) {
+	public Code getAssemblageName(final @RequestParam(value="value") String value, @ApiIgnore WebRequest webRequest, HttpServletResponse response) {
 		LOG.debug("characteristicType");
 		return getCode(CodeType.CHARACTERISTICTYPE, value, webRequest, response);
 	}

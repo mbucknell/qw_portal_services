@@ -21,10 +21,11 @@ import gov.usgs.cida.qw.springinit.SpringConfig;
 	classes={SpringConfig.class, CustomStringToArrayConverter.class,
 			VersionController.class})
 public class VersionControllerTest {
-
+	
 	@Autowired
 	private MockMvc mockMvc;
 
+	
 	@Test
 	public void getVersionTest() throws Exception {
 		mockMvc.perform(get("/version"))

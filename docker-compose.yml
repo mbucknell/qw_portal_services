@@ -1,0 +1,13 @@
+---
+  version: '3.3'
+
+  services:
+    qw_portal_services:
+      build: .
+      image: qw_portal_services
+      ports:
+        - "8080:8080"
+      
+      env_file:
+        - config.env
+        - secrets.env

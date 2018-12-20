@@ -28,6 +28,7 @@ import gov.usgs.cida.qw.swagger.SwaggerConfig;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import springfox.documentation.annotations.ApiIgnore;
 
 @Api(tags={SwaggerConfig.SUMMARY_TAG_NAME})
 @RestController
@@ -49,7 +50,7 @@ public class SummaryController extends BaseRestController {
 	public String getSummarySld(@ApiParam(value="A=All; E=EPA; N=NWIS", allowableValues="A,E,N") final @RequestParam(value="dataSource") String dataSource,
 			@ApiParam(value="S=States; C=Counties; H=Huc8", allowableValues="S,C,H") final @RequestParam(value="geometry") String geometry,
 			@ApiParam(value="A=All; 1=Last 12 Months; 5=Last 5 Years", allowableValues="A,1,5") final @RequestParam(value="timeFrame") String timeFrame,
-			HttpServletRequest request, HttpServletResponse response, WebRequest webRequest) throws IOException {
+			HttpServletRequest request, HttpServletResponse response, @ApiIgnore WebRequest webRequest) throws IOException {
 		LOG.debug("summary");
 		response.setCharacterEncoding("ISO-8859-1");
 		if (isNotModified(webRequest)) {
