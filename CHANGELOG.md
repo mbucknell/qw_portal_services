@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Converted project to Spring Boot 2.
 - OAuth2 Security for Internal App.
 - Dockerized project in preparation for building a docker image suitable for deployment.
+- pipeline.yml and two Jenkinsfiles
 
 ### Changes
 - Changed the pom to create a jar.
