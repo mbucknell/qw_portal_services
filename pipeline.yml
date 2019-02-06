@@ -16,10 +16,10 @@ memory: 512
 applicationName: "qw-portal-services"
 # integer representing the order of precedence of the ALB rule.
 # set to a low priority; services are given higher priority.
-rulePriority: 503
+rulePriority: 502
 # port that is exposed by your container
-containerPort: 5050
+containerPort: 8080
 # string parameter specifying a path that ALB should use to verify that your application is alive
-healthCheck: "/robots.txt"
+healthCheck: "actuator/health"
 # string parameter that tells the ALB how to route requests to the containers (e.g. /my-app/*); this forms a listener rule for the load balancer
-contextPath: "/*"
+contextPath: "/services"
