@@ -1,22 +1,31 @@
 
 spring:
   datasource:
-    url: "jdbc:postgresql://${wqpDbHost}:${wqpDbPort}/${wqpDbName}"
-    username: ${wqpDbUsername}
-    password: ${wqpDbUserPassword}
-    
+    url: jdbc:postgresql://${WQP_DB_HOST}:${WQP_DB_PORT}/${WQP_DB_NAME}
+    username: ${WQP_DB_READ_ONLY_USERNAME}
+    password: ${WQP_DB_READ_ONLY_PASSWORD}
+
   profiles:
     active: default,swagger
-    
+
 server:
-  port: ${serverPort}
+  port: ${SERVER_PORT}
   servlet:
-    context-path: ${serverContextPath}
- 
-qwPortalServices:
-  displayHost: ${qwDisplayHost}
-  displayPath: ${qwDisplayPath}
-  displayProtocol: ${qwDisplayProtocol}
-  
-swaggerServicesConfigFile: classpath:/swaggerServices.yml
-  
+    context-path: ${SERVER_CONTEXT_PATH}
+
+swagger:
+  display:
+    host: ${SWAGGER_DISPLAY_HOST}
+    path: ${SWAGGER_DISPLAY_PATH}
+    protocol: ${SWAGGER_DISPLAY_PROTOCOL}
+  services:
+    - name: Lookups
+      url: ${SWAGGER_SERVICES_LOOKUPS_URL}/v2/api-docs
+      version: 2.0
+    - name: Core WQP services
+      url: ${SWAGGER_SERVICES_CORE_URL}/v2/api-docs
+      version: 2.0
+
+logging:
+  level:
+    root: ${ROOT_LOG_LEVEL}
