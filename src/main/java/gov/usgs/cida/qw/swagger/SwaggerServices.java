@@ -2,6 +2,11 @@ package gov.usgs.cida.qw.swagger;
 
 import java.util.List;
 
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Service;
+
+@ConfigurationProperties(prefix="swagger")
+@Service
 public class SwaggerServices {
 
 	List<SwaggerService> services;

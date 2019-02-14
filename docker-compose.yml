@@ -1,13 +1,31 @@
----
-  version: '3.3'
+version: '3.3'
 
-  services:
-    qw_portal_services:
-      build: .
-      image: qw_portal_services
-      ports:
-        - "8080:8080"
-      
-      env_file:
-        - config.env
-        - secrets.env
+services:
+  qw_portal_services:
+    build: .
+    image: qw_portal_services
+    networks:
+      wqp:
+        ipv4_address: ${QW_PORTAL_SERVICES_IPV4}
+    ports:
+      - "8081:8080"
+    environment:
+      - WQP_DB_HOST=${WQP_DB_HOST}
+      - WQP_DB_PORT=${WQP_DB_PORT}
+      - WQP_DB_NAME=${WQP_DB_NAME}
+      - WQP_DB_READ_ONLY_USERNAME=${WQP_DB_READ_ONLY_USERNAME}
+      - WQP_DB_READ_ONLY_PASSWORD=${WQP_DB_READ_ONLY_PASSWORD}
+      - SERVER_PORT=${SERVER_PORT}
+      - SERVER_CONTEXT_PATH=${SERVER_CONTEXT_PATH}
+      - SWAGGER_DISPLAY_HOST=${SWAGGER_DISPLAY_HOST}
+      - SWAGGER_DISPLAY_PATH=${SWAGGER_DISPLAY_PATH}
+      - SWAGGER_DISPLAY_PROTOCOL=${SWAGGER_DISPLAY_PROTOCOL}
+      - SWAGGER_SERVICES_LOOKUPS_URL=${SWAGGER_SERVICES_LOOKUPS_URL}
+      - SWAGGER_SERVICES_CORE_URL=${SWAGGER_SERVICES_CORE_URL}
+      - ROOT_LOG_LEVEL=${ROOT_LOG_LEVEL}
+      - QW_PORTAL_SERVICES_IPV4=${QW_PORTAL_SERVICES_IPV4}
+
+networks:
+  wqp:
+    external:
+      name: wqp
