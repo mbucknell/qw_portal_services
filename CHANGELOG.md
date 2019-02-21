@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changes
 - Changed the pom to create a jar.
 - Updated Jenkinsfiles to use new pipeline library and added new variables to pipeline.yml
+- Updated Dockerfile to use new openJDK image, and changed RUN command to comply with best practices
 
 
 [Unreleased]: https://github.com/NWQMC/qw_portal_services/compare/qw_portal_services-1.4...master

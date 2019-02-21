@@ -1,7 +1,5 @@
 package gov.usgs.cida.qw.swagger;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
@@ -14,11 +12,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.core.env.Environment;
-import org.springframework.core.io.Resource;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import org.springframework.web.filter.CorsFilter;
-import org.yaml.snakeyaml.Yaml;
 
 import springfox.documentation.PathProvider;
 import springfox.documentation.builders.ParameterBuilder;
@@ -36,7 +29,6 @@ import springfox.documentation.swagger.web.DocExpansion;
 import springfox.documentation.swagger.web.ModelRendering;
 import springfox.documentation.swagger.web.OperationsSorter;
 import springfox.documentation.swagger.web.TagsSorter;
-import springfox.documentation.swagger.web.UiConfiguration;
 import springfox.documentation.swagger.web.UiConfigurationBuilder;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
@@ -62,32 +54,13 @@ public class SwaggerConfig {
 	public static final String VERSION_TAG_NAME = "Application Version";
 	private static final String TAG_DESCRIPTION = "Lookup and Validate";
 
-	@Value("${qwPortalServices.displayHost}")
-	private String displayHost;
-
-	@Value("${qwPortalServices.displayPath}")
-	private String displayPath;
-	
-	@Value("${qwPortalServices.displayProtocol}")  
-	private String displayProtocol;
-
-	@Value("${swaggerServicesConfigFile}")
-	private Resource servicesConfigFile;
+	@Value("${swagger.display.host}")
+	private String swaggerDisplayHost;
+	@Value("${swagger.display.path}")
+	private String swaggerDisplayPath;
 
 	@Autowired
 	private Environment environment;
-
-	@Bean
-	public SwaggerServices swaggerServices() {
-		SwaggerServices props = new SwaggerServices();
-		Yaml yaml = new Yaml();  
-		try( InputStream in = servicesConfigFile.getInputStream()) {
-			props = yaml.loadAs(in, SwaggerServices.class );
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return props;
-	}
 
 	@Bean
 	public Docket qwPortalServicesApi() {
@@ -103,8 +76,8 @@ public class SwaggerConfig {
 		);
 
 		Docket docket = new Docket(DocumentationType.SWAGGER_2)
-			.protocols(new HashSet<>(Arrays.asList(displayProtocol)))
-			.host(displayHost)
+			.protocols(new HashSet<>(Arrays.asList("http")))
+			.host(swaggerDisplayHost)
 			.pathProvider(pathProvider())
 			.useDefaultResponseMessages(false)
 			.globalOperationParameters(operationParameters)
@@ -146,12 +119,12 @@ public class SwaggerConfig {
 	public class ProxyPathProvider extends AbstractPathProvider {
 		@Override
 		protected String applicationPath() {
-			return displayPath;
+			return swaggerDisplayPath;
 		}
 	
 		@Override
 		protected String getDocumentationPath() {
-			return displayPath;
+			return swaggerDisplayPath;
 		}
 		
 	}
