@@ -6,6 +6,10 @@ gitlabPath: "wma/docker/wqp"
 dockerImageName: "qw_portal_services"
 # type of build
 repoPath: "NWQMC/qw_portal_services"
+# name of the git repo
+gitRepoUrl: "https://github.com/NWQMC/qw_portal_services.git"
+# Jenkins credential for pushing back to repo
+gitRepoCredentialsId: GITHUB_ACCESS_TOKEN
 # name of the deploy job to trigger
 deployJobName: "qw-portal-services-deploy"
 # name of the project
