@@ -13,7 +13,7 @@ projectName: "wqp-external"
 # maximum amount of RAM for running Docker containers in the service
 memory: 512
 # name of the application or service
-applicationName: "qw-portal-services"
+applicationName: "qw_portal_service"
 # integer representing the order of precedence of the ALB rule.
 # set to a low priority; services are given higher priority.
 rulePriority: 502
