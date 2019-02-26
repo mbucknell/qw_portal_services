@@ -1,4 +1,4 @@
-FROM maven:3.6.0-jdk-8 AS build
+FROM maven:3.6.0-jdk-11 AS build
 
 LABEL maintainer=gs-w_eto2@usgs.gov
 
@@ -13,7 +13,7 @@ ARG BUILD_COMMAND="mvn package -Dmaven.test.skip=true"
 RUN ${BUILD_COMMAND}
 
 
-FROM usgswma/wma-spring-boot-base:8-jre-slim
+FROM usgswma/openjdk:debian-stretch-openjdk-11.0.2-ca27ea0b2bc949ed612aeb98a561de91a797b07f
 
 ENV HEALTHY_RESPONSE_CONTAINS='{"status":"UP"}'
 COPY --from=build /build/target/qw_portal_services.jar app.jar
