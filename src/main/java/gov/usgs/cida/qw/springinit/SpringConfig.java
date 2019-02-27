@@ -40,7 +40,6 @@ public class SpringConfig implements WebMvcConfigurer {
 			.favorPathExtension(false)
 			.favorParameter(true)
 			.parameterName("mimeType")
-			.defaultContentType(BaseRestController.MEDIA_TYPE_APPLICATION_XML_UTF8)
 			.mediaType("csv", BaseRestController.MEDIA_TYPE_TEXT_CSV_UTF8)
 			.mediaType("xml", BaseRestController.MEDIA_TYPE_APPLICATION_XML_UTF8)
 			.mediaType("json", MediaType.APPLICATION_JSON_UTF8)
