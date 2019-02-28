@@ -7,19 +7,24 @@ To run in a development environment, create an application.yml file in
 the project's home directory with the following:
 
 ```
-wqpDbHost: 127.0.0.1
-wqpDbPort: 5434
-wqpDbUsername: wqp_user
-wqpDbUserPassword: wqp_user_password
+(fill in appropriate postgres information for these 5 values)
+WQP_DB_HOST:
+WQP_DB_PORT:
+WQP_DB_READ_ONLY_USERNAME:
+WQP_DB_READ_ONLY_PASSWORD:
+WQP_DB_NAME:
 
-serverPort: 8082
-serverContextPath: /qw_portal_services
+SERVER_PORT: 8082
+SERVER_CONTEXT_PATH: /services
 
-qwDisplayHost: localHost:8082
-qwDisplayPath: /qw_portal_services
-qwDisplayProtocol: http
+SWAGGER_DISPLAY_HOST: localHost:8082
+SWAGGER_DISPLAY_PATH: /services
+SWAGGER_DISPLAY_PROTOCOL: http
+SWAGGER_SERVICES_CORE_URL:
+SWAGGER_SERVICES_LOOKUPS_URL:
+
+ROOT_LOG_LEVEL: INFO
 ```
-
 
 ## Automated Testing
 This application has two flavors of automated tests: unit tests (\*Test.java) and integration tests (\*IT.java) which require a database.
