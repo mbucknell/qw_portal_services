@@ -13,3 +13,5 @@ nb-configuration.xml
 secrets.env
 
 /.env
+.idea/
+qw_portal_services.iml
