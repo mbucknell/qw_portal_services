@@ -59,7 +59,7 @@ public class DBTestConfig {
 		DatabaseDataSourceConnectionFactoryBean dbUnitDatabaseConnection = new DatabaseDataSourceConnectionFactoryBean();
 		dbUnitDatabaseConnection.setDatabaseConfig(dbUnitDatabaseConfig());
 		dbUnitDatabaseConnection.setDataSource(dataSource());
-		dbUnitDatabaseConnection.setSchema("wqp_core");
+		dbUnitDatabaseConnection.setSchema("wqp");
 		return dbUnitDatabaseConnection;
 	}
 

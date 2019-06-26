@@ -18,7 +18,7 @@
 
     <sql id="mltextSearch">
         <if test="text != null">
-            upper(c.text) like '%' || upper(#{text}) || '%'
+            upper(c.search_text) like '%' || upper(#{text}) || '%'
         </if>
         <if test="organizationid != null">
             and c.organization in
