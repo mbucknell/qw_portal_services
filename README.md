@@ -54,7 +54,7 @@ Configuration information will be pulled from your local Maven settings.xml file
     </properties>
 </profile>
 ```
-Where the ```<properties>``` values should be substituted to reflect your local CI database setup.  Make sure this is your active profile by commenting out other profiles or setting their activeByDefault properties to ```false```.
+Where the ```<properties>``` values should be substituted to reflect your local CI database setup.
 
 ## Building the docker images
 You will need to provide a secrets.env that has valid values for the values in secrets.env.sample. This file
