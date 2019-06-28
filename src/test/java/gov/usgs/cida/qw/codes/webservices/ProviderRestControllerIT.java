@@ -19,7 +19,7 @@ import gov.usgs.cida.qw.springinit.SpringConfig;
 			ProviderRestController.class, LastUpdateDao.class, CodeDao.class})
 public class ProviderRestControllerIT extends BaseCodesRestControllerTest {
 
-	public static String TEST_ENDPOINT = "/codes/providers";
+	public static String TEST_ENDPOINT = "/providers";
 	public static String CODE_VALUE = "STEWARDS";
 	public static String CODE_JSON = "{\"value\":\"STEWARDS\"}";
 	public static String CODE_XML = XML_HEADER +"<Code value=\"STEWARDS\"/>";

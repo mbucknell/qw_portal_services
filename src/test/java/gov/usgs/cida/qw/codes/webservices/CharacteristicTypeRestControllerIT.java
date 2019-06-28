@@ -26,7 +26,7 @@ import gov.usgs.cida.qw.springinit.SpringConfig;
 })
 public class CharacteristicTypeRestControllerIT extends BaseCodesRestControllerTest {
 
-	public static String TEST_ENDPOINT = "/codes/characteristictype";
+	public static String TEST_ENDPOINT = "/characteristictype";
 	public static String CODE_VALUE = "Population/Community";
 	public static String CODE_JSON = "{\"value\":\"Population/Community\",\"providers\":\"STORET\"}";
 	public static String CODE_XML = XML_HEADER +"<Code value=\"Population/Community\" providers=\"STORET\"/>";

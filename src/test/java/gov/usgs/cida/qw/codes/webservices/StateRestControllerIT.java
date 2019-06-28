@@ -26,7 +26,7 @@ import gov.usgs.cida.qw.springinit.SpringConfig;
 })
 public class StateRestControllerIT extends BaseCodesRestControllerTest {
 
-	public static String TEST_ENDPOINT = "/codes/statecode";
+	public static String TEST_ENDPOINT = "/statecode";
 	public static String CODE_VALUE = "US:19";
 	public static String CODE_JSON = "{\"value\":\"US:19\",\"desc\":\"US, IOWA\",\"providers\":\"STEWARDS\"}";
 	public static String CODE_XML = XML_HEADER +"<Code value=\"US:19\" desc=\"US, IOWA\" providers=\"STEWARDS\"/>";

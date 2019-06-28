@@ -25,7 +25,7 @@ import springfox.documentation.annotations.ApiIgnore;
 
 @Api(tags={SwaggerConfig.SUBJECT_TAXONOMIC_NAME_TAG_NAME})
 @RestController
-@RequestMapping(value="codes/subjecttaxonomicname", produces={BaseRestController.MEDIA_TYPE_APPLICATION_XML_UTF8_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
+@RequestMapping(value="subjecttaxonomicname", produces={BaseRestController.MEDIA_TYPE_APPLICATION_XML_UTF8_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
 public class SubjectTaxonomicNameRestController extends CodesRestController {
 
 	private static final Logger LOG = LoggerFactory.getLogger(SubjectTaxonomicNameRestController.class);

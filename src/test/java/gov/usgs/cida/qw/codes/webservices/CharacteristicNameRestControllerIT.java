@@ -26,7 +26,7 @@ import gov.usgs.cida.qw.springinit.SpringConfig;
 })
 public class CharacteristicNameRestControllerIT extends BaseCodesRestControllerTest {
 
-	public static String TEST_ENDPOINT = "/codes/characteristicname";
+	public static String TEST_ENDPOINT = "/characteristicname";
 	public static String CODE_VALUE = "Aminomethylphosphonic Acid";
 	public static String CODE_JSON = "{\"value\":\"Aminomethylphosphonic Acid\",\"providers\":\"STEWARDS\"}";
 	public static String CODE_XML = XML_HEADER +"<Code value=\"Aminomethylphosphonic Acid\" providers=\"STEWARDS\"/>";

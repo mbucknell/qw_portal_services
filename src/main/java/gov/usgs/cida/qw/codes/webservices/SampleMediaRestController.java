@@ -25,7 +25,7 @@ import springfox.documentation.annotations.ApiIgnore;
 
 @Api(tags={SwaggerConfig.SAMPLE_MEDIA_TAG_NAME})
 @RestController
-@RequestMapping(value={"codes/samplemedia"}, produces={BaseRestController.MEDIA_TYPE_APPLICATION_XML_UTF8_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
+@RequestMapping(value={"samplemedia"}, produces={BaseRestController.MEDIA_TYPE_APPLICATION_XML_UTF8_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
 public class SampleMediaRestController extends CodesRestController {
 
 	private static final Logger LOG = LoggerFactory.getLogger(SampleMediaRestController.class);
