@@ -25,7 +25,7 @@ import springfox.documentation.annotations.ApiIgnore;
 
 @Api(tags={SwaggerConfig.CHARACTERISTIC_NAME_TAG_NAME})
 @RestController
-@RequestMapping(value="codes/characteristicname", produces={BaseRestController.MEDIA_TYPE_APPLICATION_XML_UTF8_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
+@RequestMapping(value="characteristicname", produces={BaseRestController.MEDIA_TYPE_APPLICATION_XML_UTF8_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
 public class CharacteristicNameRestController extends CodesRestController {
 
 	private static final Logger LOG = LoggerFactory.getLogger(CharacteristicNameRestController.class);

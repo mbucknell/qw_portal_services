@@ -28,7 +28,7 @@ import springfox.documentation.annotations.ApiIgnore;
 
 @Api(tags={SwaggerConfig.COUNTY_CODE_TAG_NAME})
 @RestController
-@RequestMapping(value="codes/countycode", produces={BaseRestController.MEDIA_TYPE_APPLICATION_XML_UTF8_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
+@RequestMapping(value="countycode", produces={BaseRestController.MEDIA_TYPE_APPLICATION_XML_UTF8_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
 public class CountyRestController extends CodesRestController {
 
 	private static final Logger LOG = LoggerFactory.getLogger(CountyRestController.class);

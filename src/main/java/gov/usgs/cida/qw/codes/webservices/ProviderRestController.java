@@ -25,7 +25,7 @@ import springfox.documentation.annotations.ApiIgnore;
 
 @Api(tags={SwaggerConfig.PROVIDERS_TAG_NAME})
 @RestController
-@RequestMapping(value="codes/providers", produces={BaseRestController.MEDIA_TYPE_APPLICATION_XML_UTF8_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
+@RequestMapping(value="providers", produces={BaseRestController.MEDIA_TYPE_APPLICATION_XML_UTF8_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
 public class ProviderRestController extends CodesRestController {
 
 	private static final Logger LOG = LoggerFactory.getLogger(ProviderRestController.class);

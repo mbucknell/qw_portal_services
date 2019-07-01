@@ -26,7 +26,7 @@ import gov.usgs.cida.qw.springinit.SpringConfig;
 })
 public class SampleMediaRestControllerIT extends BaseCodesRestControllerTest {
 
-	public static String TEST_ENDPOINT = "/codes/samplemedia";
+	public static String TEST_ENDPOINT = "/samplemedia";
 	public static String CODE_VALUE = "Biological Tissue";
 	public static String CODE_JSON = "{\"value\":\"Biological Tissue\",\"providers\":\"NWIS STEWARDS\"}";
 	public static String CODE_XML = XML_HEADER +"<Code value=\"Biological Tissue\" providers=\"NWIS STEWARDS\"/>";

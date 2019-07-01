@@ -25,7 +25,7 @@ import springfox.documentation.annotations.ApiIgnore;
 
 @Api(tags={SwaggerConfig.COUNTRY_CODE_TAG_NAME})
 @RestController
-@RequestMapping(value="codes/countrycode", produces={BaseRestController.MEDIA_TYPE_APPLICATION_XML_UTF8_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
+@RequestMapping(value="countrycode", produces={BaseRestController.MEDIA_TYPE_APPLICATION_XML_UTF8_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
 public class CountriesRestController extends CodesRestController {
 
 	private static final Logger LOG = LoggerFactory.getLogger(CountriesRestController.class);

@@ -26,7 +26,7 @@ import gov.usgs.cida.qw.springinit.SpringConfig;
 })
 public class SiteTypeRestControllerIT extends BaseCodesRestControllerTest {
 
-	public static String TEST_ENDPOINT = "/codes/sitetype";
+	public static String TEST_ENDPOINT = "/sitetype";
 	public static String CODE_VALUE = "Lake, Reservoir, Impoundment";
 	public static String CODE_JSON = "{\"value\":\"Lake, Reservoir, Impoundment\",\"providers\":\"STEWARDS\"}";
 	public static String CODE_XML = XML_HEADER +"<Code value=\"Lake, Reservoir, Impoundment\" providers=\"STEWARDS\"/>";

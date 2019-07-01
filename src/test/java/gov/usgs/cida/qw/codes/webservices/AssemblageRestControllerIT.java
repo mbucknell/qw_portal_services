@@ -26,7 +26,7 @@ import gov.usgs.cida.qw.springinit.SpringConfig;
 })
 public class AssemblageRestControllerIT extends BaseCodesRestControllerTest {
 
-	public static String TEST_ENDPOINT = "/codes/assemblage";
+	public static String TEST_ENDPOINT = "/assemblage";
 	public static String CODE_VALUE = "Fish/Nekton";
 	public static String CODE_JSON = "{\"value\":\"Fish/Nekton\",\"providers\":\"STEWARDS STORET\"}";
 	public static String CODE_XML = XML_HEADER +"<Code value=\"Fish/Nekton\" providers=\"STEWARDS STORET\"/>";

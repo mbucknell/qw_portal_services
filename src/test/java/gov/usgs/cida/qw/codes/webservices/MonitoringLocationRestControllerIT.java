@@ -26,7 +26,7 @@ import gov.usgs.cida.qw.springinit.SpringConfig;
 })
 public class MonitoringLocationRestControllerIT extends BaseCodesRestControllerTest{
 
-	public static String TEST_ENDPOINT = "/codes/monitoringlocation";
+	public static String TEST_ENDPOINT = "/monitoringlocation";
 	public static String CODE_VALUE = "USGS-07083000";
 	public static String CODE_JSON = "{\"value\":\"USGS-07083000\",\"desc\":\"HALFMOON CREEK NEAR MALTA, CO\",\"providers\":\"BIODATA NWIS\"}";
 	public static String CODE_XML = XML_HEADER + "<Code value=\"USGS-07083000\" desc=\"HALFMOON CREEK NEAR MALTA, CO\" providers=\"BIODATA NWIS\"/>";

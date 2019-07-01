@@ -26,7 +26,7 @@ import gov.usgs.cida.qw.springinit.SpringConfig;
 })
 public class OrganizationRestControllerIT extends BaseCodesRestControllerTest {
 
-	public static String TEST_ENDPOINT = "/codes/organization";
+	public static String TEST_ENDPOINT = "/organization";
 	public static String CODE_VALUE = "FWC_WQMP";
 	public static String CODE_JSON = "{\"value\":\"FWC_WQMP\",\"desc\":\"Florida Keys NMS - Water Quality Monitoring Program\",\"providers\":\"NWIS\"}";
 	public static String CODE_XML = XML_HEADER +"<Code value=\"FWC_WQMP\" desc=\"Florida Keys NMS - Water Quality Monitoring Program\" providers=\"NWIS\"/>";

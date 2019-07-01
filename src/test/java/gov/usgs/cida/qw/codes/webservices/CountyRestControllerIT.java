@@ -26,7 +26,7 @@ import gov.usgs.cida.qw.springinit.SpringConfig;
 })
 public class CountyRestControllerIT extends BaseCodesRestControllerTest {
 
-	public static String TEST_ENDPOINT = "/codes/countycode";
+	public static String TEST_ENDPOINT = "/countycode";
 	public static String CODE_VALUE = "US:19:015";
 	public static String CODE_JSON = "{\"value\":\"US:19:015\",\"desc\":\"US, IOWA, BOONE\",\"providers\":\"NWIS STORET\"}";
 	public static String CODE_XML = XML_HEADER +"<Code value=\"US:19:015\" desc=\"US, IOWA, BOONE\" providers=\"NWIS STORET\"/>";

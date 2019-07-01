@@ -26,7 +26,7 @@ import gov.usgs.cida.qw.springinit.SpringConfig;
 })
 public class SubjectTaxonomicNameRestControllerIT extends BaseCodesRestControllerTest {
 
-	public static String TEST_ENDPOINT = "/codes/subjecttaxonomicname";
+	public static String TEST_ENDPOINT = "/subjecttaxonomicname";
 	public static String CODE_VALUE = "Fallacia sublucidula";
 	public static String CODE_JSON = "{\"value\":\"Fallacia sublucidula\",\"providers\":\"STEWARDS STORET\"}";
 	public static String CODE_XML = XML_HEADER +"<Code value=\"Fallacia sublucidula\" providers=\"STEWARDS STORET\"/>";

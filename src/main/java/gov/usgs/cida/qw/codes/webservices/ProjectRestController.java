@@ -25,7 +25,7 @@ import springfox.documentation.annotations.ApiIgnore;
 
 @Api(tags={SwaggerConfig.PROJECT_TAG_NAME})
 @RestController
-@RequestMapping(value="codes/project", produces={BaseRestController.MEDIA_TYPE_APPLICATION_XML_UTF8_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
+@RequestMapping(value="project", produces={BaseRestController.MEDIA_TYPE_APPLICATION_XML_UTF8_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
 public class ProjectRestController extends CodesRestController {
 
 	private static final Logger LOG = LoggerFactory.getLogger(ProjectRestController.class);
