@@ -1,16 +1,16 @@
 package gov.usgs.cida.qw.codes.dao;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
@@ -608,19 +608,20 @@ public class CodeDaoIT extends BaseIT {
 		List<Code> codes = codeDao.getCodes(CodeType.PROJECT);
 		assertNotNull(codes);
 		assertEquals(11, codes.size());
-		assertEquals("ggg", codes.get(7).getValue());
-		assertNull(codes.get(7).getDesc());
+		assertEquals("ggg", codes.get(6).getValue());
+		assertEquals("čćžđš", codes.get(10).getValue());
+		assertNull(codes.get(6).getDesc());
 		assertEquals("NWIS STEWARDS STORET", codes.get(0).getProviders());
 		assertEquals("NWIS STEWARDS STORET", codes.get(1).getProviders());
 		assertEquals("NWIS STEWARDS", codes.get(2).getProviders());
-		assertEquals("NWIS", codes.get(3).getProviders());
-		assertEquals("STEWARDS", codes.get(4).getProviders());
-		assertEquals("NWIS STORET", codes.get(5).getProviders());
-		assertEquals("STEWARDS STORET", codes.get(6).getProviders());
+		assertEquals("STEWARDS", codes.get(3).getProviders());
+		assertEquals("NWIS STORET", codes.get(4).getProviders());
+		assertEquals("STEWARDS STORET", codes.get(5).getProviders());
+		assertEquals("STEWARDS", codes.get(6).getProviders());
 		assertEquals("STEWARDS", codes.get(7).getProviders());
-		assertEquals("STEWARDS", codes.get(8).getProviders());
-		assertEquals("NWIS STEWARDS STORET", codes.get(9).getProviders());
-		assertEquals("STORET", codes.get(10).getProviders());
+		assertEquals("NWIS STEWARDS STORET", codes.get(8).getProviders());
+		assertEquals("STORET", codes.get(9).getProviders());
+		assertEquals("NWIS", codes.get(10).getProviders());
 
 		Map<String, Object> parms = new HashMap<String, Object>();
 		int cnt = codeDao.getRecordCount(CodeType.PROJECT, parms);
@@ -652,9 +653,9 @@ public class CodeDaoIT extends BaseIT {
 		codes = codeDao.getCodes(CodeType.PROJECT, parms);
 		assertNotNull(codes);
 		assertEquals(2, codes.size());
-		assertEquals("iii", codes.get(0).getValue());
+		assertEquals("jjj", codes.get(0).getValue());
 		assertNull(codes.get(0).getDesc());
-		assertEquals("NWIS STEWARDS STORET", codes.get(0).getProviders());
+		assertEquals("STORET", codes.get(0).getProviders());
 	}
 
 	@Test

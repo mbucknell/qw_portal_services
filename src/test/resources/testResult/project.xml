@@ -1,15 +1,15 @@
 <?xml version='1.0' encoding='UTF-8' standalone='yes'?>
 <Codes>
-	<Code value='Aaa' providers='NWIS STEWARDS STORET'/>
-	<Code value='Aab' providers='NWIS STEWARDS STORET'/>
-	<Code value='Bb b' providers='NWIS STEWARDS'/>
-	<Code value='ccc' providers='NWIS'/>
-	<Code value='ddd' providers='STEWARDS'/>
-	<Code value='eee' providers='NWIS STORET'/>
-	<Code value='fff' providers='STEWARDS STORET'/>
-	<Code value='ggg' providers='STEWARDS'/>
-	<Code value='hhh' providers='STEWARDS'/>
-	<Code value='iii' providers='NWIS STEWARDS STORET'/>
-	<Code value='jjj' providers='STORET'/>
-	<recordCount>11</recordCount>
+    <Code value='Aaa' providers='NWIS STEWARDS STORET'/>
+    <Code value='Aab' providers='NWIS STEWARDS STORET'/>
+    <Code value='Bb b' providers='NWIS STEWARDS'/>
+    <Code value='ddd' providers='STEWARDS'/>
+    <Code value='eee' providers='NWIS STORET'/>
+    <Code value='fff' providers='STEWARDS STORET'/>
+    <Code value='ggg' providers='STEWARDS'/>
+    <Code value='hhh' providers='STEWARDS'/>
+    <Code value='iii' providers='NWIS STEWARDS STORET'/>
+    <Code value='jjj' providers='STORET'/>
+    <Code value='čćžđš' providers='NWIS'/>
+    <recordCount>11</recordCount>
 </Codes>

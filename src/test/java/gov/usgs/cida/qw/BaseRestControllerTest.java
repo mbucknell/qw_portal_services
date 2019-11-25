@@ -1,26 +1,26 @@
 package gov.usgs.cida.qw;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
 
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.Date;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.context.request.ServletWebRequest;
 
-
+@SpringBootTest
 public class BaseRestControllerTest {
 
-	@Mock
+	@MockBean
 	private LastUpdateDao lastUpdateDao;
 
 	private class TestController extends BaseRestController {
@@ -35,9 +35,8 @@ public class BaseRestControllerTest {
 	private MockHttpServletResponse servletResponse;
 	private LocalDateTime localFromUTC; 
 
-	@Before
+	@BeforeEach
 	public void setup() {
-		MockitoAnnotations.initMocks(this);
 		testController = new TestController(lastUpdateDao);
 		localFromUTC = LocalDateTime.of(2014, 1, 1, 1, 1, 1);
 	}
@@ -51,25 +50,25 @@ public class BaseRestControllerTest {
 		mockRequest = new MockHttpServletRequest();
 		servletResponse = new MockHttpServletResponse();
 		webRequest = new ServletWebRequest(mockRequest, servletResponse);
-		assertFalse("Header Not set, so is modified.", testController.isNotModified(webRequest));
+		assertFalse(testController.isNotModified(webRequest), "Header Not set, so is modified.");
 
 		mockRequest = new MockHttpServletRequest();
 		servletResponse = new MockHttpServletResponse();
 		webRequest = new ServletWebRequest(mockRequest, servletResponse);
 		mockRequest.addHeader("If-Modified-Since", new Date());
-		assertTrue("Header set for after last modified, so is not modified.", testController.isNotModified(webRequest));
+		assertTrue(testController.isNotModified(webRequest), "Header set for after last modified, so is not modified.");
 
 		mockRequest = new MockHttpServletRequest();
 		servletResponse = new MockHttpServletResponse();
 		webRequest = new ServletWebRequest(mockRequest, servletResponse);
 		mockRequest.addHeader("If-Modified-Since", localFromUTC.toInstant(ZoneOffset.UTC).toEpochMilli());
-		assertTrue("Header set for same as last modified, so is not modified.", testController.isNotModified(webRequest));
+		assertTrue(testController.isNotModified(webRequest), "Header set for same as last modified, so is not modified.");
 
 		mockRequest = new MockHttpServletRequest();
 		servletResponse = new MockHttpServletResponse();
 		webRequest = new ServletWebRequest(mockRequest, servletResponse);
 		mockRequest.addHeader("If-Modified-Since", localFromUTC.minusSeconds(1).toInstant(ZoneOffset.UTC).toEpochMilli());
-		assertFalse("Header set for before last modified, so is modified.", testController.isNotModified(webRequest));
+		assertFalse(testController.isNotModified(webRequest), "Header set for before last modified, so is modified.");
 	}
 
 }

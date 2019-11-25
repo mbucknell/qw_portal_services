@@ -1,7 +1,7 @@
 
 spring:
   datasource:
-    url: jdbc:postgresql://${WQP_DB_HOST}:${WQP_DB_PORT}/${WQP_DB_NAME}
+    url: jdbc:postgresql://${WQP_DATABASE_ADDRESS}:${WQP_DATABASE_PORT}/${WQP_DATABASE_NAME}
     username: ${WQP_DB_READ_ONLY_USERNAME}
     password: ${WQP_DB_READ_ONLY_PASSWORD}
 
@@ -29,3 +29,22 @@ swagger:
 logging:
   level:
     root: ${ROOT_LOG_LEVEL}
+
+management:
+  endpoints:
+    enabled-by-default: false
+    jmx:
+      exposure:
+        exclude: "*"
+    web:
+      base-path: /about
+      exposure:
+        include:
+        - info
+        - health
+  endpoint:
+    info:
+      enabled: true
+    health:
+      enabled: true
+      show-details: never

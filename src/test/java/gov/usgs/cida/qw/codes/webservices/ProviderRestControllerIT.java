@@ -1,22 +1,10 @@
 package gov.usgs.cida.qw.codes.webservices;
 
-import org.junit.Test;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
-import gov.usgs.cida.qw.CustomStringToArrayConverter;
-import gov.usgs.cida.qw.LastUpdateDao;
-import gov.usgs.cida.qw.codes.dao.CodeDao;
-import gov.usgs.cida.qw.springinit.DBTestConfig;
-import gov.usgs.cida.qw.springinit.SpringConfig;
-
-@EnableWebMvc
-@AutoConfigureMockMvc(secure=false)
-@SpringBootTest(webEnvironment=WebEnvironment.MOCK,
-	classes={DBTestConfig.class, SpringConfig.class, CustomStringToArrayConverter.class,
-			ProviderRestController.class, LastUpdateDao.class, CodeDao.class})
+@SpringBootTest(webEnvironment=WebEnvironment.RANDOM_PORT)
 public class ProviderRestControllerIT extends BaseCodesRestControllerTest {
 
 	public static String TEST_ENDPOINT = "/providers";

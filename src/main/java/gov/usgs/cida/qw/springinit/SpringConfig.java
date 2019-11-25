@@ -1,16 +1,12 @@
 package gov.usgs.cida.qw.springinit;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.web.servlet.FilterRegistrationBean;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.http.MediaType;
 import org.springframework.util.AntPathMatcher;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import org.springframework.web.filter.CorsFilter;
 import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -20,7 +16,7 @@ import gov.usgs.cida.qw.CustomStringToArrayConverter;
 
 @Configuration
 public class SpringConfig implements WebMvcConfigurer {
-		
+
 	@Autowired
 	CustomStringToArrayConverter customStringToArrayConverter;
 
@@ -41,8 +37,8 @@ public class SpringConfig implements WebMvcConfigurer {
 			.favorParameter(true)
 			.parameterName("mimeType")
 			.mediaType("csv", BaseRestController.MEDIA_TYPE_TEXT_CSV_UTF8)
-			.mediaType("xml", BaseRestController.MEDIA_TYPE_APPLICATION_XML_UTF8)
-			.mediaType("json", MediaType.APPLICATION_JSON_UTF8)
+			.mediaType("xml", MediaType.APPLICATION_XML)
+			.mediaType("json", MediaType.APPLICATION_JSON)
 			;
 	}
 
@@ -54,18 +50,13 @@ public class SpringConfig implements WebMvcConfigurer {
 		configurer.setPathMatcher(matcher);
 	}
 
-	@Bean
-	public FilterRegistrationBean<CorsFilter> corsFilter() {
-		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-
-		CorsConfiguration config = new CorsConfiguration().applyPermitDefaultValues();
-		config.setAllowCredentials(false);
-		source.registerCorsConfiguration("/**", config);
-
-		FilterRegistrationBean<CorsFilter> bean = new FilterRegistrationBean<CorsFilter>(new CorsFilter(source));
-		bean.setOrder(0);
-
-		return bean;
+	@Override
+	public void addCorsMappings(CorsRegistry registry) {
+		registry
+			.addMapping("/**")
+			.allowedOrigins("*")
+			.allowedMethods("GET", "OPTIONS")
+			.allowedHeaders("Origin", "Accept", "X-Requested-With", "Content-Type", "Access-Control-Request-Method", "Access-Control-Request-Headers");
 	}
 
 }

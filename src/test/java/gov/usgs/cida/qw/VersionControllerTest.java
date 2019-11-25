@@ -1,36 +1,25 @@
 package gov.usgs.cida.qw;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
-import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
-import gov.usgs.cida.qw.springinit.SpringConfig;
-
-@RunWith(SpringRunner.class)
-@AutoConfigureMockMvc(secure=false)
-@SpringBootTest(webEnvironment=WebEnvironment.MOCK,
-	classes={SpringConfig.class, CustomStringToArrayConverter.class,
-			VersionController.class})
+@SpringBootTest(webEnvironment=WebEnvironment.RANDOM_PORT)
 public class VersionControllerTest {
-	
-	@Autowired
-	private MockMvc mockMvc;
 
-	
 	@Test
-	public void getVersionTest() throws Exception {
-		mockMvc.perform(get("/version"))
-			.andExpect(status().isFound())
-			.andExpect(redirectedUrl("/actuator/info"));
-	}
+	public void getVersionTest(@Autowired TestRestTemplate restTemplate) throws Exception {
+		ResponseEntity<String> rtn = restTemplate.getForEntity("/version", String.class);
+		assertThat(rtn.getStatusCode(), equalTo(HttpStatus.OK));
+		assertTrue(rtn.getBody().contains("\"artifact\":\"qw_portal_services\""));
 
+	}
 }
