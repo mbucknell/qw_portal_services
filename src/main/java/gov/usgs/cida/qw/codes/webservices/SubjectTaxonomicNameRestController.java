@@ -17,12 +17,11 @@ import gov.usgs.cida.qw.codes.Code;
 import gov.usgs.cida.qw.codes.CodeList;
 import gov.usgs.cida.qw.codes.CodeType;
 import gov.usgs.cida.qw.codes.dao.CodeDao;
-import gov.usgs.cida.qw.swagger.SwaggerConfig;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import springfox.documentation.annotations.ApiIgnore;
+import gov.usgs.cida.qw.springinit.OpenApiConfig;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
-@Api(tags={SwaggerConfig.SUBJECT_TAXONOMIC_NAME_TAG_NAME})
+@Tag(name="Taxonomic Name", description=OpenApiConfig.LOOKUP_TAG_DESCRIPTION)
 @RestController
 @RequestMapping(value="subjecttaxonomicname", produces={BaseRestController.MEDIA_TYPE_APPLICATION_XML_UTF8_VALUE, BaseRestController.MEDIA_TYPE_APPLICATION_JSON_UTF8_VALUE})
 public class SubjectTaxonomicNameRestController extends CodesRestController {
@@ -35,19 +34,19 @@ public class SubjectTaxonomicNameRestController extends CodesRestController {
 		this.codeDao = codeDao;
 	}
 
-	@ApiOperation(value="Return a filtered and paged list of valid Taxonomic Names.")
+	@Operation(description="Return a filtered and paged list of valid Taxonomic Names.")
 	@GetMapping()
 	public CodeList getTaxonomicNames(final @RequestParam(value="text", required=false) String text,
 			final @RequestParam(value="pagenumber", required=false) String pageNumber,
 			final @RequestParam(value="pagesize", required=false) String pageSize,
-			@ApiIgnore WebRequest webRequest) {
+			/* @ApiIgnore */ WebRequest webRequest) {
 		LOG.debug("subjectTaxonomicNames");
 		return getList(CodeType.SUBJECTTAXONOMICNAME, text, pageNumber, pageSize, null, webRequest);
 	}
 
-	@ApiOperation(value="Validate and return the requested Taxonomic Name.")
+	@Operation(description="Validate and return the requested Taxonomic Name.")
 	@GetMapping("/validate")
-	public Code getTaxonomicName(final @RequestParam(value="value") String value, @ApiIgnore WebRequest webRequest, HttpServletResponse response) {
+	public Code getTaxonomicName(final @RequestParam(value="value") String value, /* @ApiIgnore */ WebRequest webRequest, HttpServletResponse response) {
 		LOG.debug("subjectTaxonomicName");
 		return getCode(CodeType.SUBJECTTAXONOMICNAME, value, webRequest, response);
 	}

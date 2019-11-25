@@ -29,12 +29,10 @@ import org.springframework.web.context.request.WebRequest;
 
 import gov.usgs.cida.qw.BaseRestController;
 import gov.usgs.cida.qw.LastUpdateDao;
-import gov.usgs.cida.qw.swagger.SwaggerConfig;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import springfox.documentation.annotations.ApiIgnore;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
-@Api(tags={SwaggerConfig.SRSNAMES_TAG_NAME})
+@Tag(name="NWIS Public SRS Names", description="File Download")
 @RestController
 @RequestMapping(value="public_srsnames")
 public class SrsnamesController extends BaseRestController {
@@ -51,9 +49,9 @@ public class SrsnamesController extends BaseRestController {
 		this.contentStrategy = contentStrategy;
 	}
 
-	@ApiOperation(value="Return the list of NWIS Public SRS Names.")
+	@Operation(description="Return the list of NWIS Public SRS Names.")
 	@GetMapping(produces={MEDIA_TYPE_APPLICATION_JSON_UTF8_VALUE, MEDIA_TYPE_TEXT_CSV_UTF8_VALUE})
-	public Object getPublicSrsnamesJson(HttpServletRequest request, HttpServletResponse response, @ApiIgnore WebRequest webRequest) throws HttpMediaTypeNotAcceptableException {
+	public Object getPublicSrsnamesJson(HttpServletRequest request, HttpServletResponse response, WebRequest webRequest) throws HttpMediaTypeNotAcceptableException {
 		LOG.debug("publicsrsnamesJson");
 		if (isNotModified(webRequest)) {
 			return null;

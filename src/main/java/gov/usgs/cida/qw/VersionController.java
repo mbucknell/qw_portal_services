@@ -5,15 +5,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.view.RedirectView;
 
-import gov.usgs.cida.qw.swagger.SwaggerConfig;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
-@Api(tags={SwaggerConfig.VERSION_TAG_NAME})
+@Tag(name="Application Version", description="Display")
 @RestController
 public class VersionController extends BaseRestController {
 
-	@ApiOperation(value="Return the web service version information.")
+	@Operation(description="Return the web service version information.",
+			responses= {
+					@ApiResponse(content=@Content(schema=@Schema(nullable=true)))
+			})
 	@GetMapping(value="version", produces=MediaType.APPLICATION_JSON_VALUE)
 	public RedirectView getVersion() {
 		return new RedirectView("/about/info", true, false);

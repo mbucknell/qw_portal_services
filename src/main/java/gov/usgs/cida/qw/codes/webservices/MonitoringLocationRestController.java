@@ -21,12 +21,11 @@ import gov.usgs.cida.qw.codes.Code;
 import gov.usgs.cida.qw.codes.CodeList;
 import gov.usgs.cida.qw.codes.CodeType;
 import gov.usgs.cida.qw.codes.dao.CodeDao;
-import gov.usgs.cida.qw.swagger.SwaggerConfig;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import springfox.documentation.annotations.ApiIgnore;
+import gov.usgs.cida.qw.springinit.OpenApiConfig;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
-@Api(tags={SwaggerConfig.MONITORING_LOCATION_TAG_NAME})
+@Tag(name="Monitoring Location", description=OpenApiConfig.LOOKUP_TAG_DESCRIPTION)
 @RestController
 @RequestMapping(value="monitoringlocation", produces={BaseRestController.MEDIA_TYPE_APPLICATION_XML_UTF8_VALUE, BaseRestController.MEDIA_TYPE_APPLICATION_JSON_UTF8_VALUE})
 public class MonitoringLocationRestController extends CodesRestController {
@@ -39,14 +38,14 @@ public class MonitoringLocationRestController extends CodesRestController {
 		this.codeDao = codeDao;
 	}
 
-	@ApiOperation(value="Return a filtered and paged list of valid Monitoring Locations.")
+	@Operation(description="Return a filtered and paged list of valid Monitoring Locations.")
 	@GetMapping()
 	public CodeList getMonitoringLocations(final @RequestParam(value="organizationid", required=false) String [] organizationid,
 			final @RequestParam(value="provider", required=false) String [] provider, 
 			final @RequestParam(value="text", required=false) String text,
 			final @RequestParam(value="pagenumber", required=false, defaultValue="1") String pageNumber,
 			final @RequestParam(value="pagesize", required=false, defaultValue="25") String pageSize,
-			@ApiIgnore WebRequest webRequest) {
+			/* @ApiIgnore */ WebRequest webRequest) {
 		LOG.debug("monitoringlocations");
 		Map<String, Object> addlParms = new HashMap<>();
 		addlParms.put("organizationid", organizationid);
@@ -54,9 +53,9 @@ public class MonitoringLocationRestController extends CodesRestController {
 		return getList(CodeType.MONITORINGLOCATION, text, pageNumber, pageSize, addlParms, webRequest);
 	}
 
-	@ApiOperation(value="Validate and return the requested Monitoring Location.")
+	@Operation(description="Validate and return the requested Monitoring Location.")
 	@GetMapping("/validate")
-	public Code getMonitoringLocation(final @RequestParam(value="value") String value, @ApiIgnore WebRequest webRequest, HttpServletResponse response) {
+	public Code getMonitoringLocation(final @RequestParam(value="value") String value, /* @ApiIgnore */ WebRequest webRequest, HttpServletResponse response) {
 		LOG.debug("monitoringlocation");
 		return getCode(CodeType.MONITORINGLOCATION, value, webRequest, response);
 	}
