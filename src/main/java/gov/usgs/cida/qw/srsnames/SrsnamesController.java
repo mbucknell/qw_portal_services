@@ -2,8 +2,8 @@ package gov.usgs.cida.qw.srsnames;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -73,9 +73,9 @@ public class SrsnamesController extends BaseRestController {
 
 	protected String getMaxLastRevDate() {
 		String rtn = "";
-		Date maxLastRevDate = pCodeDao.getLastModified();
+		LocalDate maxLastRevDate = pCodeDao.getLastModified();
 		if (null != maxLastRevDate) {
-			rtn = new SimpleDateFormat("MMMMM yyyy").format(maxLastRevDate);
+			rtn = maxLastRevDate.format(DateTimeFormatter.ofPattern("MMMM yyyy"));
 		}
 		return rtn;
 	}

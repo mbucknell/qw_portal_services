@@ -1,6 +1,6 @@
 package gov.usgs.cida.qw.springinit;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.LinkedHashMap;
 
 import javax.sql.DataSource;
@@ -20,7 +20,7 @@ public class MybatisConfig {
 
 	public static final String MYBATIS_MAPPERS = "mybatis/*.xml";
 	public static final String LINKED_HASH_MAP_ALIAS = "LinkedHashMap";
-	public static final String DATE_ALIAS = "Date";
+	public static final String LOCAL_DATE_ALIAS = "LocalDate";
 	public static final String CODE_ALIAS = "Code";
 
 	@Autowired
@@ -51,7 +51,7 @@ public class MybatisConfig {
 
 	private void registerAliases(TypeAliasRegistry registry) {
 		registry.registerAlias(LINKED_HASH_MAP_ALIAS, LinkedHashMap.class);
-		registry.registerAlias(DATE_ALIAS, Date.class);
+		registry.registerAlias(LOCAL_DATE_ALIAS, LocalDate.class);
 		registry.registerAlias(CODE_ALIAS, Code.class);
 	}
 

@@ -1,6 +1,6 @@
 package gov.usgs.cida.qw.srsnames;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -36,7 +36,7 @@ public class PCodeDao extends SqlSessionDaoSupport {
 	 * Gets the latest update date from all of the rows in the pcode tables.
 	 * @return the most recent pcode data modification date.
 	 */
-	public Date getLastModified() {
+	public LocalDate getLastModified() {
 		return getSqlSession().selectOne(String.join(".", NAME_SPACE, GET_LAST_MODIFIED_QUERY));
 	}
 
