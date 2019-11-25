@@ -14,7 +14,7 @@
               <Title>0</Title>
               <ogc:Filter>
                   <ogc:PropertyIsLessThan>
-                      <ogc:PropertyName>DISCRETE_SAMPLE_COUNT</ogc:PropertyName>
+                      <ogc:PropertyName>discrete_sample_count</ogc:PropertyName>
                       <ogc:Literal>1</ogc:Literal>
                   </ogc:PropertyIsLessThan>
               </ogc:Filter>
@@ -35,7 +35,7 @@
           <Title>$bin.title</Title>
           <ogc:Filter>
             <ogc:PropertyIsBetween>
-             <ogc:PropertyName>DISCRETE_SAMPLE_COUNT</ogc:PropertyName>
+             <ogc:PropertyName>discrete_sample_count</ogc:PropertyName>
             <ogc:LowerBoundary>
                 <ogc:Literal>$bin.betweenMin</ogc:Literal>
               </ogc:LowerBoundary>

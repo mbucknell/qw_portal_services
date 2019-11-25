@@ -4,7 +4,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html). (Patch version X.Y.0 is implied if not specified.)
 
-## [Unreleased]
+## [Unreleased](https://github.com/NWQMC/qw_portal_services/compare/qw_portal_services-1.4...master)
+### Changed
+Updated SLD template to use lowercase property names
+
+
+## [2.2.0](https://github.com/NWQMC/qw_portal_services/compare/qw_portal_services-2.0.0...qw_portal_services-2.2.0)
 
 ### Added
 - CHANGELOG.md
@@ -14,10 +19,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Dockerized project in preparation for building a docker image suitable for deployment.
 - pipeline.yml and two Jenkinsfiles
 
-### Changes
+### Changed
 - Changed the pom to create a jar.
 - Updated Jenkinsfiles to use new pipeline library and added new variables to pipeline.yml
 - Updated Dockerfile to use new openJDK image, and changed RUN command to comply with best practices
 - Updated Jenkins build and deploy pipeline to pull configuration from GitLab via new pipeline library
 
-[Unreleased]: https://github.com/NWQMC/qw_portal_services/compare/qw_portal_services-1.4...master

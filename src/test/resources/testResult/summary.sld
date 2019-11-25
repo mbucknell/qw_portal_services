@@ -14,7 +14,7 @@
               <Title>0</Title>
               <ogc:Filter>
                   <ogc:PropertyIsLessThan>
-                      <ogc:PropertyName>DISCRETE_SAMPLE_COUNT</ogc:PropertyName>
+                      <ogc:PropertyName>discrete_sample_count</ogc:PropertyName>
                       <ogc:Literal>1</ogc:Literal>
                   </ogc:PropertyIsLessThan>
               </ogc:Filter>
@@ -34,7 +34,7 @@
           <Title>6 - 6</Title>
           <ogc:Filter>
             <ogc:PropertyIsBetween>
-             <ogc:PropertyName>DISCRETE_SAMPLE_COUNT</ogc:PropertyName>
+             <ogc:PropertyName>discrete_sample_count</ogc:PropertyName>
             <ogc:LowerBoundary>
                 <ogc:Literal>6</ogc:Literal>
               </ogc:LowerBoundary>
@@ -59,7 +59,7 @@
           <Title>7 - 49</Title>
           <ogc:Filter>
             <ogc:PropertyIsBetween>
-             <ogc:PropertyName>DISCRETE_SAMPLE_COUNT</ogc:PropertyName>
+             <ogc:PropertyName>discrete_sample_count</ogc:PropertyName>
             <ogc:LowerBoundary>
                 <ogc:Literal>7</ogc:Literal>
               </ogc:LowerBoundary>
@@ -84,7 +84,7 @@
           <Title>50 - 477</Title>
           <ogc:Filter>
             <ogc:PropertyIsBetween>
-             <ogc:PropertyName>DISCRETE_SAMPLE_COUNT</ogc:PropertyName>
+             <ogc:PropertyName>discrete_sample_count</ogc:PropertyName>
             <ogc:LowerBoundary>
                 <ogc:Literal>50</ogc:Literal>
               </ogc:LowerBoundary>
@@ -109,7 +109,7 @@
           <Title>478 - 503</Title>
           <ogc:Filter>
             <ogc:PropertyIsBetween>
-             <ogc:PropertyName>DISCRETE_SAMPLE_COUNT</ogc:PropertyName>
+             <ogc:PropertyName>discrete_sample_count</ogc:PropertyName>
             <ogc:LowerBoundary>
                 <ogc:Literal>478</ogc:Literal>
               </ogc:LowerBoundary>
@@ -134,7 +134,7 @@
           <Title>504 - 676</Title>
           <ogc:Filter>
             <ogc:PropertyIsBetween>
-             <ogc:PropertyName>DISCRETE_SAMPLE_COUNT</ogc:PropertyName>
+             <ogc:PropertyName>discrete_sample_count</ogc:PropertyName>
             <ogc:LowerBoundary>
                 <ogc:Literal>504</ogc:Literal>
               </ogc:LowerBoundary>
