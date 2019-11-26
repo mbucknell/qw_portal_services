@@ -21,7 +21,7 @@ public class VersionController extends BaseRestController {
 			})
 	@GetMapping(value="version", produces=MediaType.APPLICATION_JSON_VALUE)
 	public RedirectView getVersion() {
-		return new RedirectView("/about/info", true, false);
+		return new RedirectView("/about/info", true, true);
 	}
 
 }
