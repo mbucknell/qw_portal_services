@@ -3,7 +3,7 @@ package gov.usgs.cida.qw.srsnames;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -27,9 +27,9 @@ public class PCodeDaoIT extends BaseIT {
 
 	@Test
 	public void getLastModified() {
-		Date lastModified = pCodeDao.getLastModified();
+		LocalDate lastModified = pCodeDao.getLastModified();
 		assertNotNull(lastModified, "got something");
-		assertEquals("Mon Jan 05 00:00:00 CST 2015", lastModified.toString());
+		assertEquals("2015-01-05", lastModified.toString());
 	}
 
 	@Test

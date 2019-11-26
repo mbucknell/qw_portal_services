@@ -3,7 +3,7 @@
 
 <mapper namespace="srsnames">
 
-    <select id="getLastModifiedDate" resultType="Date">
+    <select id="getLastModifiedDate" resultType="LocalDate">
         select max_last_rev_dt
           from public_srsnames
                fetch first 1 row only

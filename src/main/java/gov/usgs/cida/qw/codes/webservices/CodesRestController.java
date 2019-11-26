@@ -5,7 +5,6 @@ import gov.usgs.cida.qw.codes.Code;
 import gov.usgs.cida.qw.codes.CodeList;
 import gov.usgs.cida.qw.codes.CodeType;
 import gov.usgs.cida.qw.codes.dao.CodeDao;
-import springfox.documentation.annotations.ApiIgnore;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
@@ -23,7 +22,7 @@ public abstract class CodesRestController extends BaseRestController {
 	protected CodeDao codeDao;
 
 	protected CodeList getList(final CodeType codeType, final String text, final String inPageNumber, final String inPageSize,
-			final Map<String, Object> addlParms, @ApiIgnore WebRequest webRequest) {
+			final Map<String, Object> addlParms, WebRequest webRequest) {
 		CodeList codes = new CodeList();
 		if (isNotModified(webRequest)) {
 			return null;
@@ -58,7 +57,7 @@ public abstract class CodesRestController extends BaseRestController {
 		}
 	}
 
-	protected Code getCode(final CodeType codeType, final String codeValue, @ApiIgnore WebRequest webRequest, HttpServletResponse response) {
+	protected Code getCode(final CodeType codeType, final String codeValue, WebRequest webRequest, HttpServletResponse response) {
 		Code rtn = null;
 		if (!isNotModified(webRequest)) {
 			rtn = codeDao.getCode(codeType, codeValue);

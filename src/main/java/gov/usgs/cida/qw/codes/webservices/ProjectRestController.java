@@ -17,12 +17,11 @@ import gov.usgs.cida.qw.codes.Code;
 import gov.usgs.cida.qw.codes.CodeList;
 import gov.usgs.cida.qw.codes.CodeType;
 import gov.usgs.cida.qw.codes.dao.CodeDao;
-import gov.usgs.cida.qw.swagger.SwaggerConfig;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import springfox.documentation.annotations.ApiIgnore;
+import gov.usgs.cida.qw.springinit.OpenApiConfig;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
-@Api(tags={SwaggerConfig.PROJECT_TAG_NAME})
+@Tag(name="Project", description=OpenApiConfig.LOOKUP_TAG_DESCRIPTION)
 @RestController
 @RequestMapping(value="project", produces={BaseRestController.MEDIA_TYPE_APPLICATION_XML_UTF8_VALUE, BaseRestController.MEDIA_TYPE_APPLICATION_JSON_UTF8_VALUE})
 public class ProjectRestController extends CodesRestController {
@@ -35,19 +34,19 @@ public class ProjectRestController extends CodesRestController {
 		this.codeDao = codeDao;
 	}
 
-	@ApiOperation(value="Return a filtered and paged list of valid Projects.")
+	@Operation(description="Return a filtered and paged list of valid Projects.")
 	@GetMapping()
 	public CodeList getProject(final @RequestParam(value="text", required=false) String text,
 			final @RequestParam(value="pagenumber", required=false) String pageNumber,
 			final @RequestParam(value="pagesize", required=false) String pageSize,
-			@ApiIgnore WebRequest webRequest) {
+			WebRequest webRequest) {
 		LOG.debug("project");
 		return getList(CodeType.PROJECT, text, pageNumber, pageSize, null, webRequest);
 	}
 
-	@ApiOperation(value="Validate and return the requested Project.")
+	@Operation(description="Validate and return the requested Project.")
 	@GetMapping("/validate")
-	public Code getProjects(final @RequestParam(value="value") String value, @ApiIgnore WebRequest webRequest, HttpServletResponse response) {
+	public Code getProjects(final @RequestParam(value="value") String value, WebRequest webRequest, HttpServletResponse response) {
 		LOG.debug("projects");
 		return getCode(CodeType.PROJECT, value, webRequest, response);
 	}

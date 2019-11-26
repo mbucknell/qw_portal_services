@@ -2,8 +2,8 @@ package gov.usgs.cida.qw.srsnames;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -29,12 +29,10 @@ import org.springframework.web.context.request.WebRequest;
 
 import gov.usgs.cida.qw.BaseRestController;
 import gov.usgs.cida.qw.LastUpdateDao;
-import gov.usgs.cida.qw.swagger.SwaggerConfig;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import springfox.documentation.annotations.ApiIgnore;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
-@Api(tags={SwaggerConfig.SRSNAMES_TAG_NAME})
+@Tag(name="NWIS Public SRS Names", description="File Download")
 @RestController
 @RequestMapping(value="public_srsnames")
 public class SrsnamesController extends BaseRestController {
@@ -51,9 +49,9 @@ public class SrsnamesController extends BaseRestController {
 		this.contentStrategy = contentStrategy;
 	}
 
-	@ApiOperation(value="Return the list of NWIS Public SRS Names.")
+	@Operation(description="Return the list of NWIS Public SRS Names.")
 	@GetMapping(produces={MEDIA_TYPE_APPLICATION_JSON_UTF8_VALUE, MEDIA_TYPE_TEXT_CSV_UTF8_VALUE})
-	public Object getPublicSrsnamesJson(HttpServletRequest request, HttpServletResponse response, @ApiIgnore WebRequest webRequest) throws HttpMediaTypeNotAcceptableException {
+	public Object getPublicSrsnamesJson(HttpServletRequest request, HttpServletResponse response, WebRequest webRequest) throws HttpMediaTypeNotAcceptableException {
 		LOG.debug("publicsrsnamesJson");
 		if (isNotModified(webRequest)) {
 			return null;
@@ -75,9 +73,9 @@ public class SrsnamesController extends BaseRestController {
 
 	protected String getMaxLastRevDate() {
 		String rtn = "";
-		Date maxLastRevDate = pCodeDao.getLastModified();
+		LocalDate maxLastRevDate = pCodeDao.getLastModified();
 		if (null != maxLastRevDate) {
-			rtn = new SimpleDateFormat("MMMMM yyyy").format(maxLastRevDate);
+			rtn = maxLastRevDate.format(DateTimeFormatter.ofPattern("MMMM yyyy"));
 		}
 		return rtn;
 	}
