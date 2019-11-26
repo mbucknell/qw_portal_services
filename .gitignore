@@ -15,3 +15,4 @@ secrets.env
 /.env
 .idea/
 qw_portal_services.iml
+/.attach_pid*

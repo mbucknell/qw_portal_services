@@ -1,20 +1,19 @@
 package gov.usgs.cida.qw.summary;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 
 import com.github.springtestdbunit.annotation.DatabaseSetup;
-import com.github.springtestdbunit.annotation.DatabaseSetups;
 
 import gov.usgs.cida.qw.BaseIT;
 import gov.usgs.cida.qw.springinit.DBTestConfig;
@@ -22,10 +21,7 @@ import gov.usgs.cida.qw.summary.SummaryController.RowCounts;
 
 @SpringBootTest(webEnvironment=WebEnvironment.NONE,
 		classes={DBTestConfig.class, SummaryDao.class})
-@DatabaseSetups({
-	@DatabaseSetup("classpath:/testData/clearAll.xml"),
-	@DatabaseSetup("classpath:/testData/summary.xml")
-})
+@DatabaseSetup("classpath:/testData/summary.xml")
 public class SummaryDaoIT extends BaseIT {
 
 	@Autowired
@@ -165,10 +161,10 @@ public class SummaryDaoIT extends BaseIT {
 		int prevMax = 1;
 		for (int i=0; i<bins.size(); i++) {
 			assertEquals(i+1, bins.get(i).counts.get(0).intValue());
-			assertTrue("bin "+ i +" min <= prev bin max", prevMax <= bins.get(i).counts.get(1).intValue());
-			assertTrue("bin "+ i +" min <= bin max", bins.get(i).counts.get(1).intValue() <= bins.get(i).counts.get(2).intValue());
-			assertTrue("bin "+ i +" count >= min count", minBinCnt <= bins.get(i).counts.get(3).intValue());
-			assertTrue("bin "+ i +" count <= min count", maxBinCnt >= bins.get(i).counts.get(3).intValue());
+			assertTrue(prevMax <= bins.get(i).counts.get(1).intValue(), "bin "+ i +" min <= prev bin max");
+			assertTrue(bins.get(i).counts.get(1).intValue() <= bins.get(i).counts.get(2).intValue(), "bin "+ i +" min <= bin max");
+			assertTrue(minBinCnt <= bins.get(i).counts.get(3).intValue(), "bin "+ i +" count >= min count");
+			assertTrue(maxBinCnt >= bins.get(i).counts.get(3).intValue(), "bin "+ i +" count <= min count");
 			prevMax = bins.get(i).counts.get(2).intValue();
 			for (int j=0; j<expectedBins.get(i).counts.size(); j++) {
 				assertEquals(expectedBins.get(i).counts.get(j), bins.get(i).counts.get(j));

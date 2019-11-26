@@ -11,8 +11,8 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <wma.artifactory.url>https://cida.usgs.gov/artifactory</wma.artifactory.url>
-        <mybatis-spring-version>2.0.2</mybatis-spring-version>
-        <mybatis-version>3.5.2</mybatis-version>
+        <mybatis-spring-version>2.0.3</mybatis-spring-version>
+        <mybatis-version>3.5.3</mybatis-version>
         <springfox-version>2.9.2</springfox-version>
         <velocity-tools-version>2.0</velocity-tools-version>
     </properties>
@@ -28,7 +28,7 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <relativePath></relativePath>
-        <version>2.1.8.RELEASE</version>
+        <version>2.2.1.RELEASE</version>
     </parent>
 
     <dependencies>
@@ -55,7 +55,7 @@
         <dependency>
             <groupId>org.springframework.security.oauth.boot</groupId>
             <artifactId>spring-security-oauth2-autoconfigure</artifactId>
-            <version>2.1.8.RELEASE</version>
+            <version>2.2.1.RELEASE</version>
         </dependency>
 
         <dependency>
@@ -105,6 +105,27 @@
             <artifactId>snakeyaml</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.xml.bind</groupId>
+            <artifactId>jaxb-core</artifactId>
+            <version>2.3.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.xml.bind</groupId>
+            <artifactId>jaxb-impl</artifactId>
+            <version>2.3.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+
         <!-- Testing -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -116,6 +137,12 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.junit.vintage</groupId>
+                    <artifactId>junit-vintage-engine</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
@@ -124,11 +151,6 @@
             <scope>test</scope>
         </dependency>
 
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <scope>test</scope>
-        </dependency>
         <dependency>
             <groupId>uk.co.datumedge</groupId>
             <artifactId>hamcrest-json</artifactId>
@@ -153,12 +175,11 @@
             <artifactId>xmlunit-matchers</artifactId>
             <scope>test</scope>
         </dependency>
+
     </dependencies>
 
 
     <build>
-        <finalName>qw_portal_services</finalName>
-
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -176,9 +197,13 @@
                 <artifactId>maven-failsafe-plugin</artifactId>
                 <configuration>
                     <environmentVariables>
-                        <wqpUrl>${wqpCore.url}</wqpUrl>
-                        <wqpOwnerUsername>${wqpCore.username}</wqpOwnerUsername>
-                        <wqpOwnerPassword>${wqpCore.password}</wqpOwnerPassword>
+                        <WQP_DATABASE_ADDRESS>${TESTING_DATABASE_ADDRESS}</WQP_DATABASE_ADDRESS>
+                        <WQP_DATABASE_PORT>${TESTING_DATABASE_PORT}</WQP_DATABASE_PORT>
+                        <WQP_DATABASE_NAME>wqp_db</WQP_DATABASE_NAME>
+                        <WQP_SCHEMA_OWNER_USERNAME>wqp_core</WQP_SCHEMA_OWNER_USERNAME>
+                        <WQP_SCHEMA_OWNER_PASSWORD>changeMe</WQP_SCHEMA_OWNER_PASSWORD>
+                        <WQP_DB_READ_ONLY_USERNAME>wqp_user</WQP_DB_READ_ONLY_USERNAME>
+                        <WQP_DB_READ_ONLY_PASSWORD>changeMe</WQP_DB_READ_ONLY_PASSWORD>
                     </environmentVariables>
                 </configuration>
                 <executions>
@@ -189,6 +214,50 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>io.fabric8</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>0.31.0</version>
+                <executions>
+                    <execution>
+                        <id>start</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>start</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>stop</id>
+                        <phase>post-integration-test</phase>
+                        <goals>
+                            <goal>stop</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <showLogs>true</showLogs>
+                    <containerNamePattern>%a</containerNamePattern>
+                    <images>
+                        <image>
+                            <name>usgswma/wqp_db:ci</name>
+                            <alias>wqpDatabase</alias>
+                            <run>
+                                <network>
+                                    <mode>custom</mode>
+                                    <name>${TESTING_DATABASE_NETWORK}</name>
+                                </network>
+                                <ports>
+                                    <port>5437:5432</port>
+                                </ports>
+                                <wait>
+                                    <time>150000</time>
+                                    <log>(?s)PostgreSQL init process complete; ready for start up.*database system is ready to accept connections</log>
+                                </wait>
+                            </run>
+                        </image>
+                    </images>
+                </configuration>
             </plugin>
         </plugins>
     </build>

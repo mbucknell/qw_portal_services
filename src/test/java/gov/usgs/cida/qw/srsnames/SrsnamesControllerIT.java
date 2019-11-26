@@ -1,11 +1,9 @@
 package gov.usgs.cida.qw.srsnames;
 
+import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static uk.co.datumedge.hamcrest.json.SameJSONAs.sameJSONObjectAs;
 
 import java.io.ByteArrayInputStream;
@@ -19,52 +17,37 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 import org.json.JSONObject;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
-import org.springframework.http.MediaType;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 import com.github.springtestdbunit.annotation.DatabaseSetup;
-import com.github.springtestdbunit.annotation.DatabaseSetups;
 
 import gov.usgs.cida.qw.BaseIT;
 import gov.usgs.cida.qw.BaseRestController;
-import gov.usgs.cida.qw.CustomStringToArrayConverter;
 import gov.usgs.cida.qw.LastUpdateDao;
-import gov.usgs.cida.qw.springinit.DBTestConfig;
-import gov.usgs.cida.qw.springinit.SpringConfig;
 
-@EnableWebMvc
-@AutoConfigureMockMvc(secure=false)
-@SpringBootTest(webEnvironment=WebEnvironment.MOCK,
-	classes={DBTestConfig.class, SpringConfig.class, CustomStringToArrayConverter.class,
-			SrsnamesController.class, LastUpdateDao.class, PCodeDao.class})
-@DatabaseSetups({
-	@DatabaseSetup("classpath:/testData/clearAll.xml"),
-	@DatabaseSetup("classpath:/testData/srsnames.xml")
-})
+@SpringBootTest(webEnvironment=WebEnvironment.RANDOM_PORT)
+@DatabaseSetup("classpath:/testData/srsnames.xml")
 public class SrsnamesControllerIT extends BaseIT {
 
 	@Autowired
 	private LastUpdateDao lastUpdateDao;
 	@Autowired
 	private PCodeDao pCodeDao;
-	@Autowired
-	private MockMvc mockMvc;
 
 	@Test
-	public void getAsJsonTest() throws Exception {
-		MvcResult rtn = mockMvc.perform(get("/public_srsnames?mimetype=json").accept(MediaType.APPLICATION_JSON))
-			.andExpect(status().isOk())
-			.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-			.andExpect(content().encoding(BaseRestController.DEFAULT_ENCODING))
-			.andReturn();
-		assertThat(new JSONObject(rtn.getResponse().getContentAsString()),
+	public void getAsJsonTest(@Autowired TestRestTemplate restTemplate) throws Exception {
+		ResponseEntity<String> rtn = restTemplate.getForEntity("/public_srsnames?mimeType=json", String.class);
+		assertThat(rtn.getStatusCode(), equalTo(HttpStatus.OK));
+		assertThat(rtn.getHeaders().get(HttpHeaders.CONTENT_TYPE).get(0), equalTo(BaseRestController.MEDIA_TYPE_APPLICATION_JSON_UTF8_VALUE));
+
+		assertThat(new JSONObject(rtn.getBody()),
 				sameJSONObjectAs(new JSONObject(getCompareFile("srsnames.json"))));
 	}
 
@@ -88,14 +71,12 @@ public class SrsnamesControllerIT extends BaseIT {
 	}
 
 	@Test
-	public void getAsCsvTest() throws Exception {
-		MvcResult rtn = mockMvc.perform(get("/public_srsnames?mimetype=csv").accept(MediaType.parseMediaType(SrsnamesController.MEDIA_TYPE_TEXT_CSV_UTF8_VALUE)))
-			.andExpect(status().isOk())
-			.andExpect(content().encoding(BaseRestController.DEFAULT_ENCODING))
-			.andReturn();
-		assertTrue(rtn.getResponse().getHeader(SrsnamesController.HEADER_CONTENT_DISPOSITION).contains("attachment;filename=\"public_srsnames_"));
-		assertTrue(rtn.getResponse().getHeader(SrsnamesController.HEADER_CONTENT_DISPOSITION).contains(".zip\""));
-		ZipInputStream zip = new ZipInputStream(new ByteArrayInputStream(rtn.getResponse().getContentAsByteArray()));
+	public void getAsCsvTest(@Autowired TestRestTemplate restTemplate) throws Exception {
+		ResponseEntity<byte[]> rtn = restTemplate.getForEntity("/public_srsnames?mimeType=csv", byte[].class);
+		assertThat(rtn.getStatusCode(), equalTo(HttpStatus.OK));
+		assertTrue(rtn.getHeaders().get(SrsnamesController.HEADER_CONTENT_DISPOSITION).get(0).contains("attachment;filename=\"public_srsnames_"));
+		assertTrue(rtn.getHeaders().get(SrsnamesController.HEADER_CONTENT_DISPOSITION).get(0).contains(".zip\""));
+		ZipInputStream zip = new ZipInputStream(new ByteArrayInputStream(rtn.getBody()));
 		ZipEntry entry = zip.getNextEntry();
 		assertTrue(entry.getName().contains("public_srsnames_"));
 		assertTrue(entry.getName().contains(".csv"));

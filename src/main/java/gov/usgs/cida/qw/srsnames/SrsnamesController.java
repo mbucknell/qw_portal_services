@@ -52,7 +52,7 @@ public class SrsnamesController extends BaseRestController {
 	}
 
 	@ApiOperation(value="Return the list of NWIS Public SRS Names.")
-	@GetMapping(produces={MediaType.APPLICATION_JSON_VALUE, MEDIA_TYPE_TEXT_CSV_UTF8_VALUE})
+	@GetMapping(produces={MEDIA_TYPE_APPLICATION_JSON_UTF8_VALUE, MEDIA_TYPE_TEXT_CSV_UTF8_VALUE})
 	public Object getPublicSrsnamesJson(HttpServletRequest request, HttpServletResponse response, @ApiIgnore WebRequest webRequest) throws HttpMediaTypeNotAcceptableException {
 		LOG.debug("publicsrsnamesJson");
 		if (isNotModified(webRequest)) {

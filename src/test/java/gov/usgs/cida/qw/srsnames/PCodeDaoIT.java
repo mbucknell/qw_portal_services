@@ -1,29 +1,25 @@
 package gov.usgs.cida.qw.srsnames;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 
 import com.github.springtestdbunit.annotation.DatabaseSetup;
-import com.github.springtestdbunit.annotation.DatabaseSetups;
 
 import gov.usgs.cida.qw.BaseIT;
 import gov.usgs.cida.qw.springinit.DBTestConfig;
 
 @SpringBootTest(webEnvironment=WebEnvironment.NONE,
 		classes={DBTestConfig.class, PCodeDao.class})
-@DatabaseSetups({
-	@DatabaseSetup("classpath:/testData/clearAll.xml"),
-	@DatabaseSetup("classpath:/testData/srsnames.xml")
-})
+@DatabaseSetup("classpath:/testData/srsnames.xml")
 public class PCodeDaoIT extends BaseIT {
 
 	@Autowired
@@ -32,29 +28,29 @@ public class PCodeDaoIT extends BaseIT {
 	@Test
 	public void getLastModified() {
 		Date lastModified = pCodeDao.getLastModified();
-		assertNotNull("got something", lastModified);
+		assertNotNull(lastModified, "got something");
 		assertEquals("Mon Jan 05 00:00:00 CST 2015", lastModified.toString());
 	}
 
 	@Test
 	public void getRows() {
 		List<LinkedHashMap<String, Object>> rows = pCodeDao.getRows();
-		assertNotNull("got something", rows);
-		assertEquals("got the correct number rows", 10, rows.size());
-		assertEquals("got the correct number of columns", 11, rows.get(0).keySet().size());
+		assertNotNull(rows, "got something");
+		assertEquals(10, rows.size(), "got the correct number rows");
+		assertEquals(11, rows.get(0).keySet().size(), "got the correct number of columns");
 
 		Object[] cols = rows.get(0).keySet().toArray();
-		assertEquals("got correct column in position 1", "parm_cd", cols[0]);
-		assertEquals("got correct column in position 2", "description", cols[1]);
-		assertEquals("got correct column in position 3", "characteristicname", cols[2]);
-		assertEquals("got correct column in position 4", "measureunitcode", cols[3]);
-		assertEquals("got correct column in position 5", "resultsamplefraction", cols[4]);
-		assertEquals("got correct column in position 6", "resulttemperaturebasis", cols[5]);
-		assertEquals("got correct column in position 7", "resultstatisticalbasis", cols[6]);
-		assertEquals("got correct column in position 8", "resulttimebasis", cols[7]);
-		assertEquals("got correct column in position 9", "resultweightbasis", cols[8]);
-		assertEquals("got correct column in position 10", "resultparticlesizebasis", cols[9]);
-		assertEquals("got correct column in position 11", "last_rev_dt", cols[10]);
+		assertEquals("parm_cd", cols[0], "got correct column in position 1");
+		assertEquals("description", cols[1], "got correct column in position 2");
+		assertEquals("characteristicname", cols[2], "got correct column in position 3");
+		assertEquals("measureunitcode", cols[3], "got correct column in position 4");
+		assertEquals("resultsamplefraction", cols[4], "got correct column in position 5");
+		assertEquals("resulttemperaturebasis", cols[5], "got correct column in position 6");
+		assertEquals("resultstatisticalbasis", cols[6], "got correct column in position 7");
+		assertEquals("resulttimebasis", cols[7], "got correct column in position 8");
+		assertEquals("resultweightbasis", cols[8], "got correct column in position 9");
+		assertEquals("resultparticlesizebasis", cols[9], "got correct column in position 10");
+		assertEquals("last_rev_dt", cols[10], "got correct column in position 11");
 
 		assertEquals("00060", rows.get(0).get("parm_cd"));
 		assertEquals("Discharge, cubic feet per second", rows.get(0).get("description"));

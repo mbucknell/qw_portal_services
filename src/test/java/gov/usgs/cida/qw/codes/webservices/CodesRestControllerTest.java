@@ -1,9 +1,9 @@
 package gov.usgs.cida.qw.codes.webservices;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.anyMap;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.when;
@@ -15,12 +15,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.web.context.request.NativeWebRequest;
@@ -32,11 +32,12 @@ import gov.usgs.cida.qw.codes.CodeList;
 import gov.usgs.cida.qw.codes.CodeType;
 import gov.usgs.cida.qw.codes.dao.CodeDao;
 
+@SpringBootTest
 public class CodesRestControllerTest {
 
-	@Mock
+	@MockBean
 	private LastUpdateDao lastUpdateDao;
-	@Mock
+	@MockBean
 	private CodeDao codeDao;
 
 	private class TestController extends CodesRestController {
@@ -53,9 +54,8 @@ public class CodesRestControllerTest {
 	private MockHttpServletResponse servletResponse;
 	private LocalDateTime localFromUTC; 
 
-	@Before
+	@BeforeEach
 	public void setup() {
-		MockitoAnnotations.initMocks(this);
 		testController = new TestController(lastUpdateDao, codeDao);
 		localFromUTC = LocalDateTime.of(2014, 1, 1, 1, 1, 1);
 	}
@@ -87,8 +87,8 @@ public class CodesRestControllerTest {
 		servletResponse = new MockHttpServletResponse();
 		webRequest = new ServletWebRequest(mockRequest, servletResponse);
 		mockRequest.addHeader("If-Modified-Since", new Date());
-		assertNull("Header set for after last modified, so is not modified.",
-				testController.getList(CodeType.COUNTRYCODE, "US", "0", "5", null, webRequest));
+		assertNull(testController.getList(CodeType.COUNTRYCODE, "US", "0", "5", null, webRequest),
+				"Header set for after last modified, so is not modified.");
 
 		//Otherwise get the codes
 		//Happy path!
@@ -167,7 +167,8 @@ public class CodesRestControllerTest {
 		servletResponse = new MockHttpServletResponse();
 		webRequest = new ServletWebRequest(mockRequest, servletResponse);
 		mockRequest.addHeader("If-Modified-Since", new Date());
-		assertNull("Header set for after last modified, so is not modified.", testController.getCode(CodeType.COUNTRYCODE, "US", webRequest, servletResponse));
+		assertNull(testController.getCode(CodeType.COUNTRYCODE, "US", webRequest, servletResponse),
+				"Header set for after last modified, so is not modified.");
 
 		//Otherwise get the code
 		mockRequest = new MockHttpServletRequest();

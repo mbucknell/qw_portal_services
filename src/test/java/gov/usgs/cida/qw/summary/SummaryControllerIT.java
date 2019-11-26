@@ -1,56 +1,41 @@
 package gov.usgs.cida.qw.summary;
 
+import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.xmlunit.matchers.CompareMatcher.isSimilarTo;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 import com.github.springtestdbunit.annotation.DatabaseSetup;
-import com.github.springtestdbunit.annotation.DatabaseSetups;
 
 import gov.usgs.cida.qw.BaseIT;
 import gov.usgs.cida.qw.BaseRestController;
-import gov.usgs.cida.qw.CustomStringToArrayConverter;
 import gov.usgs.cida.qw.LastUpdateDao;
-import gov.usgs.cida.qw.springinit.DBTestConfig;
-import gov.usgs.cida.qw.springinit.SpringConfig;
 import gov.usgs.cida.qw.summary.SldTemplateEngine.MapDataSource;
 import gov.usgs.cida.qw.summary.SldTemplateEngine.MapGeometry;
 
-@EnableWebMvc
-@AutoConfigureMockMvc(secure=false)
-@SpringBootTest(webEnvironment=WebEnvironment.MOCK,
-	classes={DBTestConfig.class, SpringConfig.class, CustomStringToArrayConverter.class,
-			SummaryController.class, LastUpdateDao.class, SummaryDao.class})
-@DatabaseSetups({
-	@DatabaseSetup("classpath:/testData/clearAll.xml"),
-	@DatabaseSetup("classpath:/testData/summary.xml")
-})
+@SpringBootTest(webEnvironment=WebEnvironment.RANDOM_PORT)
+@DatabaseSetup("classpath:/testData/summary.xml")
 public class SummaryControllerIT extends BaseIT {
 
 	@Autowired
 	private LastUpdateDao lastUpdateDao;
 	@Autowired
 	private SummaryDao summaryDao;
-	@Autowired
-	private MockMvc mockMvc;
 
 	@Test
 	public void getDataSourcesTest() {
@@ -142,13 +127,11 @@ public class SummaryControllerIT extends BaseIT {
 	}
 
 	@Test
-	public void getSummarySldTest() throws Exception {
-		MvcResult rtn = mockMvc.perform(get("/summary?dataSource=A&geometry=S&timeFrame=1"))
-				.andExpect(status().isOk())
-				.andExpect(content().contentType(BaseRestController.MEDIA_TYPE_APPLICATION_XML_UTF8_VALUE))
-				.andExpect(content().encoding(BaseRestController.DEFAULT_ENCODING))
-				.andReturn();
-		assertThat(rtn.getResponse().getContentAsString(), isSimilarTo(getCompareFile("summary.sld")).ignoreWhitespace().throwComparisonFailure());
+	public void getSummarySldTest(@Autowired TestRestTemplate restTemplate) throws Exception {
+		ResponseEntity<String> rtn = restTemplate.getForEntity("/summary?dataSource=A&geometry=S&timeFrame=1", String.class);
+		assertThat(rtn.getStatusCode(), equalTo(HttpStatus.OK));
+		assertThat(rtn.getHeaders().get(HttpHeaders.CONTENT_TYPE).get(0), equalTo(BaseRestController.MEDIA_TYPE_APPLICATION_XML_UTF8_VALUE));
+		assertThat(rtn.getBody(), isSimilarTo(getCompareFile("summary.sld")).ignoreWhitespace().throwComparisonFailure());
 	}
 
 }

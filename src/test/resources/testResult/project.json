@@ -13,10 +13,6 @@
             "providers": "NWIS STEWARDS"
         },
         {
-            "value": "ccc",
-            "providers": "NWIS"
-        },
-        {
             "value": "ddd",
             "providers": "STEWARDS"
         },
@@ -43,6 +39,10 @@
         {
             "value": "jjj",
             "providers": "STORET"
+        },
+        {
+            "value": "čćžđš",
+            "providers": "NWIS"
         }
     ],
     "recordCount": 11
