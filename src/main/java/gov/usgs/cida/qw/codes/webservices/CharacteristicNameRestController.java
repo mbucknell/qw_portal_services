@@ -39,14 +39,14 @@ public class CharacteristicNameRestController extends CodesRestController {
 	public CodeList getCharacteristicNames(final @RequestParam(value="text", required=false) String text,
 			final @RequestParam(value="pagenumber", required=false) String pageNumber,
 			final @RequestParam(value="pagesize", required=false) String pageSize,
-			/* @ApiIgnore */ WebRequest webRequest) {
+			WebRequest webRequest) {
 		LOG.debug("characteristicNames");
 		return getList(CodeType.CHARACTERISTICNAME, text, pageNumber, pageSize, null, webRequest);
 	}
 
 	@Operation(description="Validate and return the requested Characteristic Name.")
 	@GetMapping("/validate")
-	public Code getCharacteristicName(final @RequestParam(value="value") String value, /* @ApiIgnore */ WebRequest webRequest, HttpServletResponse response) {
+	public Code getCharacteristicName(final @RequestParam(value="value") String value, WebRequest webRequest, HttpServletResponse response) {
 		LOG.debug("characteristicName");
 		return getCode(CodeType.CHARACTERISTICNAME, value, webRequest, response);
 	}

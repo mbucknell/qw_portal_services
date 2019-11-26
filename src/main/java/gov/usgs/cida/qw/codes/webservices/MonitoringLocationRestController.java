@@ -45,7 +45,7 @@ public class MonitoringLocationRestController extends CodesRestController {
 			final @RequestParam(value="text", required=false) String text,
 			final @RequestParam(value="pagenumber", required=false, defaultValue="1") String pageNumber,
 			final @RequestParam(value="pagesize", required=false, defaultValue="25") String pageSize,
-			/* @ApiIgnore */ WebRequest webRequest) {
+			WebRequest webRequest) {
 		LOG.debug("monitoringlocations");
 		Map<String, Object> addlParms = new HashMap<>();
 		addlParms.put("organizationid", organizationid);
@@ -55,7 +55,7 @@ public class MonitoringLocationRestController extends CodesRestController {
 
 	@Operation(description="Validate and return the requested Monitoring Location.")
 	@GetMapping("/validate")
-	public Code getMonitoringLocation(final @RequestParam(value="value") String value, /* @ApiIgnore */ WebRequest webRequest, HttpServletResponse response) {
+	public Code getMonitoringLocation(final @RequestParam(value="value") String value, WebRequest webRequest, HttpServletResponse response) {
 		LOG.debug("monitoringlocation");
 		return getCode(CodeType.MONITORINGLOCATION, value, webRequest, response);
 	}

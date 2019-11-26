@@ -39,14 +39,14 @@ public class CharacteristicTypeRestController extends CodesRestController {
 	public CodeList getCharacteristicTypes(final @RequestParam(value="text", required=false) String text,
 			final @RequestParam(value="pagenumber", required=false) String pageNumber,
 			final @RequestParam(value="pagesize", required=false) String pageSize,
-			/* @ApiIgnore */ WebRequest webRequest) {
+			WebRequest webRequest) {
 		LOG.debug("characteristictypes");
 		return getList(CodeType.CHARACTERISTICTYPE, text, pageNumber, pageSize, null, webRequest);
 	}
 
 	@Operation(description="Validate and return the requested Characteristic Type.")
 	@GetMapping("/validate")
-	public Code getAssemblageName(final @RequestParam(value="value") String value, /* @ApiIgnore */ WebRequest webRequest, HttpServletResponse response) {
+	public Code getAssemblageName(final @RequestParam(value="value") String value, WebRequest webRequest, HttpServletResponse response) {
 		LOG.debug("characteristicType");
 		return getCode(CodeType.CHARACTERISTICTYPE, value, webRequest, response);
 	}

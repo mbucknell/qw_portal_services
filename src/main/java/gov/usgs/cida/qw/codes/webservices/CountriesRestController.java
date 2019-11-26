@@ -39,14 +39,14 @@ public class CountriesRestController extends CodesRestController {
 	public CodeList getCountries(final @RequestParam(value="text", required=false) String text,
 			final @RequestParam(value="pagenumber", required=false) String pageNumber,
 			final @RequestParam(value="pagesize", required=false) String pageSize,
-			/* @ApiIgnore */ WebRequest webRequest) {
+			WebRequest webRequest) {
 		LOG.debug("countries");
 		return getList(CodeType.COUNTRYCODE, text, pageNumber, pageSize, null, webRequest);
 	}
 
 	@Operation(description="Validate and return the requested Country Code.")
 	@GetMapping("/validate")
-	public Code getCountry(final @RequestParam(value="value") String value, /* @ApiIgnore */ WebRequest webRequest, HttpServletResponse response) {
+	public Code getCountry(final @RequestParam(value="value") String value, WebRequest webRequest, HttpServletResponse response) {
 		LOG.debug("country");
 		return getCode(CodeType.COUNTRYCODE, value, webRequest, response);
 	}
