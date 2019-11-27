@@ -195,7 +195,7 @@
                         <WQP_SCHEMA_OWNER_PASSWORD>changeMe</WQP_SCHEMA_OWNER_PASSWORD>
                         <WQP_DB_READ_ONLY_USERNAME>wqp_user</WQP_DB_READ_ONLY_USERNAME>
                         <WQP_DB_READ_ONLY_PASSWORD>changeMe</WQP_DB_READ_ONLY_PASSWORD>
-                        <CODES_SERVICE_URL>https://localhost:8080/qw_portal_services</CODES_SERVICE_URL>
+                        <CODES_SERVICE_URL>/</CODES_SERVICE_URL>
                     </environmentVariables>
                 </configuration>
                 <executions>

@@ -13,18 +13,9 @@ server:
   servlet:
     context-path: ${SERVER_CONTEXT_PATH}
 
-swagger:
-  display:
-    host: ${SWAGGER_DISPLAY_HOST}
-    path: ${SWAGGER_DISPLAY_PATH}
-    protocol: ${SWAGGER_DISPLAY_PROTOCOL}
-  services:
-    - name: Lookups
-      url: ${SWAGGER_SERVICES_LOOKUPS_URL}/v2/api-docs
-      version: 2.0
-    - name: Core WQP services
-      url: ${SWAGGER_SERVICES_CORE_URL}/v2/api-docs
-      version: 2.0
+codes:
+  service:
+    url: ${CODES_SERVICE_URL}
 
 logging:
   level:
