@@ -16,7 +16,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @RestController
 public class VersionController extends BaseRestController {
 
-	@Value("${CODES_SERVICE_URL}")
+	@Value("${codes.service.url}")
 	private String serverUrl;
 
 	@Operation(description="Return the web service version information.",
