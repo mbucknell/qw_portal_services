@@ -14,7 +14,7 @@ spring:
 
 codes:
   service:
-    url: ${CODES_SERVICE_URL}
+    url: ${CODES_SERVICE_URL:/}
 
 management:
   endpoints:
