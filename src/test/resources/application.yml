@@ -12,6 +12,10 @@ spring:
     hikari:
       maximumPoolSize: 5
 
+codes:
+  service:
+    url: ${CODES_SERVICE_URL}
+
 management:
   endpoints:
     enabled-by-default: false
