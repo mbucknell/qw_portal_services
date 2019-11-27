@@ -1,4 +1,8 @@
 # qw\_portal\_services
+
+[![Build Status](https://travis-ci.org/NWQMC/qw_portal_services.svg?branch=postgres)](https://travis-ci.org/NWQMC/qw_portal_services)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/34585f7c07cf4a39a7c691ec31c78820)](https://www.codacy.com/manual/usgs_wma_dev/qw_portal_services?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=NWQMC/qw_portal_services&amp;utm_campaign=Badge_Grade)
+
 Water Quality Portal (WQP) Lookup Service
 
 ## Local Configuration
@@ -10,20 +14,16 @@ the project root directory containing the following (shown are example values):
 ```$yml
 WQP_DATABASE_ADDRESS: <127.0.0.1>
 WQP_DATABASE_PORT: <5435>
+WQP_DATABASE_NAME: <wqp_db>
 WQP_DB_READ_ONLY_USERNAME: <wqp_user>
 WQP_DB_READ_ONLY_PASSWORD: <changeMe>
-WQP_DATABASE_NAME: <wqp_db>
 
-SERVER_PORT: 8082
-SERVER_CONTEXT_PATH: /Codes
-
-SWAGGER_DISPLAY_HOST: localHost:8082
-SWAGGER_DISPLAY_PATH: /Codes
-SWAGGER_DISPLAY_PROTOCOL: http
-SWAGGER_SERVICES_CORE_URL:
-SWAGGER_SERVICES_LOOKUPS_URL:
+SERVER_PORT: <8082>
+SERVER_CONTEXT_PATH: </Codes>
 
 ROOT_LOG_LEVEL: INFO
+
+CODES_SERVICE_URL: <http://localhost:8082/Codes/>
 ```
 
 ## Testing

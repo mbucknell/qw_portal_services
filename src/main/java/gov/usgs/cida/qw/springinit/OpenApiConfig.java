@@ -14,7 +14,7 @@ public class OpenApiConfig {
 
 	public static final String LOOKUP_TAG_DESCRIPTION = "Lookup and Validate";
 
-	@Value("${SWAGGER_SERVER_URL}")
+	@Value("${codes.service.url}")
 	private String serverUrl;
 
 	@Bean
