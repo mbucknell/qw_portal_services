@@ -160,14 +160,14 @@ public class SummaryDaoIT extends BaseIT {
 		assertEquals(5, bins.size());
 		int prevMax = 1;
 		for (int i=0; i<bins.size(); i++) {
-			assertEquals(i+1, bins.get(i).counts.get(0).intValue());
-			assertTrue(prevMax <= bins.get(i).counts.get(1).intValue(), "bin "+ i +" min <= prev bin max");
-			assertTrue(bins.get(i).counts.get(1).intValue() <= bins.get(i).counts.get(2).intValue(), "bin "+ i +" min <= bin max");
-			assertTrue(minBinCnt <= bins.get(i).counts.get(3).intValue(), "bin "+ i +" count >= min count");
-			assertTrue(maxBinCnt >= bins.get(i).counts.get(3).intValue(), "bin "+ i +" count <= min count");
-			prevMax = bins.get(i).counts.get(2).intValue();
-			for (int j=0; j<expectedBins.get(i).counts.size(); j++) {
-				assertEquals(expectedBins.get(i).counts.get(j), bins.get(i).counts.get(j));
+			assertEquals(i+1, bins.get(i).getCounts().get(0).intValue());
+			assertTrue(prevMax <= bins.get(i).getCounts().get(1).intValue(), "bin "+ i +" min <= prev bin max");
+			assertTrue(bins.get(i).getCounts().get(1).intValue() <= bins.get(i).getCounts().get(2).intValue(), "bin "+ i +" min <= bin max");
+			assertTrue(minBinCnt <= bins.get(i).getCounts().get(3).intValue(), "bin "+ i +" count >= min count");
+			assertTrue(maxBinCnt >= bins.get(i).getCounts().get(3).intValue(), "bin "+ i +" count <= min count");
+			prevMax = bins.get(i).getCounts().get(2).intValue();
+			for (int j=0; j<expectedBins.get(i).getCounts().size(); j++) {
+				assertEquals(expectedBins.get(i).getCounts().get(j), bins.get(i).getCounts().get(j));
 			}
 		}
 	}

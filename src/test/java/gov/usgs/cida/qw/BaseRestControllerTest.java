@@ -22,18 +22,14 @@ public class BaseRestControllerTest {
 
 	@MockBean
 	private LastUpdateDao lastUpdateDao;
+	private TestController testController;
+	private LocalDateTime localFromUTC; 
 
 	private class TestController extends BaseRestController {
 		public TestController(final LastUpdateDao lastUpdateDao) {
 			this.lastUpdateDao = lastUpdateDao;
 		}
 	}
-
-	private TestController testController;
-	private MockHttpServletRequest mockRequest;
-	private NativeWebRequest webRequest; 
-	private MockHttpServletResponse servletResponse;
-	private LocalDateTime localFromUTC; 
 
 	@BeforeEach
 	public void setup() {
@@ -47,9 +43,9 @@ public class BaseRestControllerTest {
 		//Also, in real life these dates are UTC...
 		when(lastUpdateDao.getLastEtl()).thenReturn(localFromUTC);
 
-		mockRequest = new MockHttpServletRequest();
-		servletResponse = new MockHttpServletResponse();
-		webRequest = new ServletWebRequest(mockRequest, servletResponse);
+		MockHttpServletRequest mockRequest = new MockHttpServletRequest();
+		MockHttpServletResponse servletResponse = new MockHttpServletResponse();
+		NativeWebRequest webRequest = new ServletWebRequest(mockRequest, servletResponse);
 		assertFalse(testController.isNotModified(webRequest), "Header Not set, so is modified.");
 
 		mockRequest = new MockHttpServletRequest();

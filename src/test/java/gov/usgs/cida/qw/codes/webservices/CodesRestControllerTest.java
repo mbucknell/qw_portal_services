@@ -35,6 +35,12 @@ import gov.usgs.cida.qw.codes.dao.CodeDao;
 @SpringBootTest
 public class CodesRestControllerTest {
 
+	private TestController testController;
+	private MockHttpServletRequest mockRequest;
+	private NativeWebRequest webRequest; 
+	private MockHttpServletResponse servletResponse;
+	private LocalDateTime localFromUTC; 
+
 	@MockBean
 	private LastUpdateDao lastUpdateDao;
 	@MockBean
@@ -47,12 +53,6 @@ public class CodesRestControllerTest {
 			this.codeDao = codeDao;
 		}
 	}
-
-	private TestController testController;
-	private MockHttpServletRequest mockRequest;
-	private NativeWebRequest webRequest; 
-	private MockHttpServletResponse servletResponse;
-	private LocalDateTime localFromUTC; 
 
 	@BeforeEach
 	public void setup() {
