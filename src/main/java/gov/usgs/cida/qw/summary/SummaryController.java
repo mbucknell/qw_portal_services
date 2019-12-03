@@ -166,7 +166,7 @@ public class SummaryController extends BaseRestController {
 	}
 
 	public static class RowCounts {
-		List<Integer> counts = new ArrayList<Integer>();
+		private List<Integer> counts = new ArrayList<Integer>();
 		public void setValue(Integer value) {
 			counts.add(value);
 		}
