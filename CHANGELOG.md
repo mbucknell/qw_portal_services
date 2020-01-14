@@ -4,8 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html). (Patch version X.Y.0 is implied if not specified.)
 
-## [Unreleased](https://github.com/NWQMC/qw_portal_services/compare/qw_portal_services-2.0.0...master)
+## [Unreleased](https://github.com/NWQMC/qw_portal_services/compare/qw_portal_services-2.5.0...master)
+
+## [2.5.0](https://github.com/NWQMC/qw_portal_services/compare/qw_portal_services-2.2.0...qw_portal_services-2.5.0)
 ### Changed
+- Updated Dockerfile to use the latest openjdk-debian-stretch 11 version rather than specific.
 - Updated SLD template to use lowercase property names
 - spring-boot-starter-parent to > 2.2.0-RELEASE
 - travis with integration tests
