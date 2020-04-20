@@ -1,7 +1,5 @@
 # docker image path in artifactory
 artifactoryPath: "qw_portal_services"
-# docker image path in gitlab
-gitlabPath: "wma/docker/wqp"
 # name of the docker image
 dockerImageName: "qw_portal_services"
 # type of build
