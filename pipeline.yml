@@ -23,8 +23,11 @@ rulePriority: 502
 containerPort: 8080
 # string parameter specifying a path that ALB should use to verify that your application is alive
 healthCheck: "/Codes/about/health"
-# string parameter that tells the ALB how to route requests to the containers (e.g. /my-app/*); this forms a listener rule for the load balancer
-contextPath: "/Codes/*"
 # configuration repository paths
 configRepoPath: "wma/docker/wqp/qw_portal_services"
 configCredentialsId: "wma-eto-eb-rsa"
+urlRules:
+  - type: forward
+    conditions:
+      - "/Codes/*"
+    priority: 502
