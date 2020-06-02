@@ -5,8 +5,8 @@ spring:
     username: ${WQP_DB_READ_ONLY_USERNAME}
     password: ${WQP_DB_READ_ONLY_PASSWORD}
 
-  profiles:
-    active: default,swagger
+springdoc:
+  version: "@project.version@"
 
 server:
   port: ${SERVER_PORT}

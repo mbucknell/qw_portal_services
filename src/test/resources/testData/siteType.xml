@@ -1,33 +1,33 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <dataset>
-  <SITE_TYPE DATA_SOURCE_ID="1" CODE_VALUE="Aggregate groundwater use"/>
-  <SITE_TYPE DATA_SOURCE_ID="2" CODE_VALUE="Aggregate groundwater use"/>
-  <SITE_TYPE DATA_SOURCE_ID="3" CODE_VALUE="Aggregate groundwater use"/>
-  
-  <SITE_TYPE DATA_SOURCE_ID="1" CODE_VALUE="Aggregate surface-water-use"/>
-  <SITE_TYPE DATA_SOURCE_ID="2" CODE_VALUE="Aggregate surface-water-use"/>
-  <SITE_TYPE DATA_SOURCE_ID="3" CODE_VALUE="Aggregate surface-water-use"/>
-  
-  <SITE_TYPE DATA_SOURCE_ID="1" CODE_VALUE="Atmosphere"/>
-  <SITE_TYPE DATA_SOURCE_ID="2" CODE_VALUE="Atmosphere"/>
-  
-  <SITE_TYPE DATA_SOURCE_ID="2" CODE_VALUE="Glacier"/>
-  
-  <SITE_TYPE DATA_SOURCE_ID="1" CODE_VALUE="Lake, Reservoir, Impoundment"/>
-  
-  <SITE_TYPE DATA_SOURCE_ID="2" CODE_VALUE="Land"/>
-  <SITE_TYPE DATA_SOURCE_ID="3" CODE_VALUE="Land"/>
-  
-  <SITE_TYPE DATA_SOURCE_ID="1" CODE_VALUE="Ocean"/>
-  <SITE_TYPE DATA_SOURCE_ID="3" CODE_VALUE="Ocean"/>
-  
-  <SITE_TYPE DATA_SOURCE_ID="1" CODE_VALUE="Spring"/>
-  
-  <SITE_TYPE DATA_SOURCE_ID="1" CODE_VALUE="Stream"/>
-  
-  <SITE_TYPE DATA_SOURCE_ID="1" CODE_VALUE="Well"/>
-  <SITE_TYPE DATA_SOURCE_ID="2" CODE_VALUE="Well"/>
-  <SITE_TYPE DATA_SOURCE_ID="3" CODE_VALUE="Well"/>
-  
-  <SITE_TYPE DATA_SOURCE_ID="3" CODE_VALUE="Wetland"/>
+    <site_type data_source_id="1" code_value="Aggregate groundwater use"/>
+    <site_type data_source_id="2" code_value="Aggregate groundwater use"/>
+    <site_type data_source_id="3" code_value="Aggregate groundwater use"/>
+
+    <site_type data_source_id="1" code_value="Aggregate surface-water-use"/>
+    <site_type data_source_id="2" code_value="Aggregate surface-water-use"/>
+    <site_type data_source_id="3" code_value="Aggregate surface-water-use"/>
+
+    <site_type data_source_id="1" code_value="Atmosphere"/>
+    <site_type data_source_id="2" code_value="Atmosphere"/>
+
+    <site_type data_source_id="2" code_value="Glacier"/>
+
+    <site_type data_source_id="1" code_value="Lake, Reservoir, Impoundment"/>
+
+    <site_type data_source_id="2" code_value="Land"/>
+    <site_type data_source_id="3" code_value="Land"/>
+
+    <site_type data_source_id="1" code_value="Ocean"/>
+    <site_type data_source_id="3" code_value="Ocean"/>
+
+    <site_type data_source_id="1" code_value="Spring"/>
+
+    <site_type data_source_id="1" code_value="Stream"/>
+
+    <site_type data_source_id="1" code_value="Well"/>
+    <site_type data_source_id="2" code_value="Well"/>
+    <site_type data_source_id="3" code_value="Well"/>
+
+    <site_type data_source_id="3" code_value="Wetland"/>
 </dataset>

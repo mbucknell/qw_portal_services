@@ -3,7 +3,7 @@
 
 <mapper namespace="summary">
 
-    <resultMap id="discreteSampleCountBinResult" type="gov.usgs.cida.qw.summary.SummaryController$RowCounts">
+    <resultMap id="discreteSampleCountBinResult" type="gov.usgs.wma.qw.summary.SummaryController$RowCounts">
         <!--order is important here-->
         <result property="value" column="binNumber"/>
         <result property="value" column="binMin"/>

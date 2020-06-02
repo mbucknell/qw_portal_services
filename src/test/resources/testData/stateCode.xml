@@ -1,33 +1,33 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <dataset>
-  <STATE DATA_SOURCE_ID="1" CODE_VALUE="CN:93" DESCRIPTION_WITH_COUNTRY="CN, MANITOBA" DESCRIPTION_WITH_OUT_COUNTRY="MANITOBA"/>
-  <STATE DATA_SOURCE_ID="2" CODE_VALUE="CN:93" DESCRIPTION_WITH_COUNTRY="CN, MANITOBA" DESCRIPTION_WITH_OUT_COUNTRY="MANITOBA"/>
-  <STATE DATA_SOURCE_ID="3" CODE_VALUE="CN:93" DESCRIPTION_WITH_COUNTRY="CN, MANITOBA" DESCRIPTION_WITH_OUT_COUNTRY="MANITOBA"/>
-  
-  <STATE DATA_SOURCE_ID="1" CODE_VALUE="CN:97" DESCRIPTION_WITH_COUNTRY="CN, YUKON TERRITORIES" DESCRIPTION_WITH_OUT_COUNTRY="YUKON TERRITORIES"/>
-  <STATE DATA_SOURCE_ID="2" CODE_VALUE="CN:97" DESCRIPTION_WITH_COUNTRY="CN, YUKON TERRITORIES" DESCRIPTION_WITH_OUT_COUNTRY="YUKON TERRITORIES"/>
-  <STATE DATA_SOURCE_ID="3" CODE_VALUE="CN:97" DESCRIPTION_WITH_COUNTRY="CN, YUKON TERRITORIES" DESCRIPTION_WITH_OUT_COUNTRY="YUKON TERRITORIES"/>
-  
-  <STATE DATA_SOURCE_ID="1" CODE_VALUE="GT:00" DESCRIPTION_WITH_COUNTRY="GT, UNSPECIFIED" DESCRIPTION_WITH_OUT_COUNTRY="UNSPECIFIED"/>
-  <STATE DATA_SOURCE_ID="2" CODE_VALUE="GT:00" DESCRIPTION_WITH_COUNTRY="GT, UNSPECIFIED" DESCRIPTION_WITH_OUT_COUNTRY="UNSPECIFIED"/>
-  
-  <STATE DATA_SOURCE_ID="2" CODE_VALUE="MX:86" DESCRIPTION_WITH_COUNTRY="MX, BAJA CALIFORNIA NORTE" DESCRIPTION_WITH_OUT_COUNTRY="BAJA CALIFORNIA NORTE"/>
-  
-  <STATE DATA_SOURCE_ID="1" CODE_VALUE="US:19" DESCRIPTION_WITH_COUNTRY="US, IOWA" DESCRIPTION_WITH_OUT_COUNTRY="IOWA"/>
-  
-  <STATE DATA_SOURCE_ID="2" CODE_VALUE="US:21" DESCRIPTION_WITH_COUNTRY="US, KENTUCKY" DESCRIPTION_WITH_OUT_COUNTRY="KENTUCKY"/>
-  <STATE DATA_SOURCE_ID="3" CODE_VALUE="US:21" DESCRIPTION_WITH_COUNTRY="US, KENTUCKY" DESCRIPTION_WITH_OUT_COUNTRY="KENTUCKY"/>
-  
-  <STATE DATA_SOURCE_ID="1" CODE_VALUE="US:31" DESCRIPTION_WITH_COUNTRY="US, NEBRASKA" DESCRIPTION_WITH_OUT_COUNTRY="NEBRASKA"/>
-  <STATE DATA_SOURCE_ID="3" CODE_VALUE="US:31" DESCRIPTION_WITH_COUNTRY="US, NEBRASKA" DESCRIPTION_WITH_OUT_COUNTRY="NEBRASKA"/>
-  
-  <STATE DATA_SOURCE_ID="1" CODE_VALUE="US:32" DESCRIPTION_WITH_COUNTRY="US, NEVADA" DESCRIPTION_WITH_OUT_COUNTRY="NEVADA"/>
-  
-  <STATE DATA_SOURCE_ID="1" CODE_VALUE="US:48" DESCRIPTION_WITH_COUNTRY="US, TEXAS" DESCRIPTION_WITH_OUT_COUNTRY="TEXAS"/>
-  
-  <STATE DATA_SOURCE_ID="1" CODE_VALUE="US:49" DESCRIPTION_WITH_COUNTRY="US, UTAH" DESCRIPTION_WITH_OUT_COUNTRY="UTAH"/>
-  <STATE DATA_SOURCE_ID="2" CODE_VALUE="US:49" DESCRIPTION_WITH_COUNTRY="US, UTAH" DESCRIPTION_WITH_OUT_COUNTRY="UTAH"/>
-  <STATE DATA_SOURCE_ID="3" CODE_VALUE="US:49" DESCRIPTION_WITH_COUNTRY="US, UTAH" DESCRIPTION_WITH_OUT_COUNTRY="UTAH"/>
-  
-  <STATE DATA_SOURCE_ID="3" CODE_VALUE="US:78" DESCRIPTION_WITH_COUNTRY="US, VIRGIN ISLANDS" DESCRIPTION_WITH_OUT_COUNTRY="VIRGIN ISLANDS"/>
+    <state data_source_id="1" code_value="CN:93" description_with_country="CN, MANITOBA" description_with_out_country="MANITOBA"/>
+    <state data_source_id="2" code_value="CN:93" description_with_country="CN, MANITOBA" description_with_out_country="MANITOBA"/>
+    <state data_source_id="3" code_value="CN:93" description_with_country="CN, MANITOBA" description_with_out_country="MANITOBA"/>
+
+    <state data_source_id="1" code_value="CN:97" description_with_country="CN, YUKON TERRITORIES" description_with_out_country="YUKON TERRITORIES"/>
+    <state data_source_id="2" code_value="CN:97" description_with_country="CN, YUKON TERRITORIES" description_with_out_country="YUKON TERRITORIES"/>
+    <state data_source_id="3" code_value="CN:97" description_with_country="CN, YUKON TERRITORIES" description_with_out_country="YUKON TERRITORIES"/>
+
+    <state data_source_id="1" code_value="GT:00" description_with_country="GT, UNSPECIFIED" description_with_out_country="UNSPECIFIED"/>
+    <state data_source_id="2" code_value="GT:00" description_with_country="GT, UNSPECIFIED" description_with_out_country="UNSPECIFIED"/>
+
+    <state data_source_id="2" code_value="MX:86" description_with_country="MX, BAJA CALIFORNIA NORTE" description_with_out_country="BAJA CALIFORNIA NORTE"/>
+
+    <state data_source_id="1" code_value="US:19" description_with_country="US, IOWA" description_with_out_country="IOWA"/>
+
+    <state data_source_id="2" code_value="US:21" description_with_country="US, KENTUCKY" description_with_out_country="KENTUCKY"/>
+    <state data_source_id="3" code_value="US:21" description_with_country="US, KENTUCKY" description_with_out_country="KENTUCKY"/>
+
+    <state data_source_id="1" code_value="US:31" description_with_country="US, NEBRASKA" description_with_out_country="NEBRASKA"/>
+    <state data_source_id="3" code_value="US:31" description_with_country="US, NEBRASKA" description_with_out_country="NEBRASKA"/>
+
+    <state data_source_id="1" code_value="US:32" description_with_country="US, NEVADA" description_with_out_country="NEVADA"/>
+
+    <state data_source_id="1" code_value="US:48" description_with_country="US, TEXAS" description_with_out_country="TEXAS"/>
+
+    <state data_source_id="1" code_value="US:49" description_with_country="US, UTAH" description_with_out_country="UTAH"/>
+    <state data_source_id="2" code_value="US:49" description_with_country="US, UTAH" description_with_out_country="UTAH"/>
+    <state data_source_id="3" code_value="US:49" description_with_country="US, UTAH" description_with_out_country="UTAH"/>
+
+    <state data_source_id="3" code_value="US:78" description_with_country="US, VIRGIN ISLANDS" description_with_out_country="VIRGIN ISLANDS"/>
 </dataset>

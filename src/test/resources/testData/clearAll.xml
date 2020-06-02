@@ -1,15 +1,15 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <dataset>
-	<CHAR_NAME/>
-	<CHAR_TYPE/>
-	<COUNTRY/>
-	<COUNTY/>
-	<LAST_ETL/>
-	<ORGANIZATION/>
-	<PROJECT/>
-	<PUBLIC_SRSNAMES/>
-	<QWPORTAL_SUMMARY/>
-	<SAMPLE_MEDIA/>
-	<SITE_TYPE/>
-	<STATE/>
+    <char_name/>
+    <char_type/>
+    <country/>
+    <county/>
+    <last_etl/>
+    <organization/>
+    <project/>
+    <public_srsnames/>
+    <qwportal_summary/>
+    <sample_media/>
+    <site_type/>
+    <state/>
 </dataset>

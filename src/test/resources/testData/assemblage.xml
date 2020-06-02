@@ -1,33 +1,33 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <dataset>
-  <assemblage data_source_id="1" code_value="Amphibians"/>
-  <assemblage data_source_id="2" code_value="Amphibians"/>
-  <assemblage data_source_id="3" code_value="Amphibians"/>
-  
-  <assemblage data_source_id="1" code_value="Aquatic Vegetation"/>
-  <assemblage data_source_id="2" code_value="Aquatic Vegetation"/>
-  <assemblage data_source_id="3" code_value="Aquatic Vegetation"/>
-  
-  <assemblage data_source_id="1" code_value="Bacteria/Virus"/>
-  <assemblage data_source_id="2" code_value="Bacteria/Virus"/>
-  
-  <assemblage data_source_id="2" code_value="Benthic Macroinvertebrates"/>
-  
-  <assemblage data_source_id="1" code_value="Birds"/>
-  
-  <assemblage data_source_id="2" code_value="Corals"/>
-  <assemblage data_source_id="3" code_value="Corals"/>
-  
-  <assemblage data_source_id="1" code_value="Fish/Nekton"/>
-  <assemblage data_source_id="3" code_value="Fish/Nekton"/>
-  
-  <assemblage data_source_id="1" code_value="Invertebrates"/>
-  
-  <assemblage data_source_id="1" code_value="Periphyton"/>
-  
-  <assemblage data_source_id="1" code_value="Phytoplankton/Zooplankton"/>
-  <assemblage data_source_id="2" code_value="Phytoplankton/Zooplankton"/>
-  <assemblage data_source_id="3" code_value="Phytoplankton/Zooplankton"/>
-  
-  <assemblage data_source_id="3" code_value="Terrestrial Vegetation"/>
+    <assemblage data_source_id="1" code_value="Amphibians"/>
+    <assemblage data_source_id="2" code_value="Amphibians"/>
+    <assemblage data_source_id="3" code_value="Amphibians"/>
+
+    <assemblage data_source_id="1" code_value="Aquatic Vegetation"/>
+    <assemblage data_source_id="2" code_value="Aquatic Vegetation"/>
+    <assemblage data_source_id="3" code_value="Aquatic Vegetation"/>
+
+    <assemblage data_source_id="1" code_value="Bacteria/Virus"/>
+    <assemblage data_source_id="2" code_value="Bacteria/Virus"/>
+
+    <assemblage data_source_id="2" code_value="Benthic Macroinvertebrates"/>
+
+    <assemblage data_source_id="1" code_value="Birds"/>
+
+    <assemblage data_source_id="2" code_value="Corals"/>
+    <assemblage data_source_id="3" code_value="Corals"/>
+
+    <assemblage data_source_id="1" code_value="Fish/Nekton"/>
+    <assemblage data_source_id="3" code_value="Fish/Nekton"/>
+
+    <assemblage data_source_id="1" code_value="Invertebrates"/>
+
+    <assemblage data_source_id="1" code_value="Periphyton"/>
+
+    <assemblage data_source_id="1" code_value="Phytoplankton/Zooplankton"/>
+    <assemblage data_source_id="2" code_value="Phytoplankton/Zooplankton"/>
+    <assemblage data_source_id="3" code_value="Phytoplankton/Zooplankton"/>
+
+    <assemblage data_source_id="3" code_value="Terrestrial Vegetation"/>
 </dataset>
