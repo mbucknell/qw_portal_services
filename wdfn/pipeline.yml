@@ -1,0 +1,30 @@
+# docker image path in artifactory
+artifactoryPath: "qw_portal_services"
+# name of the docker image
+dockerImageName: "qw_portal_services"
+# type of build
+repoPath: "NWQMC/qw_portal_services"
+# name of the git repo
+gitRepoUrl: "https://github.com/NWQMC/qw_portal_services.git"
+# Jenkins credential for pushing back to repo
+gitRepoCredentialsId: "Jenkins-GitHub-Read-Write-Token"
+# name of the deploy job to trigger
+deployJobName: "qw-portal-services-deploy-wdfn"
+# name of the project
+projectName: "iow-allgemein"
+# maximum amount of RAM for running Docker containers in the service
+memory: 512
+# name of the application or service
+applicationName: "qw_portal_services"
+# port that is exposed by your container
+containerPort: 8080
+# string parameter specifying a path that ALB should use to verify that your application is alive
+healthCheck: "/Codes/about/health"
+# configuration repository paths
+configRepoPath: "wma/docker/wdfn/lookup_services"
+configCredentialsId: "wma-eto-eb-rsa"
+urlRules:
+  - type: forward
+    conditions:
+      - "/Codes/*"
+    priority: 426
