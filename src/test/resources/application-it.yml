@@ -19,7 +19,7 @@ codes:
   service:
     url: ${CODES_SERVICE_URL}
   swagger:
-    apiDocsUrl: ${SERVER_CONTEXT_PATH}/v3/api-docs
+    apiDocsUrl: /v3/api-docs
 
 management:
   endpoints:
