@@ -3,8 +3,6 @@ package gov.usgs.wma.qw;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -22,6 +20,9 @@ public class RedirectController {
 	@Value("${codes.service.url}")
 	private String serverUrl;
 
+	@Value("${codes.swagger.apiDocsUrl}")
+	private String swaggerApiDocsUrl;
+
 	@Operation(description="Return the web service version information.",
 			responses= {
 					@ApiResponse(content=@Content(schema=@Schema(nullable=true)))
@@ -31,9 +32,9 @@ public class RedirectController {
 		return new RedirectView(serverUrl + "about/info", true, true);
 	}
 
-	@RequestMapping(value="/swagger", method=RequestMethod.GET)
+	@GetMapping(value="/swagger")
 	@Hidden
-	public String getSwagger() {
-		return "redirect:/swagger-ui.html";
+	public RedirectView getSwagger() {
+		return new RedirectView(serverUrl + "swagger-ui/index.html?url=" + swaggerApiDocsUrl, true, true);
 	}
 }
