@@ -21,6 +21,12 @@ public class RedirectControllerTest {
 		ResponseEntity<String> rtn = restTemplate.getForEntity("/version", String.class);
 		assertThat(rtn.getStatusCode(), equalTo(HttpStatus.OK));
 		assertTrue(rtn.getBody().contains("\"artifact\":\"qw_portal_services\""));
+	}
 
+	@Test
+	public void getSwaggerTest(@Autowired TestRestTemplate restTemplate) throws Exception {
+		ResponseEntity<String> rtn = restTemplate.getForEntity("/swagger", String.class);
+		assertThat(rtn.getStatusCode(), equalTo(HttpStatus.OK));
+		assertTrue(rtn.getBody().contains("Swagger UI"));
 	}
 }
