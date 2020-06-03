@@ -1,33 +1,33 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <dataset>
-  <SAMPLE_MEDIA DATA_SOURCE_ID="1" CODE_VALUE="Aaa"/>
-  <SAMPLE_MEDIA DATA_SOURCE_ID="2" CODE_VALUE="Aaa"/>
-  <SAMPLE_MEDIA DATA_SOURCE_ID="3" CODE_VALUE="Aaa"/>
-  
-  <SAMPLE_MEDIA DATA_SOURCE_ID="1" CODE_VALUE="Air"/>
-  <SAMPLE_MEDIA DATA_SOURCE_ID="2" CODE_VALUE="Air"/>
-  <SAMPLE_MEDIA DATA_SOURCE_ID="3" CODE_VALUE="Air"/>
-  
-  <SAMPLE_MEDIA DATA_SOURCE_ID="1" CODE_VALUE="Biological Tissue"/>
-  <SAMPLE_MEDIA DATA_SOURCE_ID="2" CODE_VALUE="Biological Tissue"/>
-  
-  <SAMPLE_MEDIA DATA_SOURCE_ID="2" CODE_VALUE="Earth"/>
-  
-  <SAMPLE_MEDIA DATA_SOURCE_ID="1" CODE_VALUE="Habitat"/>
-  
-  <SAMPLE_MEDIA DATA_SOURCE_ID="2" CODE_VALUE="Other"/>
-  <SAMPLE_MEDIA DATA_SOURCE_ID="3" CODE_VALUE="Other"/>
-  
-  <SAMPLE_MEDIA DATA_SOURCE_ID="1" CODE_VALUE="Sediment"/>
-  <SAMPLE_MEDIA DATA_SOURCE_ID="3" CODE_VALUE="Sediment"/>
-  
-  <SAMPLE_MEDIA DATA_SOURCE_ID="1" CODE_VALUE="Soil"/>
-  
-  <SAMPLE_MEDIA DATA_SOURCE_ID="1" CODE_VALUE="Tissue"/>
-  
-  <SAMPLE_MEDIA DATA_SOURCE_ID="1" CODE_VALUE="Water"/>
-  <SAMPLE_MEDIA DATA_SOURCE_ID="2" CODE_VALUE="Water"/>
-  <SAMPLE_MEDIA DATA_SOURCE_ID="3" CODE_VALUE="Water"/>
-  
-  <SAMPLE_MEDIA DATA_SOURCE_ID="3" CODE_VALUE="Xylophone"/>
+    <sample_media data_source_id="1" code_value="Aaa"/>
+    <sample_media data_source_id="2" code_value="Aaa"/>
+    <sample_media data_source_id="3" code_value="Aaa"/>
+
+    <sample_media data_source_id="1" code_value="Air"/>
+    <sample_media data_source_id="2" code_value="Air"/>
+    <sample_media data_source_id="3" code_value="Air"/>
+
+    <sample_media data_source_id="1" code_value="Biological Tissue"/>
+    <sample_media data_source_id="2" code_value="Biological Tissue"/>
+
+    <sample_media data_source_id="2" code_value="Earth"/>
+
+    <sample_media data_source_id="1" code_value="Habitat"/>
+
+    <sample_media data_source_id="2" code_value="Other"/>
+    <sample_media data_source_id="3" code_value="Other"/>
+
+    <sample_media data_source_id="1" code_value="Sediment"/>
+    <sample_media data_source_id="3" code_value="Sediment"/>
+
+    <sample_media data_source_id="1" code_value="Soil"/>
+
+    <sample_media data_source_id="1" code_value="Tissue"/>
+
+    <sample_media data_source_id="1" code_value="Water"/>
+    <sample_media data_source_id="2" code_value="Water"/>
+    <sample_media data_source_id="3" code_value="Water"/>
+
+    <sample_media data_source_id="3" code_value="Xylophone"/>
 </dataset>

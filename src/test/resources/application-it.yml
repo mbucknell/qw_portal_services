@@ -12,6 +12,9 @@ spring:
     hikari:
       maximumPoolSize: 5
 
+springdoc:
+  version: "@project.version@"
+
 codes:
   service:
     url: ${CODES_SERVICE_URL}

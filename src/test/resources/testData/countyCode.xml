@@ -1,33 +1,33 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <dataset>
-  <COUNTY DATA_SOURCE_ID="1" CODE_VALUE="CN:90:000" DESCRIPTION="CN, NEW BRUNSWICK, UNSPECIFIED"/>
-  <COUNTY DATA_SOURCE_ID="2" CODE_VALUE="CN:90:000" DESCRIPTION="CN, NEW BRUNSWICK, UNSPECIFIED"/>
-  <COUNTY DATA_SOURCE_ID="3" CODE_VALUE="CN:90:000" DESCRIPTION="CN, NEW BRUNSWICK, UNSPECIFIED"/>
-  
-  <COUNTY DATA_SOURCE_ID="1" CODE_VALUE="MX:81:000" DESCRIPTION="MX, TAMULIPAS, UNSPECIFIED"/>
-  <COUNTY DATA_SOURCE_ID="2" CODE_VALUE="MX:81:000" DESCRIPTION="MX, TAMULIPAS, UNSPECIFIED"/>
-  <COUNTY DATA_SOURCE_ID="3" CODE_VALUE="MX:81:000" DESCRIPTION="MX, TAMULIPAS, UNSPECIFIED"/>
-  
-  <COUNTY DATA_SOURCE_ID="1" CODE_VALUE="US:16:053" DESCRIPTION="US, IDAHO, JEROME"/>
-  <COUNTY DATA_SOURCE_ID="2" CODE_VALUE="US:16:053" DESCRIPTION="US, IDAHO, JEROME"/>
-  
-  <COUNTY DATA_SOURCE_ID="2" CODE_VALUE="US:16:083" DESCRIPTION="US, IDAHO, TWIN FALLS"/>
-  
-  <COUNTY DATA_SOURCE_ID="1" CODE_VALUE="US:18:033" DESCRIPTION="US, INDIANA, DE KALB"/>
-  
-  <COUNTY DATA_SOURCE_ID="2" CODE_VALUE="US:19:015" DESCRIPTION="US, IOWA, BOONE"/>
-  <COUNTY DATA_SOURCE_ID="3" CODE_VALUE="US:19:015" DESCRIPTION="US, IOWA, BOONE"/>
-  
-  <COUNTY DATA_SOURCE_ID="1" CODE_VALUE="US:19:079" DESCRIPTION="US, IOWA, HAMILTON"/>
-  <COUNTY DATA_SOURCE_ID="3" CODE_VALUE="US:19:079" DESCRIPTION="US, IOWA, HAMILTON"/>
+    <county data_source_id="1" code_value="CN:90:000" description="CN, NEW BRUNSWICK, UNSPECIFIED"/>
+    <county data_source_id="2" code_value="CN:90:000" description="CN, NEW BRUNSWICK, UNSPECIFIED"/>
+    <county data_source_id="3" code_value="CN:90:000" description="CN, NEW BRUNSWICK, UNSPECIFIED"/>
 
-  <COUNTY DATA_SOURCE_ID="1" CODE_VALUE="US:24:011" DESCRIPTION="US, MARYLAND, CAROLINE"/>
-  
-  <COUNTY DATA_SOURCE_ID="1" CODE_VALUE="US:24:019" DESCRIPTION="US, MARYLAND, DORCHESTER"/>
+    <county data_source_id="1" code_value="MX:81:000" description="MX, TAMULIPAS, UNSPECIFIED"/>
+    <county data_source_id="2" code_value="MX:81:000" description="MX, TAMULIPAS, UNSPECIFIED"/>
+    <county data_source_id="3" code_value="MX:81:000" description="MX, TAMULIPAS, UNSPECIFIED"/>
 
-  <COUNTY DATA_SOURCE_ID="1" CODE_VALUE="US:28:107" DESCRIPTION="US, MISSISSIPPI, PANOLA"/>
-  <COUNTY DATA_SOURCE_ID="2" CODE_VALUE="US:28:107" DESCRIPTION="US, MISSISSIPPI, PANOLA"/>
-  <COUNTY DATA_SOURCE_ID="3" CODE_VALUE="US:28:107" DESCRIPTION="US, MISSISSIPPI, PANOLA"/>
-  
-  <COUNTY DATA_SOURCE_ID="3" CODE_VALUE="US:55:027" DESCRIPTION="US, WISCONSIN, DODGE"/>
+    <county data_source_id="1" code_value="US:16:053" description="US, IDAHO, JEROME"/>
+    <county data_source_id="2" code_value="US:16:053" description="US, IDAHO, JEROME"/>
+
+    <county data_source_id="2" code_value="US:16:083" description="US, IDAHO, TWIN FALLS"/>
+
+    <county data_source_id="1" code_value="US:18:033" description="US, INDIANA, DE KALB"/>
+
+    <county data_source_id="2" code_value="US:19:015" description="US, IOWA, BOONE"/>
+    <county data_source_id="3" code_value="US:19:015" description="US, IOWA, BOONE"/>
+
+    <county data_source_id="1" code_value="US:19:079" description="US, IOWA, HAMILTON"/>
+    <county data_source_id="3" code_value="US:19:079" description="US, IOWA, HAMILTON"/>
+
+    <county data_source_id="1" code_value="US:24:011" description="US, MARYLAND, CAROLINE"/>
+
+    <county data_source_id="1" code_value="US:24:019" description="US, MARYLAND, DORCHESTER"/>
+
+    <county data_source_id="1" code_value="US:28:107" description="US, MISSISSIPPI, PANOLA"/>
+    <county data_source_id="2" code_value="US:28:107" description="US, MISSISSIPPI, PANOLA"/>
+    <county data_source_id="3" code_value="US:28:107" description="US, MISSISSIPPI, PANOLA"/>
+
+    <county data_source_id="3" code_value="US:55:027" description="US, WISCONSIN, DODGE"/>
 </dataset>

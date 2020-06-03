@@ -1,33 +1,33 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <dataset>
-  <CHAR_NAME DATA_SOURCE_ID="1" CODE_VALUE="Acetochlor"/>
-  <CHAR_NAME DATA_SOURCE_ID="2" CODE_VALUE="Acetochlor"/>
-  <CHAR_NAME DATA_SOURCE_ID="3" CODE_VALUE="Acetochlor"/>
-  
-  <CHAR_NAME DATA_SOURCE_ID="1" CODE_VALUE="Alachlor"/>
-  <CHAR_NAME DATA_SOURCE_ID="2" CODE_VALUE="Alachlor"/>
-  <CHAR_NAME DATA_SOURCE_ID="3" CODE_VALUE="Alachlor"/>
-  
-  <CHAR_NAME DATA_SOURCE_ID="1" CODE_VALUE="Alkalinity"/>
-  <CHAR_NAME DATA_SOURCE_ID="2" CODE_VALUE="Alkalinity"/>
-  
-  <CHAR_NAME DATA_SOURCE_ID="2" CODE_VALUE="Aluminum"/>
-  
-  <CHAR_NAME DATA_SOURCE_ID="1" CODE_VALUE="Aminomethylphosphonic Acid"/>
-  
-  <CHAR_NAME DATA_SOURCE_ID="2" CODE_VALUE="Ammonia"/>
-  <CHAR_NAME DATA_SOURCE_ID="3" CODE_VALUE="Ammonia"/>
-  
-  <CHAR_NAME DATA_SOURCE_ID="1" CODE_VALUE="Ammonium"/>
-  <CHAR_NAME DATA_SOURCE_ID="3" CODE_VALUE="Ammonium"/>
-  
-  <CHAR_NAME DATA_SOURCE_ID="1" CODE_VALUE="Ammonium-Nitrogen"/>
-  
-  <CHAR_NAME DATA_SOURCE_ID="1" CODE_VALUE="Arsenic"/>
-  
-  <CHAR_NAME DATA_SOURCE_ID="1" CODE_VALUE="Atrazine"/>
-  <CHAR_NAME DATA_SOURCE_ID="2" CODE_VALUE="Atrazine"/>
-  <CHAR_NAME DATA_SOURCE_ID="3" CODE_VALUE="Atrazine"/>
-  
-  <CHAR_NAME DATA_SOURCE_ID="3" CODE_VALUE="Calcium"/>
+    <char_name data_source_id="1" code_value="Acetochlor"/>
+    <char_name data_source_id="2" code_value="Acetochlor"/>
+    <char_name data_source_id="3" code_value="Acetochlor"/>
+
+    <char_name data_source_id="1" code_value="Alachlor"/>
+    <char_name data_source_id="2" code_value="Alachlor"/>
+    <char_name data_source_id="3" code_value="Alachlor"/>
+
+    <char_name data_source_id="1" code_value="Alkalinity"/>
+    <char_name data_source_id="2" code_value="Alkalinity"/>
+
+    <char_name data_source_id="2" code_value="Aluminum"/>
+
+    <char_name data_source_id="1" code_value="Aminomethylphosphonic Acid"/>
+
+    <char_name data_source_id="2" code_value="Ammonia"/>
+    <char_name data_source_id="3" code_value="Ammonia"/>
+
+    <char_name data_source_id="1" code_value="Ammonium"/>
+    <char_name data_source_id="3" code_value="Ammonium"/>
+
+    <char_name data_source_id="1" code_value="Ammonium-Nitrogen"/>
+
+    <char_name data_source_id="1" code_value="Arsenic"/>
+
+    <char_name data_source_id="1" code_value="Atrazine"/>
+    <char_name data_source_id="2" code_value="Atrazine"/>
+    <char_name data_source_id="3" code_value="Atrazine"/>
+
+    <char_name data_source_id="3" code_value="Calcium"/>
 </dataset>

@@ -1,33 +1,33 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <dataset>
-  <PROJECT DATA_SOURCE_ID="1" CODE_VALUE="Aaa"/>
-  <PROJECT DATA_SOURCE_ID="2" CODE_VALUE="Aaa"/>
-  <PROJECT DATA_SOURCE_ID="3" CODE_VALUE="Aaa"/>
-  
-  <PROJECT DATA_SOURCE_ID="1" CODE_VALUE="Aab"/>
-  <PROJECT DATA_SOURCE_ID="2" CODE_VALUE="Aab"/>
-  <PROJECT DATA_SOURCE_ID="3" CODE_VALUE="Aab"/>
-  
-  <PROJECT DATA_SOURCE_ID="1" CODE_VALUE="Bb b"/>
-  <PROJECT DATA_SOURCE_ID="2" CODE_VALUE="Bb b"/>
-  
-  <PROJECT DATA_SOURCE_ID="2" CODE_VALUE="čćžđš"/>
-  
-  <PROJECT DATA_SOURCE_ID="1" CODE_VALUE="ddd"/>
-  
-  <PROJECT DATA_SOURCE_ID="2" CODE_VALUE="eee"/>
-  <PROJECT DATA_SOURCE_ID="3" CODE_VALUE="eee"/>
-  
-  <PROJECT DATA_SOURCE_ID="1" CODE_VALUE="fff"/>
-  <PROJECT DATA_SOURCE_ID="3" CODE_VALUE="fff"/>
-  
-  <PROJECT DATA_SOURCE_ID="1" CODE_VALUE="ggg"/>
-  
-  <PROJECT DATA_SOURCE_ID="1" CODE_VALUE="hhh"/>
-  
-  <PROJECT DATA_SOURCE_ID="1" CODE_VALUE="iii"/>
-  <PROJECT DATA_SOURCE_ID="2" CODE_VALUE="iii"/>
-  <PROJECT DATA_SOURCE_ID="3" CODE_VALUE="iii"/>
-  
-  <PROJECT DATA_SOURCE_ID="3" CODE_VALUE="jjj"/>
+    <project data_source_id="1" code_value="Aaa"/>
+    <project data_source_id="2" code_value="Aaa"/>
+    <project data_source_id="3" code_value="Aaa"/>
+
+    <project data_source_id="1" code_value="Aab"/>
+    <project data_source_id="2" code_value="Aab"/>
+    <project data_source_id="3" code_value="Aab"/>
+
+    <project data_source_id="1" code_value="Bb b"/>
+    <project data_source_id="2" code_value="Bb b"/>
+
+    <project data_source_id="2" code_value="čćžđš"/>
+
+    <project data_source_id="1" code_value="ddd"/>
+
+    <project data_source_id="2" code_value="eee"/>
+    <project data_source_id="3" code_value="eee"/>
+
+    <project data_source_id="1" code_value="fff"/>
+    <project data_source_id="3" code_value="fff"/>
+
+    <project data_source_id="1" code_value="ggg"/>
+
+    <project data_source_id="1" code_value="hhh"/>
+
+    <project data_source_id="1" code_value="iii"/>
+    <project data_source_id="2" code_value="iii"/>
+    <project data_source_id="3" code_value="iii"/>
+
+    <project data_source_id="3" code_value="jjj"/>
 </dataset>

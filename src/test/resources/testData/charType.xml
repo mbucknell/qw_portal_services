@@ -1,33 +1,33 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <dataset>
-  <CHAR_TYPE DATA_SOURCE_ID="1" CODE_VALUE="Inorganics, Major, Metals"/>
-  <CHAR_TYPE DATA_SOURCE_ID="2" CODE_VALUE="Inorganics, Major, Metals"/>
-  <CHAR_TYPE DATA_SOURCE_ID="3" CODE_VALUE="Inorganics, Major, Metals"/>
-  
-  <CHAR_TYPE DATA_SOURCE_ID="1" CODE_VALUE="Inorganics, Major, Non-metals"/>
-  <CHAR_TYPE DATA_SOURCE_ID="2" CODE_VALUE="Inorganics, Major, Non-metals"/>
-  <CHAR_TYPE DATA_SOURCE_ID="3" CODE_VALUE="Inorganics, Major, Non-metals"/>
-  
-  <CHAR_TYPE DATA_SOURCE_ID="1" CODE_VALUE="Inorganics, Minor, Metals"/>
-  <CHAR_TYPE DATA_SOURCE_ID="2" CODE_VALUE="Inorganics, Minor, Metals"/>
-  
-  <CHAR_TYPE DATA_SOURCE_ID="2" CODE_VALUE="Inorganics, Minor, Non-metals"/>
-  
-  <CHAR_TYPE DATA_SOURCE_ID="1" CODE_VALUE="Microbiological"/>
-  
-  <CHAR_TYPE DATA_SOURCE_ID="2" CODE_VALUE="Nutrient"/>
-  <CHAR_TYPE DATA_SOURCE_ID="3" CODE_VALUE="Nutrient"/>
-  
-  <CHAR_TYPE DATA_SOURCE_ID="1" CODE_VALUE="Organics, Other"/>
-  <CHAR_TYPE DATA_SOURCE_ID="3" CODE_VALUE="Organics, Other"/>
-  
-  <CHAR_TYPE DATA_SOURCE_ID="1" CODE_VALUE="Organics, PCBs"/>
-  
-  <CHAR_TYPE DATA_SOURCE_ID="1" CODE_VALUE="Organics, Pesticide"/>
-  
-  <CHAR_TYPE DATA_SOURCE_ID="1" CODE_VALUE="Physical"/>
-  <CHAR_TYPE DATA_SOURCE_ID="2" CODE_VALUE="Physical"/>
-  <CHAR_TYPE DATA_SOURCE_ID="3" CODE_VALUE="Physical"/>
-  
-  <CHAR_TYPE DATA_SOURCE_ID="3" CODE_VALUE="Population/Community"/>
+    <char_type data_source_id="1" code_value="Inorganics, Major, Metals"/>
+    <char_type data_source_id="2" code_value="Inorganics, Major, Metals"/>
+    <char_type data_source_id="3" code_value="Inorganics, Major, Metals"/>
+
+    <char_type data_source_id="1" code_value="Inorganics, Major, Non-metals"/>
+    <char_type data_source_id="2" code_value="Inorganics, Major, Non-metals"/>
+    <char_type data_source_id="3" code_value="Inorganics, Major, Non-metals"/>
+
+    <char_type data_source_id="1" code_value="Inorganics, Minor, Metals"/>
+    <char_type data_source_id="2" code_value="Inorganics, Minor, Metals"/>
+
+    <char_type data_source_id="2" code_value="Inorganics, Minor, Non-metals"/>
+
+    <char_type data_source_id="1" code_value="Microbiological"/>
+
+    <char_type data_source_id="2" code_value="Nutrient"/>
+    <char_type data_source_id="3" code_value="Nutrient"/>
+
+    <char_type data_source_id="1" code_value="Organics, Other"/>
+    <char_type data_source_id="3" code_value="Organics, Other"/>
+
+    <char_type data_source_id="1" code_value="Organics, PCBs"/>
+
+    <char_type data_source_id="1" code_value="Organics, Pesticide"/>
+
+    <char_type data_source_id="1" code_value="Physical"/>
+    <char_type data_source_id="2" code_value="Physical"/>
+    <char_type data_source_id="3" code_value="Physical"/>
+
+    <char_type data_source_id="3" code_value="Population/Community"/>
 </dataset>

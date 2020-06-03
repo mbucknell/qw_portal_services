@@ -1,33 +1,33 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <dataset>
-  <ORGANIZATION DATA_SOURCE_ID="1" CODE_VALUE="21FLCOT_WQX" DESCRIPTION="City of Tallahassee Stormwater"/>
-  <ORGANIZATION DATA_SOURCE_ID="2" CODE_VALUE="21FLCOT_WQX" DESCRIPTION="City of Tallahassee Stormwater"/>
-  <ORGANIZATION DATA_SOURCE_ID="3" CODE_VALUE="21FLCOT_WQX" DESCRIPTION="City of Tallahassee Stormwater"/>
-  
-  <ORGANIZATION DATA_SOURCE_ID="1" CODE_VALUE="0800257_WQX" DESCRIPTION="Clear Creek  Superfund"/>
-  <ORGANIZATION DATA_SOURCE_ID="2" CODE_VALUE="0800257_WQX" DESCRIPTION="Clear Creek  Superfund"/>
-  <ORGANIZATION DATA_SOURCE_ID="3" CODE_VALUE="0800257_WQX" DESCRIPTION="Clear Creek  Superfund"/>
-  
-  <ORGANIZATION DATA_SOURCE_ID="1" CODE_VALUE="ARS" DESCRIPTION="USDA Agricultural Research Service"/>
-  <ORGANIZATION DATA_SOURCE_ID="2" CODE_VALUE="ARS" DESCRIPTION="USDA Agricultural Research Service"/>
+    <organization data_source_id="1" code_value="21FLCOT_WQX" description="City of Tallahassee Stormwater"/>
+    <organization data_source_id="2" code_value="21FLCOT_WQX" description="City of Tallahassee Stormwater"/>
+    <organization data_source_id="3" code_value="21FLCOT_WQX" description="City of Tallahassee Stormwater"/>
 
-  <ORGANIZATION DATA_SOURCE_ID="2" CODE_VALUE="FWC_WQMP" DESCRIPTION="Florida Keys NMS - Water Quality Monitoring Program"/>
-  
-  <ORGANIZATION DATA_SOURCE_ID="1" CODE_VALUE="USGS-AL" DESCRIPTION="USGS Alabama Water Science Center"/>
-  
-  <ORGANIZATION DATA_SOURCE_ID="2" CODE_VALUE="USGS-HI" DESCRIPTION="USGS Hawaii Water Science Center"/>
-  <ORGANIZATION DATA_SOURCE_ID="3" CODE_VALUE="USGS-HI" DESCRIPTION="USGS Hawaii Water Science Center"/>
-  
-  <ORGANIZATION DATA_SOURCE_ID="1" CODE_VALUE="USGS-UT" DESCRIPTION="USGS Utah Water Science Center"/>
-  <ORGANIZATION DATA_SOURCE_ID="3" CODE_VALUE="USGS-UT" DESCRIPTION="USGS Utah Water Science Center"/>
-  
-  <ORGANIZATION DATA_SOURCE_ID="1" CODE_VALUE="USGS-VA" DESCRIPTION="USGS Virginia Water Science Center"/>
-  
-  <ORGANIZATION DATA_SOURCE_ID="1" CODE_VALUE="USGS-WA" DESCRIPTION="USGS Washington Water Science Center"/>
-  
-  <ORGANIZATION DATA_SOURCE_ID="1" CODE_VALUE="USGS-WI" DESCRIPTION="USGS Wisconsin Water Science Center"/>
-  <ORGANIZATION DATA_SOURCE_ID="2" CODE_VALUE="USGS-WI" DESCRIPTION="USGS Wisconsin Water Science Center"/>
-  <ORGANIZATION DATA_SOURCE_ID="3" CODE_VALUE="USGS-WI" DESCRIPTION="USGS Wisconsin Water Science Center"/>
-  
-  <ORGANIZATION DATA_SOURCE_ID="3" CODE_VALUE="USGS-WY" DESCRIPTION="USGS Wyoming Water Science Center"/>
+    <organization data_source_id="1" code_value="0800257_WQX" description="Clear Creek  Superfund"/>
+    <organization data_source_id="2" code_value="0800257_WQX" description="Clear Creek  Superfund"/>
+    <organization data_source_id="3" code_value="0800257_WQX" description="Clear Creek  Superfund"/>
+
+    <organization data_source_id="1" code_value="ARS" description="USDA Agricultural Research Service"/>
+    <organization data_source_id="2" code_value="ARS" description="USDA Agricultural Research Service"/>
+
+    <organization data_source_id="2" code_value="FWC_WQMP" description="Florida Keys NMS - Water Quality Monitoring Program"/>
+
+    <organization data_source_id="1" code_value="USGS-AL" description="USGS Alabama Water Science Center"/>
+
+    <organization data_source_id="2" code_value="USGS-HI" description="USGS Hawaii Water Science Center"/>
+    <organization data_source_id="3" code_value="USGS-HI" description="USGS Hawaii Water Science Center"/>
+
+    <organization data_source_id="1" code_value="USGS-UT" description="USGS Utah Water Science Center"/>
+    <organization data_source_id="3" code_value="USGS-UT" description="USGS Utah Water Science Center"/>
+
+    <organization data_source_id="1" code_value="USGS-VA" description="USGS Virginia Water Science Center"/>
+
+    <organization data_source_id="1" code_value="USGS-WA" description="USGS Washington Water Science Center"/>
+
+    <organization data_source_id="1" code_value="USGS-WI" description="USGS Wisconsin Water Science Center"/>
+    <organization data_source_id="2" code_value="USGS-WI" description="USGS Wisconsin Water Science Center"/>
+    <organization data_source_id="3" code_value="USGS-WI" description="USGS Wisconsin Water Science Center"/>
+
+    <organization data_source_id="3" code_value="USGS-WY" description="USGS Wyoming Water Science Center"/>
 </dataset>
