@@ -20,6 +20,7 @@ codes:
     url: ${CODES_SERVICE_URL:/}
   swagger:
     apiDocsUrl: /v3/api-docs
+    deployName: Codes
 
 management:
   endpoints:

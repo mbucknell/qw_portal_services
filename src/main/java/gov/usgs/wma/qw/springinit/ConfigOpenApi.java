@@ -19,13 +19,16 @@ public class ConfigOpenApi {
 	@Value("${springdoc.version}")
 	private String appVersion;
 
+	@Value("${codes.swagger.deployName}")
+	private String deployName;
+
 	@Bean
 	public OpenAPI customOpenAPI() {
 		return new OpenAPI()
 				.addServersItem(new Server().url(serverUrl))
 				.info(new Info()
-						.title("Water Quality Portal Codes API")
-						.description("Documentation for the Water Quality Portal Codes Lookup and Validation API")
+						.title(deployName + " API")
+						.description("Documentation for the " + deployName + " Lookup and Validation API")
 						.version(appVersion)
 						);
 

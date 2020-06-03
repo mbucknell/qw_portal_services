@@ -24,6 +24,7 @@ SERVER_CONTEXT_PATH: </Codes>
 ROOT_LOG_LEVEL: INFO
 
 CODES_SERVICE_URL: <http://localhost:8082/Codes/>
+DEPLOY_NAME: Water Quality Portal Codes
 ```
 
 ## Testing
