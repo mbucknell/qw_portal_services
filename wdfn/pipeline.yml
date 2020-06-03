@@ -15,7 +15,7 @@ projectName: "iow-allgemein"
 # maximum amount of RAM for running Docker containers in the service
 memory: 512
 # name of the application or service
-applicationName: "qw_portal_services"
+applicationName: "lookup_services"
 # port that is exposed by your container
 containerPort: 8080
 # string parameter specifying a path that ALB should use to verify that your application is alive
