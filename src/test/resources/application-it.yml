@@ -18,7 +18,7 @@ springdoc:
 
 codes:
   service:
-    url: ${CODES_SERVICE_URL}
+    url: ${CODES_SERVICE_URL:/}
   swagger:
     apiDocsUrl: /v3/api-docs
     deployName: Codes

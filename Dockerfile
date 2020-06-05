@@ -1,4 +1,4 @@
-FROM maven:3.6.0-jdk-11 AS build
+FROM maven:3.6.3-jdk-11 AS build
 LABEL maintainer="gs-w_eto_eb_federal_employees@usgs.gov"
 
 # Add pom.xml and install dependencies
@@ -10,7 +10,7 @@ RUN mvn -B dependency:go-offline
 COPY src /build/src
 RUN mvn -B clean package -Dmaven.test.skip=true
 
-FROM usgswma/openjdk:debian-stretch-openjdk-11
+FROM usgswma/openjdk:11
 
 RUN apt-get update && apt-get install --no-install-recommends --no-upgrade -y \
     curl \
