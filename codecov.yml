@@ -1,0 +1,5 @@
+ignore:
+  # Spring Boot Application file - no testable logic
+  - "**/Application.java"
+  # OAuth config -  Internal WQP is on hold and this is not being used
+  - "**/OAuth2ResourceServerConfig.java"
