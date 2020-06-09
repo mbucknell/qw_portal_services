@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.MediaType;
 import org.springframework.web.HttpMediaTypeNotAcceptableException;
 import org.springframework.web.accept.ContentNegotiationStrategy;
@@ -32,6 +33,7 @@ import gov.usgs.wma.qw.LastUpdateDao;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
+@Profile("!wdfn")
 @Tag(name="NWIS Public SRS Names", description="File Download")
 @RestController
 @RequestMapping(value="public_srsnames")

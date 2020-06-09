@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://${DATABASE_ADDRESS}:${DATABASE_PORT}/${DATABASE_NAME}
+    url: jdbc:postgresql://${DATABASE_ADDRESS}:${DATABASE_PORT}/${DATABASE_NAME}?currentSchema=${SCHEMA_NAME}
     username: ${READ_ONLY_USERNAME}
     password: ${READ_ONLY_PASSWORD}
     hikari:
@@ -11,13 +11,14 @@ spring:
     password: ${SCHEMA_OWNER_PASSWORD}
     hikari:
       maximumPoolSize: 5
+    schemaName: ${SCHEMA_NAME_DBUNIT}
 
 springdoc:
   version: "@project.version@"
 
 codes:
   service:
-    url: ${CODES_SERVICE_URL:/}
+    url: /
   swagger:
     apiDocsUrl: /v3/api-docs
     deployName: Codes

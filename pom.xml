@@ -198,6 +198,7 @@
                         <DATABASE_PORT>${TESTING_DATABASE_PORT}</DATABASE_PORT>
                         <DATABASE_NAME>wqp_db</DATABASE_NAME>
                         <SCHEMA_NAME>wqp</SCHEMA_NAME>
+                        <SCHEMA_NAME_DBUNIT>wqp</SCHEMA_NAME_DBUNIT>
                         <SCHEMA_OWNER_USERNAME>wqp_core</SCHEMA_OWNER_USERNAME>
                         <SCHEMA_OWNER_PASSWORD>changeMe</SCHEMA_OWNER_PASSWORD>
                         <READ_ONLY_USERNAME>wqp_user</READ_ONLY_USERNAME>
