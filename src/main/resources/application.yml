@@ -23,6 +23,7 @@ codes:
 logging:
   level:
     root: ${ROOT_LOG_LEVEL:INFO}
+    javax.management.mbeanserver: OFF
 
 management:
   endpoints:
