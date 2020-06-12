@@ -1,0 +1,23 @@
+@Library(value='iow-ecs-pipeline@2.2.0', changelog=false) _
+
+pipeline {
+    agent {
+        node {
+            label 'team:iow'
+        }
+    }
+    stages {
+        stage('Set Build Description') {
+            steps {
+                script {
+                    currentBuild.description = "Deploy to ${env.ENVIRONMENT}"
+                }
+             }
+        }
+        stage('build artifact') {
+            steps {
+                serviceDeployPipeline('wdfn/pipeline.yml')
+            }
+        }
+    }
+}

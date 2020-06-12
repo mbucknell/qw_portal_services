@@ -11,12 +11,11 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 
-import gov.usgs.wma.qw.LastUpdateDao;
 import gov.usgs.wma.qw.springinit.DBTestConfig;
 
 @SpringBootTest(webEnvironment=WebEnvironment.NONE,
 		classes={DBTestConfig.class, LastUpdateDao.class})
-@DatabaseSetup("classpath:/testData/lastUpdateDao.xml")
+@DatabaseSetup("classpath:/testData/lastEtl.xml")
 public class LastUpdateDaoIT extends BaseIT {
 
 	@Autowired

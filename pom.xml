@@ -55,14 +55,9 @@
         </dependency>
 
         <dependency>
-            <groupId>org.mybatis</groupId>
-            <artifactId>mybatis</artifactId>
-            <version>3.5.4</version>
-        </dependency>
-        <dependency>
-            <groupId>org.mybatis</groupId>
-            <artifactId>mybatis-spring</artifactId>
-            <version>2.0.4</version>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>2.1.3</version>
         </dependency>
 
         <dependency>
@@ -161,6 +156,12 @@
             <artifactId>dbunit</artifactId>
             <version>2.7.0</version>
             <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>junit</groupId>
+                    <artifactId>junit</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.xmlunit</groupId>
@@ -188,14 +189,15 @@
                 <artifactId>maven-failsafe-plugin</artifactId>
                 <configuration>
                     <environmentVariables>
-                        <WQP_DATABASE_ADDRESS>${TESTING_DATABASE_ADDRESS}</WQP_DATABASE_ADDRESS>
-                        <WQP_DATABASE_PORT>${TESTING_DATABASE_PORT}</WQP_DATABASE_PORT>
-                        <WQP_DATABASE_NAME>wqp_db</WQP_DATABASE_NAME>
-                        <WQP_SCHEMA_OWNER_USERNAME>wqp_core</WQP_SCHEMA_OWNER_USERNAME>
-                        <WQP_SCHEMA_OWNER_PASSWORD>changeMe</WQP_SCHEMA_OWNER_PASSWORD>
-                        <WQP_DB_READ_ONLY_USERNAME>wqp_user</WQP_DB_READ_ONLY_USERNAME>
-                        <WQP_DB_READ_ONLY_PASSWORD>changeMe</WQP_DB_READ_ONLY_PASSWORD>
-                        <CODES_SERVICE_URL>/</CODES_SERVICE_URL>
+                        <DATABASE_ADDRESS>${TESTING_DATABASE_ADDRESS}</DATABASE_ADDRESS>
+                        <DATABASE_PORT>${TESTING_DATABASE_PORT}</DATABASE_PORT>
+                        <DATABASE_NAME>wqp_db</DATABASE_NAME>
+                        <SCHEMA_NAME>wqp</SCHEMA_NAME>
+                        <SCHEMA_NAME_DBUNIT>wqp</SCHEMA_NAME_DBUNIT>
+                        <SCHEMA_OWNER_USERNAME>wqp_core</SCHEMA_OWNER_USERNAME>
+                        <SCHEMA_OWNER_PASSWORD>changeMe</SCHEMA_OWNER_PASSWORD>
+                        <READ_ONLY_USERNAME>wqp_user</READ_ONLY_USERNAME>
+                        <READ_ONLY_PASSWORD>changeMe</READ_ONLY_PASSWORD>
                     </environmentVariables>
                 </configuration>
                 <executions>

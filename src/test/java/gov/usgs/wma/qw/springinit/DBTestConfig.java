@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import javax.sql.DataSource;
 
 import org.dbunit.ext.postgresql.PostgresqlDataTypeFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.test.context.TestConfiguration;
@@ -16,11 +17,12 @@ import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import com.github.springtestdbunit.bean.DatabaseConfigBean;
 import com.github.springtestdbunit.bean.DatabaseDataSourceConnectionFactoryBean;
 
-import gov.usgs.wma.qw.springinit.MybatisConfig;
-
 @TestConfiguration
 @Import(MybatisConfig.class)
 public class DBTestConfig {
+
+	@Value("${spring.datasource-dbunit.schemaName}")
+	private String schemaName;
 
 	@Bean
 	@Primary
@@ -38,14 +40,14 @@ public class DBTestConfig {
 
 	@Bean
 	@ConfigurationProperties(prefix="spring.datasource-dbunit")
-	public DataSourceProperties dataSourcePropertiesWqpCore() {
+	public DataSourceProperties dataSourcePropertiesDbunit() {
 		return new DataSourceProperties();
 	}
 
 	@Bean
 	@ConfigurationProperties(prefix="spring.datasource-dbunit")
-	public DataSource dataSourceWqpCore() {
-		return dataSourcePropertiesWqpCore().initializeDataSourceBuilder().build();
+	public DataSource dataSourceDbunit() {
+		return dataSourcePropertiesDbunit().initializeDataSourceBuilder().build();
 	}
 
 	@Bean
@@ -60,8 +62,8 @@ public class DBTestConfig {
 	public DatabaseDataSourceConnectionFactoryBean dbUnitDatabaseConnection() throws SQLException {
 		DatabaseDataSourceConnectionFactoryBean dbUnitDatabaseConnection = new DatabaseDataSourceConnectionFactoryBean();
 		dbUnitDatabaseConnection.setDatabaseConfig(dbUnitDatabaseConfig());
-		dbUnitDatabaseConnection.setDataSource(dataSourceWqpCore());
-		dbUnitDatabaseConnection.setSchema("wqp");
+		dbUnitDatabaseConnection.setDataSource(dataSourceDbunit());
+		dbUnitDatabaseConnection.setSchema(schemaName);
 		return dbUnitDatabaseConnection;
 	}
 
