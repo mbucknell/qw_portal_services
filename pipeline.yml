@@ -2,8 +2,6 @@
 artifactoryPath: "qw_portal_services"
 # name of the docker image
 dockerImageName: "qw_portal_services"
-# type of build
-repoPath: "NWQMC/qw_portal_services"
 # name of the git repo
 gitRepoUrl: "https://github.com/NWQMC/qw_portal_services.git"
 # Jenkins credential for pushing back to repo
