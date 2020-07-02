@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/NWQMC/qw_portal_services.svg?branch=postgres)](https://travis-ci.org/NWQMC/qw_portal_services)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/34585f7c07cf4a39a7c691ec31c78820)](https://www.codacy.com/manual/usgs_wma_dev/qw_portal_services?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=NWQMC/qw_portal_services&amp;utm_campaign=Badge_Grade)
+[![codecov](https://codecov.io/gh/NWQMC/qw_portal_services/branch/master/graph/badge.svg)](https://codecov.io/gh/NWQMC/qw_portal_services)
 
 Internet Of Water (IOW) Lookup Service
 
